@@ -4,6 +4,7 @@ node_modules/
 # Storybook build output
 types/
 dist/
+storybook-static/
 
 # dotenv environment variables file
 .env
