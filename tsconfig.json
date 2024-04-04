@@ -13,7 +13,7 @@
     "declarationDir": "types",
     // can be removed, when we move the components into its own repo.
     "declarationMap": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "types"],

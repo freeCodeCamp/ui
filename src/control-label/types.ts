@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 export interface ControlLabelProps
-  extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  htmlFor?: string;
-  srOnly?: boolean;
+	extends React.LabelHTMLAttributes<HTMLLabelElement> {
+	htmlFor?: string;
+	srOnly?: boolean;
 }
