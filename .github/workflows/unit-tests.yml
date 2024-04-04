@@ -1,7 +1,8 @@
 name: Unit Tests
 on: [push]
 jobs:
-  run-defined-frontend-tests:
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,6 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-        
+
       - name: Run tests
         run: pnpm test
