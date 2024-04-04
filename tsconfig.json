@@ -12,7 +12,7 @@
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["**/*.test.*", "**/*.stories.*",],
+  "exclude": ["**/*.test.*", "**/*.stories.*"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
