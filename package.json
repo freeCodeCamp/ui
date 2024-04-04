@@ -37,7 +37,8 @@
     "storybook": "storybook dev -p 6006",
     "storybook:theming": "pnpm run storybook --no-manager-cache",
     "clean": "rm -rf dist/*",
-    "gen-component": "ts-node ./utils/gen-component-script"
+    "gen-component": "ts-node ./utils/gen-component-script",
+    "test": "jest"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "6.4.2",
@@ -80,6 +81,8 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
     "css-loader": "6.8.1",
+    "jest": "29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "npm-run-all2": "5.0.2",
     "postcss": "8.4.35",
     "postcss-import": "14.1.0",
