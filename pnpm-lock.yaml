@@ -139,6 +139,9 @@ devDependencies:
   postcss-loader:
     specifier: 8.1.0
     version: 8.1.0(postcss@8.4.35)(typescript@5.4.3)(webpack@5.91.0)
+  prettier:
+    specifier: 3.2.5
+    version: 3.2.5
   rollup:
     specifier: 2.79.1
     version: 2.79.1

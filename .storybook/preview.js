@@ -1,29 +1,29 @@
 /* the styled-elements and normalized are included here to replicate the presets that exist in the learn app */
-import React from 'react';
-import '../src/normalize.css';
-import '../src/global-element-styles.css';
-import '../src/base.css';
+import React from "react";
+import "../src/normalize.css";
+import "../src/global-element-styles.css";
+import "../src/base.css";
 
 export const parameters = {
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/
-    }
-  },
-  backgrounds: {
-    default: 'light-palette',
-    values: [
-      {
-        name: 'light-palette',
-        value: '#ffffff'
-      },
-      {
-        name: 'dark-palette',
-        value: '#0a0a23'
-      }
-    ]
-  }
+	controls: {
+		matchers: {
+			color: /(background|color)$/i,
+			date: /Date$/,
+		},
+	},
+	backgrounds: {
+		default: "light-palette",
+		values: [
+			{
+				name: "light-palette",
+				value: "#ffffff",
+			},
+			{
+				name: "dark-palette",
+				value: "#0a0a23",
+			},
+		],
+	},
 };
 
 export const decorators = [renderTheme];
@@ -33,21 +33,21 @@ export const decorators = [renderTheme];
  * to the story.
  */
 function renderTheme(Story, context) {
-  const selectedBackgroundValue = context.globals.backgrounds?.value;
-  const selectedBackgroundName = parameters.backgrounds.values.find(
-    bg => bg.value === selectedBackgroundValue
-  )?.name;
+	const selectedBackgroundValue = context.globals.backgrounds?.value;
+	const selectedBackgroundName = parameters.backgrounds.values.find(
+		(bg) => bg.value === selectedBackgroundValue,
+	)?.name;
 
-  // Use the value of the default background to prevent "undefined" className
-  const className = selectedBackgroundName || parameters.backgrounds.default;
+	// Use the value of the default background to prevent "undefined" className
+	const className = selectedBackgroundName || parameters.backgrounds.default;
 
-  if (className === 'light-palette') {
-    document.body.classList.remove('dark-palette');
-    document.body.classList.add('light-palette');
-  } else {
-    document.body.classList.remove('light-palette');
-    document.body.classList.add('dark-palette');
-  }
+	if (className === "light-palette") {
+		document.body.classList.remove("dark-palette");
+		document.body.classList.add("light-palette");
+	} else {
+		document.body.classList.remove("light-palette");
+		document.body.classList.add("dark-palette");
+	}
 
-  return <Story />;
+	return <Story />;
 }
