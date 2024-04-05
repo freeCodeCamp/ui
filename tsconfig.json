@@ -8,15 +8,11 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "strict": true,
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    "declarationDir": "types",
-    // can be removed, when we move the components into its own repo.
-    "declarationMap": true,
+    "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "types"],
+  "include": ["src/**/*"],
+  "exclude": ["**/*.test.*", "**/*.stories.*"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"

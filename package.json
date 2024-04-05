@@ -7,7 +7,7 @@
   "main": "dist/bundle.js",
   "module": "dist/bundle.es.js",
   "style": "dist/base.css",
-  "types": "types/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -27,7 +27,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build-storybook": "storybook build",
-    "build": "pnpm run build:css && pnpm run build:js && tsc",
+    "build": "pnpm run build:css && pnpm run build:js",
     "build:js": "cross-env NODE_ENV=production rollup -c",
     "build:css": "npx -y tailwindcss -i ./src/base.css -o ./dist/base.css --minify",
     "dev:js": "cross-env NODE_ENV=development rollup -c -w ",
