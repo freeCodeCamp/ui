@@ -1,8 +1,8 @@
-name: Build Storybook
+name: Test Storybook
 on: [push, pull_request]
 jobs:
-  build:
-    name: Build
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build Storybook
+      - name: Check Storybook can be built
         run: pnpm run build-storybook --test
