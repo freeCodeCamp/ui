@@ -2,49 +2,29 @@ import React, { createContext, useContext, useRef } from "react";
 import { Menu } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { Props } from "@headlessui/react/dist/types";
 
-type MenuTag = React.ExoticComponent<{
-	children?: React.ReactNode;
-}>;
-
-interface MenuRenderPropArg {
-	open: boolean;
-	close: () => void;
+interface MenuItemsProps {
+	children: React.ReactNode;
+	className?: string;
 }
 
-type DropdownMenuProps = Props<
-	MenuTag,
-	MenuRenderPropArg,
-	never,
-	{
-		__demoMode?: boolean;
-	}
->;
-
-export type DropdownProps = DropdownMenuProps & {
+export interface DropdownProps {
+	children: React.ReactNode;
 	dropup?: boolean;
 	id?: string;
-};
-
-export interface ButtonRenderPropArg {
-	open: boolean;
 }
 
-type ButtonPropsWeControl = "aria-controls" | "aria-expanded" | "aria-haspopup";
+interface DropDownButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	children: React.ReactNode;
+	className?: string;
+}
 
-type DropDownButtonProps = Props<
-	"button",
-	ButtonRenderPropArg,
-	ButtonPropsWeControl,
-	{
-		disabled?: boolean;
-	}
->;
-
-type DropDownContextProps = DropdownProps & {
+interface DropDownContextProps {
+	dropup?: boolean;
 	menuButtonRef: React.MutableRefObject<HTMLButtonElement | null>;
-};
+}
+
 const DropDownContext = createContext<DropDownContextProps>({
 	menuButtonRef: React.createRef(),
 });
@@ -55,7 +35,7 @@ const dropUpItems = dropDownItems + " transform -translate-y-full top-0";
 const toggleClassNames =
 	"cursor-pointer border-3 border-solid w-full block text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 relative hover:bg-foreground-secondary hover:text-background-secondary btn-block border-foreground-secondary";
 
-export const MenuItems = React.forwardRef<HTMLDivElement, DropDownButtonProps>(
+export const MenuItems = React.forwardRef<HTMLDivElement, MenuItemsProps>(
 	({ children, className }, ref): JSX.Element => {
 		const { dropup, menuButtonRef } = useContext(DropDownContext);
 
@@ -95,14 +75,14 @@ const DropDownButton = ({
 
 export const Dropdown = ({
 	children,
+	id,
 	dropup,
-	...props
 }: DropdownProps): JSX.Element => {
 	const menuButtonRef = useRef(null);
 	const context = { dropup, menuButtonRef };
 	return (
 		<DropDownContext.Provider value={context}>
-			<Menu className="relative w-full" as="div" {...props}>
+			<Menu className="relative w-full" as="div" id={id}>
 				{children}
 			</Menu>
 		</DropDownContext.Provider>
