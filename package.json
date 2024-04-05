@@ -4,6 +4,7 @@
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "license": "BSD-3-Clause",
   "description": "The freeCodeCamp.org open-source UI components",
+  "type": "module",
   "main": "dist/bundle.js",
   "module": "dist/bundle.es.js",
   "style": "dist/base.css",
