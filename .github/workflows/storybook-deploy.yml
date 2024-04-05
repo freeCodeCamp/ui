@@ -1,5 +1,7 @@
 name: Deploy Storybook to GitHub Pages
-on: [push]
+on:
+  push:
+    branches: [main]
 jobs:
   publish:
     name: Build
