@@ -36,7 +36,7 @@
     "format:eslint": "eslint . --fix",
     "format:prettier": "prettier --write .",
     "format": "pnpm run format:eslint && pnpm run format:prettier",
-    "lint": "prettier --check .",
+    "lint": "prettier --check . && eslint .",
     "start": "pnpm run develop",
     "storybook": "storybook dev -p 6006",
     "storybook:theming": "pnpm run storybook --no-manager-cache",
