@@ -40,7 +40,8 @@
     "storybook:theming": "pnpm run storybook --no-manager-cache",
     "clean": "rm -rf dist/*",
     "gen-component": "ts-node ./utils/gen-component-script",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "6.4.2",
@@ -82,8 +83,11 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
     "css-loader": "6.8.1",
+    "eslint": "^9.0.0",
+    "husky": "^9.0.11",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.2",
     "npm-run-all2": "5.0.2",
     "postcss": "8.4.35",
     "postcss-import": "14.1.0",
@@ -91,7 +95,6 @@
     "prettier": "3.2.5",
     "rollup": "2.79.1",
     "rollup-plugin-postcss": "4.0.2",
-    "@rollup/plugin-terser": "0.4.4",
     "storybook": "^8.0.5",
     "style-loader": "3.3.3",
     "tailwindcss": "3.4.1",
