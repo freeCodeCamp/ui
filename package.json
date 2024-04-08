@@ -60,6 +60,7 @@
     "@rollup/plugin-commonjs": "19.0.2",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.5.0",
+    "@rollup/plugin-terser": "0.4.4",
     "@storybook/addon-a11y": "^8.0.5",
     "@storybook/addon-actions": "^8.0.5",
     "@storybook/addon-docs": "^8.0.5",
