@@ -13,7 +13,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "jsx-a11y", "testing-library"],
   "rules": {},
   "settings": {
     "react": {
