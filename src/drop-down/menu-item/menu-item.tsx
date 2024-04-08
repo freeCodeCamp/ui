@@ -1,8 +1,8 @@
 import { Menu } from "@headlessui/react";
-import React from "react";
+import React, { type ComponentPropsWithoutRef } from "react";
 import { type ButtonProps, HeadlessButton } from "../../button";
 
-export type MenuItemsProps = React.ComponentPropsWithoutRef<typeof Menu.Items> &
+export type MenuItemsProps = ComponentPropsWithoutRef<typeof Menu.Items> &
 	ButtonProps;
 
 const defaultClass =

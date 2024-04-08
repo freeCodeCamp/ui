@@ -37,7 +37,7 @@ const DefaultTemplate: StoryFn<StoryProps> = ({
 	showCloseButton,
 	alignment,
 	...modalProps
-}) => {
+}: StoryProps) => {
 	const [open, setOpen] = useState(false);
 
 	const handleClose = () => setOpen(false);

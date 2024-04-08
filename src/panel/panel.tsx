@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, type ComponentProps } from "react";
 
 import { PanelProps } from "./types";
 
@@ -22,7 +22,7 @@ const Body = ({
 	children,
 	className,
 	...props
-}: React.ComponentProps<"div">): JSX.Element => {
+}: ComponentProps<"div">): JSX.Element => {
 	const classes = [className, "p-3.5"].join(" ");
 	return (
 		<div className={classes} {...props}>
@@ -35,7 +35,7 @@ export const Heading = ({
 	children,
 	className,
 	...props
-}: React.ComponentProps<"div">): JSX.Element => {
+}: ComponentProps<"div">): JSX.Element => {
 	const { variant } = useContext(PanelContext);
 
 	const headingStyles = variant
@@ -53,7 +53,7 @@ export const Heading = ({
 export const Title = ({
 	children,
 	...props
-}: React.ComponentProps<"h3">): JSX.Element => {
+}: ComponentProps<"h3">): JSX.Element => {
 	return (
 		<h3 className="text-inherit mb-0 text-xl" {...props}>
 			{children}

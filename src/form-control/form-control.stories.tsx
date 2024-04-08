@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ComponentProps } from "react";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { FormControl } from ".";
 
@@ -49,7 +49,7 @@ export const Static: StoryObj<typeof FormControl.Static> = {
 	},
 };
 
-const FeedBackTemplate: StoryFn<React.ComponentProps<"span">> = (args) => {
+const FeedBackTemplate: StoryFn<ComponentProps<"span">> = (args) => {
 	return <FormControl.Feedback {...args} />;
 };
 
