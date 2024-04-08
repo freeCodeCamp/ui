@@ -36,7 +36,7 @@
     "format": "prettier --write .",
     "lint": "prettier --check .",
     "start": "pnpm run develop",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "storybook:theming": "pnpm run storybook --no-manager-cache",
     "clean": "rm -rf dist/*",
     "gen-component": "ts-node ./utils/gen-component-script",
