@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "module": "Node16",
+    "module": "ES2022",
     "target": "ES6",
     "sourceMap": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node16",
+    "moduleResolution": "Bundler",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true
