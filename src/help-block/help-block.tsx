@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, type ComponentProps } from "react";
 import { FormContext } from "../form-group/form-group";
 
 const defaultClasses = "block mt-1 mb-2";
@@ -10,7 +10,7 @@ const validationLabel = {
 
 export const HelpBlock = React.forwardRef<
 	HTMLSpanElement,
-	React.ComponentProps<"span">
+	ComponentProps<"span">
 >(({ className, children, ...props }, ref): JSX.Element => {
 	const { validationState } = useContext(FormContext);
 
