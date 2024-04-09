@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
+import path from "path";
 
 const production = process.env.NODE_ENV !== "development";
 
@@ -22,7 +23,10 @@ const config = {
 		},
 	],
 	plugins: [
-		postcss(),
+    postcss({
+			extract: path.resolve('dist/normalize.css'),
+      minimize: true,
+    }),
 		resolve(),
 		typescript({ sourceMap: true, declaration: true, declarationDir: "dist" }),
 		babel({ babelHelpers: "bundled" }),
