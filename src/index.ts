@@ -18,4 +18,4 @@ export { HelpBlock } from "./help-block";
 export { Row } from "./row";
 export { Modal, type ModalProps, type HeaderProps } from "./modal";
 
-import "./normalize.css"
+import "./normalize.css";

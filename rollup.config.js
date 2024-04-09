@@ -23,10 +23,10 @@ const config = {
 		},
 	],
 	plugins: [
-    postcss({
-			extract: path.resolve('dist/normalize.css'),
-      minimize: true,
-    }),
+		postcss({
+			extract: path.resolve("dist/normalize.css"),
+			minimize: true,
+		}),
 		resolve(),
 		typescript({ sourceMap: true, declaration: true, declarationDir: "dist" }),
 		babel({ babelHelpers: "bundled" }),
