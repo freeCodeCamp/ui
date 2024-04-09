@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ControlLabel } from ".";
 
 const story = {
-	title: "Example/ControlLabel",
+	title: "Components/ControlLabel",
 	component: ControlLabel,
 	parameters: {
 		controls: {

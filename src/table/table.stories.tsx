@@ -36,7 +36,7 @@ const exampleTable = (
 );
 
 const story = {
-	title: "Example/Table",
+	title: "Components/Table",
 	component: Table,
 	parameters: {
 		controls: {

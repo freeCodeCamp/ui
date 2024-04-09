@@ -3,7 +3,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from ".";
 
 const story = {
-	title: "Example/Tabs",
+	title: "Components/Tabs",
 	component: Tabs,
 } satisfies Meta<typeof Tabs>;
 

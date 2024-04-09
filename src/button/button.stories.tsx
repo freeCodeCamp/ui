@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Button } from ".";
 
 const story = {
-	title: "Example/Button",
+	title: "Components/Button",
 	component: Button,
 	parameters: {
 		controls: {

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Row } from ".";
 
 const story = {
-	title: "Example/Row",
+	title: "Components/Row",
 	component: Row,
 } satisfies Meta<typeof Row>;
 

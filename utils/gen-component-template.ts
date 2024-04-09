@@ -36,7 +36,7 @@ import { Story } from '@storybook/react';
 import { ${name}, ${name}Props } from '.';
 
 const story = {
-  title: 'Example/${name}',
+  title: 'WIP/${name}',
   component: ${name}
 };
 

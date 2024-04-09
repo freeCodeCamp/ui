@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { CloseButton } from "./close-button";
 
 const story = {
-	title: "Example/CloseButton",
+	title: "Components/CloseButton",
 	component: CloseButton,
 } satisfies Meta<typeof CloseButton>;
 

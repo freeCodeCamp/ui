@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { MenuItem } from "./menu-item/menu-item";
 import { Dropdown } from "./drop-down";
 const story = {
-	title: "Example/Dropdown",
+	title: "Components/Dropdown",
 	component: Dropdown,
 } satisfies Meta<typeof Dropdown>;
 
