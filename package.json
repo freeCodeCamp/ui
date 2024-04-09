@@ -54,10 +54,10 @@
     "react-dom": "16.14.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
-    "@babel/preset-env": "7.23.7",
+    "@babel/core": "7.24.4",
+    "@babel/preset-env": "7.24.4",
     "@babel/preset-react": "^7.24.1",
-    "@babel/preset-typescript": "7.23.3",
+    "@babel/preset-typescript": "7.24.1",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "19.0.2",
     "@rollup/plugin-node-resolve": "13.3.0",
