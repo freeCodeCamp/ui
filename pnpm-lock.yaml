@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^8.0.5
     version: 8.0.5(react@16.14.0)
   '@storybook/addon-styling-webpack':
-    specifier: 1.0.0-next.1
-    version: 1.0.0-next.1(webpack@5.91.0)
+    specifier: 1.0.0
+    version: 1.0.0(webpack@5.91.0)
   '@storybook/addon-webpack5-compiler-babel':
     specifier: ^3.0.3
     version: 3.0.3(webpack@5.91.0)
@@ -2928,8 +2928,8 @@ packages:
       ts-dedent: 2.2.0
     dev: true
 
-  /@storybook/addon-styling-webpack@1.0.0-next.1(webpack@5.91.0):
-    resolution: {integrity: sha512-EFkWbkDewoeedAyZ7yY0JSTLW648Tud4rxRL0Z6kd6wpFjzfU1nxxwJPV05qtUXUFXTHvMRmDgVippTMb0kjWA==}
+  /@storybook/addon-styling-webpack@1.0.0(webpack@5.91.0):
+    resolution: {integrity: sha512-jo1kzn7pi+NA+LZxrWoRvW6w7dXIKY/BjTG80XX2uU92lIKT+X1k/9vYk/0KPVK3Bsf4tO6ToAuqIRyOk7MHtg==}
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
@@ -5536,7 +5536,7 @@ packages:
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0
+      jest-config: 29.7.0(@types/node@20.12.3)
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -7927,7 +7927,7 @@ packages:
       create-jest: 29.7.0
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0
+      jest-config: 29.7.0(@types/node@20.12.3)
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -7936,45 +7936,6 @@ packages:
       - babel-plugin-macros
       - supports-color
       - ts-node
-    dev: true
-
-  /jest-config@29.7.0:
-    resolution: {integrity: sha512-uXbpfeQ7R6TZBqI3/TxCU4q4ttk3u0PJeC+E0zbfSoSjq6bJ7buBPxzQPL0ifrkY4DNu4JUdk0ImlBUYi840eQ==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      '@types/node': '*'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      '@babel/core': 7.23.7
-      '@jest/test-sequencer': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.23.7)
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.7.0
-      jest-environment-node: 29.7.0
-      jest-get-type: 29.6.3
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-runner: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
     dev: true
 
   /jest-config@29.7.0(@types/node@20.12.3):
