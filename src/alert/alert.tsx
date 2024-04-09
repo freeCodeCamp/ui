@@ -1,8 +1,8 @@
-import React from "react";
+import React, { type ComponentProps } from "react";
 
 type AlertVariant = "success" | "info" | "warning" | "danger";
 
-export type AlertProps = React.ComponentProps<"div"> & {
+export type AlertProps = ComponentProps<"div"> & {
 	variant: AlertVariant;
 };
 

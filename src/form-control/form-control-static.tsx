@@ -1,10 +1,10 @@
-import React from "react";
+import React, { type ComponentProps } from "react";
 
 export const FormControlStatic = ({
 	className,
 	children,
 	...props
-}: React.ComponentProps<"p">): JSX.Element => {
+}: ComponentProps<"p">): JSX.Element => {
 	const defaultClasses = "py-1.5 mb-0 min-h-43-px text-foreground-secondary";
 
 	const classes = [defaultClasses, className].join(" ");

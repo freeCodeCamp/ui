@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ComponentProps } from "react";
 
 export type FormControlProps<
 	TElement extends
@@ -6,4 +6,4 @@ export type FormControlProps<
 		| React.JSXElementConstructor<unknown> = "input",
 > = {
 	componentClass?: TElement | string;
-} & React.ComponentProps<TElement>;
+} & ComponentProps<TElement>;
