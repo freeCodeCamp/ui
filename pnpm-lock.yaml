@@ -125,8 +125,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   css-loader:
-    specifier: 6.8.1
-    version: 6.8.1(webpack@5.91.0)
+    specifier: 6.11.0
+    version: 6.11.0(webpack@5.91.0)
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -3055,7 +3055,7 @@ packages:
       case-sensitive-paths-webpack-plugin: 2.4.0
       cjs-module-lexer: 1.2.3
       constants-browserify: 1.0.0
-      css-loader: 6.8.1(webpack@5.91.0)
+      css-loader: 6.11.0(webpack@5.91.0)
       es-module-lexer: 1.5.0
       express: 4.19.2
       fork-ts-checker-webpack-plugin: 8.0.0(typescript@5.4.4)(webpack@5.91.0)
@@ -5590,11 +5590,17 @@ packages:
       postcss: 8.4.38
     dev: true
 
-  /css-loader@6.8.1(webpack@5.91.0):
-    resolution: {integrity: sha512-xDAXtEVGlD0gJ07iclwWVkLoZOpEvAWaSyf6W18S2pOC//K8+qUDIx8IIT3D+HjnmkJPQeesOPv5aiUaJsCM2g==}
+  /css-loader@6.11.0(webpack@5.91.0):
+    resolution: {integrity: sha512-CTJ+AEQJjq5NzLga5pE39qdiSV56F8ywCIsqNIRF0r7BDgWsN25aazToqAFg7ZrtA/U016xudB3ffgweORxX7g==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
+      '@rspack/core': 0.x || 1.x
       webpack: ^5.0.0
+    peerDependenciesMeta:
+      '@rspack/core':
+        optional: true
+      webpack:
+        optional: true
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.38)
       postcss: 8.4.38
