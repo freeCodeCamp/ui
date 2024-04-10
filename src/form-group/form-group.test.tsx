@@ -17,10 +17,10 @@ describe("<FormGroup>", () => {
 		);
 
 		const element = screen.getByTestId("test-id");
-		expect(element.childNodes.length).toBe(sameNumberOfChildren);
+		expect(element.childNodes).toHaveLength(sameNumberOfChildren);
 
 		const formGroupChildren = screen.getAllByTitle("Child");
-		expect(formGroupChildren.length).toBe(sameNumberOfChildren);
+		expect(formGroupChildren).toHaveLength(sameNumberOfChildren);
 		element.childNodes.forEach((child, index) => {
 			expect(child).toBe(formGroupChildren[index]);
 		});
