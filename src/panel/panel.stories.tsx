@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Panel } from ".";
 
 const story = {
-	title: "Example/Panel",
+	title: "Components/Panel",
 	component: Panel,
 	parameters: {
 		controls: {
