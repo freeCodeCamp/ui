@@ -22,7 +22,7 @@ describe("<DropDownButton>", () => {
 		const item = within(unorderedList).getAllByRole("menuitem");
 		expect(unorderedList).toBeInTheDocument();
 		expect(dropdownTrigger).toBeInTheDocument();
-		expect(item.length).toBe(3);
+		expect(item).toHaveLength(3);
 	});
 
 	it("should render button with direction to up", async () => {

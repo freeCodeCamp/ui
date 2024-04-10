@@ -25,16 +25,8 @@
   },
   "overrides": [
     {
-      "files": ["**/*.test.js"],
-      "extends": ["plugin:jest/recommended"],
-      "plugins": ["jest"],
-      "rules": {
-        "jest/no-disabled-tests": "warn",
-        "jest/no-focused-tests": "error",
-        "jest/no-identical-title": "error",
-        "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error"
-      }
+      "files": ["**/*.test.*"],
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"]
     }
   ]
 }
