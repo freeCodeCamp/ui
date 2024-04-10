@@ -133,6 +133,7 @@ const StylessButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
 		// Ref: https://css-tricks.com/making-disabled-buttons-more-inclusive/#aa-the-difference-between-disabled-and-aria-disabled
 		const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 			if (disabled) {
+				event.preventDefault();
 				return;
 			}
 

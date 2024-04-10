@@ -71,6 +71,28 @@ describe("<Button />", () => {
 		expect(onClick).not.toHaveBeenCalled();
 	});
 
+	it("should not trigger form submission if the button has `submit` type and is disabled", async () => {
+		const handleSubmit = jest.fn();
+
+		render(
+			<form onSubmit={handleSubmit}>
+				<label>
+					Username
+					<input type="text" />
+				</label>
+
+				<Button type="submit" disabled>
+					Submit
+				</Button>
+			</form>,
+		);
+
+		const button = screen.getByRole("button", { name: "Submit" });
+		await userEvent.click(button);
+
+		expect(handleSubmit).not.toHaveBeenCalled();
+	});
+
 	it("should render an anchor element if the `href` prop is defined", () => {
 		render(<Button href="https://www.freecodecamp.org">freeCodeCamp</Button>);
 
