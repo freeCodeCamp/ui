@@ -25,7 +25,7 @@
   },
   "overrides": [
     {
-      "files": ["**/*.test.js"],
+      "files": ["**/*.test.*"],
       "extends": ["plugin:jest/recommended"],
       "plugins": ["jest"],
       "rules": {
