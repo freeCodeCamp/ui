@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./alert";
 
 const story = {
-	title: "Example/Alert",
+	title: "Components/Alert",
 	component: Alert,
 	argTypes: {
 		children: { control: { type: "text" } },

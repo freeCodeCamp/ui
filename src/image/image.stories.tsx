@@ -4,7 +4,7 @@ import { Image } from "./image";
 
 // Additional type assertion necessary due to a bug of how Storybook handles the `decorators` property in meta
 const story: Meta<typeof Image> = {
-	title: "Example/Image",
+	title: "Components/Image",
 	component: Image,
 	argTypes: {
 		responsive: {

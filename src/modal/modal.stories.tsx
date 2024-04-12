@@ -9,7 +9,7 @@ type StoryProps = ModalProps & HeaderProps & BodyProps;
 type Story = StoryObj<StoryProps>;
 
 const story = {
-	title: "Example/Modal",
+	title: "Components/Modal",
 	component: Modal,
 	args: {
 		size: "medium",

@@ -3,7 +3,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { FormControl } from ".";
 
 const story = {
-	title: "Example/FormControl",
+	title: "Components/FormControl",
 	component: FormControl,
 	parameters: {
 		controls: {

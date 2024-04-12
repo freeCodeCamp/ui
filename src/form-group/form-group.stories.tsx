@@ -6,7 +6,7 @@ import { ControlLabel } from "../control-label";
 import { FormGroup } from ".";
 
 const story = {
-	title: "Example/FormGroup",
+	title: "Components/FormGroup",
 	component: FormGroup,
 	argTypes: {
 		children: { control: { type: "object" } },

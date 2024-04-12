@@ -3,7 +3,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Col } from ".";
 
 const story = {
-	title: "Example/Col",
+	title: "Components/Col",
 	component: Col,
 	argTypes: {
 		className: { control: { type: "text" } },

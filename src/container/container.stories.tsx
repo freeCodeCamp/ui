@@ -3,7 +3,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Container } from ".";
 
 const story = {
-	title: "Example/Container",
+	title: "Components/Container",
 	component: Container,
 	argTypes: {
 		fluid: {

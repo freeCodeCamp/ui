@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ToggleButton } from ".";
 
 const story = {
-	title: "Example/ToggleButton",
+	title: "WIP/ToggleButton",
 	component: ToggleButton,
 	parameters: {
 		controls: {
