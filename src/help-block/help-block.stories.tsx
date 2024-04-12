@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { HelpBlock } from "./help-block";
 
 const story = {
-	title: "Example/HelpBlock",
+	title: "Components/HelpBlock",
 	component: HelpBlock,
 	parameters: {
 		controls: {
