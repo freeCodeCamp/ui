@@ -28,5 +28,18 @@
       "files": ["**/*.test.*"],
       "extends": ["plugin:jest/recommended", "plugin:jest/style"]
     }
-  ]
+  ],
+  "rules": {
+    "react/forbid-dom-props": [
+      2,
+      {
+        "forbid": [
+          {
+            "propName": "style",
+            "message": "The element should be styled using class names"
+          }
+        ]
+      }
+    ]
+  }
 }
