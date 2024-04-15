@@ -12,8 +12,8 @@ dependencies:
     specifier: 0.2.0
     version: 0.2.0(@fortawesome/fontawesome-svg-core@6.5.2)(react@16.14.0)
   '@headlessui/react':
-    specifier: 1.7.18
-    version: 1.7.18(react-dom@16.14.0)(react@16.14.0)
+    specifier: 1.7.19
+    version: 1.7.19(react-dom@16.14.0)(react@16.14.0)
   '@radix-ui/react-tabs':
     specifier: 1.0.4
     version: 1.0.4(@types/react-dom@16.9.24)(@types/react@16.14.60)(react-dom@16.14.0)(react@16.14.0)
@@ -2083,8 +2083,8 @@ packages:
       react: 16.14.0
     dev: false
 
-  /@headlessui/react@1.7.18(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-4i5DOrzwN4qSgNsL4Si61VMkUcWbcSKueUV7sFhpHzQcSShdlHENE5+QBntMSRvHt8NyoFO2AGG8si9lq+w4zQ==}
+  /@headlessui/react@1.7.19(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-Ll+8q3OlMJfJbAKM/+/Y2q6PPYbryqNTXDbryx7SXLIDamkF6iQFbriYHga0dY44PvDhvvBWCx1Xj4U5+G4hOw==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
