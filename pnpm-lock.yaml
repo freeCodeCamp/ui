@@ -100,9 +100,6 @@ devDependencies:
   '@types/react-dom':
     specifier: 16.9.24
     version: 16.9.24
-  '@types/testing-library__jest-dom':
-    specifier: '5'
-    version: 5.14.9
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.5.0
     version: 7.7.0(@typescript-eslint/parser@7.7.0)(eslint@8.57.0)(typescript@5.4.5)
