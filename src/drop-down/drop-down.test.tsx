@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { MenuItem } from "./menu-item/menu-item";
+import { MenuItem } from "./menu-item";
 import { Dropdown } from "./drop-down";
 
 describe("<DropDownButton>", () => {
