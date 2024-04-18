@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { MenuItem } from "./menu-item/menu-item";
+import { MenuItem } from "./menu-item";
 import { Dropdown } from "./drop-down";
 const story = {
 	title: "Components/Dropdown",
