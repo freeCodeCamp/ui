@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageProps } from "./image.types";
+import { type ImageProps } from "./types";
 
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 	({ alt, src, responsive, className, ...props }, ref): JSX.Element => {
