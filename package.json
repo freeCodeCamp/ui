@@ -43,7 +43,8 @@
     "clean": "rm -rf dist/*",
     "gen-component": "tsx ./utils/gen-component-script",
     "test": "jest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "6.5.2",
