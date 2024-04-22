@@ -18,9 +18,6 @@ const defaultClassNames = [
 	"active:before:border-transparent",
 	"active:before:bg-gray-900",
 	"active:before:opacity-20",
-	// Disabled state
-	"aria-disabled:cursor-not-allowed",
-	"aria-disabled:opacity-50",
 	// Focus state
 	"focus:outline-none", // Hide the default browser outline
 	"focus-visible:ring",
@@ -54,18 +51,14 @@ const computeClassNames = ({
 				"border-foreground-danger",
 				"bg-background-danger",
 				"text-foreground-danger",
-				...(disabled
-					? ["active:before:hidden"]
-					: [
-							"hover:bg-foreground-danger",
-							"hover:text-background-danger",
-							// This hover rule is redundant for the component library,
-							// but is needed to override the border color set in client's `global.css`.
-							// We can remove it once we have completely removed the CSS overrides in client.
-							"hover:border-foreground-danger",
-							"dark:hover:bg-background-danger",
-							"dark:hover:text-foreground-danger",
-						]),
+				"hover:bg-foreground-danger",
+				"hover:text-background-danger",
+				// This hover rule is redundant for the component library,
+				// but is needed to override the border color set in client's `global.css`.
+				// We can remove it once we have completely removed the CSS overrides in client.
+				"hover:border-foreground-danger",
+				"dark:hover:bg-background-danger",
+				"dark:hover:text-foreground-danger",
 			);
 			break;
 		case "info":
@@ -73,29 +66,30 @@ const computeClassNames = ({
 				"border-foreground-info",
 				"bg-background-info",
 				"text-foreground-info",
-				...(disabled
-					? ["active:before:hidden"]
-					: [
-							"hover:bg-foreground-info",
-							"hover:text-background-info",
-							// This hover rule is redundant for the component library,
-							// but is needed to override the border color set in client's `global.css`.
-							// We can remove it once we have completely removed the CSS overrides in client.
-							"hover:border-foreground-info",
-							"dark:hover:bg-background-info",
-							"dark:hover:text-foreground-info",
-						]),
+				"hover:bg-foreground-info",
+				"hover:text-background-info",
+				// This hover rule is redundant for the component library,
+				// but is needed to override the border color set in client's `global.css`.
+				// We can remove it once we have completely removed the CSS overrides in client.
+				"hover:border-foreground-info",
+				"dark:hover:bg-background-info",
+				"dark:hover:text-foreground-info",
 			);
 			break;
 		// default variant is 'primary'
 		default:
 			classNames.push(
-				"border-foreground-secondary",
 				"bg-background-quaternary",
 				"text-foreground-secondary",
 				...(disabled
-					? ["active:before:hidden"]
+					? [
+							"active:before:hidden",
+							"border-gray-450",
+							"aria-disabled:cursor-not-allowed",
+							"aria-disabled:opacity-80",
+						]
 					: [
+							"border-foreground-secondary",
 							"hover:bg-foreground-primary",
 							"hover:text-background-primary",
 							// This hover rule is redundant for the component library,
@@ -133,6 +127,7 @@ const StylessButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
 		// Ref: https://css-tricks.com/making-disabled-buttons-more-inclusive/#aa-the-difference-between-disabled-and-aria-disabled
 		const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 			if (disabled) {
+				event.preventDefault();
 				return;
 			}
 
@@ -197,6 +192,11 @@ export const HeadlessButton = React.forwardRef<
 			);
 		} else {
 			return (
+				// @ts-expect-error - Type check error is expected.
+				// `disabled` can either be `boolean | undefined` or `false | undefined` depending on the union member.
+				// TypeScript can't infer the actual union member (that ties to the `variant`),
+				// so it complains about the `disabled` type being incompatible.
+				// Ref: https://github.com/Microsoft/TypeScript/issues/30518
 				<StylessButton
 					className={className}
 					onClick={onClick}

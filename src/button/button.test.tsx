@@ -71,6 +71,28 @@ describe("<Button />", () => {
 		expect(onClick).not.toHaveBeenCalled();
 	});
 
+	it("should not trigger form submission if the button has `submit` type and is disabled", async () => {
+		const handleSubmit = jest.fn();
+
+		render(
+			<form onSubmit={handleSubmit}>
+				<label>
+					Username
+					<input type="text" />
+				</label>
+
+				<Button type="submit" disabled>
+					Submit
+				</Button>
+			</form>,
+		);
+
+		const button = screen.getByRole("button", { name: "Submit" });
+		await userEvent.click(button);
+
+		expect(handleSubmit).not.toHaveBeenCalled();
+	});
+
 	it("should render an anchor element if the `href` prop is defined", () => {
 		render(<Button href="https://www.freecodecamp.org">freeCodeCamp</Button>);
 
@@ -115,3 +137,17 @@ describe("<Button />", () => {
 		expect(onClick).toHaveBeenCalledTimes(1);
 	});
 });
+
+// ------------------------------
+// Type tests
+// ------------------------------
+
+// @ts-expect-error - Button with `danger` variant cannot be disabled
+<Button variant="danger" disabled>
+	Button text
+</Button>;
+
+// @ts-expect-error - Button with `info` variant cannot be disabled
+<Button variant="info" disabled>
+	Button text
+</Button>;

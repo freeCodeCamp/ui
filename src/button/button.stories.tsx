@@ -1,5 +1,9 @@
+import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
+import { FormControl } from "../form-control";
+import { FormGroup } from "../form-group";
+import { ControlLabel } from "../control-label";
 import { Button } from ".";
 
 const story = {
@@ -113,6 +117,39 @@ export const AsADownloadLink: Story = {
 		href: "https://www.freecodecamp.org",
 		download: "my_file.txt",
 	},
+};
+
+const FormWithSubmitButton = () => {
+	const [username, setUsername] = useState("");
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setUsername(event.target.value);
+	};
+
+	const handleSubmit = () => {
+		alert("Submitted");
+	};
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<FormGroup controlId="username">
+				<ControlLabel>Username</ControlLabel>
+				<FormControl
+					componentClass="input"
+					type="text"
+					onChange={handleChange}
+				/>
+			</FormGroup>
+
+			<Button type="submit" disabled={!username}>
+				Submit
+			</Button>
+		</form>
+	);
+};
+
+export const AsASubmitButton: Story = {
+	render: FormWithSubmitButton,
 };
 
 export default story;
