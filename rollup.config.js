@@ -24,7 +24,13 @@ const config = {
 	plugins: [
 		postcss(),
 		resolve(),
-		typescript({ sourceMap: true, declaration: true, declarationDir: "dist" }),
+		typescript({
+			sourceMap: true,
+			declaration: true,
+			declarationDir: "dist",
+			include: ["src/**/*"],
+			exclude: ["**/*.test.*", "**/*.stories.*"],
+		}),
 		babel({ babelHelpers: "bundled" }),
 		commonjs(),
 		production && terser(),
