@@ -10,5 +10,11 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    },
+    "transpileOnly": true
   }
 }
