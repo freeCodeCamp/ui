@@ -41,7 +41,7 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "storybook:theming": "pnpm run storybook --no-manager-cache",
     "clean": "rm -rf dist/*",
-    "gen-component": "tsx ./utils/gen-component-script",
+    "gen-component": "ts-node ./utils/gen-component-script",
     "test": "jest",
     "prepare": "husky",
     "typecheck": "tsc"
@@ -108,8 +108,8 @@
     "storybook": "^8.0.6",
     "style-loader": "3.3.4",
     "tailwindcss": "3.4.3",
+    "ts-node": "^10.9.2",
     "tslib": "2.6.2",
-    "tsx": "^4.7.2",
     "typescript": "^5.4.3"
   },
   "keywords": [

@@ -11,8 +11,6 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["**/*.test.*", "**/*.stories.*"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
