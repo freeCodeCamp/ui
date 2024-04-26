@@ -13,7 +13,8 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs"
+      "module": "commonjs",
+      "moduleResolution": "Node10" // Unfortunately we're stuck with this until Jest stops using ts-node
     },
     "transpileOnly": true
   }
