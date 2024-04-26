@@ -20,7 +20,7 @@ const toKebabCase = (pascalCasedName: string) =>
 
 const kebabCasedName = toKebabCase(name);
 
-const dir = path.join(__dirname, `../src/${kebabCasedName}`);
+const dir = path.join(import.meta.dirname, `../src/${kebabCasedName}`);
 
 // Throw an error if the component's folder already exists
 if (fs.existsSync(dir)) {
