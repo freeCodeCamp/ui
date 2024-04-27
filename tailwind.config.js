@@ -87,6 +87,10 @@ module.exports = {
 			outlineWidth: {
 				3: "3px",
 			},
+			fontFamily: {
+				sans: ["Lato", "sans-serif"],
+				mono: ["Hack-ZeroSlash", "monospace"],
+			},
 			fontSize: {
 				// https://tailwindcss.com/docs/font-size#providing-a-default-line-height
 				// [fontSize, lineHeight]
