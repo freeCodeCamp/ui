@@ -33,6 +33,7 @@ module.exports = {
 			},
 		},
 		"@storybook/addon-webpack5-compiler-babel",
+		"@storybook/addon-mdx-gfm",
 	],
 
 	typescript: {
