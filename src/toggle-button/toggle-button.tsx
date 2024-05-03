@@ -8,9 +8,6 @@ const defaultClassNames = [
 	"inline-block",
 	"cursor-pointer",
 	"border-foreground-secondary",
-	"focus:outline-none", // Hide the default browser outline
-	"focus:ring",
-	"focus:ring-focus-outline-color",
 	"focus-within:ring",
 	"focus-within:ring-focus-outline-color",
 	"aria-disabled:cursor-not-allowed",

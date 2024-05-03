@@ -1,21 +1,21 @@
 @import "./colors.css";
 @import "./fonts.css";
 
+/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css */
 @tailwind base;
 
 @layer base {
 	html {
-		/* Root font size, set to 10px so that it's easy to calculate the rem values */
-		font-size: 10px;
+		font-size: 18px;
 	}
 
-	body {
-		font-size: 1.8rem;
+	:focus-visible {
+		@apply outline outline-3 outline-focus-outline-color outline-offset-0;
 	}
 
 	a {
 		/* Override Tailwind's default `text-decoration` rule. */
-		/* https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css#L85 */
+		/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L92 */
 		@apply underline;
 		/* This is required in order to improve text readability in Arabic */
 		text-underline-position: under;
@@ -26,8 +26,15 @@
 		}
 	}
 
-	:focus-visible {
-		@apply outline outline-3 outline-focus-outline-color outline-offset-0;
+	code {
+		@apply bg-background-tertiary text-foreground-tertiary;
+	}
+	:not(pre) > code {
+		@apply border-1 border-gray-450;
+	}
+
+	p {
+		margin-bottom: 12.5px;
 	}
 }
 

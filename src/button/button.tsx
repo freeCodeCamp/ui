@@ -18,10 +18,6 @@ const defaultClassNames = [
 	"active:before:border-transparent",
 	"active:before:bg-gray-900",
 	"active:before:opacity-20",
-	// Focus state
-	"focus:outline-none", // Hide the default browser outline
-	"focus-visible:ring",
-	"focus-visible:ring-focus-outline-color",
 	// Misc
 	"text-center",
 	"cursor-pointer",
