@@ -4,23 +4,10 @@
 @tailwind base;
 
 @layer base {
-	*,
-	::before,
-	::after {
-		/* Override the browser default border width in order to style individual border sides
-		* Ref: https://stackoverflow.com/a/76961084
-		*/
-		border-width: 0;
-	}
 	/* Override Tailwind's default `text-decoration` rule. */
 	/* https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css#L85 */
 	a {
 		@apply underline;
-	}
-	/* Override Tailwind's default `-webkit-tap-highlight-color` rule. */
-	/* https://github.com/tailwindlabs/tailwindcss/discussions/2984 */
-	button {
-		-webkit-tap-highlight-color: transparent;
 	}
 }
 
