@@ -4,10 +4,30 @@
 @tailwind base;
 
 @layer base {
-	/* Override Tailwind's default `text-decoration` rule. */
-	/* https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css#L85 */
+	html {
+		/* Root font size, set to 10px so that it's easy to calculate the rem values */
+		font-size: 10px;
+	}
+
+	body {
+		font-size: 1.8rem;
+	}
+
 	a {
+		/* Override Tailwind's default `text-decoration` rule. */
+		/* https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css#L85 */
 		@apply underline;
+		/* This is required in order to improve text readability in Arabic */
+		text-underline-position: under;
+	}
+	@supports not (text-underline-position: under) {
+		a {
+			text-underline-offset: 0.1rem;
+		}
+	}
+
+	:focus-visible {
+		@apply outline outline-3 outline-focus-outline-color outline-offset-0;
 	}
 }
 
