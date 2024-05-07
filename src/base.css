@@ -33,6 +33,12 @@
 		@apply border-1 border-gray-450;
 	}
 
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
 	p {
 		margin-bottom: 12.5px;
 	}
