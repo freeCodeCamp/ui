@@ -22,7 +22,7 @@
 	}
 	@supports not (text-underline-position: under) {
 		a {
-			text-underline-offset: 0.1rem;
+			text-underline-offset: 0.1em;
 		}
 	}
 
