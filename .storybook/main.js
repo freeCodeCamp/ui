@@ -54,4 +54,6 @@ module.exports = {
 	docs: {
 		autodocs: true,
 	},
+
+	staticDirs: [{ from: "../src/assets", to: "/assets" }],
 };
