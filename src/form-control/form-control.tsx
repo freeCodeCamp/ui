@@ -9,7 +9,7 @@ import { FormControlProps } from "./types";
 // type Only relevant if componentClass is 'input'.
 let variantClass: string;
 const defaultClasses =
-	"outline-0 block w-full py-1.5 px-2.5 text-md text-foreground-primary placeholder:text-foreground-quaternary bg-background-primary bg-none rounded-none border-1 border-solid border-background-quaternary shadow-none transition ease-in-out duration-150 focus:border-foreground-tertiary";
+	"outline-0 block w-full py-1.5 px-2.5 text-md text-foreground-primary bg-background-primary bg-none rounded-none border-1 border-solid border-background-quaternary shadow-none transition ease-in-out duration-150 focus:border-foreground-tertiary";
 
 const FormControl = ({
 	componentClass,

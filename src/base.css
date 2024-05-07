@@ -42,6 +42,13 @@
 	p {
 		margin-bottom: 12.5px;
 	}
+
+	/* Override the Tailwind's placeholder text color. */
+	/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
+	input::placeholder,
+	textarea::placeholder {
+		@apply text-gray-450;
+	}
 }
 
 @tailwind components;
