@@ -19,7 +19,7 @@ export const ControlLabel = ({
 
 	const labelStyle = validationState
 		? validationLabel[validationState]
-		: undefined;
+		: "text-foreground-primary";
 	const screenOnlyClass = srOnly ? "sr-only" : undefined;
 	const defaultClasses = [labelStyle, screenOnlyClass, className].join(" ");
 
