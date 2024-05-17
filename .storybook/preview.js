@@ -3,6 +3,7 @@ import React from "react";
 import "../src/normalize.css";
 import "../src/global-element-styles.css";
 import "../src/base.css";
+import "../src/fonts.css";
 
 export const parameters = {
 	controls: {
