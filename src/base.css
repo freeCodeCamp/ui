@@ -1,26 +1,53 @@
 @import "./colors.css";
 @import "./fonts.css";
 
+/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css */
 @tailwind base;
 
 @layer base {
-	*,
-	::before,
-	::after {
-		/* Override the browser default border width in order to style individual border sides
-		* Ref: https://stackoverflow.com/a/76961084
-		*/
-		border-width: 0;
+	html {
+		@apply text-md;
 	}
-	/* Override Tailwind's default `text-decoration` rule. */
-	/* https://github.com/tailwindlabs/tailwindcss/blob/master/src/css/preflight.css#L85 */
+
+	:focus-visible {
+		@apply outline outline-3 outline-focus-outline-color outline-offset-0;
+	}
+
 	a {
+		/* Override Tailwind's default `text-decoration` rule. */
+		/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L92 */
 		@apply underline;
+		/* This is required in order to improve text readability in Arabic */
+		text-underline-position: under;
 	}
-	/* Override Tailwind's default `-webkit-tap-highlight-color` rule. */
-	/* https://github.com/tailwindlabs/tailwindcss/discussions/2984 */
-	button {
-		-webkit-tap-highlight-color: transparent;
+	@supports not (text-underline-position: under) {
+		a {
+			text-underline-offset: 0.1em;
+		}
+	}
+
+	code {
+		@apply bg-background-tertiary text-foreground-tertiary;
+	}
+	:not(pre) > code {
+		@apply border-1 border-gray-450;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		margin-bottom: 12.5px;
+	}
+
+	/* Override the Tailwind's placeholder text color. */
+	/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
+	input::placeholder,
+	textarea::placeholder {
+		@apply text-foreground-quaternary opacity-70;
 	}
 }
 
