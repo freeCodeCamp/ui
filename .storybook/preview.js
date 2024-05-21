@@ -1,5 +1,6 @@
 import React from "react";
 import "../src/base.css";
+import "../src/fonts.css";
 
 export const parameters = {
 	controls: {

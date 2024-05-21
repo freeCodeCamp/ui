@@ -1,5 +1,4 @@
 @import "./colors.css";
-@import "./fonts.css";
 
 /* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css */
 @tailwind base;
