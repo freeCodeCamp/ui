@@ -4,7 +4,6 @@
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "license": "BSD-3-Clause",
   "description": "The freeCodeCamp.org open-source UI components",
-  "type": "module",
   "main": "dist/bundle.js",
   "module": "dist/bundle.es.js",
   "style": "dist/base.css",
@@ -42,7 +41,7 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "storybook:theming": "pnpm run storybook --no-manager-cache",
     "clean": "rm -rf dist/*",
-    "gen-component": "tsx ./utils/gen-component-script",
+    "gen-component": "ts-node ./utils/gen-component-script",
     "test": "jest",
     "prepare": "husky",
     "typecheck": "tsc"

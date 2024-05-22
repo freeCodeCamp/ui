@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "module": "ES2022",
+    "module": "ES6",
     "target": "ES6",
     "sourceMap": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "Node10" // Unfortunately we're stuck with this until Jest stops using ts-node
+      "module": "commonjs"
     },
     "transpileOnly": true
   }
