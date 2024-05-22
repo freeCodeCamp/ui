@@ -28,7 +28,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build-storybook": "storybook build",
-    "build": "pnpm run build:css && pnpm run build:js",
+    "build": "pnpm clean && pnpm build:css && pnpm build:js",
     "build:js": "cross-env NODE_ENV=production rollup -c",
     "build:css": "npx -y tailwindcss -i ./src/base.css -o ./dist/base.css --minify",
     "dev:js": "cross-env NODE_ENV=development rollup -c -w ",
