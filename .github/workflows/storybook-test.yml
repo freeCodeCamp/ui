@@ -20,11 +20,8 @@ jobs:
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
-          run_install: false
-
-      - name: Install dependencies
-        run: pnpm install
+          version: 9
+          run_install: true
 
       - name: Check Storybook can be built
         run: pnpm run build-storybook --test
