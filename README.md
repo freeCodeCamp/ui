@@ -4,10 +4,24 @@ freeCodeCamp's component library is a collection of reusable React components th
 
 ## Installation
 
-To install the component library, run the following command:
+- Run the following command to install the library:
 
 ```bash
 pnpm install @freecodecamp/ui
+```
+
+- Import the library's base stylesheet into your app:
+
+```tsx
+// app.tsx
+import "@freecodecamp/ui/dist/base.css";
+import "./my-app.css"; // Your custom stylesheet should be imported after, in order to override the base.
+```
+
+- Add either the `light-palette` or `dark-palette` class to the `body` element to enable theming:
+
+```html
+<body class="light-palette"></body>
 ```
 
 ## Docs
