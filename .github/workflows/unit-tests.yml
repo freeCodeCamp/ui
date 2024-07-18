@@ -52,7 +52,7 @@ jobs:
           run_install: true
 
       - name: Install Specific React version
-        run: pnpm add react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} @testing-library/react@${{ matrix.testing-library-version }} @testing-library/jest-dom@${{ matrix.testing-library-version }}
+        run: pnpm add react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} @testing-library/react@${{ matrix.testing-library-version }}
 
       - name: Run tests
         run: pnpm test
