@@ -17,3 +17,4 @@ export { FormControl } from "./form-control";
 export { HelpBlock } from "./help-block";
 export { Row } from "./row";
 export { Modal, type ModalProps, type HeaderProps } from "./modal";
+export { getThemingClass } from "./utils";

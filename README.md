@@ -18,10 +18,16 @@ import "@freecodecamp/ui/dist/base.css";
 import "./my-app.css"; // Your custom stylesheet should be imported after, in order to override the base.
 ```
 
-- Add either the `light-palette` or `dark-palette` class to the `body` element to enable theming:
+- Use the `getThemingClass` util to get a CSS class for theming, and add the class to the `body` element:
 
-```html
-<body class="light-palette"></body>
+```tsx
+import { getThemingClass } from "@freecodecamp/ui";
+
+const MyApp = () => {
+	const cls = getThemingClass();
+
+	return <body className={cls}></body>;
+};
 ```
 
 ## Docs
