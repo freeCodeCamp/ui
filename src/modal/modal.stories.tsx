@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/react";
 
 import { Button } from "../button";
+import { Spacer } from "../spacer";
 import { Modal } from "./modal";
 import {
 	type ModalProps,
@@ -40,8 +41,6 @@ const story = {
 		},
 	},
 } satisfies Meta<typeof Modal>;
-
-const Spacer = () => <div style={{ height: "5px", width: "100%" }} />;
 
 const DefaultTemplate: StoryFn<StoryProps> = ({
 	showCloseButton,
@@ -84,7 +83,7 @@ const DefaultTemplate: StoryFn<StoryProps> = ({
 					<Button block size="large">
 						Submit
 					</Button>
-					<Spacer />
+					<Spacer size="xxs" />
 					<Button block size="large" onClick={handleClose}>
 						Cancel
 					</Button>
@@ -129,7 +128,7 @@ const DangerTemplate: StoryFn<ModalProps> = (args) => {
 					<Button block size="large" onClick={handleClose}>
 						Cancel
 					</Button>
-					<Spacer />
+					<Spacer size="xxs" />
 					<Button block variant="danger" size="large">
 						Submit
 					</Button>
