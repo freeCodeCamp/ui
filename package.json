@@ -83,7 +83,7 @@
     "@types/react-dom": "16.9.24",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "autoprefixer": "10.4.19",
+    "autoprefixer": "10.4.20",
     "babel-loader": "8.3.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
