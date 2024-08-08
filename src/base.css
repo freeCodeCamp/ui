@@ -46,7 +46,7 @@
 	/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
 	input::placeholder,
 	textarea::placeholder {
-		@apply text-foreground-quaternary opacity-70;
+		@apply text-foreground-quaternary opacity-80;
 	}
 }
 
