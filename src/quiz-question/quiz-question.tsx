@@ -1,7 +1,14 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { type QuizQuestionProps, type RadioProps, type Option } from "./types";
+import {
+	type QuizQuestionProps,
+	type RadioProps,
+	type Option,
+	type Validation,
+} from "./types";
 
 const radioIconDefaultClasses = [
 	"block",
@@ -91,11 +98,28 @@ const RadioOption = ({ value, label, disabled }: RadioProps) => {
 	);
 };
 
+const ValidationIcon = ({ state, message }: Validation) => {
+	return state === "correct" ? (
+		<FontAwesomeIcon
+			icon={faCheck}
+			className="text-background-success me-[8px]"
+			aria-label={message}
+		/>
+	) : (
+		<FontAwesomeIcon
+			icon={faXmark}
+			className="text-background-danger me-[8px]"
+			aria-label={message}
+		/>
+	);
+};
+
 export const QuizQuestion = ({
 	question,
 	options,
 	required,
 	disabled,
+	validation,
 	onChange,
 }: QuizQuestionProps) => {
 	const handleChange = (selectedOption: Option["value"]) => {
@@ -111,8 +135,14 @@ export const QuizQuestion = ({
 			aria-required={required}
 			disabled={disabled}
 		>
-			<RadioGroup.Label className="block mb-[20px] text-foreground-primary">
-				{question}
+			<RadioGroup.Label className="block mb-[20px]">
+				{validation && (
+					<ValidationIcon
+						state={validation.state}
+						message={validation.message}
+					/>
+				)}
+				<span className="text-foreground-primary">{question}</span>
 			</RadioGroup.Label>
 
 			{options.map(({ value, label }) => (

@@ -3,11 +3,17 @@ export interface Option {
 	value: number;
 }
 
+export interface Validation {
+	state: "correct" | "incorrect";
+	message: string;
+}
+
 export interface QuizQuestionProps {
 	question: string;
 	options: Option[];
 	required?: boolean;
 	disabled?: boolean;
+	validation?: Validation;
 	onChange: ({
 		questionId,
 		selectedOption,

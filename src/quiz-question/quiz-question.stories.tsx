@@ -33,4 +33,30 @@ export const Disabled: Story = {
 	},
 };
 
+export const Correct: Story = {
+	args: {
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+		options: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		onChange: () => {},
+		validation: { state: "correct", message: "Correct" },
+	},
+};
+
+export const Incorrect: Story = {
+	args: {
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+		options: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		onChange: () => {},
+		validation: { state: "incorrect", message: "Incorrect" },
+	},
+};
+
 export default story;
