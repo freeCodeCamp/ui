@@ -21,7 +21,7 @@ const QuizQuestionComp = ({
 	disabled,
 	validation,
 }: QuizQuestionCompProps) => {
-	const [value, setValue] = useState<QuizQuestionProps["selectedOption"]>(null);
+	const [value, setValue] = useState<QuizQuestionProps["selectedOption"]>();
 
 	return (
 		<QuizQuestion
@@ -69,7 +69,7 @@ export const Correct: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		validation: { state: "correct", message: "Correct" },
+		validation: { state: "correct", message: "Correct." },
 	},
 };
 
@@ -82,7 +82,7 @@ export const Incorrect: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		validation: { state: "incorrect", message: "Incorrect" },
+		validation: { state: "incorrect", message: "Incorrect." },
 	},
 };
 

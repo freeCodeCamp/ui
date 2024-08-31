@@ -1,4 +1,4 @@
-export interface Option {
+export interface QuizQuestionOption {
 	label: string;
 	value: number;
 }
@@ -9,26 +9,51 @@ export interface Validation {
 }
 
 export interface QuizQuestionProps {
+	/**
+	 * Question text
+	 */
 	question: string;
-	options: Option[];
+
+	/**
+	 * Answer options
+	 */
+	options: QuizQuestionOption[];
+
+	/**
+	 * Whether the question is required
+	 */
 	required?: boolean;
+
+	/**
+	 * Whether the question is disabled
+	 */
 	disabled?: boolean;
+
+	/**
+	 * Information needed to render the validation status
+	 */
 	validation?: Validation;
-	// `selectedOption` should not be `undefined`
-	// or React will automatically consider QuizQuestion an uncontrolled component
-	selectedOption: Option["value"] | null;
+
+	/**
+	 * Value of the selected option
+	 */
+	selectedOption?: QuizQuestionOption["value"];
+
+	/**
+	 * Change event handler, called when an option is selected
+	 */
 	onChange: ({
 		questionId,
 		selectedOption,
 	}: {
+		/**
+		 * ID of the question
+		 */
 		questionId: string;
-		selectedOption: Option["value"];
-	}) => void;
-}
 
-export interface RadioProps {
-	label: string;
-	value: number;
-	checked?: boolean;
-	disabled?: boolean;
+		/**
+		 * Value of the selected option
+		 */
+		selectedOption: QuizQuestionOption["value"];
+	}) => void;
 }
