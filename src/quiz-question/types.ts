@@ -14,6 +14,9 @@ export interface QuizQuestionProps {
 	required?: boolean;
 	disabled?: boolean;
 	validation?: Validation;
+	// `selectedOption` should not be `undefined`
+	// or React will automatically consider QuizQuestion an uncontrolled component
+	selectedOption: Option["value"] | null;
 	onChange: ({
 		questionId,
 		selectedOption,
@@ -26,5 +29,6 @@ export interface QuizQuestionProps {
 export interface RadioProps {
 	label: string;
 	value: number;
+	checked?: boolean;
 	disabled?: boolean;
 }

@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { QuizQuestion } from "./quiz-question";
+import { type QuizQuestionProps } from "./types";
 
 const story = {
 	title: "Components/QuizQuestion",
@@ -8,7 +10,33 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
+type QuizQuestionCompProps = Pick<
+	QuizQuestionProps,
+	"question" | "options" | "disabled" | "validation"
+>;
+
+const QuizQuestionComp = ({
+	question,
+	options,
+	disabled,
+	validation,
+}: QuizQuestionCompProps) => {
+	const [value, setValue] = useState<QuizQuestionProps["selectedOption"]>(null);
+
+	return (
+		<QuizQuestion
+			question={question}
+			options={options}
+			disabled={disabled}
+			validation={validation}
+			onChange={({ selectedOption }) => setValue(selectedOption)}
+			selectedOption={value}
+		/>
+	);
+};
+
 export const Default: Story = {
+	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		options: [
@@ -16,11 +44,11 @@ export const Default: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		onChange: () => {},
 	},
 };
 
 export const Disabled: Story = {
+	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		options: [
@@ -28,12 +56,12 @@ export const Disabled: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		onChange: () => {},
 		disabled: true,
 	},
 };
 
 export const Correct: Story = {
+	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		options: [
@@ -41,12 +69,12 @@ export const Correct: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		onChange: () => {},
 		validation: { state: "correct", message: "Correct" },
 	},
 };
 
 export const Incorrect: Story = {
+	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		options: [
@@ -54,7 +82,6 @@ export const Incorrect: Story = {
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		onChange: () => {},
 		validation: { state: "incorrect", message: "Incorrect" },
 	},
 };

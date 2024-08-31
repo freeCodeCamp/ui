@@ -74,7 +74,7 @@ const RadioIcon = ({
 	return <span className={radioCls.join(" ")}></span>;
 };
 
-const RadioOption = ({ value, label, disabled }: RadioProps) => {
+const RadioOption = ({ value, label, disabled, checked }: RadioProps) => {
 	const radioOptionCls = [
 		...radioOptionDefaultClasses,
 		...(disabled ? ["cursor-not-allowed", "opacity-80"] : []),
@@ -86,9 +86,9 @@ const RadioOption = ({ value, label, disabled }: RadioProps) => {
 			value={value}
 			className={radioOptionCls.join(" ")}
 		>
-			{({ active, checked }) => (
+			{({ active }) => (
 				<>
-					<RadioIcon active={active} checked={checked} />
+					<RadioIcon active={active} checked={!!checked} />
 					<RadioGroup.Label className="m-0 text-foreground-primary" as="p">
 						{label}
 					</RadioGroup.Label>
@@ -120,6 +120,7 @@ export const QuizQuestion = ({
 	required,
 	disabled,
 	validation,
+	selectedOption,
 	onChange,
 }: QuizQuestionProps) => {
 	const handleChange = (selectedOption: Option["value"]) => {
@@ -134,6 +135,7 @@ export const QuizQuestion = ({
 			onChange={handleChange}
 			aria-required={required}
 			disabled={disabled}
+			value={selectedOption}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
 				{validation && (
@@ -150,6 +152,7 @@ export const QuizQuestion = ({
 					key={value}
 					value={value}
 					label={label}
+					checked={selectedOption === value}
 					disabled={disabled}
 				/>
 			))}
