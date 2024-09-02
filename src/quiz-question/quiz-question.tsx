@@ -52,6 +52,7 @@ export const QuizQuestion = ({
 			disabled={disabled}
 			// `selectedOption` should not be `undefined`
 			// or React will automatically consider QuizQuestion an uncontrolled component
+			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
 			value={selectedOption ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
