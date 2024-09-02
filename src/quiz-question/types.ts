@@ -3,7 +3,7 @@ export interface QuizQuestionOption {
 	value: number;
 }
 
-export interface Validation {
+export interface QuizQuestionValidation {
 	state: "correct" | "incorrect";
 	message: string;
 }
@@ -32,7 +32,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Information needed to render the validation status
 	 */
-	validation?: Validation;
+	validation?: QuizQuestionValidation;
 
 	/**
 	 * Value of the selected option

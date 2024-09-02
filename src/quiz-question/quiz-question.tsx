@@ -6,12 +6,12 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
 	type QuizQuestionOption,
 	type QuizQuestionProps,
-	type Validation,
+	type QuizQuestionValidation,
 } from "./types";
 
 import { Option } from "./option";
 
-const ValidationIcon = ({ state, message }: Validation) => {
+const ValidationIcon = ({ state, message }: QuizQuestionValidation) => {
 	return state === "correct" ? (
 		<FontAwesomeIcon
 			icon={faCheck}
