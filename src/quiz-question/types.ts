@@ -42,7 +42,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Change event handler, called when an option is selected
 	 */
-	onChange: ({
+	onChange?: ({
 		questionId,
 		selectedOption,
 	}: {

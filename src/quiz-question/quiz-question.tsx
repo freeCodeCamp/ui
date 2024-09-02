@@ -47,6 +47,10 @@ export const QuizQuestion = ({
 	onChange,
 }: QuizQuestionProps) => {
 	const handleChange = (selectedOption: QuizQuestionOption["value"]) => {
+		if (!onChange) {
+			return;
+		}
+
 		onChange({
 			questionId: question,
 			selectedOption,
