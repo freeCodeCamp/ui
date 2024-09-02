@@ -45,6 +45,28 @@ export const Default: Story = {
 			{ label: "Option 3", value: 3 },
 		],
 	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [value, setValue] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      options={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={({ selectedOption }) => setValue(selectedOption)}
+      selectedOption={value}
+    />
+  );
+}`,
+			},
+		},
+	},
 };
 
 export const Disabled: Story = {
@@ -57,6 +79,29 @@ export const Disabled: Story = {
 			{ label: "Option 3", value: 3 },
 		],
 		disabled: true,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [value, setValue] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      options={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={({ selectedOption }) => setValue(selectedOption)}
+      selectedOption={value}
+      disabled
+    />
+  );
+}`,
+			},
+		},
 	},
 };
 
@@ -71,6 +116,29 @@ export const Correct: Story = {
 		],
 		validation: { state: "correct", message: "Correct." },
 	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [value, setValue] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      options={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={({ selectedOption }) => setValue(selectedOption)}
+      selectedOption={value}
+      validation={{ state: "correct", message: "Correct." }}
+    />
+  );
+}`,
+			},
+		},
+	},
 };
 
 export const Incorrect: Story = {
@@ -83,6 +151,29 @@ export const Incorrect: Story = {
 			{ label: "Option 3", value: 3 },
 		],
 		validation: { state: "incorrect", message: "Incorrect." },
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [value, setValue] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      options={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={({ selectedOption }) => setValue(selectedOption)}
+      selectedOption={value}
+      validation={{ state: "incorrect", message: "Incorrect." }}
+    />
+  );
+}`,
+			},
+		},
 	},
 };
 
