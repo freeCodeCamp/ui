@@ -3,31 +3,9 @@ import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import {
-	type QuizQuestionOption,
-	type QuizQuestionProps,
-	type Validation,
-} from "./types";
+import { type QuizQuestionOption, type QuizQuestionProps } from "./types";
 
 import { Option } from "./option";
-
-const ValidationIcon = ({ state, message }: Validation) => {
-	return state === "correct" ? (
-		<FontAwesomeIcon
-			icon={faCheck}
-			className="text-background-success me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
-	) : (
-		<FontAwesomeIcon
-			icon={faXmark}
-			className="text-background-danger me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
-	);
-};
 
 /**
  * QuizQuestion is a radio group that allows users to select a single option from a list of multiple options.
@@ -45,12 +23,53 @@ export const QuizQuestion = ({
 	validation,
 	selectedOption,
 	onChange,
+	position,
 }: QuizQuestionProps) => {
 	const handleChange = (selectedOption: QuizQuestionOption["value"]) => {
+		if (!onChange) {
+			return;
+		}
+
 		onChange({
 			questionId: question,
 			selectedOption,
 		});
+	};
+
+	const maybeRenderValidationIcon = () => {
+		if (!validation) {
+			return;
+		}
+
+		const { state, message } = validation;
+
+		return state === "correct" ? (
+			<FontAwesomeIcon
+				icon={faCheck}
+				className="text-background-success me-[8px]"
+				aria-label={message}
+				aria-hidden={false}
+			/>
+		) : (
+			<FontAwesomeIcon
+				icon={faXmark}
+				className="text-background-danger me-[8px]"
+				aria-label={message}
+				aria-hidden={false}
+			/>
+		);
+	};
+
+	const renderQuestionText = () => {
+		if (position == null) {
+			return <span className="text-foreground-primary">{question}</span>;
+		}
+
+		return (
+			<span className="text-foreground-primary">
+				{`${position}. ${question}`}
+			</span>
+		);
 	};
 
 	return (
@@ -64,13 +83,8 @@ export const QuizQuestion = ({
 			value={selectedOption ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
-				{validation && (
-					<ValidationIcon
-						state={validation.state}
-						message={validation.message}
-					/>
-				)}
-				<span className="text-foreground-primary">{question}</span>
+				{maybeRenderValidationIcon()}
+				{renderQuestionText()}
 			</RadioGroup.Label>
 
 			{options.map(({ value, label }) => (

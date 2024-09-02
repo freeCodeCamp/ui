@@ -19,3 +19,4 @@ export { Row } from "./row";
 export { Modal, type ModalProps, type HeaderProps } from "./modal";
 export { Spacer } from "./spacer";
 export { QuizQuestion } from "./quiz-question";
+export { Quiz, useQuiz } from "./quiz";

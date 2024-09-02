@@ -3,7 +3,7 @@ export interface QuizQuestionOption {
 	value: number;
 }
 
-export interface Validation {
+interface QuizQuestionValidation {
 	state: "correct" | "incorrect";
 	message: string;
 }
@@ -20,6 +20,11 @@ export interface QuizQuestionProps {
 	options: QuizQuestionOption[];
 
 	/**
+	 * Position of the question amongst its siblings
+	 */
+	position?: number;
+
+	/**
 	 * Whether the question is required
 	 */
 	required?: boolean;
@@ -32,7 +37,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Information needed to render the validation status
 	 */
-	validation?: Validation;
+	validation?: QuizQuestionValidation;
 
 	/**
 	 * Value of the selected option
@@ -42,12 +47,13 @@ export interface QuizQuestionProps {
 	/**
 	 * Change event handler, called when an option is selected
 	 */
-	onChange: ({
+	onChange?: ({
 		questionId,
 		selectedOption,
 	}: {
 		/**
-		 * ID of the question
+		 * ID of the question, with the question text being the value.
+		 * ID is useful when QuizQuestion is used in a group of questions.
 		 */
 		questionId: string;
 

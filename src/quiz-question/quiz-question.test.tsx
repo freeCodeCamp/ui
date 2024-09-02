@@ -14,7 +14,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 			/>,
 		);
 
@@ -36,7 +35,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 				required
 			/>,
 		);
@@ -55,7 +53,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 				disabled
 			/>,
 		);
@@ -83,7 +80,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 				selectedOption={2}
 			/>,
 		);
@@ -126,7 +122,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 				validation={{
 					state: "correct",
 					message: "Correct.",
@@ -148,7 +143,6 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				onChange={() => {}}
 				validation={{
 					state: "incorrect",
 					message: "Incorrect.",
@@ -158,6 +152,24 @@ describe("<QuizQuestion />", () => {
 
 		expect(
 			screen.getByRole("radiogroup", { name: "Incorrect. Lorem ipsum" }),
+		).toBeInTheDocument();
+	});
+
+	it("should render the question position properly", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				options={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				position={1}
+			/>,
+		);
+
+		expect(
+			screen.getByRole("radiogroup", { name: "1. Lorem ipsum" }),
 		).toBeInTheDocument();
 	});
 });
