@@ -71,7 +71,7 @@ describe("<QuizQuestion />", () => {
 		);
 	});
 
-	it("should have the correct `checked` attribute according to the `selectedOption` prop", () => {
+	it("should have the correct `checked` attribute according to the `selectedValue` prop", () => {
 		render(
 			<QuizQuestion
 				question="Lorem ipsum"
@@ -80,7 +80,7 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				selectedOption={2}
+				selectedValue={2}
 			/>,
 		);
 
@@ -109,7 +109,7 @@ describe("<QuizQuestion />", () => {
 		expect(onChange).toHaveBeenCalledTimes(1);
 		expect(onChange).toHaveBeenCalledWith({
 			questionId: "Lorem ipsum",
-			selectedOption: 2,
+			selectedValue: 2,
 		});
 	});
 

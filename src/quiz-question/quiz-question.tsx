@@ -12,7 +12,7 @@ import { Option } from "./option";
  * The component can be used as a standalone component or in a group of multiple questions.
  *
  * QuizQuestion does not track its selected option internally,
- * but instead, it provides a `selectedOption` and an `onChange` props,
+ * but instead, it provides a `selectedValue` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
 export const QuizQuestion = ({
@@ -21,17 +21,17 @@ export const QuizQuestion = ({
 	required,
 	disabled,
 	validation,
-	selectedOption,
+	selectedValue,
 	onChange,
 }: QuizQuestionProps) => {
-	const handleChange = (selectedOption: QuizQuestionOption["value"]) => {
+	const handleChange = (selectedValue: QuizQuestionOption["value"]) => {
 		if (!onChange) {
 			return;
 		}
 
 		onChange({
 			questionId: question,
-			selectedOption,
+			selectedValue,
 		});
 	};
 
@@ -64,10 +64,10 @@ export const QuizQuestion = ({
 			onChange={handleChange}
 			aria-required={required}
 			disabled={disabled}
-			// `selectedOption` should not be `undefined`
+			// `selectedValue` should not be `undefined`
 			// or React will automatically consider QuizQuestion an uncontrolled component
 			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
-			value={selectedOption ?? null}
+			value={selectedValue ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
 				{maybeRenderValidationIcon()}
@@ -79,7 +79,7 @@ export const QuizQuestion = ({
 					key={value}
 					value={value}
 					label={label}
-					checked={selectedOption === value}
+					checked={selectedValue === value}
 					disabled={disabled}
 				/>
 			))}

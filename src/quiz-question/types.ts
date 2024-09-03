@@ -37,14 +37,14 @@ export interface QuizQuestionProps {
 	/**
 	 * Value of the selected option
 	 */
-	selectedOption?: QuizQuestionOption["value"];
+	selectedValue?: QuizQuestionOption["value"];
 
 	/**
 	 * Change event handler, called when an option is selected
 	 */
 	onChange?: ({
 		questionId,
-		selectedOption,
+		selectedValue,
 	}: {
 		/**
 		 * ID of the question
@@ -54,6 +54,6 @@ export interface QuizQuestionProps {
 		/**
 		 * Value of the selected option
 		 */
-		selectedOption: QuizQuestionOption["value"];
+		selectedValue: QuizQuestionOption["value"];
 	}) => void;
 }

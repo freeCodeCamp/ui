@@ -21,7 +21,7 @@ const QuizQuestionComp = ({
 	disabled,
 	validation,
 }: QuizQuestionCompProps) => {
-	const [value, setValue] = useState<QuizQuestionProps["selectedOption"]>();
+	const [value, setValue] = useState<QuizQuestionProps["selectedValue"]>();
 
 	return (
 		<QuizQuestion
@@ -29,8 +29,8 @@ const QuizQuestionComp = ({
 			options={options}
 			disabled={disabled}
 			validation={validation}
-			onChange={({ selectedOption }) => setValue(selectedOption)}
-			selectedOption={value}
+			onChange={({ selectedValue }) => setValue(selectedValue)}
+			selectedValue={value}
 		/>
 	);
 };
@@ -59,8 +59,8 @@ export const Default: Story = {
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
-      onChange={({ selectedOption }) => setValue(selectedOption)}
-      selectedOption={value}
+      onChange={({ selectedValue }) => setValue(selectedValue)}
+      selectedValue={value}
     />
   );
 }`,
@@ -94,8 +94,8 @@ export const Disabled: Story = {
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
-      onChange={({ selectedOption }) => setValue(selectedOption)}
-      selectedOption={value}
+      onChange={({ selectedValue }) => setValue(selectedValue)}
+      selectedValue={value}
       disabled
     />
   );
@@ -130,8 +130,8 @@ export const Correct: Story = {
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
-      onChange={({ selectedOption }) => setValue(selectedOption)}
-      selectedOption={value}
+      onChange={({ selectedValue }) => setValue(selectedValue)}
+      selectedValue={value}
       validation={{ state: "correct", message: "Correct." }}
     />
   );
@@ -166,8 +166,8 @@ export const Incorrect: Story = {
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
-      onChange={({ selectedOption }) => setValue(selectedOption)}
-      selectedOption={value}
+      onChange={({ selectedValue }) => setValue(selectedValue)}
+      selectedValue={value}
       validation={{ state: "incorrect", message: "Incorrect." }}
     />
   );
