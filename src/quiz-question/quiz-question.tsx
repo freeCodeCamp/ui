@@ -3,31 +3,9 @@ import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import {
-	type QuizQuestionOption,
-	type QuizQuestionProps,
-	type QuizQuestionValidation,
-} from "./types";
+import { type QuizQuestionOption, type QuizQuestionProps } from "./types";
 
 import { Option } from "./option";
-
-const ValidationIcon = ({ state, message }: QuizQuestionValidation) => {
-	return state === "correct" ? (
-		<FontAwesomeIcon
-			icon={faCheck}
-			className="text-background-success me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
-	) : (
-		<FontAwesomeIcon
-			icon={faXmark}
-			className="text-background-danger me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
-	);
-};
 
 /**
  * QuizQuestion is a radio group that allows users to select a single option from a list of multiple options.
@@ -57,6 +35,30 @@ export const QuizQuestion = ({
 		});
 	};
 
+	const maybeRenderValidationIcon = () => {
+		if (!validation) {
+			return;
+		}
+
+		const { state, message } = validation;
+
+		return state === "correct" ? (
+			<FontAwesomeIcon
+				icon={faCheck}
+				className="text-background-success me-[8px]"
+				aria-label={message}
+				aria-hidden={false}
+			/>
+		) : (
+			<FontAwesomeIcon
+				icon={faXmark}
+				className="text-background-danger me-[8px]"
+				aria-label={message}
+				aria-hidden={false}
+			/>
+		);
+	};
+
 	return (
 		<RadioGroup
 			onChange={handleChange}
@@ -68,12 +70,7 @@ export const QuizQuestion = ({
 			value={selectedOption ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
-				{validation && (
-					<ValidationIcon
-						state={validation.state}
-						message={validation.message}
-					/>
-				)}
+				{maybeRenderValidationIcon()}
 				<span className="text-foreground-primary">{question}</span>
 			</RadioGroup.Label>
 
