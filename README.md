@@ -14,8 +14,8 @@ pnpm install @freecodecamp/ui
 
 ```tsx
 // app.tsx
-import "@freecodecamp/ui/dist/base.css";
-import "./my-app.css"; // Your custom stylesheet should be imported after, in order to override the base.
+import '@freecodecamp/ui/dist/base.css';
+import './my-app.css'; // Your custom stylesheet should be imported after, in order to override the base.
 ```
 
 - Add either the `light-palette` or `dark-palette` class to the `body` element to enable theming:

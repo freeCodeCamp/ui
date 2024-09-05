@@ -52,6 +52,7 @@
     "@fortawesome/react-fontawesome": "0.2.2",
     "@headlessui/react": "1.7.19",
     "@radix-ui/react-tabs": "1.1.0",
+    "@storybook/react-docgen-typescript-plugin": "^1.0.1",
     "react": "16.14.0",
     "react-dom": "16.14.0"
   },
@@ -106,6 +107,8 @@
     "prettier": "3.3.3",
     "rollup": "2.79.1",
     "rollup-plugin-postcss": "4.0.2",
+    "sass": "^1.78.0",
+    "sass-loader": "^16.0.1",
     "storybook": "8.2.9",
     "style-loader": "3.3.4",
     "tailwindcss": "3.4.10",

@@ -1,15 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { CloseButton } from "./close-button";
+import { Meta, StoryObj } from '@storybook/react';
+import { CloseButton } from './close-button';
 
 const story = {
-	title: "Components/CloseButton",
-	component: CloseButton,
+  title: 'Components/CloseButton',
+  component: CloseButton,
 } satisfies Meta<typeof CloseButton>;
 
 type Story = StoryObj<typeof CloseButton>;
 
 export const Basic: Story = {
-	args: {},
+  args: {},
 };
 
 export default story;

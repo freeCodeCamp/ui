@@ -1,53 +1,53 @@
-@import "./colors.css";
+@import './colors.css';
 
 /* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css */
 @tailwind base;
 
 @layer base {
-	html {
-		@apply text-md;
-	}
+  html {
+    @apply text-md;
+  }
 
-	:focus-visible {
-		@apply outline outline-3 outline-focus-outline-color outline-offset-0;
-	}
+  :focus-visible {
+    @apply outline outline-3 outline-focus-outline-color outline-offset-0;
+  }
 
-	a {
-		/* Override Tailwind's default `text-decoration` rule. */
-		/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L92 */
-		@apply underline;
-		/* This is required in order to improve text readability in Arabic */
-		text-underline-position: under;
-	}
-	@supports not (text-underline-position: under) {
-		a {
-			text-underline-offset: 0.1em;
-		}
-	}
+  a {
+    /* Override Tailwind's default `text-decoration` rule. */
+    /* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L92 */
+    @apply underline;
+    /* This is required in order to improve text readability in Arabic */
+    text-underline-position: under;
+  }
+  @supports not (text-underline-position: under) {
+    a {
+      text-underline-offset: 0.1em;
+    }
+  }
 
-	code {
-		@apply bg-background-tertiary text-foreground-tertiary;
-	}
-	:not(pre) > code {
-		@apply border-1 border-gray-450;
-	}
+  code {
+    @apply bg-background-tertiary text-foreground-tertiary;
+  }
+  :not(pre) > code {
+    @apply border-1 border-gray-450;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p {
-		margin-bottom: 12.5px;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-bottom: 12.5px;
+  }
 
-	/* Override the Tailwind's placeholder text color. */
-	/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
-	input::placeholder,
-	textarea::placeholder {
-		@apply text-foreground-quaternary opacity-80;
-	}
+  /* Override the Tailwind's placeholder text color. */
+  /* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-foreground-quaternary opacity-80;
+  }
 }
 
 @tailwind components;

@@ -1,2 +1,2 @@
-export { FormControl } from "./form-control";
-export type { FormControlProps } from "./types";
+export { FormControl } from './form-control';
+export type { FormControlProps } from './types';

@@ -1,58 +1,58 @@
-import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import { FormControl } from "../form-control";
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { FormControl } from '../form-control';
 
-import { ControlLabel } from "../control-label";
-import { FormGroup } from ".";
+import { ControlLabel } from '../control-label';
+import { FormGroup } from '.';
 
 const story = {
-	title: "Components/FormGroup",
-	component: FormGroup,
-	argTypes: {
-		children: { control: { type: "object" } },
-		className: { control: { type: "text" } },
-		controlId: { control: { type: "text" } },
-		as: { control: { type: "text" } },
-		validationState: { options: ["success", "warning", "error", null] },
-	},
+  title: 'Components/FormGroup',
+  component: FormGroup,
+  argTypes: {
+    children: { control: { type: 'object' } },
+    className: { control: { type: 'text' } },
+    controlId: { control: { type: 'text' } },
+    as: { control: { type: 'text' } },
+    validationState: { options: ['success', 'warning', 'error', null] },
+  },
 } satisfies Meta<typeof FormGroup>;
 
 type Story = StoryObj<typeof FormGroup>;
 
 const Child = () => {
-	return (
-		<>
-			<ControlLabel>Label</ControlLabel>
-			<FormControl type={"text"} placeholder="Hello World" />
-		</>
-	);
+  return (
+    <>
+      <ControlLabel>Label</ControlLabel>
+      <FormControl type={'text'} placeholder="Hello World" />
+    </>
+  );
 };
 
 export const Default: Story = {
-	args: {
-		children: <Child />,
-	},
+  args: {
+    children: <Child />,
+  },
 };
 
 export const Success: Story = {
-	args: {
-		children: <Child />,
-		validationState: "success",
-	},
+  args: {
+    children: <Child />,
+    validationState: 'success',
+  },
 };
 
 export const Error: Story = {
-	args: {
-		children: <Child />,
-		validationState: "error",
-	},
+  args: {
+    children: <Child />,
+    validationState: 'error',
+  },
 };
 
 export const Warning: Story = {
-	args: {
-		children: <Child />,
-		validationState: "warning",
-	},
+  args: {
+    children: <Child />,
+    validationState: 'warning',
+  },
 };
 
 export default story;

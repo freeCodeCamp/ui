@@ -19,25 +19,29 @@ export const parameters = {
 			{
 				name: "dark-palette",
 				value: "#0a0a23",
-			},
+			},	
 		],
 	},
 };
 
-export const decorators = [renderTheme];
+
 
 /**
  * Gets matching theme name for currently selected background and provides it
  * to the story.
  */
 function renderTheme(Story, context) {
-	const selectedBackgroundValue = context.globals.backgrounds?.value;
+	console.log('context.globals', context.globals);
+	console.log('parameters.backgrounds.values', parameters.backgrounds.values);
+
+	const selectedBackgroundValue = context.globals?.backgrounds?.value || parameters.backgrounds.default;
 	const selectedBackgroundName = parameters.backgrounds.values.find(
 		(bg) => bg.value === selectedBackgroundValue,
 	)?.name;
 
-	// Use the value of the default background to prevent "undefined" className
 	const className = selectedBackgroundName || parameters.backgrounds.default;
+
+	console.log('Selected className:', className);
 
 	if (className === "light-palette") {
 		document.body.classList.remove("dark-palette");
@@ -49,3 +53,5 @@ function renderTheme(Story, context) {
 
 	return <Story />;
 }
+
+export const decorators = [renderTheme];

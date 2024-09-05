@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
 export interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
-	variant?: "primary" | "info" | "danger";
+  variant?: 'primary' | 'info' | 'danger';
 }

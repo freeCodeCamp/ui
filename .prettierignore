@@ -1,3 +1,27 @@
-# pnpm-lock.yaml does not need formatting, but it does need to be committed
-# so we can't just use .gitignore
-pnpm-lock.yaml
+# Node modules and build directories
+node_modules
+build
+dist
+coverage
+
+# Compiled files
+*.min.js
+*.d.ts
+
+# Test files (if you don't want to format test files)
+*.test.tsx
+*.test.ts
+
+# GitHub configuration (GitHub Actions workflows, etc.)
+.github
+
+# Storybook configuration
+.storybook
+
+# Husky configuration (Git hooks, etc.)
+.husky
+
+# Other specific patterns
+*.lock
+*.log
+*.swp
