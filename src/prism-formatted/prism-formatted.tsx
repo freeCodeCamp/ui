@@ -1,8 +1,6 @@
 import Prism from "prismjs";
 import React, { useRef, useEffect } from "react";
 
-import { enhancePrismAccessibility } from "./utils";
-
 import "./prism-base.css";
 import "./prism-light.css";
 import "./prism-dark.css";
@@ -15,6 +13,53 @@ interface PrismFormattedProps {
 	noAria?: boolean;
 	hasLineNumbers?: boolean;
 }
+
+const langs: { [key: string]: string } = {
+	js: "JavaScript",
+	javascript: "JavaScript",
+	css: "CSS",
+	html: "HTML",
+	python: "python",
+	py: "python",
+	xml: "XML",
+	jsx: "JSX",
+	scss: "SCSS",
+	sql: "SQL",
+	http: "HTTP",
+	json: "JSON",
+	pug: "pug",
+};
+
+// Adds region role and accessible name to PrismJS code blocks
+const enhancePrismAccessibility = ({
+	prismEnv,
+	getCodeBlockAriaLabel,
+}: {
+	prismEnv: Prism.hooks.ElementHighlightedEnvironment;
+	getCodeBlockAriaLabel: (codeName: string) => string;
+}): void => {
+	const parent = prismEnv?.element?.parentElement;
+
+	if (
+		!parent ||
+		parent.nodeName !== "PRE" ||
+		parent.tabIndex !== 0 ||
+		parent.dataset.noAria === "true"
+	) {
+		return;
+	}
+
+	parent.setAttribute("role", "region");
+
+	const codeType = prismEnv.element?.className
+		.replace(/language-(.*)/, "$1")
+		.toLowerCase();
+
+	const codeName = langs[codeType] || "";
+	const ariaLabel = getCodeBlockAriaLabel(codeName);
+
+	parent.setAttribute("aria-label", ariaLabel);
+};
 
 /**
  * PrismFormatted is used to render code blocks with syntax highlighting.
