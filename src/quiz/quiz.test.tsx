@@ -6,40 +6,34 @@ import { Quiz } from "./quiz";
 import { useQuiz } from "./use-quiz";
 
 const ControlledQuiz = () => {
-	const { values, handleChange } = useQuiz();
+	const questions = useQuiz([
+		{
+			question: "Lorem ipsum dolor sit amet",
+			options: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+		{
+			question: "Consectetur adipiscing elit",
+			options: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+		{
+			question: "Fugit itaque delectus voluptatem alias aliquid",
+			options: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+	]);
 
-	return (
-		<Quiz
-			questions={[
-				{
-					question: "Lorem ipsum dolor sit amet",
-					options: [
-						{ label: "Option 1", value: 1 },
-						{ label: "Option 2", value: 2 },
-						{ label: "Option 3", value: 3 },
-					],
-				},
-				{
-					question: "Consectetur adipiscing elit",
-					options: [
-						{ label: "Option 1", value: 1 },
-						{ label: "Option 2", value: 2 },
-						{ label: "Option 3", value: 3 },
-					],
-				},
-				{
-					question: "Fugit itaque delectus voluptatem alias aliquid",
-					options: [
-						{ label: "Option 1", value: 1 },
-						{ label: "Option 2", value: 2 },
-						{ label: "Option 3", value: 3 },
-					],
-				},
-			]}
-			values={values}
-			onChange={handleChange}
-		/>
-	);
+	return <Quiz questions={questions} />;
 };
 
 describe("<Quiz />", () => {

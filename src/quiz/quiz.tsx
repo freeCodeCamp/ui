@@ -6,27 +6,27 @@ import { QuizQuestion, type QuizQuestionProps } from "../quiz-question";
 // their configurations don't collide with Quiz'.
 // For example: Quiz should be able to apply `disabled` to all questions
 // without being overriden by the `disabled` prop of the individual question.
-type Question = Pick<QuizQuestionProps, "question" | "options" | "validation">;
+// type Question = Pick<QuizQuestionProps, "question" | "options" | "validation">;
 
 export interface QuizProps {
-	questions: Question[];
-	values: Record<string, QuizQuestionProps["selectedOption"]>;
-	onChange: QuizQuestionProps["onChange"];
+	questions: {
+		question: string;
+		options: { label: string; value: number }[];
+		validation?: QuizQuestionProps["validation"];
+		onChange: (selectedOption: number) => void;
+		selectedOption: number | undefined;
+	}[];
 	disabled?: boolean;
 }
 
-export const Quiz = ({ questions, values, onChange, disabled }: QuizProps) => {
+export const Quiz = ({ questions, disabled }: QuizProps) => {
 	return (
 		<ul className="flex flex-col gap-y-[24px]">
-			{questions.map(({ question, options, validation }, index) => (
-				<li key={question}>
+			{questions.map((question, index) => (
+				<li key={index}>
 					<QuizQuestion
+						{...question}
 						position={index + 1}
-						question={question}
-						options={options}
-						validation={validation}
-						onChange={onChange}
-						selectedOption={values[question]}
 						disabled={disabled}
 					/>
 				</li>

@@ -30,10 +30,7 @@ export const QuizQuestion = ({
 			return;
 		}
 
-		onChange({
-			questionId: question,
-			selectedOption,
-		});
+		onChange(selectedOption);
 	};
 
 	const maybeRenderValidationIcon = () => {

@@ -11,32 +11,22 @@ const story = {
 type Story = StoryObj<typeof Quiz>;
 
 const QuizDefault = ({ questions }: QuizProps) => {
-	const { values, handleChange } = useQuiz();
+	const updatedQuestions = useQuiz(questions);
 
-	return <Quiz questions={questions} values={values} onChange={handleChange} />;
+	return <Quiz questions={updatedQuestions} />;
 };
 
 const QuizWithValidation = ({ questions }: QuizProps) => {
-	const { values, handleChange } = useQuiz({
-		"Lorem ipsum dolor sit amet": 1,
-		"Consectetur adipiscing elit": 2,
-		"Fugit itaque delectus voluptatem alias aliquid": 3,
-	});
+	const updatedQuestions = useQuiz(questions);
 
-	return (
-		<Quiz
-			questions={questions}
-			values={values}
-			onChange={handleChange}
-			disabled
-		/>
-	);
+	return <Quiz questions={updatedQuestions} disabled />;
 };
 
 export const Default: Story = {
 	render: QuizDefault,
 	args: {
 		questions: [
+			// @ts-expect-error for now
 			{
 				question: "Lorem ipsum dolor sit amet",
 				options: [
@@ -45,6 +35,7 @@ export const Default: Story = {
 					{ label: "Option 3", value: 3 },
 				],
 			},
+			// @ts-expect-error for now
 			{
 				question: "Consectetur adipiscing elit",
 				options: [
@@ -53,6 +44,7 @@ export const Default: Story = {
 					{ label: "Option 3", value: 3 },
 				],
 			},
+			// @ts-expect-error for now
 			{
 				question: "Fugit itaque delectus voluptatem alias aliquid",
 				options: [
@@ -110,6 +102,7 @@ export const WithValidation: Story = {
 	render: QuizWithValidation,
 	args: {
 		questions: [
+			// @ts-expect-error for now
 			{
 				question: "Lorem ipsum dolor sit amet",
 				options: [
@@ -119,6 +112,7 @@ export const WithValidation: Story = {
 				],
 				validation: { state: "incorrect", message: "Incorrect." },
 			},
+			// @ts-expect-error for now
 			{
 				question: "Consectetur adipiscing elit",
 				options: [
@@ -128,6 +122,7 @@ export const WithValidation: Story = {
 				],
 				validation: { state: "correct", message: "Correct." },
 			},
+			// @ts-expect-error for now
 			{
 				question: "Fugit itaque delectus voluptatem alias aliquid",
 				options: [

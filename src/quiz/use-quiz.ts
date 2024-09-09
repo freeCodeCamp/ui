@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { type QuizQuestionProps } from "../quiz-question";
 
-export const useQuiz = (initialValues = {}) => {
-	const [values, setValues] =
-		useState<Record<string, QuizQuestionProps["selectedOption"]>>(
-			initialValues,
-		);
+export const useQuiz = (rawQuestions: QuizQuestionProps[]) => {
+	const [quizAnswers, setQuizAnswers] = useState<(number | undefined)[]>(
+		new Array(rawQuestions.length).fill(undefined),
+	);
 
-	const handleChange: QuizQuestionProps["onChange"] = ({
-		questionId,
-		selectedOption,
-	}) => {
-		setValues({
-			...values,
-			[questionId]: selectedOption,
-		});
-	};
+	const questions = rawQuestions.map((question, index) => ({
+		...question,
+		onChange: (selectedOption: number) => {
+			setQuizAnswers((prevAnswers) =>
+				prevAnswers.map((prevAnswer, prevIndex) =>
+					prevIndex === index ? selectedOption : prevAnswer,
+				),
+			);
+		},
+		selectedOption: quizAnswers[index],
+	}));
 
-	return { values, handleChange };
+	return questions;
 };

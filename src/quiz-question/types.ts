@@ -47,19 +47,5 @@ export interface QuizQuestionProps {
 	/**
 	 * Change event handler, called when an option is selected
 	 */
-	onChange?: ({
-		questionId,
-		selectedOption,
-	}: {
-		/**
-		 * ID of the question, with the question text being the value.
-		 * ID is useful when QuizQuestion is used in a group of questions.
-		 */
-		questionId: string;
-
-		/**
-		 * Value of the selected option
-		 */
-		selectedOption: QuizQuestionOption["value"];
-	}) => void;
+	onChange?: (selectedOption: QuizQuestionOption["value"]) => void;
 }
