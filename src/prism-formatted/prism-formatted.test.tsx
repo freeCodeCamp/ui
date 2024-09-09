@@ -15,11 +15,13 @@ const text = `
 </code></pre>
 <p>Bar</p>`;
 
+const getCodeBlockAriaLabel = (codeName: string) => `${codeName} code example`;
+
 describe("PrismFormatted", () => {
 	it("should render a code block with a region role and an aria label if `noAria` is not specified", () => {
 		render(
 			<PrismFormatted
-				codeBlockAriaLabel="JavaScript code example"
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
 				text={text}
 			/>,
 		);
@@ -46,7 +48,7 @@ describe("PrismFormatted", () => {
 		const { container } = render(
 			<PrismFormatted
 				noAria
-				codeBlockAriaLabel="JavaScript code example"
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
 				text={text}
 			/>,
 		);
@@ -60,7 +62,7 @@ describe("PrismFormatted", () => {
 	it("should wrap the content within a `div` if `useSpan` is not specified", () => {
 		const { container } = render(
 			<PrismFormatted
-				codeBlockAriaLabel="JavaScript code example"
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
 				text={text}
 			/>,
 		);
@@ -75,7 +77,7 @@ describe("PrismFormatted", () => {
 	it("should wrap the content within a `span` if `useSpan` is `true`", () => {
 		const { container } = render(
 			<PrismFormatted
-				codeBlockAriaLabel="JavaScript code example"
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
 				text={text}
 				useSpan
 			/>,
@@ -92,7 +94,7 @@ describe("PrismFormatted", () => {
 		const { container } = render(
 			<PrismFormatted
 				hasLineNumbers
-				codeBlockAriaLabel="JavaScript code example"
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
 				text={text}
 			/>,
 		);

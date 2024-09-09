@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { PrismFormatted } from "./prism-formatted";
-import { getCodeLanguageFromString } from "./utils";
 
 const story = {
 	title: "Components/PrismFormatted",
@@ -22,14 +21,14 @@ print(cel)
 export const Default: Story = {
 	args: {
 		text,
-		codeBlockAriaLabel: `${getCodeLanguageFromString(text)} code example`,
+		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
 	},
 };
 
 export const WithLineNumbers: Story = {
 	args: {
 		text,
-		codeBlockAriaLabel: `${getCodeLanguageFromString(text)} code example`,
+		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
 		hasLineNumbers: true,
 	},
 };

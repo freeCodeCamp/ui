@@ -14,24 +14,16 @@ const langs: { [key: string]: string } = {
 	pug: "pug",
 };
 
-// Extracts the programming language name from the provided string.
-export const getCodeLanguageFromString = (text: string) => {
-	const matches = text.match(/(?:class="language-)(\w*)(?:")/);
-	const codeType = matches ? matches[1].toLowerCase() : "";
-	const codeName = langs[codeType] || "";
-
-	return codeName;
-};
-
 // Adds region role and accessible name to PrismJS code blocks
 export const enhancePrismAccessibility = ({
 	prismEnv,
-	ariaLabel,
+	getCodeBlockAriaLabel,
 }: {
 	prismEnv: Prism.hooks.ElementHighlightedEnvironment;
-	ariaLabel: string;
+	getCodeBlockAriaLabel: (codeName: string) => string;
 }): void => {
 	const parent = prismEnv?.element?.parentElement;
+
 	if (
 		!parent ||
 		parent.nodeName !== "PRE" ||
@@ -42,6 +34,13 @@ export const enhancePrismAccessibility = ({
 	}
 
 	parent.setAttribute("role", "region");
+
+	const codeType = prismEnv.element?.className
+		.replace(/language-(.*)/, "$1")
+		.toLowerCase();
+
+	const codeName = langs[codeType] || "";
+	const ariaLabel = getCodeBlockAriaLabel(codeName);
 
 	parent.setAttribute("aria-label", ariaLabel);
 };

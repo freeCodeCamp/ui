@@ -10,7 +10,7 @@ import "./prism-dark.css";
 interface PrismFormattedProps {
 	className?: string;
 	text: string;
-	codeBlockAriaLabel: string;
+	getCodeBlockAriaLabel: (codeName: string) => string;
 	useSpan?: boolean;
 	noAria?: boolean;
 	hasLineNumbers?: boolean;
@@ -24,16 +24,14 @@ interface PrismFormattedProps {
  * It is recommended to pass an aria-label to the code block, to help non-sighted users
  * understand what the code block is for and which programming language it is written in.
  *
- * The label can be constructed using the `getCodeLanguageFromString()` util as follows:
+ * The label can be constructed by passing a callback function to the `getCodeBlockAriaLabel` prop as follows:
  *
  * ```tsx
- * import { PrismFormatted, getCodeLanguageFromString } from '@freecodecamp/ui';
+ * import { PrismFormatted } from '@freecodecamp/ui';
  *
  * const App = () => {
- *   const codeLang = getCodeLanguageFromString(text);
- *
  *   return (
- *     <PrismFormatted text={text} codeBlockAriaLabel={`${codeLang} code example`} />
+ *     <PrismFormatted text={text} getCodeBlockAriaLabel={codeName => `${codeName} code example`} />
  *   );
  * }
  * ```
@@ -42,16 +40,11 @@ interface PrismFormattedProps {
  * you can create a wrapper component as follows:
  *
  * ```tsx
- * import {
- *   PrismFormatted as FccUIPrismFormatted,
- *   getCodeLanguageFromString,
- * } from '@freecodecamp/ui';
+ * import { PrismFormatted as FccUIPrismFormatted } from '@freecodecamp/ui';
  *
  * const PrismFormatted = ({ text }) => {
- *   const codeLang = getCodeLanguageFromString(text);
- *
  *   return (
- *     <FccUIPrismFormatted text={text} codeBlockAriaLabel={`${codeLang} code example`} />
+ *     <FccUIPrismFormatted text={text} getCodeBlockAriaLabel={codeName => `${codeName} code example`} />
  *   );
  * }
  *
@@ -66,7 +59,7 @@ export const PrismFormatted = ({
 	text,
 	useSpan,
 	noAria,
-	codeBlockAriaLabel,
+	getCodeBlockAriaLabel,
 	hasLineNumbers,
 }: PrismFormattedProps) => {
 	const instructionsRef = useRef<HTMLDivElement>(null);
@@ -85,11 +78,14 @@ export const PrismFormatted = ({
 		// Just in case 'current' has not been created, though it should have been.
 		if (instructionsRef.current) {
 			Prism.hooks.add("complete", (prismEnv) =>
-				enhancePrismAccessibility({ prismEnv, ariaLabel: codeBlockAriaLabel }),
+				enhancePrismAccessibility({
+					prismEnv,
+					getCodeBlockAriaLabel,
+				}),
 			);
 			Prism.highlightAllUnder(instructionsRef.current);
 		}
-	}, [codeBlockAriaLabel]);
+	}, [getCodeBlockAriaLabel]);
 
 	return (
 		<ElementName
