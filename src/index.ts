@@ -18,4 +18,4 @@ export { HelpBlock } from "./help-block";
 export { Row } from "./row";
 export { Modal, type ModalProps, type HeaderProps } from "./modal";
 export { Spacer } from "./spacer";
-export { PrismFormatted, getCodeLanguageFromString } from "./prism-formatted";
+export { PrismFormatted } from "./prism-formatted";
