@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { type QuizQuestionProps } from "../quiz-question";
 
-export const useQuiz = (rawQuestions: QuizQuestionProps[]) => {
+import { type Question } from "./types";
+
+export const useQuiz = (rawQuestions: Question[]) => {
 	const [quizAnswers, setQuizAnswers] = useState<(number | undefined)[]>(
 		new Array(rawQuestions.length).fill(undefined),
 	);
 
-	const questions = rawQuestions.map((question, index) => ({
+	const questions: Question[] = rawQuestions.map((question, index) => ({
 		...question,
-		onChange: (selectedOption: number) => {
+		onChange: (selectedAnswer: number) => {
 			setQuizAnswers((prevAnswers) =>
 				prevAnswers.map((prevAnswer, prevIndex) =>
-					prevIndex === index ? selectedOption : prevAnswer,
+					prevIndex === index ? selectedAnswer : prevAnswer,
 				),
 			);
 		},
-		selectedOption: quizAnswers[index],
+		selectedAnswer: quizAnswers[index],
 	}));
 
 	return questions;

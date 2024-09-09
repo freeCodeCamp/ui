@@ -1,9 +1,9 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
 
-import { type QuizQuestionOption } from "./types";
+import { type QuizQuestionAnswer } from "./types";
 
-interface OptionProps extends QuizQuestionOption {
+interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
 	disabled?: boolean;
 }
@@ -72,7 +72,7 @@ const RadioIcon = ({
 	return <span className={radioCls.join(" ")}></span>;
 };
 
-export const Option = ({ value, label, disabled, checked }: OptionProps) => {
+export const Answer = ({ value, label, disabled, checked }: AnswerProps) => {
 	const radioOptionCls = [
 		...radioOptionDefaultClasses,
 		...(disabled

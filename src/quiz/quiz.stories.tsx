@@ -26,28 +26,25 @@ export const Default: Story = {
 	render: QuizDefault,
 	args: {
 		questions: [
-			// @ts-expect-error for now
 			{
 				question: "Lorem ipsum dolor sit amet",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				],
 			},
-			// @ts-expect-error for now
 			{
 				question: "Consectetur adipiscing elit",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				],
 			},
-			// @ts-expect-error for now
 			{
 				question: "Fugit itaque delectus voluptatem alias aliquid",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
@@ -64,7 +61,7 @@ import { Quiz, useQuiz } from '@freecodecamp/ui';
 const questions = [
   {
     question: "Lorem ipsum dolor sit amet",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -72,7 +69,7 @@ const questions = [
   },
   {
     question: "Consectetur adipiscing elit",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -80,7 +77,7 @@ const questions = [
   },
   {
     question: "Fugit itaque delectus voluptatem alias aliquid",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -102,30 +99,27 @@ export const WithValidation: Story = {
 	render: QuizWithValidation,
 	args: {
 		questions: [
-			// @ts-expect-error for now
 			{
 				question: "Lorem ipsum dolor sit amet",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				],
 				validation: { state: "incorrect", message: "Incorrect." },
 			},
-			// @ts-expect-error for now
 			{
 				question: "Consectetur adipiscing elit",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				],
 				validation: { state: "correct", message: "Correct." },
 			},
-			// @ts-expect-error for now
 			{
 				question: "Fugit itaque delectus voluptatem alias aliquid",
-				options: [
+				answers: [
 					{ label: "Option 1", value: 1 },
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
@@ -144,7 +138,7 @@ import { Quiz, useQuiz } from '@freecodecamp/ui';
 const questions = [
   {
     question: "Lorem ipsum dolor sit amet",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -153,7 +147,7 @@ const questions = [
   },
   {
     question: "Consectetur adipiscing elit",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
@@ -162,7 +156,7 @@ const questions = [
   },
   {
     question: "Fugit itaque delectus voluptatem alias aliquid",
-    options: [
+    answers: [
       { label: "Option 1", value: 1 },
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },

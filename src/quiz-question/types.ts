@@ -1,4 +1,4 @@
-export interface QuizQuestionOption {
+export interface QuizQuestionAnswer {
 	label: string;
 	value: number;
 }
@@ -17,7 +17,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Answer options
 	 */
-	options: QuizQuestionOption[];
+	answers: QuizQuestionAnswer[];
 
 	/**
 	 * Position of the question amongst its siblings
@@ -40,12 +40,12 @@ export interface QuizQuestionProps {
 	validation?: QuizQuestionValidation;
 
 	/**
-	 * Value of the selected option
+	 * Value of the selected answer
 	 */
-	selectedOption?: QuizQuestionOption["value"];
+	selectedAnswer?: QuizQuestionAnswer["value"];
 
 	/**
-	 * Change event handler, called when an option is selected
+	 * Change event handler, called when an answer is selected
 	 */
-	onChange?: (selectedOption: QuizQuestionOption["value"]) => void;
+	onChange?: (selectedAnswer: QuizQuestionAnswer["value"]) => void;
 }

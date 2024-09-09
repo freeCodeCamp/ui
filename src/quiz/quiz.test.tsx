@@ -9,7 +9,7 @@ const ControlledQuiz = () => {
 	const questions = useQuiz([
 		{
 			question: "Lorem ipsum dolor sit amet",
-			options: [
+			answers: [
 				{ label: "Option 1", value: 1 },
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
@@ -17,7 +17,7 @@ const ControlledQuiz = () => {
 		},
 		{
 			question: "Consectetur adipiscing elit",
-			options: [
+			answers: [
 				{ label: "Option 1", value: 1 },
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
@@ -25,7 +25,7 @@ const ControlledQuiz = () => {
 		},
 		{
 			question: "Fugit itaque delectus voluptatem alias aliquid",
-			options: [
+			answers: [
 				{ label: "Option 1", value: 1 },
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },

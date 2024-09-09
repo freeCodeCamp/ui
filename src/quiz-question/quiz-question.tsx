@@ -3,29 +3,29 @@ import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { type QuizQuestionOption, type QuizQuestionProps } from "./types";
+import { type QuizQuestionAnswer, type QuizQuestionProps } from "./types";
 
-import { Option } from "./option";
+import { Answer } from "./answer";
 
 /**
  * QuizQuestion is a radio group that allows users to select a single option from a list of multiple options.
  * The component can be used as a standalone component or in a group of multiple questions.
  *
  * QuizQuestion does not track its selected option internally,
- * but instead, it provides a `selectedOption` and an `onChange` props,
+ * but instead, it provides a `selectedAnswer` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
 export const QuizQuestion = ({
 	question,
-	options,
+	answers,
 	required,
 	disabled,
 	validation,
-	selectedOption,
+	selectedAnswer,
 	onChange,
 	position,
 }: QuizQuestionProps) => {
-	const handleChange = (selectedOption: QuizQuestionOption["value"]) => {
+	const handleChange = (selectedOption: QuizQuestionAnswer["value"]) => {
 		if (!onChange) {
 			return;
 		}
@@ -74,22 +74,22 @@ export const QuizQuestion = ({
 			onChange={handleChange}
 			aria-required={required}
 			disabled={disabled}
-			// `selectedOption` should not be `undefined`
+			// `selectedAnswer` should not be `undefined`
 			// or React will automatically consider QuizQuestion an uncontrolled component
 			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
-			value={selectedOption ?? null}
+			value={selectedAnswer ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
 				{maybeRenderValidationIcon()}
 				{renderQuestionText()}
 			</RadioGroup.Label>
 
-			{options.map(({ value, label }) => (
-				<Option
+			{answers.map(({ value, label }) => (
+				<Answer
 					key={value}
 					value={value}
 					label={label}
-					checked={selectedOption === value}
+					checked={selectedAnswer === value}
 					disabled={disabled}
 				/>
 			))}
