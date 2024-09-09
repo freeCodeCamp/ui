@@ -23,6 +23,23 @@ export const Default: Story = {
 		text,
 		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
 	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<PrismFormatted
+  getCodeBlockAriaLabel={codeName => \`\${codeName} code example\`}
+  text="<p>Given the following code:</p>
+	<pre><code class=&quot;language-python&quot;>temp = &quot;5 degrees&quot;
+	cel = 0
+	fahr = float(temp)
+	cel = (fahr - 32.0) * 5.0 / 9.0
+	print(cel)
+	</code></pre>
+	<p>Which line/lines should be surrounded by <code>try</code> block?</p>"
+/>`,
+			},
+		},
+	},
 };
 
 export const WithLineNumbers: Story = {
@@ -30,6 +47,24 @@ export const WithLineNumbers: Story = {
 		text,
 		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
 		hasLineNumbers: true,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<PrismFormatted
+  hasLineNumbers
+  getCodeBlockAriaLabel={codeName => \`\${codeName} code example\`}
+  text="<p>Given the following code:</p>
+	<pre><code class=&quot;language-python&quot;>temp = &quot;5 degrees&quot;
+	cel = 0
+	fahr = float(temp)
+	cel = (fahr - 32.0) * 5.0 / 9.0
+	print(cel)
+	</code></pre>
+	<p>Which line/lines should be surrounded by <code>try</code> block?</p>"
+/>`,
+			},
+		},
 	},
 };
 
