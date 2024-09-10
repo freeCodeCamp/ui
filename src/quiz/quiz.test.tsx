@@ -2,10 +2,10 @@ import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Quiz } from "./quiz";
+import { Quiz, QuizProps } from "./quiz";
 import { useQuiz } from "./use-quiz";
 
-const ControlledQuiz = () => {
+const ControlledQuiz = ({ disabled, required }: Partial<QuizProps>) => {
 	const questions = useQuiz([
 		{
 			question: "Lorem ipsum dolor sit amet",
@@ -33,7 +33,7 @@ const ControlledQuiz = () => {
 		},
 	]);
 
-	return <Quiz questions={questions} />;
+	return <Quiz questions={questions} disabled={disabled} required={required} />;
 };
 
 describe("<Quiz />", () => {
@@ -66,7 +66,7 @@ describe("<Quiz />", () => {
 		).toBeInTheDocument();
 	});
 
-	it("should reflect the selected options correctly", async () => {
+	it("should reflect the selected answers correctly", async () => {
 		render(<ControlledQuiz />);
 
 		const question1 = screen.getByRole("radiogroup", {
@@ -91,5 +91,25 @@ describe("<Quiz />", () => {
 
 		expect(question1Option).toBeChecked();
 		expect(question2Option).toBeChecked();
+	});
+
+	it("should mark all questions as disabled if `disabled` is `true`", () => {
+		render(<ControlledQuiz disabled />);
+
+		const answers = screen.getAllByRole("radio");
+
+		answers.forEach((answer) => {
+			expect(answer).toHaveAttribute("aria-disabled", "true");
+		});
+	});
+
+	it("should mark all questions as required if `required` is `true`", () => {
+		render(<ControlledQuiz required />);
+
+		const questions = screen.getAllByRole("radiogroup");
+
+		questions.forEach((question) => {
+			expect(question).toBeRequired();
+		});
 	});
 });

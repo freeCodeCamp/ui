@@ -6,9 +6,10 @@ import { type Question } from "./types";
 export interface QuizProps {
 	questions: Question[];
 	disabled?: boolean;
+	required?: boolean;
 }
 
-export const Quiz = ({ questions, disabled }: QuizProps) => {
+export const Quiz = ({ questions, disabled, required }: QuizProps) => {
 	return (
 		<ul className="flex flex-col gap-y-[24px]">
 			{questions.map((question, index) => (
@@ -17,6 +18,7 @@ export const Quiz = ({ questions, disabled }: QuizProps) => {
 						{...question}
 						position={index + 1}
 						disabled={disabled}
+						required={required}
 					/>
 				</li>
 			))}
