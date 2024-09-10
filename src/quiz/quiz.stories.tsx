@@ -1,7 +1,9 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Quiz, type QuizProps } from "./quiz";
+
+import { Quiz } from "./quiz";
 import { useQuiz } from "./use-quiz";
+import { type Question } from "./types";
 
 const story = {
 	title: "Components/Quiz",
@@ -10,48 +12,80 @@ const story = {
 
 type Story = StoryObj<typeof Quiz>;
 
-const QuizDefault = ({ questions }: QuizProps) => {
-	const updatedQuestions = useQuiz(questions);
+const QuizDefault = () => {
+	const initialQuestions: Question[] = [
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+		{
+			question: "Consectetur adipiscing elit",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+		{
+			question: "Fugit itaque delectus voluptatem alias aliquid",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+		},
+	];
 
-	return <Quiz questions={updatedQuestions} />;
+	const questions = useQuiz(initialQuestions);
+
+	return <Quiz questions={questions} />;
 };
 
-const QuizWithValidation = ({ questions }: QuizProps) => {
-	const updatedQuestions = useQuiz(questions);
+const QuizWithValidation = () => {
+	const initialQuestions: Question[] = [
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			selectedAnswer: 1,
+			validation: { state: "incorrect", message: "Incorrect." },
+		},
+		{
+			question: "Consectetur adipiscing elit",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			selectedAnswer: 1,
+			validation: { state: "correct", message: "Correct." },
+		},
+		{
+			question: "Fugit itaque delectus voluptatem alias aliquid",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			selectedAnswer: 1,
+			validation: { state: "incorrect", message: "Incorrect." },
+		},
+	];
+	const questions = useQuiz(initialQuestions);
 
-	return <Quiz questions={updatedQuestions} disabled />;
+	return <Quiz questions={questions} disabled />;
 };
 
 export const Default: Story = {
 	render: QuizDefault,
-	args: {
-		questions: [
-			{
-				question: "Lorem ipsum dolor sit amet",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-			},
-			{
-				question: "Consectetur adipiscing elit",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-			},
-			{
-				question: "Fugit itaque delectus voluptatem alias aliquid",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-			},
-		],
-	},
+	args: {},
 	parameters: {
 		docs: {
 			source: {
@@ -86,9 +120,9 @@ const questions = [
 ];
 
 const App = () => {
-  const { values, handleChange } = useQuiz();
+  const questions = useQuiz(initialQuestions);
 
-  return <Quiz questions={questions} values={values} onChange={handleChange} />;
+  return <Quiz questions={questions} />;
 };`,
 			},
 		},
@@ -97,38 +131,7 @@ const App = () => {
 
 export const WithValidation: Story = {
 	render: QuizWithValidation,
-	args: {
-		questions: [
-			{
-				question: "Lorem ipsum dolor sit amet",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-				validation: { state: "incorrect", message: "Incorrect." },
-			},
-			{
-				question: "Consectetur adipiscing elit",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-				validation: { state: "correct", message: "Correct." },
-			},
-			{
-				question: "Fugit itaque delectus voluptatem alias aliquid",
-				answers: [
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				],
-				validation: { state: "incorrect", message: "Incorrect." },
-			},
-		],
-		disabled: true,
-	},
+	args: {},
 	parameters: {
 		docs: {
 			source: {
@@ -143,6 +146,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+		selectedAnswer: 1,
     validation: { state: "incorrect", message: "Incorrect." },
   },
   {
@@ -152,6 +156,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+		selectedAnswer: 1,
     validation: { state: "correct", message: "Correct." },
   },
   {
@@ -161,20 +166,15 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+		selectedAnswer: 1,
     validation: { state: "incorrect", message: "Incorrect." },
   },
 ];
 
 const App = () => {
-  const initialValues = {
-    "Lorem ipsum dolor sit amet": 1,
-    "Consectetur adipiscing elit": 2,
-    "Fugit itaque delectus voluptatem alias aliquid": 3
-  };
+  const questions = useQuiz(initialQuestions);
 
-  const { values, handleChange } = useQuiz(initialValues);
-
-  return <Quiz questions={questions} values={values} onChange={handleChange} disabled />;
+  return <Quiz questions={questions} disabled />;
 };`,
 			},
 		},

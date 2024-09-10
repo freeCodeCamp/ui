@@ -3,7 +3,7 @@ export interface QuizQuestionAnswer {
 	value: number;
 }
 
-interface QuizQuestionValidation {
+export interface QuizQuestionValidation {
 	state: "correct" | "incorrect";
 	message: string;
 }

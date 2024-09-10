@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { type Question } from "./types";
 
-export const useQuiz = (rawQuestions: Question[]) => {
+export const useQuiz = (initialQuestions: Question[]) => {
 	const [quizAnswers, setQuizAnswers] = useState<(number | undefined)[]>(
-		new Array(rawQuestions.length).fill(undefined),
+		initialQuestions.map((question) => question.selectedAnswer),
 	);
 
-	const questions: Question[] = rawQuestions.map((question, index) => ({
+	const questions = initialQuestions.map((question, index) => ({
 		...question,
 		onChange: (selectedAnswer: number) => {
 			setQuizAnswers((prevAnswers) =>
