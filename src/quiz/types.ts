@@ -1,6 +1,6 @@
-import {
+import type {
 	QuizQuestionAnswer,
-	type QuizQuestionValidation,
+	QuizQuestionValidation,
 } from "../quiz-question";
 
 // This interface is a subset of QuizQuestionProps.
