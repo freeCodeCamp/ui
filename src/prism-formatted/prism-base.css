@@ -1,0 +1,26 @@
+/** 
+  * This file houses styles that are shared between Prism themes.
+	* Rules that are specific to a theme should be kept in the corresponding file (prism-light.css or prism-dark.css).
+  */
+
+pre[class*="language-"] {
+	padding: 1em;
+	margin: 0.5em 0;
+	overflow: auto;
+}
+
+[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+/* remove horizontal scrollbars for text-only code */
+code[class="language-markup"] {
+	white-space: normal;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+	text-shadow: none !important; /* Override prism's text-shadow style */
+}
