@@ -29,7 +29,7 @@
 		@apply bg-background-tertiary text-foreground-tertiary;
 	}
 	:not(pre) > code {
-		@apply border-1 border-gray-450;
+		@apply border-1 border-gray-450 px-[4px] py-[1px];
 	}
 
 	h1,
@@ -40,13 +40,14 @@
 	h6,
 	p {
 		margin-bottom: 12.5px;
+		color: var(--foreground-primary);
 	}
 
 	/* Override the Tailwind's placeholder text color. */
 	/* https://github.com/tailwindlabs/tailwindcss/blob/3.4/src/css/preflight.css#L335 */
 	input::placeholder,
 	textarea::placeholder {
-		@apply text-foreground-quaternary opacity-70;
+		@apply text-foreground-quaternary opacity-80;
 	}
 }
 

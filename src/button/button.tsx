@@ -179,6 +179,7 @@ export const HeadlessButton = React.forwardRef<
 					href={href}
 					download={download}
 					target={target}
+					rel={target === "_blank" ? "noopener noreferrer" : ""}
 					ref={ref as React.Ref<HTMLAnchorElement>}
 					onClick={onClick}
 					{...rest}

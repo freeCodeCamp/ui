@@ -18,7 +18,7 @@ export const parameters = {
 			},
 			{
 				name: "dark-palette",
-				value: "#0a0a23",
+				value: "#1b1b32",
 			},
 		],
 	},
