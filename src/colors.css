@@ -28,6 +28,12 @@
 	--blue70: #31708f;
 	--blue90: #002ead;
 
+	/* These are blue30 and blue90 with an alpha value.
+		 The colors are in RGBA format instead of #RRGGBBAA
+		 in order to be compatible with older browsers. */
+	--blue30-translucent: rgba(153, 201, 255, 0.3);
+	--blue90-translucent: rgba(0, 46, 173, 0.3);
+
 	--green05: #dff0d8;
 	--green10: #d6e9c6;
 	--green40: #acd157;
@@ -104,6 +110,7 @@
 	--background-quaternary: var(--gray15);
 	--background-danger: var(--red90);
 	--background-info: var(--blue90);
+	--background-selection: var(--blue90-translucent);
 
 	--focus-outline-color: var(--blue50);
 }
@@ -123,6 +130,7 @@
 	--background-quaternary: var(--gray75);
 	--background-danger: var(--red15);
 	--background-info: var(--blue30);
+	--background-selection: var(--blue30-translucent);
 
 	--focus-outline-color: var(--blue50);
 }

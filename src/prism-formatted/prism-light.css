@@ -1,0 +1,78 @@
+@import "../colors.css";
+
+.light-palette pre[class*="language-"]::selection,
+.light-palette pre[class*="language-"] ::selection,
+.light-palette code[class*="language-"]::selection,
+.light-palette code[class*="language-"] ::selection {
+	background: var(--background-selection);
+}
+
+/* a11y color adjustments */
+.light-palette .token.comment,
+.light-palette .token.prolog,
+.light-palette .token.doctype,
+.light-palette .token.cdata {
+	color: #62707f;
+}
+
+.light-palette .token.punctuation {
+	color: #38425c;
+}
+
+.light-palette .token.property,
+.light-palette .token.tag,
+.light-palette .token.constant,
+.light-palette .token.symbol,
+.light-palette .token.deleted {
+	color: #e00000;
+}
+
+.light-palette .token.number {
+	color: #9932cc;
+}
+
+.light-palette .token.boolean {
+	color: #1f3a93;
+}
+
+.light-palette .token.selector,
+.light-palette .token.attr-name,
+.light-palette .token.string,
+.light-palette .token.char,
+.light-palette .token.builtin,
+.light-palette .token.inserted {
+	color: #008040;
+}
+
+.light-palette code .token.operator {
+	background: none;
+}
+
+.light-palette .token.operator,
+.light-palette .token.entity,
+.light-palette .token.url,
+.light-palette .language-css .token.string,
+.light-palette .style .token.string {
+	color: #38425c;
+}
+
+.light-palette .token.atrule,
+.light-palette .token.attr-value,
+.light-palette .token.keyword {
+	color: #2574a9;
+}
+
+.light-palette .token.function,
+.light-palette .token.class-name {
+	color: #992900;
+}
+
+.light-palette .token.regex,
+.light-palette .token.important,
+.light-palette .token.variable {
+	color: #856514;
+}
+
+.light-palette .line-numbers-rows > span::before {
+	color: #62707f;
+}

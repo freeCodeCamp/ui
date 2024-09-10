@@ -11,5 +11,29 @@ module.exports = {
 			},
 		],
 	],
-	plugins: [["transform-react-remove-prop-types", { removeImport: true }]],
+	plugins: [
+		["transform-react-remove-prop-types", { removeImport: true }],
+		[
+			"prismjs",
+			{
+				languages: [
+					"clike",
+					"css",
+					"html",
+					"javascript",
+					"markup",
+					"mathml",
+					"pug",
+					"python",
+					"sql",
+					"svg",
+					"typescript",
+					"xml",
+				],
+				theme: "default",
+				css: true,
+				plugins: ["line-numbers"],
+			},
+		],
+	],
 };
