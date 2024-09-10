@@ -107,10 +107,7 @@ describe("<QuizQuestion />", () => {
 		await userEvent.click(screen.getByRole("radio", { name: "Option 2" }));
 
 		expect(onChange).toHaveBeenCalledTimes(1);
-		expect(onChange).toHaveBeenCalledWith({
-			questionId: "Lorem ipsum",
-			selectedOption: 2,
-		});
+		expect(onChange).toHaveBeenCalledWith(2);
 	});
 
 	it("should render the correct state properly", () => {
