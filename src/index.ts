@@ -14,7 +14,12 @@ export { Image } from "./image";
 export { MenuItem } from "./drop-down/menu-item";
 export { Modal, type ModalProps, type HeaderProps } from "./modal";
 export { Panel } from "./panel";
+export { PrismFormatted } from "./prism-formatted";
 export { Row } from "./row";
 export { Spacer } from "./spacer";
 export { Table } from "./table";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
+export { Quiz, useQuiz } from "./quiz";
+export { QuizQuestion } from "./quiz-question";
+
+export { getThemingClass } from "./utils";

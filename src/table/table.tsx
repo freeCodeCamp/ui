@@ -7,7 +7,7 @@ const defaultClassNames = [
 	"w-full",
 	"max-w-full",
 	"border-collapse",
-	"text-left",
+	"text-start",
 	"text-foreground-tertiary",
 	"[&_th]:font-normal",
 ];

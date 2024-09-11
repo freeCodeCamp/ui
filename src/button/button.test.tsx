@@ -105,6 +105,24 @@ describe("<Button />", () => {
 		expect(button).not.toBeInTheDocument();
 	});
 
+	it("should set the `rel` attribute to `noopener noreferrer` if `target` is `_blank`", () => {
+		render(
+			<Button href="https://www.freecodecamp.org" target="_blank">
+				freeCodeCamp
+			</Button>,
+		);
+
+		const link = screen.getByRole("link", { name: /freeCodeCamp/i });
+		expect(link).toHaveAttribute("rel", "noopener noreferrer");
+	});
+
+	it("should not set the `rel` attribute if `target` is not `_blank`", () => {
+		render(<Button href="https://www.freecodecamp.org">freeCodeCamp</Button>);
+
+		const link = screen.getByRole("link", { name: /freeCodeCamp/i });
+		expect(link).toHaveAttribute("rel", "");
+	});
+
 	it("should render a button element if the `href` and `disabled` props are both defined", () => {
 		render(
 			<Button href="https://www.freecodecamp.org" disabled>
