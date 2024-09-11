@@ -20,3 +20,5 @@ export { Modal, type ModalProps, type HeaderProps } from "./modal";
 export { getThemingClass } from "./utils";
 export { Spacer } from "./spacer";
 export { PrismFormatted } from "./prism-formatted";
+export { QuizQuestion } from "./quiz-question";
+export { Quiz, useQuiz } from "./quiz";
