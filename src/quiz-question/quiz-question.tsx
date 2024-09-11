@@ -1,21 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import {
+import type {
 	QuizQuestionValidation,
-	type QuizQuestionAnswer,
-	type QuizQuestionProps,
+	QuizQuestionAnswer,
+	QuizQuestionProps,
 } from "./types";
-
 import { Answer } from "./answer";
 
 const QuestionText = ({
 	question,
 	position,
 }: {
-	question: string;
+	question: ReactNode;
 	position?: number;
 }) => {
 	if (position == null) {

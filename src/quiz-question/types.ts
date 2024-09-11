@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface QuizQuestionAnswer {
 	label: string;
 	value: number;
@@ -12,7 +14,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Question text
 	 */
-	question: string;
+	question: ReactNode;
 
 	/**
 	 * Answer options

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+
+import { PrismFormatted } from "../prism-formatted";
+
 import { QuizQuestion } from "./quiz-question";
 import { type QuizQuestionProps } from "./types";
 
@@ -61,6 +64,64 @@ export const Default: Story = {
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
+export const WithCodeInQuestionText: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: (
+			<PrismFormatted
+				text={`<p>Given the following code:</p>
+<pre><code class="language-python">temp = "5 degrees"
+cel = 0
+fahr = float(temp)
+cel = (fahr - 32.0) * 5.0 / 9.0
+print(cel)
+</code></pre>
+<p>Which line/lines should be surrounded by <code>try</code> block?</p>`}
+				getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+			/>
+		),
+		answers: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question={
+        <PrismFormatted
+          text={\`<p>Given the following code:</p>
+<pre><code class="language-python">temp = "5 degrees"
+cel = 0
+fahr = float(temp)
+cel = (fahr - 32.0) * 5.0 / 9.0
+print(cel)
+</code></pre>
+<p>Which line/lines should be surrounded by <code>try</code> block?</p>\`}
+          getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+      />}
+      answers={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+      validation={{ state: "incorrect", message: "Incorrect." }}
     />
   );
 }`,
