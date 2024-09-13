@@ -14,9 +14,9 @@ const variantClasses = {
 };
 
 /**
- * `Alert` is used to display a short, important message that does not interrupt the user's workflow.
- *
+ * `Alert` is used to communicate high-priority or time-sensitive information.
  * `Alert` is not dismissable.
+ * Use `Callout` instead of `Alert` if you want to communicate information specific to a page.
  */
 export const Alert = ({
 	children,
