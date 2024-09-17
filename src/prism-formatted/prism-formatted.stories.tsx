@@ -1,3 +1,4 @@
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { PrismFormatted } from "./prism-formatted";
@@ -63,6 +64,52 @@ export const WithLineNumbers: Story = {
 	</code></pre>
 	<p>Which line/lines should be surrounded by <code>try</code> block?</p>"
 />`,
+			},
+		},
+	},
+};
+
+export const WithLongLineOfCode: Story = {
+	args: {
+		text: `<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>`,
+		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<PrismFormatted
+  getCodeBlockAriaLabel={codeName => \`\${codeName} code example\`}
+  text={\`<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>\`}
+/>`,
+			},
+		},
+	},
+};
+
+export const InsideDisclosureElement: Story = {
+	decorators: [
+		(Story) => (
+			<details>
+				<summary>Example code</summary>
+				<Story />
+			</details>
+		),
+	],
+	args: {
+		text: `<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code when it's rendered inside a disclosure element. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>`,
+		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<details>
+  <summary>Example code</summary>
+
+  <PrismFormatted
+    getCodeBlockAriaLabel={codeName => \`\${codeName} code example\`}
+    text={\`<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code when it's rendered inside a disclosure element. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>\`}
+	/>
+</details>`,
 			},
 		},
 	},
