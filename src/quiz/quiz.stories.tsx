@@ -47,8 +47,10 @@ const QuizDefault = () => {
 
 	const { questions } = useQuiz({
 		initialQuestions,
-		correctMessage: "Correct",
-		incorrectMessage: "Incorrect",
+		validationMessages: {
+			correct: "Correct",
+			incorrect: "Incorrect",
+		},
 	});
 
 	return <Quiz questions={questions} />;
@@ -63,7 +65,6 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
 			correctAnswer: 1,
 		},
 		{
@@ -73,7 +74,6 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
 			correctAnswer: 2,
 		},
 		{
@@ -83,15 +83,16 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
 			correctAnswer: 3,
 		},
 	];
 
 	const { questions, validateAnswers } = useQuiz({
 		initialQuestions,
-		correctMessage: "Correct",
-		incorrectMessage: "Incorrect",
+		validationMessages: {
+			correct: "Correct",
+			incorrect: "Incorrect",
+		},
 	});
 	const [disabled, setDisabled] = useState(false);
 
