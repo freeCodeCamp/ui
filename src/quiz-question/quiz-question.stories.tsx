@@ -72,7 +72,7 @@ export const Default: Story = {
 	},
 };
 
-export const WithCodeInQuestionText: Story = {
+export const WithCodeInQuestionAndAnswerText: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: (
@@ -89,7 +89,17 @@ print(cel)
 			/>
 		),
 		answers: [
-			{ label: "Option 1", value: 1 },
+			{
+				label: (
+					<PrismFormatted
+						text={`<pre><code class="language-html"><p>Option 1</p>
+<p>Lorem ipsum</p>
+</code></pre>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 1,
+			},
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
@@ -115,7 +125,17 @@ print(cel)
           getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
       />}
       answers={[
-        { label: "Option 1", value: 1 },
+        { 
+          label: (
+            <PrismFormatted
+              text={\`<pre><code class="language-html"><p>Option 1</p>
+<p>Lorem ipsum</p>
+</code></pre>\`}
+              getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+	          />
+          ), 
+          value: 1,
+        },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface QuizQuestionAnswer {
-	label: string;
+	label: ReactNode;
 	value: number;
 }
 
