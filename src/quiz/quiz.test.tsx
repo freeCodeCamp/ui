@@ -6,32 +6,41 @@ import { Quiz, QuizProps } from "./quiz";
 import { useQuiz } from "./use-quiz";
 
 const ControlledQuiz = ({ disabled, required }: Partial<QuizProps>) => {
-	const questions = useQuiz([
-		{
-			question: "Lorem ipsum dolor sit amet",
-			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
-			],
+	const { questions } = useQuiz({
+		initialQuestions: [
+			{
+				question: "Lorem ipsum dolor sit amet",
+				answers: [
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				],
+				correctAnswer: 1,
+			},
+			{
+				question: "Consectetur adipiscing elit",
+				answers: [
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				],
+				correctAnswer: 2,
+			},
+			{
+				question: "Fugit itaque delectus voluptatem alias aliquid",
+				answers: [
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				],
+				correctAnswer: 3,
+			},
+		],
+		validationMessages: {
+			correct: "Correct",
+			incorrect: "Incorrect",
 		},
-		{
-			question: "Consectetur adipiscing elit",
-			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
-			],
-		},
-		{
-			question: "Fugit itaque delectus voluptatem alias aliquid",
-			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
-			],
-		},
-	]);
+	});
 
 	return <Quiz questions={questions} disabled={disabled} required={required} />;
 };
