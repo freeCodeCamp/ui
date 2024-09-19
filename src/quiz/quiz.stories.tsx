@@ -87,7 +87,7 @@ const QuizWithValidation = () => {
 		},
 	];
 
-	const { questions, validateAnswers } = useQuiz({
+	const { questions, validateAnswers, correctAnswerCount } = useQuiz({
 		initialQuestions,
 		validationMessages: {
 			correct: "Correct",
@@ -103,6 +103,7 @@ const QuizWithValidation = () => {
 
 	return (
 		<div>
+			{correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
@@ -222,6 +223,7 @@ const App = () => {
 
   return (
     <div>
+      {correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
       <Quiz questions={questions} disabled={disabled} />
       <Spacer size="m" />
       <Button onClick={handleSubmit}>Submit</Button>

@@ -8,7 +8,7 @@ const validationMessages = {
 };
 
 describe("useQuiz", () => {
-	it("should return the questions data correctly", () => {
+	it("should return the data correctly", () => {
 		const { result } = renderHook(() =>
 			useQuiz({
 				initialQuestions: [
@@ -176,5 +176,6 @@ describe("useQuiz", () => {
 
 		expect(result.current.questions[0].validation?.message).toBe("Correct");
 		expect(result.current.questions[1].validation?.message).toBe("Incorrect");
+		expect(result.current.correctAnswerCount).toBe(1);
 	});
 });

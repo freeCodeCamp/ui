@@ -15,6 +15,7 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 		initialQuestions.map((question) => question.selectedAnswer),
 	);
 	const [questions, setQuestions] = useState<Question[]>([]);
+	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
 	// Initialize the `questions` state and make it synchronized with `quizAnswers`.
 	// The synchronization is needed in order to reflect the correct `selectedAnswer`.
@@ -23,7 +24,6 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 			(question, index) => ({
 				...question,
 				onChange: (selectedAnswer: number) => {
-					console.log("🚀 ~ useEffect ~ selectedAnswer:", selectedAnswer);
 					setQuizAnswers((prevAnswers) =>
 						prevAnswers.map((prevAnswer, prevIndex) =>
 							prevIndex === index ? selectedAnswer : prevAnswer,
@@ -44,6 +44,8 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 		setQuestions((prevQuestions) =>
 			prevQuestions.map((prevQuestion) => {
 				if (prevQuestion.selectedAnswer === prevQuestion.correctAnswer) {
+					setCorrectAnswerCount((count) => count + 1);
+
 					return {
 						...prevQuestion,
 						validation: {
@@ -64,5 +66,5 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 		);
 	};
 
-	return { questions, validateAnswers };
+	return { questions, validateAnswers, correctAnswerCount };
 };
