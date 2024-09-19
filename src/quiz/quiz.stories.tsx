@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Quiz } from "./quiz";
 import { useQuiz } from "./use-quiz";
 import { type Question } from "./types";
+import { Button } from "../button";
+import { Spacer } from "../spacer";
 
 const story = {
 	title: "Components/Quiz",
@@ -21,6 +23,7 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 1,
 		},
 		{
 			question: "Consectetur adipiscing elit",
@@ -29,6 +32,7 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 2,
 		},
 		{
 			question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -37,10 +41,15 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 3,
 		},
 	];
 
-	const questions = useQuiz(initialQuestions);
+	const { questions } = useQuiz({
+		initialQuestions,
+		correctMessage: "Correct",
+		incorrectMessage: "Incorrect",
+	});
 
 	return <Quiz questions={questions} />;
 };
@@ -55,7 +64,7 @@ const QuizWithValidation = () => {
 				{ label: "Option 3", value: 3 },
 			],
 			selectedAnswer: 1,
-			validation: { state: "incorrect", message: "Incorrect." },
+			correctAnswer: 1,
 		},
 		{
 			question: "Consectetur adipiscing elit",
@@ -65,7 +74,7 @@ const QuizWithValidation = () => {
 				{ label: "Option 3", value: 3 },
 			],
 			selectedAnswer: 1,
-			validation: { state: "correct", message: "Correct." },
+			correctAnswer: 2,
 		},
 		{
 			question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -75,12 +84,29 @@ const QuizWithValidation = () => {
 				{ label: "Option 3", value: 3 },
 			],
 			selectedAnswer: 1,
-			validation: { state: "incorrect", message: "Incorrect." },
+			correctAnswer: 3,
 		},
 	];
-	const questions = useQuiz(initialQuestions);
 
-	return <Quiz questions={questions} disabled />;
+	const { questions, validateAnswers } = useQuiz({
+		initialQuestions,
+		correctMessage: "Correct",
+		incorrectMessage: "Incorrect",
+	});
+	const [disabled, setDisabled] = useState(false);
+
+	const handleSubmit = () => {
+		validateAnswers();
+		setDisabled(true);
+	};
+
+	return (
+		<div>
+			<Quiz questions={questions} disabled={disabled} />
+			<Spacer size="m" />
+			<Button onClick={handleSubmit}>Submit</Button>
+		</div>
+	);
 };
 
 export const Default: Story = {

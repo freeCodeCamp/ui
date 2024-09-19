@@ -20,6 +20,11 @@ export interface Question {
 	answers: QuizQuestionAnswer[];
 
 	/**
+	 * Value of the correct answer
+	 */
+	correctAnswer: QuizQuestionAnswer["value"];
+
+	/**
 	 * Change event handler, called when an answer is selected
 	 */
 	onChange?: (selectedOption: number) => void;
