@@ -1,6 +1,7 @@
 import type {
 	QuizQuestionAnswer,
 	QuizQuestionValidation,
+	QuizQuestionProps,
 } from "../quiz-question";
 
 // This interface is a subset of QuizQuestionProps.
@@ -10,9 +11,10 @@ import type {
 // without being overriden by the `disabled` prop of the individual question.
 export interface Question {
 	/**
-	 * Question text
+	 * Question text, can be plain text or contain code.
+	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
 	 */
-	question: string;
+	question: QuizQuestionProps["question"];
 
 	/**
 	 * Answer options

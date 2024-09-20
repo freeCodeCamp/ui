@@ -22,8 +22,10 @@ const QuestionText = ({
 	}
 
 	return (
-		<span className="text-foreground-primary">
-			{`${position}. ${question}`}
+		<span className="text-foreground-primary flex">
+			<span>{position}.</span>
+			&nbsp;
+			{question}
 		</span>
 	);
 };

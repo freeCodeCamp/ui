@@ -12,7 +12,8 @@ export interface QuizQuestionValidation {
 
 export interface QuizQuestionProps {
 	/**
-	 * Question text
+	 * Question text, can be plain text or contain code.
+	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
 	 */
 	question: ReactNode;
 
