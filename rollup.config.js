@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
+import bundleSize from "rollup-plugin-bundle-size";
 
 import { peerDependencies } from "./package.json";
 
@@ -37,6 +38,7 @@ const config = {
 		babel({ babelHelpers: "bundled" }),
 		commonjs(),
 		production && terser(),
+		bundleSize(),
 	],
 };
 
