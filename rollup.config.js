@@ -5,6 +5,8 @@ import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
 
+import { peerDependencies } from "./package.json";
+
 const production = process.env.NODE_ENV !== "development";
 
 const config = {
@@ -21,6 +23,7 @@ const config = {
 			sourcemap: true,
 		},
 	],
+	external: Object.keys(peerDependencies),
 	plugins: [
 		postcss(),
 		resolve(),
@@ -35,7 +38,6 @@ const config = {
 		commonjs(),
 		production && terser(),
 	],
-	external: ["react"],
 };
 
 export default config;
