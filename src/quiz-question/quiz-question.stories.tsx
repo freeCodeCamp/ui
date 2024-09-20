@@ -15,7 +15,7 @@ type Story = StoryObj<typeof QuizQuestion>;
 
 type QuizQuestionCompProps = Pick<
 	QuizQuestionProps,
-	"question" | "answers" | "disabled" | "validation"
+	"question" | "answers" | "disabled" | "validation" | "position"
 >;
 
 const QuizQuestionComp = ({
@@ -23,6 +23,7 @@ const QuizQuestionComp = ({
 	answers,
 	disabled,
 	validation,
+	position,
 }: QuizQuestionCompProps) => {
 	const [answer, setAnswer] = useState<QuizQuestionProps["selectedAnswer"]>();
 
@@ -34,6 +35,7 @@ const QuizQuestionComp = ({
 			validation={validation}
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
+			position={position}
 		/>
 	);
 };
@@ -250,6 +252,66 @@ export const Incorrect: Story = {
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
       validation={{ state: "incorrect", message: "Incorrect." }}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
+export const WithPosistion: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: (
+			<PrismFormatted
+				text={`<p>Given the following code:</p>
+<pre><code class="language-python">temp = "5 degrees"
+cel = 0
+fahr = float(temp)
+cel = (fahr - 32.0) * 5.0 / 9.0
+print(cel)
+</code></pre>
+<p>Which line/lines should be surrounded by <code>try</code> block?</p>`}
+				getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+			/>
+		),
+		answers: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		position: 1,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question={
+        <PrismFormatted
+          text={\`<p>Given the following code:</p>
+<pre><code class="language-python">temp = "5 degrees"
+cel = 0
+fahr = float(temp)
+cel = (fahr - 32.0) * 5.0 / 9.0
+print(cel)
+</code></pre>
+<p>Which line/lines should be surrounded by <code>try</code> block?</p>\`}
+          getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+       />
+      }
+      answers={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+      position={1}
     />
   );
 }`,
