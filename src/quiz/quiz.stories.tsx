@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Quiz } from "./quiz";
 import { useQuiz } from "./use-quiz";
 import { type Question } from "./types";
+import { Button } from "../button";
+import { Spacer } from "../spacer";
 
 const story = {
 	title: "Components/Quiz",
@@ -21,6 +23,7 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 1,
 		},
 		{
 			question: "Consectetur adipiscing elit",
@@ -29,6 +32,7 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 2,
 		},
 		{
 			question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -37,10 +41,17 @@ const QuizDefault = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
+			correctAnswer: 3,
 		},
 	];
 
-	const questions = useQuiz(initialQuestions);
+	const { questions } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct",
+			incorrect: "Incorrect",
+		},
+	});
 
 	return <Quiz questions={questions} />;
 };
@@ -54,8 +65,7 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
-			validation: { state: "incorrect", message: "Incorrect." },
+			correctAnswer: 1,
 		},
 		{
 			question: "Consectetur adipiscing elit",
@@ -64,8 +74,7 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
-			validation: { state: "correct", message: "Correct." },
+			correctAnswer: 2,
 		},
 		{
 			question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -74,13 +83,32 @@ const QuizWithValidation = () => {
 				{ label: "Option 2", value: 2 },
 				{ label: "Option 3", value: 3 },
 			],
-			selectedAnswer: 1,
-			validation: { state: "incorrect", message: "Incorrect." },
+			correctAnswer: 3,
 		},
 	];
-	const questions = useQuiz(initialQuestions);
 
-	return <Quiz questions={questions} disabled />;
+	const { questions, validateAnswers, correctAnswerCount } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct",
+			incorrect: "Incorrect",
+		},
+	});
+	const [disabled, setDisabled] = useState(false);
+
+	const handleSubmit = () => {
+		validateAnswers();
+		setDisabled(true);
+	};
+
+	return (
+		<div>
+			{correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			<Quiz questions={questions} disabled={disabled} />
+			<Spacer size="m" />
+			<Button onClick={handleSubmit}>Submit</Button>
+		</div>
+	);
 };
 
 export const Default: Story = {
@@ -92,7 +120,7 @@ export const Default: Story = {
 				code: `
 import { Quiz, useQuiz } from '@freecodecamp/ui';
 
-const questions = [
+const initialQuestions = [
   {
     question: "Lorem ipsum dolor sit amet",
     answers: [
@@ -100,6 +128,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+    correctAnswer: 1,
   },
   {
     question: "Consectetur adipiscing elit",
@@ -108,6 +137,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+    correctAnswer: 2,
   },
   {
     question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -116,11 +146,18 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
+    correctAnswer: 3,
   },
 ];
 
 const App = () => {
-  const questions = useQuiz(initialQuestions);
+  const { questions } = useQuiz({
+    initialQuestions,
+    validationMessages: {
+      correct: "Correct",
+      incorrect: "Incorrect",
+	  },
+	});
 
   return <Quiz questions={questions} />;
 };`,
@@ -136,9 +173,9 @@ export const WithValidation: Story = {
 		docs: {
 			source: {
 				code: `
-import { Quiz, useQuiz } from '@freecodecamp/ui';
+import { Quiz, useQuiz, Button, Spacer } from '@freecodecamp/ui';
 
-const questions = [
+const initialQuestions = [
   {
     question: "Lorem ipsum dolor sit amet",
     answers: [
@@ -146,8 +183,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
-		selectedAnswer: 1,
-    validation: { state: "incorrect", message: "Incorrect." },
+    correctAnswer: 1,
   },
   {
     question: "Consectetur adipiscing elit",
@@ -156,8 +192,7 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
-		selectedAnswer: 1,
-    validation: { state: "correct", message: "Correct." },
+    correctAnswer: 2,
   },
   {
     question: "Fugit itaque delectus voluptatem alias aliquid",
@@ -166,15 +201,34 @@ const questions = [
       { label: "Option 2", value: 2 },
       { label: "Option 3", value: 3 },
     ],
-		selectedAnswer: 1,
-    validation: { state: "incorrect", message: "Incorrect." },
+    correctAnswer: 3,
   },
 ];
 
 const App = () => {
-  const questions = useQuiz(initialQuestions);
+  const { questions, validateAnswers } = useQuiz({
+	  initialQuestions,
+    validationMessages: {
+      correct: "Correct",
+      incorrect: "Incorrect",
+	  },
+	});
 
-  return <Quiz questions={questions} disabled />;
+  const [disabled, setDisabled] = useState(false);
+
+  const handleSubmit = () => {
+    validateAnswers();
+    setDisabled(true);
+  };
+
+  return (
+    <div>
+      {correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+      <Quiz questions={questions} disabled={disabled} />
+      <Spacer size="m" />
+      <Button onClick={handleSubmit}>Submit</Button>
+    </div>
+  );
 };`,
 			},
 		},
