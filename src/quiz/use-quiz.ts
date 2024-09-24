@@ -41,29 +41,27 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 	}, [quizAnswers]);
 
 	const validateAnswers = () => {
-		setQuestions((prevQuestions) =>
-			prevQuestions.map((prevQuestion) => {
-				if (prevQuestion.selectedAnswer === prevQuestion.correctAnswer) {
-					setCorrectAnswerCount((count) => count + 1);
+		setQuestions((prevQuestion) => {
+			const updatedQuestions: Question[] = prevQuestion.map((question) => {
+				const validation: Question["validation"] =
+					question.selectedAnswer === question.correctAnswer
+						? {
+								state: "correct",
+								message: validationMessages.correct,
+							}
+						: {
+								state: "incorrect",
+								message: validationMessages.incorrect,
+							};
+				return { ...question, validation };
+			});
 
-					return {
-						...prevQuestion,
-						validation: {
-							state: "correct",
-							message: validationMessages.correct,
-						},
-					};
-				}
-
-				return {
-					...prevQuestion,
-					validation: {
-						state: "incorrect",
-						message: validationMessages.incorrect,
-					},
-				};
-			}),
-		);
+			const correctCount = updatedQuestions.filter(
+				({ validation }) => validation?.state === "correct",
+			).length;
+			setCorrectAnswerCount(correctCount);
+			return updatedQuestions;
+		});
 	};
 
 	return { questions, validateAnswers, correctAnswerCount };
