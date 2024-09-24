@@ -43,11 +43,60 @@ const QuizQuestionComp = ({
 export const Default: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
 		answers: [
 			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{
+				label:
+					"Tempora sed magnam consequatur dolor alias placeat aspernatur. Odio et non repudiandae debitis fugit. Quia ut tempore eaque et nisi qui aspernatur. Molestiae sed id accusantium. Temporibus in magni ut. Est aut distinctio molestiae sed. Dicta consequatur impedit totam totam incidunt dolor possimus. Aut totam officia iure consequatur ea.",
+				value: 2,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={`<pre><code class="language-html"><p>Molestiae sed id accusantium.</p>
+<p>Lorem ipsum.</p></code></pre>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 3,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={`<p>Molestiae sed id accusantium <code>html</code> in magni ut.</p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 4,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={`<p><code>possimus</code></p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 5,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={`<p><code>&#x3C;span>placeat aspernatur&#x3C;/span></code></p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 6,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={`<p><code>Dicta consequatur impedit totam totam incidunt dolor possimus. Aut totam officia iure consequatur ea. Dolores est aut aliquid beatae vel. Quo assumenda aut corporis sed magni dolorem pariatur qui</code></p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				value: 7,
+			},
 		],
 	},
 	parameters: {
@@ -59,11 +108,59 @@ export const Default: Story = {
   return (
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      answers={[
-        { label: "Option 1", value: 1 },
-        { label: "Option 2", value: 2 },
-        { label: "Option 3", value: 3 }
-      ]}
+      answers: [
+			{ label: "Option 1", value: 1 },
+			{
+				label:
+					"Tempora sed magnam consequatur dolor alias placeat aspernatur. Odio et non repudiandae debitis fugit. Quia ut tempore eaque et nisi qui aspernatur. Molestiae sed id accusantium. Temporibus in magni ut. Est aut distinctio molestiae sed. Dicta consequatur impedit totam totam incidunt dolor possimus. Aut totam officia iure consequatur ea.",
+				value: 2,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={\`<pre><code class="language-html"><p>Molestiae sed id accusantium.</p>
+<p>Lorem ipsum.</p></code></pre>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+				value: 3,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={\`<p>Molestiae sed id accusantium <code>html</code> in magni ut.</p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+				value: 4,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={\`<p><code>possimus</code></p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+				value: 5,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={\`<p><code>&#x3C;span>placeat aspernatur&#x3C;/span></code></p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+				value: 6,
+			},
+			{
+				label: (
+					<PrismFormatted
+						text={\`<p><code>Dicta consequatur impedit totam totam incidunt dolor possimus. Aut totam officia iure consequatur ea. Dolores est aut aliquid beatae vel. Quo assumenda aut corporis sed magni dolorem pariatur qui</code></p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+				value: 7,
+			},
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
     />
@@ -74,7 +171,7 @@ export const Default: Story = {
 	},
 };
 
-export const WithCodeInQuestionAndAnswerText: Story = {
+export const WithCodeInQuestionText: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: (
@@ -91,17 +188,7 @@ print(cel)
 			/>
 		),
 		answers: [
-			{
-				label: (
-					<PrismFormatted
-						text={`<pre><code class="language-html"><p>Option 1</p>
-<p>Lorem ipsum</p>
-</code></pre>`}
-						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
-					/>
-				),
-				value: 1,
-			},
+			{ label: "Option 1", value: 1 },
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
@@ -127,17 +214,7 @@ print(cel)
           getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
       />}
       answers={[
-        { 
-          label: (
-            <PrismFormatted
-              text={\`<pre><code class="language-html"><p>Option 1</p>
-<p>Lorem ipsum</p>
-</code></pre>\`}
-              getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
-	          />
-          ), 
-          value: 1,
-        },
+        { label: "Option 1", value: 1 },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
