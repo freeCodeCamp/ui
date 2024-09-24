@@ -28,6 +28,8 @@ const langs: { [key: string]: string } = {
 	http: "HTTP",
 	json: "JSON",
 	pug: "pug",
+	ts: "TypeScript",
+	typescript: "TypeScript",
 };
 
 // Adds region role and accessible name to PrismJS code blocks
