@@ -61,6 +61,11 @@ const enhancePrismAccessibility = ({
 	parent.setAttribute("aria-label", ariaLabel);
 };
 
+// `p` element has some bottom margin set by the global stylesheet (base.css).
+// This margin increases the height of the entire label, making it misaligned with the radio icon.
+// To address that, we remove the margin from the last `p`.
+const defaultClasses = ["[&>p:last-child]:m-0"];
+
 /**
  * PrismFormatted is used to render code blocks with syntax highlighting.
  *
@@ -109,10 +114,10 @@ export const PrismFormatted = ({
 }: PrismFormattedProps) => {
 	const instructionsRef = useRef<HTMLDivElement>(null);
 	const ElementName = useSpan ? "span" : "div";
-	let cls;
+	const cls = className ? [...defaultClasses, className] : [...defaultClasses];
 
 	if (hasLineNumbers) {
-		cls = className ? className.concat(" line-numbers") : "line-numbers";
+		cls.push("line-numbers");
 	}
 
 	if (noAria) {
@@ -134,7 +139,7 @@ export const PrismFormatted = ({
 
 	return (
 		<ElementName
-			className={cls}
+			className={cls.join(" ")}
 			dangerouslySetInnerHTML={{ __html: text }}
 			ref={instructionsRef}
 		/>

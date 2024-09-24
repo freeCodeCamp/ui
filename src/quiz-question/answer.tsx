@@ -18,6 +18,7 @@ const radioIconDefaultClasses = [
 	"border-2",
 	"border-foreground-primary",
 	"me-[15px]",
+	"shrink-0",
 ];
 
 const radioIconActiveClasses = [
@@ -89,7 +90,7 @@ export const Answer = ({ value, label, disabled, checked }: AnswerProps) => {
 			{({ active }) => (
 				<>
 					<RadioIcon active={active} checked={!!checked} />
-					<RadioGroup.Label className="m-0 text-foreground-primary" as="p">
+					<RadioGroup.Label className="m-0 text-foreground-primary">
 						{label}
 					</RadioGroup.Label>
 				</>
