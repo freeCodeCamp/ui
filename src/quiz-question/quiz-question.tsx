@@ -18,11 +18,11 @@ const QuestionText = ({
 	position?: number;
 }) => {
 	if (position == null) {
-		return <span className="text-foreground-primary">{question}</span>;
+		return <span className="text-foreground-primary text-md">{question}</span>;
 	}
 
 	return (
-		<span className="text-foreground-primary flex">
+		<span className="text-foreground-primary text-md flex">
 			<span>{position}.</span>
 			&nbsp;
 			{question}
@@ -37,17 +37,25 @@ const ValidationIcon = ({
 }) => {
 	const { state, message } = validation;
 
+	// Add top and bottom margins to the icon in order to horizontally align it with the first line of question text.
+	// The math is as follows:
+	// top/bottom margin = (text font size * text line height - icon height) / 2
+	// Note: The text font size and text line height values need to match the ones specified in tailwind.config.js
+	const iconMarginClass = "my-[calc((18px*1.42857143-14px)/2)]";
+
 	return state === "correct" ? (
 		<FontAwesomeIcon
 			icon={faCheck}
-			className="text-background-success me-[8px]"
+			size="sm"
+			className={`text-background-success me-[8px] ${iconMarginClass}`}
 			aria-label={message}
 			aria-hidden={false}
 		/>
 	) : (
 		<FontAwesomeIcon
 			icon={faXmark}
-			className="text-background-danger me-[8px]"
+			size="sm"
+			className={`text-background-danger me-[8px] ${iconMarginClass}`}
 			aria-label={message}
 			aria-hidden={false}
 		/>
@@ -90,7 +98,7 @@ export const QuizQuestion = ({
 			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
 			value={selectedAnswer ?? null}
 		>
-			<RadioGroup.Label className="block mb-[20px]">
+			<RadioGroup.Label className="flex mb-[20px]">
 				{validation && <ValidationIcon validation={validation} />}
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
