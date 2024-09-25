@@ -6,7 +6,8 @@ import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
 import bundleSize from "rollup-plugin-bundle-size";
 
-import { peerDependencies } from "./package.json";
+// See https://rollupjs.org/command-line-interface/#importing-package-json
+import pkgJson from "./package.json" assert { type: "json" };
 
 const production = process.env.NODE_ENV !== "development";
 
@@ -24,7 +25,7 @@ const config = {
 			sourcemap: true,
 		},
 	],
-	external: Object.keys(peerDependencies),
+	external: Object.keys(pkgJson.peerDependencies),
 	plugins: [
 		postcss(),
 		resolve(),
@@ -35,7 +36,7 @@ const config = {
 			include: ["src/**/*"],
 			exclude: ["**/*.test.*", "**/*.stories.*"],
 		}),
-		babel({ babelHelpers: "bundled" }),
+		babel.babel({ babelHelpers: "bundled" }),
 		commonjs(),
 		production && terser(),
 		bundleSize(),
