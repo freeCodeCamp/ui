@@ -178,4 +178,88 @@ describe("useQuiz", () => {
 		expect(result.current.questions[1].validation?.message).toBe("Incorrect");
 		expect(result.current.correctAnswerCount).toBe(1);
 	});
+
+	it("should call the `onSuccess` function if all answers are correct", () => {
+		const onSuccess = jest.fn();
+		const onFailure = jest.fn();
+
+		const { result } = renderHook(() =>
+			useQuiz({
+				initialQuestions: [
+					{
+						question: "Lorem ipsum dolor sit amet",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 1,
+						correctAnswer: 1,
+					},
+					{
+						question: "Consectetur adipiscing elit",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 3,
+						correctAnswer: 3,
+					},
+				],
+				validationMessages,
+				onSuccess,
+				onFailure,
+			}),
+		);
+
+		act(() => {
+			result.current.validateAnswers();
+		});
+
+		expect(onSuccess).toHaveBeenCalledTimes(1);
+		expect(onFailure).toHaveBeenCalledTimes(0);
+	});
+
+	it("should call the `onFailure` function if not all answers are correct", () => {
+		const onSuccess = jest.fn();
+		const onFailure = jest.fn();
+
+		const { result } = renderHook(() =>
+			useQuiz({
+				initialQuestions: [
+					{
+						question: "Lorem ipsum dolor sit amet",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 1,
+						correctAnswer: 2,
+					},
+					{
+						question: "Consectetur adipiscing elit",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 3,
+						correctAnswer: 3,
+					},
+				],
+				validationMessages,
+				onSuccess,
+				onFailure,
+			}),
+		);
+
+		act(() => {
+			result.current.validateAnswers();
+		});
+
+		expect(onSuccess).toHaveBeenCalledTimes(0);
+		expect(onFailure).toHaveBeenCalledTimes(1);
+	});
 });
