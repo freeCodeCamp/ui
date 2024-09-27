@@ -8,9 +8,16 @@ interface Props {
 		correct: string;
 		incorrect: string;
 	};
+	onSuccess?: () => void;
+	onFailure?: () => void;
 }
 
-export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
+export const useQuiz = ({
+	initialQuestions,
+	validationMessages,
+	onSuccess,
+	onFailure,
+}: Props) => {
 	const [quizAnswers, setQuizAnswers] = useState<(number | undefined)[]>(
 		initialQuestions.map((question) => question.selectedAnswer),
 	);
@@ -59,7 +66,15 @@ export const useQuiz = ({ initialQuestions, validationMessages }: Props) => {
 			const correctCount = updatedQuestions.filter(
 				({ validation }) => validation?.state === "correct",
 			).length;
+
 			setCorrectAnswerCount(correctCount);
+
+			if (correctCount === initialQuestions.length) {
+				onSuccess && onSuccess();
+			} else {
+				onFailure && onFailure();
+			}
+
 			return updatedQuestions;
 		});
 	};
