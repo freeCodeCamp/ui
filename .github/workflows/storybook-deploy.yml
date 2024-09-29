@@ -25,6 +25,6 @@ jobs:
         run: pnpm run build-storybook
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@91f72e309ed2ad06c50d8daae52cd7b7595630b4 # v4.6.8
+        uses: JamesIves/github-pages-deploy-action@881db5376404c5c8d621010bcbec0310b58d5e29 # v4.6.8
         with:
           folder: storybook-static
