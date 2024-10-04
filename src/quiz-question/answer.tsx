@@ -1,11 +1,15 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { type QuizQuestionAnswer } from "./types";
+import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
+import { Spacer } from "../spacer";
 
 interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
 	disabled?: boolean;
+	validation?: QuizQuestionValidation;
 }
 
 const radioIconDefaultClasses = [
@@ -46,7 +50,7 @@ const radioOptionDefaultClasses = [
 	"focus:outline-none",
 	"cursor-pointer",
 	"flex",
-	"items-center",
+	"flex-col",
 	"p-[20px]",
 	"border-x-4",
 	"border-t-4",
@@ -73,7 +77,33 @@ const RadioIcon = ({
 	return <span className={radioCls.join(" ")}></span>;
 };
 
-export const Answer = ({ value, label, disabled, checked }: AnswerProps) => {
+const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
+	return state === "correct" ? (
+		<p className="text-background-success">
+			<FontAwesomeIcon
+				icon={faCheck}
+				className="text-background-success me-[8px]"
+			/>
+			{message}
+		</p>
+	) : (
+		<p className="text-background-danger">
+			<FontAwesomeIcon
+				icon={faXmark}
+				className="text-background-danger me-[8px]"
+			/>
+			{message}
+		</p>
+	);
+};
+
+export const Answer = ({
+	value,
+	label,
+	disabled,
+	checked,
+	validation,
+}: AnswerProps) => {
 	const radioOptionCls = [
 		...radioOptionDefaultClasses,
 		...(disabled
@@ -89,10 +119,23 @@ export const Answer = ({ value, label, disabled, checked }: AnswerProps) => {
 		>
 			{({ active }) => (
 				<>
-					<RadioIcon active={active} checked={!!checked} />
-					<RadioGroup.Label className="m-0 text-foreground-primary">
-						{label}
-					</RadioGroup.Label>
+					<div className="flex items-center">
+						<RadioIcon active={active} checked={!!checked} />
+						<RadioGroup.Label className="m-0 text-foreground-primary">
+							{label}
+						</RadioGroup.Label>
+					</div>
+					{checked && validation && (
+						<>
+							<Spacer size="s" />
+							<div>
+								<ValidationMessage
+									state={validation.state}
+									message={validation.message}
+								/>
+							</div>
+						</>
+					)}
 				</>
 			)}
 		</RadioGroup.Option>

@@ -1,13 +1,7 @@
 import React, { ReactNode } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import type {
-	QuizQuestionValidation,
-	QuizQuestionAnswer,
-	QuizQuestionProps,
-} from "./types";
+import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
 
 const QuestionText = ({
@@ -27,30 +21,6 @@ const QuestionText = ({
 			&nbsp;
 			{question}
 		</span>
-	);
-};
-
-const ValidationIcon = ({
-	validation,
-}: {
-	validation: QuizQuestionValidation;
-}) => {
-	const { state, message } = validation;
-
-	return state === "correct" ? (
-		<FontAwesomeIcon
-			icon={faCheck}
-			className="text-background-success me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
-	) : (
-		<FontAwesomeIcon
-			icon={faXmark}
-			className="text-background-danger me-[8px]"
-			aria-label={message}
-			aria-hidden={false}
-		/>
 	);
 };
 
@@ -91,7 +61,6 @@ export const QuizQuestion = ({
 			value={selectedAnswer ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
-				{validation && <ValidationIcon validation={validation} />}
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
 
@@ -102,6 +71,7 @@ export const QuizQuestion = ({
 					label={label}
 					checked={selectedAnswer === value}
 					disabled={disabled}
+					validation={validation}
 				/>
 			))}
 		</RadioGroup>

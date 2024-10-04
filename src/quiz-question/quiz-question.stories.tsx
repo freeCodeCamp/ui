@@ -13,19 +13,16 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
-type QuizQuestionCompProps = Pick<
-	QuizQuestionProps,
-	"question" | "answers" | "disabled" | "validation" | "position"
->;
-
 const QuizQuestionComp = ({
 	question,
-	answers,
+	answers = [],
 	disabled,
 	validation,
 	position,
-}: QuizQuestionCompProps) => {
-	const [answer, setAnswer] = useState<QuizQuestionProps["selectedAnswer"]>();
+	selectedAnswer,
+}: Partial<QuizQuestionProps>) => {
+	const [answer, setAnswer] =
+		useState<QuizQuestionProps["selectedAnswer"]>(selectedAnswer);
 
 	return (
 		<QuizQuestion
@@ -275,6 +272,8 @@ export const Correct: Story = {
 			{ label: "Option 3", value: 3 },
 		],
 		validation: { state: "correct", message: "Correct." },
+		selectedAnswer: 1,
+		disabled: true,
 	},
 	parameters: {
 		docs: {
@@ -293,6 +292,8 @@ export const Correct: Story = {
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
       validation={{ state: "correct", message: "Correct." }}
+			selectedAnswer: 1,
+			disabled: true
     />
   );
 }`,
@@ -311,6 +312,8 @@ export const Incorrect: Story = {
 			{ label: "Option 3", value: 3 },
 		],
 		validation: { state: "incorrect", message: "Incorrect." },
+		selectedAnswer: 1,
+		disabled: true,
 	},
 	parameters: {
 		docs: {
@@ -329,6 +332,8 @@ export const Incorrect: Story = {
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
       validation={{ state: "incorrect", message: "Incorrect." }}
+			selectedAnswer: 1,
+			disabled: true
     />
   );
 }`,
