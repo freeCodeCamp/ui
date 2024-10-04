@@ -104,22 +104,34 @@ export const Answer = ({
 	checked,
 	validation,
 }: AnswerProps) => {
-	const radioOptionCls = [
-		...radioOptionDefaultClasses,
-		...(disabled
-			? ["aria-disabled:cursor-not-allowed", "aria-disabled:opacity-80"]
-			: []),
-	];
+	const getRadioOptionCls = () => {
+		const cls = [...radioOptionDefaultClasses];
+
+		if (disabled) cls.push("aria-disabled:cursor-not-allowed");
+		if (checked && validation?.state === "correct")
+			cls.push("bg-foreground-success");
+		if (checked && validation?.state === "incorrect")
+			cls.push("bg-foreground-danger");
+
+		return cls.join(" ");
+	};
+
+	const getRadioLabelCls = () => {
+		const cls = ["flex", "items-center"];
+
+		if (disabled) cls.push("opacity-80");
+		return cls.join(" ");
+	};
 
 	return (
 		<RadioGroup.Option
 			key={value}
 			value={value}
-			className={radioOptionCls.join(" ")}
+			className={getRadioOptionCls()}
 		>
 			{({ active }) => (
 				<>
-					<div className="flex items-center">
+					<div className={getRadioLabelCls()}>
 						<RadioIcon active={active} checked={!!checked} />
 						<RadioGroup.Label className="m-0 text-foreground-primary">
 							{label}
