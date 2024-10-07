@@ -40,4 +40,9 @@ export interface Question {
 	 * Value of the selected answer
 	 */
 	selectedAnswer?: number;
+
+	/**
+	 * Whether the feedback is displayed on the selected answer
+	 */
+	showFeedback?: boolean;
 }
