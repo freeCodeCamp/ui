@@ -147,16 +147,16 @@ export const Answer = ({
 					</div>
 				)}
 			</RadioGroup.Option>
-			{/* Remove the default bottom margin of the validation message `p`,
-					and apply a bottom padding of 20px to match the space between the radio icon and the top of the container */}
-			<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
-				{checked && validation && (
+			{checked && validation && (
+				// Remove the default bottom margin of the validation message `p`,
+				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
+				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
 					<ValidationMessage
 						state={validation.state}
 						message={validation.message}
 					/>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 };
