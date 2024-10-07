@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
-import { Spacer } from "../spacer";
 
 interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
@@ -49,9 +48,12 @@ const radioOptionDefaultClasses = [
 	// which highlights the entire option div while we only want to highlight the radio icon.
 	"focus:outline-none",
 	"cursor-pointer",
+	"p-[20px]",
+];
+
+const radioWrapperDefaultClasses = [
 	"flex",
 	"flex-col",
-	"p-[20px]",
 	"border-x-4",
 	"border-t-4",
 	"last:border-b-4",
@@ -104,15 +106,21 @@ export const Answer = ({
 	checked,
 	validation,
 }: AnswerProps) => {
-	const getRadioOptionCls = () => {
-		const cls = [...radioOptionDefaultClasses];
+	const getRadioWrapperCls = () => {
+		const cls = [...radioWrapperDefaultClasses];
 
-		if (disabled) cls.push("aria-disabled:cursor-not-allowed");
 		if (checked && validation?.state === "correct")
 			cls.push("bg-foreground-success");
 		if (checked && validation?.state === "incorrect")
 			cls.push("bg-foreground-danger");
 
+		return cls.join(" ");
+	};
+
+	const getRadioOptionCls = () => {
+		const cls = [...radioOptionDefaultClasses];
+
+		if (disabled) cls.push("aria-disabled:cursor-not-allowed");
 		return cls.join(" ");
 	};
 
@@ -124,30 +132,31 @@ export const Answer = ({
 	};
 
 	return (
-		<RadioGroup.Option
-			key={value}
-			value={value}
-			className={getRadioOptionCls()}
-		>
-			{({ active }) => (
-				<>
+		<div className={getRadioWrapperCls()}>
+			<RadioGroup.Option
+				key={value}
+				value={value}
+				className={getRadioOptionCls()}
+			>
+				{({ active }) => (
 					<div className={getRadioLabelCls()}>
 						<RadioIcon active={active} checked={!!checked} />
 						<RadioGroup.Label className="m-0 text-foreground-primary">
 							{label}
 						</RadioGroup.Label>
 					</div>
-					{checked && validation && (
-						<>
-							<Spacer size="s" />
-							<ValidationMessage
-								state={validation.state}
-								message={validation.message}
-							/>
-						</>
-					)}
-				</>
-			)}
-		</RadioGroup.Option>
+				)}
+			</RadioGroup.Option>
+			{/* Remove the default bottom margin of the validation message `p`,
+					and apply a bottom padding of 20px to match the space between the radio icon and the top of the container */}
+			<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
+				{checked && validation && (
+					<ValidationMessage
+						state={validation.state}
+						message={validation.message}
+					/>
+				)}
+			</div>
+		</div>
 	);
 };
