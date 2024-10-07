@@ -133,6 +133,19 @@ export const Answer = ({
 		return cls.join(" ");
 	};
 
+	const getFeedbackCls = () => {
+		const cls = [];
+
+		// The feedback text can be a plain string, or as a `p` if it's rendered with PrismFormatted.
+		// The classes need to cover both cases.
+		if (checked && validation?.state === "correct")
+			cls.push("text-background-success", "[&_p]:text-background-success");
+		if (checked && validation?.state === "incorrect")
+			cls.push("text-background-danger", "[&_p]:text-background-danger");
+
+		return cls.join(" ");
+	};
+
 	return (
 		<div className={getRadioWrapperCls()}>
 			<RadioGroup.Option
@@ -160,7 +173,7 @@ export const Answer = ({
 						/>
 					)}
 					{shouldShowFeedback && (
-						<div className="text-foreground-primary">{feedback}</div>
+						<div className={getFeedbackCls()}>{feedback}</div>
 					)}
 				</div>
 			)}
