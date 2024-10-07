@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 
 import { QuizQuestion } from "./quiz-question";
 import userEvent from "@testing-library/user-event";
@@ -119,6 +119,7 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
+				selectedAnswer={1}
 				validation={{
 					state: "correct",
 					message: "Correct.",
@@ -126,9 +127,8 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		expect(
-			screen.getByRole("radiogroup", { name: "Correct. Lorem ipsum" }),
-		).toBeInTheDocument();
+		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		expect(within(selectedOption).getByText("Correct.")).toBeInTheDocument();
 	});
 
 	it("should render the incorrect state properly", () => {
@@ -140,6 +140,7 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
+				selectedAnswer={1}
 				validation={{
 					state: "incorrect",
 					message: "Incorrect.",
@@ -147,9 +148,8 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		expect(
-			screen.getByRole("radiogroup", { name: "Incorrect. Lorem ipsum" }),
-		).toBeInTheDocument();
+		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		expect(within(selectedOption).getByText("Incorrect.")).toBeInTheDocument();
 	});
 
 	it("should render the question position properly", () => {
@@ -168,5 +168,44 @@ describe("<QuizQuestion />", () => {
 		expect(
 			screen.getByRole("radiogroup", { name: "1. Lorem ipsum" }),
 		).toBeInTheDocument();
+	});
+
+	it("should render answer feedback if `feedback` is provided and `showFeedback` is `true`", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				selectedAnswer={1}
+				showFeedback
+			/>,
+		);
+
+		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		expect(
+			within(selectedOption).getByText("Quis vel quo saepe."),
+		).toBeInTheDocument();
+	});
+
+	it("should not render answer feedback if `feedback` is provided but `showFeedback` is falsy", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				selectedAnswer={1}
+			/>,
+		);
+
+		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		expect(
+			within(selectedOption).queryByText("Quis vel quo saepe."),
+		).not.toBeInTheDocument();
 	});
 });
