@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface QuizQuestionAnswer {
 	label: ReactNode;
 	value: number;
+	feedback?: ReactNode;
 }
 
 export interface QuizQuestionValidation {
@@ -46,6 +47,11 @@ export interface QuizQuestionProps {
 	 * Value of the selected answer
 	 */
 	selectedAnswer?: QuizQuestionAnswer["value"];
+
+	/**
+	 * Whether the feedback is displayed on the selected answer
+	 */
+	showFeedback?: boolean;
 
 	/**
 	 * Change event handler, called when an answer is selected

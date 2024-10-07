@@ -41,6 +41,7 @@ export const QuizQuestion = ({
 	selectedAnswer,
 	onChange,
 	position,
+	showFeedback,
 }: QuizQuestionProps) => {
 	const handleChange = (selectedOption: QuizQuestionAnswer["value"]) => {
 		if (!onChange) {
@@ -64,14 +65,16 @@ export const QuizQuestion = ({
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
 
-			{answers.map(({ value, label }) => (
+			{answers.map(({ value, label, feedback }) => (
 				<Answer
 					key={value}
 					value={value}
 					label={label}
+					feedback={feedback}
 					checked={selectedAnswer === value}
 					disabled={disabled}
 					validation={validation}
+					showFeedback={showFeedback}
 				/>
 			))}
 		</RadioGroup>

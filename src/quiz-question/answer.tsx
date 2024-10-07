@@ -10,6 +10,7 @@ interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
 	disabled?: boolean;
 	validation?: QuizQuestionValidation;
+	showFeedback?: boolean;
 }
 
 const radioIconDefaultClasses = [
@@ -103,7 +104,12 @@ export const Answer = ({
 	disabled,
 	checked,
 	validation,
+	feedback,
+	showFeedback,
 }: AnswerProps) => {
+	const shouldShowValidation = checked && validation;
+	const shouldShowFeedback = checked && feedback && showFeedback;
+
 	const getRadioOptionCls = () => {
 		const cls = [...radioOptionDefaultClasses];
 
@@ -137,7 +143,7 @@ export const Answer = ({
 							{label}
 						</RadioGroup.Label>
 					</div>
-					{checked && validation && (
+					{shouldShowValidation && (
 						<>
 							<Spacer size="s" />
 							<div>
@@ -148,6 +154,7 @@ export const Answer = ({
 							</div>
 						</>
 					)}
+					{shouldShowFeedback && <div>{feedback}</div>}
 				</>
 			)}
 		</RadioGroup.Option>
