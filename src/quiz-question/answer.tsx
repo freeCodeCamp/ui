@@ -149,7 +149,7 @@ export const Answer = ({
 					</>
 				)}
 			</RadioGroup.Option>
-			{shouldShowValidation && shouldShowFeedback && (
+			{(shouldShowValidation || shouldShowFeedback) && (
 				// Remove the default bottom margin of the validation message `p`,
 				// and apply a bottom padding of 20px to match the space between the radio icon and the top of the container
 				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">

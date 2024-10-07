@@ -184,9 +184,9 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
 		expect(
-			within(selectedOption).getByText("Quis vel quo saepe."),
+			within(radioGroup).getByText("Quis vel quo saepe."),
 		).toBeInTheDocument();
 	});
 
@@ -203,9 +203,9 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
 		expect(
-			within(selectedOption).queryByText("Quis vel quo saepe."),
+			within(radioGroup).queryByText("Quis vel quo saepe."),
 		).not.toBeInTheDocument();
 	});
 });
