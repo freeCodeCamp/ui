@@ -50,6 +50,8 @@ const radioOptionDefaultClasses = [
 	"focus:outline-none",
 	"cursor-pointer",
 	"p-[20px]",
+	"flex",
+	"items-center",
 ];
 
 const radioWrapperDefaultClasses = [
@@ -126,14 +128,8 @@ export const Answer = ({
 	const getRadioOptionCls = () => {
 		const cls = [...radioOptionDefaultClasses];
 
-		if (disabled) cls.push("aria-disabled:cursor-not-allowed");
-		return cls.join(" ");
-	};
-
-	const getRadioLabelCls = () => {
-		const cls = ["flex", "items-center"];
-
-		if (disabled) cls.push("opacity-80");
+		if (disabled)
+			cls.push("aria-disabled:cursor-not-allowed", "aria-disabled:opacity-80");
 		return cls.join(" ");
 	};
 
@@ -146,12 +142,10 @@ export const Answer = ({
 			>
 				{({ active }) => (
 					<>
-						<div className={getRadioLabelCls()}>
-							<RadioIcon active={active} checked={!!checked} />
-							<RadioGroup.Label className="m-0 text-foreground-primary">
-								{label}
-							</RadioGroup.Label>
-						</div>
+						<RadioIcon active={active} checked={!!checked} />
+						<RadioGroup.Label className="m-0 text-foreground-primary">
+							{label}
+						</RadioGroup.Label>
 					</>
 				)}
 			</RadioGroup.Option>

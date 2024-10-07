@@ -119,16 +119,16 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				selectedAnswer={1}
 				validation={{
 					state: "correct",
 					message: "Correct.",
 				}}
+				selectedAnswer={1}
 			/>,
 		);
 
-		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
-		expect(within(selectedOption).getByText("Correct.")).toBeInTheDocument();
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(within(radioGroup).getByText("Correct.")).toBeInTheDocument();
 	});
 
 	it("should render the incorrect state properly", () => {
@@ -140,16 +140,16 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 2", value: 2 },
 					{ label: "Option 3", value: 3 },
 				]}
-				selectedAnswer={1}
 				validation={{
 					state: "incorrect",
 					message: "Incorrect.",
 				}}
+				selectedAnswer={1}
 			/>,
 		);
 
-		const selectedOption = screen.getByRole("radio", { name: "Option 1" });
-		expect(within(selectedOption).getByText("Incorrect.")).toBeInTheDocument();
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(within(radioGroup).getByText("Incorrect.")).toBeInTheDocument();
 	});
 
 	it("should render the question position properly", () => {
