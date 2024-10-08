@@ -1,18 +1,11 @@
 import Prism from "prismjs";
 import React, { useRef, useEffect } from "react";
 
+import type { PrismFormattedProps } from "./types";
+
 import "./prism-base.css";
 import "./prism-light.css";
 import "./prism-dark.css";
-
-interface PrismFormattedProps {
-	className?: string;
-	text: string;
-	getCodeBlockAriaLabel: (codeName: string) => string;
-	useSpan?: boolean;
-	noAria?: boolean;
-	hasLineNumbers?: boolean;
-}
 
 const langs: { [key: string]: string } = {
 	js: "JavaScript",
@@ -61,6 +54,40 @@ const enhancePrismAccessibility = ({
 	const ariaLabel = getCodeBlockAriaLabel(codeName);
 
 	parent.setAttribute("aria-label", ariaLabel);
+};
+
+// Make PrismJS code blocks collapsible
+const makePrismCollapsible = ({
+	prismEnv,
+	disclosureLabel,
+}: {
+	prismEnv: Prism.hooks.ElementHighlightedEnvironment;
+	disclosureLabel: string;
+}) => {
+	const preElem = prismEnv?.element?.parentElement;
+	const sectionElem = preElem?.parentElement;
+	if (
+		!preElem ||
+		preElem.nodeName !== "PRE" ||
+		preElem.tabIndex !== 0 ||
+		!sectionElem ||
+		sectionElem.nodeName !== "SECTION"
+	) {
+		return;
+	}
+
+	const details = document.createElement("details");
+	details.classList.add("font-bold", "mb-[0.6rem]");
+
+	const summary = document.createElement("summary");
+	summary.classList.add("cursor-pointer", "text-foreground-primary");
+	summary.innerHTML = disclosureLabel;
+
+	details.appendChild(summary);
+	details.appendChild(preElem.cloneNode(true));
+	details.open = true;
+
+	sectionElem.replaceChild(details, preElem);
 };
 
 // `p` element has some bottom margin set by the global stylesheet (base.css).
@@ -113,6 +140,8 @@ export const PrismFormatted = ({
 	noAria,
 	getCodeBlockAriaLabel,
 	hasLineNumbers,
+	isCollapsible,
+	disclosureLabel,
 }: PrismFormattedProps) => {
 	const instructionsRef = useRef<HTMLDivElement>(null);
 	const ElementName = useSpan ? "span" : "div";
@@ -135,9 +164,19 @@ export const PrismFormatted = ({
 					getCodeBlockAriaLabel,
 				}),
 			);
+
+			if (isCollapsible && disclosureLabel) {
+				Prism.hooks.add("complete", (prismEnv) =>
+					makePrismCollapsible({
+						prismEnv,
+						disclosureLabel,
+					}),
+				);
+			}
+
 			Prism.highlightAllUnder(instructionsRef.current);
 		}
-	}, [getCodeBlockAriaLabel]);
+	}, [getCodeBlockAriaLabel, isCollapsible, disclosureLabel]);
 
 	return (
 		<ElementName
