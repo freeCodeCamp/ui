@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 
 import { QuizQuestion } from "./quiz-question";
 import userEvent from "@testing-library/user-event";
@@ -123,12 +123,12 @@ describe("<QuizQuestion />", () => {
 					state: "correct",
 					message: "Correct.",
 				}}
+				selectedAnswer={1}
 			/>,
 		);
 
-		expect(
-			screen.getByRole("radiogroup", { name: "Correct. Lorem ipsum" }),
-		).toBeInTheDocument();
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(within(radioGroup).getByText("Correct.")).toBeInTheDocument();
 	});
 
 	it("should render the incorrect state properly", () => {
@@ -144,12 +144,12 @@ describe("<QuizQuestion />", () => {
 					state: "incorrect",
 					message: "Incorrect.",
 				}}
+				selectedAnswer={1}
 			/>,
 		);
 
-		expect(
-			screen.getByRole("radiogroup", { name: "Incorrect. Lorem ipsum" }),
-		).toBeInTheDocument();
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(within(radioGroup).getByText("Incorrect.")).toBeInTheDocument();
 	});
 
 	it("should render the question position properly", () => {

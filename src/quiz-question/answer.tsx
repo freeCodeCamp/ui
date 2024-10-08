@@ -1,11 +1,14 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { type QuizQuestionAnswer } from "./types";
+import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
 
 interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
 	disabled?: boolean;
+	validation?: QuizQuestionValidation;
 }
 
 const radioIconDefaultClasses = [
@@ -45,9 +48,14 @@ const radioOptionDefaultClasses = [
 	// which highlights the entire option div while we only want to highlight the radio icon.
 	"focus:outline-none",
 	"cursor-pointer",
+	"p-[20px]",
 	"flex",
 	"items-center",
-	"p-[20px]",
+];
+
+const radioWrapperDefaultClasses = [
+	"flex",
+	"flex-col",
 	"border-x-4",
 	"border-t-4",
 	"last:border-b-4",
@@ -73,28 +81,78 @@ const RadioIcon = ({
 	return <span className={radioCls.join(" ")}></span>;
 };
 
-export const Answer = ({ value, label, disabled, checked }: AnswerProps) => {
-	const radioOptionCls = [
-		...radioOptionDefaultClasses,
-		...(disabled
-			? ["aria-disabled:cursor-not-allowed", "aria-disabled:opacity-80"]
-			: []),
-	];
+const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
+	return state === "correct" ? (
+		<p className="text-background-success">
+			<FontAwesomeIcon
+				icon={faCheck}
+				className="text-background-success me-[8px]"
+			/>
+			{message}
+		</p>
+	) : (
+		<p className="text-background-danger">
+			<FontAwesomeIcon
+				icon={faXmark}
+				className="text-background-danger me-[8px]"
+			/>
+			{message}
+		</p>
+	);
+};
+
+export const Answer = ({
+	value,
+	label,
+	disabled,
+	checked,
+	validation,
+}: AnswerProps) => {
+	const getRadioWrapperCls = () => {
+		const cls = [...radioWrapperDefaultClasses];
+
+		if (checked && validation?.state === "correct")
+			cls.push("bg-foreground-success");
+		if (checked && validation?.state === "incorrect")
+			cls.push("bg-foreground-danger");
+
+		return cls.join(" ");
+	};
+
+	const getRadioOptionCls = () => {
+		const cls = [...radioOptionDefaultClasses];
+
+		if (disabled)
+			cls.push("aria-disabled:cursor-not-allowed", "aria-disabled:opacity-80");
+		return cls.join(" ");
+	};
 
 	return (
-		<RadioGroup.Option
-			key={value}
-			value={value}
-			className={radioOptionCls.join(" ")}
-		>
-			{({ active }) => (
-				<>
-					<RadioIcon active={active} checked={!!checked} />
-					<RadioGroup.Label className="m-0 text-foreground-primary">
-						{label}
-					</RadioGroup.Label>
-				</>
+		<div className={getRadioWrapperCls()}>
+			<RadioGroup.Option
+				key={value}
+				value={value}
+				className={getRadioOptionCls()}
+			>
+				{({ active }) => (
+					<>
+						<RadioIcon active={active} checked={!!checked} />
+						<RadioGroup.Label className="m-0 text-foreground-primary">
+							{label}
+						</RadioGroup.Label>
+					</>
+				)}
+			</RadioGroup.Option>
+			{checked && validation && (
+				// Remove the default bottom margin of the validation message `p`,
+				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
+				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
+					<ValidationMessage
+						state={validation.state}
+						message={validation.message}
+					/>
+				</div>
 			)}
-		</RadioGroup.Option>
+		</div>
 	);
 };
