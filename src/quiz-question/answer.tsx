@@ -118,9 +118,9 @@ export const Answer = ({
 		const cls = [...radioWrapperDefaultClasses];
 
 		if (checked && validation?.state === "correct")
-			cls.push("bg-foreground-success");
+			cls.push("border-l-background-success");
 		if (checked && validation?.state === "incorrect")
-			cls.push("bg-foreground-danger");
+			cls.push("border-l-background-danger");
 
 		return cls.join(" ");
 	};
@@ -130,19 +130,6 @@ export const Answer = ({
 
 		if (disabled)
 			cls.push("aria-disabled:cursor-not-allowed", "aria-disabled:opacity-80");
-		return cls.join(" ");
-	};
-
-	const getFeedbackCls = () => {
-		const cls = [];
-
-		// The feedback text can be a plain string, or as a `p` if it's rendered with PrismFormatted.
-		// The classes need to cover both cases.
-		if (checked && validation?.state === "correct")
-			cls.push("text-background-success", "[&_p]:text-background-success");
-		if (checked && validation?.state === "incorrect")
-			cls.push("text-background-danger", "[&_p]:text-background-danger");
-
 		return cls.join(" ");
 	};
 
@@ -164,7 +151,7 @@ export const Answer = ({
 			</RadioGroup.Option>
 			{(shouldShowValidation || shouldShowFeedback) && (
 				// Remove the default bottom margin of the validation message `p`,
-				// and apply a bottom padding of 20px to match the space between the radio icon and the top of the container
+				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
 				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
 					{shouldShowValidation && (
 						<ValidationMessage
@@ -173,7 +160,7 @@ export const Answer = ({
 						/>
 					)}
 					{shouldShowFeedback && (
-						<div className={getFeedbackCls()}>{feedback}</div>
+						<div className="text-foreground-primary">{feedback}</div>
 					)}
 				</div>
 			)}
