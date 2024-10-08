@@ -90,7 +90,7 @@ export const InsideDisclosureElement: Story = {
 	decorators: [
 		(Story) => (
 			<details>
-				<summary>Example code</summary>
+				<summary className="text-foreground-primary">Example code</summary>
 				<Story />
 			</details>
 		),
@@ -101,6 +101,10 @@ export const InsideDisclosureElement: Story = {
 	},
 	parameters: {
 		docs: {
+			description: {
+				story:
+					"This story shows how PrismFormatted displays a long line of code when it's rendered inside a disclosure element. The text content should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.",
+			},
 			source: {
 				code: `<details>
   <summary>Example code</summary>
@@ -110,6 +114,31 @@ export const InsideDisclosureElement: Story = {
     text={\`<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code when it's rendered inside a disclosure element. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>\`}
 	/>
 </details>`,
+			},
+		},
+	},
+};
+
+export const Collapsible: Story = {
+	args: {
+		text: `<section><p>An <code>if</code> statement allows you to run a block of code only when a condition is met. It uses the following syntax:</p><pre><code class="language-js">if (condition) {
+  logic
+}</code></pre></section>`,
+		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
+		isCollapsible: true,
+		disclosureLabel: "Example",
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<PrismFormatted
+  isCollapsible
+  disclosureLabel="Example"
+  getCodeBlockAriaLabel={codeName => \`\${codeName} code example\`}
+  text={\`<section><p>An <code>if</code> statement allows you to run a block of code only when a condition is met. It uses the following syntax:</p><pre><code class="language-js">if (condition) {
+  logic
+  }</code></pre></section>\`}
+/>`,
 			},
 		},
 	},

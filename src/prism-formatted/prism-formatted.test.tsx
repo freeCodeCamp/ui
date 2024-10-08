@@ -114,4 +114,80 @@ describe("PrismFormatted", () => {
 			3, // Each `span` is a line number, and the provided code block has 3 lines.
 		);
 	});
+
+	it("should be rendered within a disclosure element if `isCollapsible` is `true`", () => {
+		render(
+			<PrismFormatted
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+				text="<section><pre><code class='language-js'>Foo</code></pre></section>"
+				isCollapsible
+				disclosureLabel="Code snippet"
+			/>,
+		);
+
+		const detailsEl = screen.getByRole("group");
+
+		expect(detailsEl).toBeInTheDocument();
+		expect(within(detailsEl).getByText("Code snippet")).toBeInTheDocument();
+		expect(
+			within(detailsEl).getByRole("region", {
+				name: "JavaScript code example",
+			}),
+		).toBeInTheDocument();
+	});
+
+	it("should not be rendered within a disclosure element if the text content doesn't have a `pre`", () => {
+		render(
+			<PrismFormatted
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+				text="<section><code>Foo</code></section>"
+				isCollapsible
+				disclosureLabel="Code snippet"
+			/>,
+		);
+
+		expect(screen.queryByRole("group")).not.toBeInTheDocument();
+		expect(screen.queryByText("Code snippet")).not.toBeInTheDocument();
+		expect(screen.getByText("Foo")).toBeInTheDocument();
+	});
+
+	it("should not be rendered within a disclosure element if the text content doesn't have a `section`", () => {
+		render(
+			<PrismFormatted
+				getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+				text="<pre><code class='language-js'>Foo</code></pre>"
+				isCollapsible
+				disclosureLabel="Code snippet"
+			/>,
+		);
+
+		expect(screen.queryByRole("group")).not.toBeInTheDocument();
+		expect(screen.queryByText("Code snippet")).not.toBeInTheDocument();
+		expect(screen.getByText("Foo")).toBeInTheDocument();
+	});
 });
+
+// ------------------------------
+// Type tests
+// ------------------------------
+// @ts-expect-error - `disclosureLabel` cannot be set if `isCollapsible` is undefined
+<PrismFormatted
+	getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+	text={text}
+	disclosureLabel="Example"
+/>;
+
+// @ts-expect-error - `disclosureLabel` cannot be set if `isCollapsible` is false
+<PrismFormatted
+	getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+	text={text}
+	disclosureLabel="Example"
+	isCollapsible={false}
+/>;
+
+// @ts-expect-error - `disclosureLabel` is required if `isCollapsible` is true
+<PrismFormatted
+	getCodeBlockAriaLabel={getCodeBlockAriaLabel}
+	text={text}
+	isCollapsible
+/>;
