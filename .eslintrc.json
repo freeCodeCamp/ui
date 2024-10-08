@@ -29,5 +29,8 @@
       "files": ["**/*.test.*"],
       "extends": ["plugin:jest/recommended", "plugin:jest/style"]
     }
-  ]
+  ],
+  "rules": {
+    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+  }
 }
