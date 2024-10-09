@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { type Question } from "./types";
 
@@ -18,34 +18,23 @@ export const useQuiz = <AnswerT extends number | string>({
 	onSuccess,
 	onFailure,
 }: Props<AnswerT>) => {
-	const [quizAnswers, setQuizAnswers] = useState<
-		Question<AnswerT>["selectedAnswer"][]
-	>(initialQuestions.map((question) => question.selectedAnswer));
-	const [questions, setQuestions] = useState<Question<AnswerT>[]>([]);
+	const [questions, setQuestions] =
+		useState<Question<AnswerT>[]>(initialQuestions);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
-	// Initialize the `questions` state and make it synchronized with `quizAnswers`.
-	// The synchronization is needed in order to reflect the correct `selectedAnswer`.
-	useEffect(() => {
-		const questionsWithChangeHandling = initialQuestions.map(
-			(question, index) => ({
-				...question,
-				onChange: (selectedAnswer: AnswerT) => {
-					setQuizAnswers((prevAnswers) =>
-						prevAnswers.map((prevAnswer, prevIndex) =>
-							prevIndex === index ? selectedAnswer : prevAnswer,
-						),
-					);
-				},
-				selectedAnswer: quizAnswers[index],
-			}),
-		);
-
-		setQuestions(questionsWithChangeHandling);
-		// We only need `quizAnswers` in the dependency array.
-		// Adding `initialQuestions` in will cause an infinite loop.
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [quizAnswers]);
+	const questionsWithChangeHandling = questions.map((question, index) => ({
+		...question,
+		onChange: (selectedAnswer: AnswerT) => {
+			// update the selected answer for this question
+			setQuestions((prevQuestions) =>
+				prevQuestions.map((prevQuestion, prevIndex) =>
+					prevIndex === index
+						? { ...prevQuestion, selectedAnswer }
+						: prevQuestion,
+				),
+			);
+		},
+	}));
 
 	const validateAnswers = () => {
 		setQuestions((prevQuestion) => {
@@ -81,5 +70,9 @@ export const useQuiz = <AnswerT extends number | string>({
 		});
 	};
 
-	return { questions, validateAnswers, correctAnswerCount };
+	return {
+		questions: questionsWithChangeHandling,
+		validateAnswers,
+		correctAnswerCount,
+	};
 };

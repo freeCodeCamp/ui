@@ -125,17 +125,8 @@ describe("useQuiz", () => {
 			}),
 		);
 
-		act(() => {
-			// @ts-expect-error - onChange is an optional prop so it can be undefined.
-			// However, the function is included in the result of the hook.
-			result.current.questions[0].onChange(2);
-		});
-
-		act(() => {
-			// @ts-expect-error - onChange is an optional prop so it can be undefined.
-			// However, the function is included in the result of the hook.
-			result.current.questions[1].onChange(2);
-		});
+		act(() => result.current.questions[0].onChange(2));
+		act(() => result.current.questions[1].onChange(2));
 
 		expect(result.current.questions[0].selectedAnswer).toBe(2);
 		expect(result.current.questions[1].selectedAnswer).toBe(2);
