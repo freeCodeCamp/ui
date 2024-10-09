@@ -30,12 +30,12 @@ export interface Question<AnswerT extends number | string> {
 	/**
 	 * Value of the correct answer
 	 */
-	correctAnswer: QuizQuestionAnswer<AnswerT>["value"];
+	correctAnswer: AnswerT;
 
 	/**
 	 * Change event handler, called when an answer is selected
 	 */
-	onChange?: (selectedAnswer: QuizQuestionAnswer<AnswerT>["value"]) => void;
+	onChange?: (selectedAnswer: AnswerT) => void;
 
 	/**
 	 * Information needed to render the validation status
@@ -45,5 +45,5 @@ export interface Question<AnswerT extends number | string> {
 	/**
 	 * Value of the selected answer
 	 */
-	selectedAnswer?: QuizQuestionAnswer<AnswerT>["value"];
+	selectedAnswer?: AnswerT;
 }

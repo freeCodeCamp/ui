@@ -45,10 +45,10 @@ export interface QuizQuestionProps<AnswerT extends number | string> {
 	/**
 	 * Value of the selected answer
 	 */
-	selectedAnswer?: QuizQuestionAnswer<AnswerT>["value"];
+	selectedAnswer?: AnswerT;
 
 	/**
 	 * Change event handler, called when an answer is selected
 	 */
-	onChange?: (selectedAnswer: QuizQuestionAnswer<AnswerT>["value"]) => void;
+	onChange?: (selectedAnswer: AnswerT) => void;
 }
