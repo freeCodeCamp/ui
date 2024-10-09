@@ -39,5 +39,5 @@ export interface Question {
 	/**
 	 * Value of the selected answer
 	 */
-	selectedAnswer?: number;
+	selectedAnswer?: QuizQuestionAnswer["value"];
 }

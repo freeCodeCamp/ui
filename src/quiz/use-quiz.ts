@@ -18,7 +18,7 @@ export const useQuiz = ({
 	onSuccess,
 	onFailure,
 }: Props) => {
-	const [quizAnswers, setQuizAnswers] = useState<(number | undefined)[]>(
+	const [quizAnswers, setQuizAnswers] = useState<Question["selectedAnswer"][]>(
 		initialQuestions.map((question) => question.selectedAnswer),
 	);
 	const [questions, setQuestions] = useState<Question[]>([]);

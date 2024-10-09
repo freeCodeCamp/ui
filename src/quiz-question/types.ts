@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface QuizQuestionAnswer {
 	label: ReactNode;
-	value: number;
+	value: number | string;
 }
 
 export interface QuizQuestionValidation {
