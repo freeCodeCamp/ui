@@ -2,10 +2,11 @@ import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Quiz, QuizProps } from "./quiz";
+import { Quiz } from "./quiz";
+import { type QuizProps } from "./types";
 import { useQuiz } from "./use-quiz";
 
-const ControlledQuiz = ({ disabled, required }: Partial<QuizProps>) => {
+const ControlledQuiz = ({ disabled, required }: Partial<QuizProps<number>>) => {
 	const { questions } = useQuiz({
 		initialQuestions: [
 			{
@@ -122,3 +123,117 @@ describe("<Quiz />", () => {
 		});
 	});
 });
+
+// ------------------------------
+// Type tests
+// ------------------------------
+// Quiz without explicit type
+<Quiz
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: "1" },
+				// @ts-expect-error - values must have the same type
+				{ label: "Option 2", value: 2 },
+				// @ts-expect-error - values must have the same type
+				{ label: "Option 3", value: 3 },
+			],
+		},
+	]}
+/>;
+
+// Quiz with `number` type
+<Quiz<number>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				// @ts-expect-error - `value` type must be in accordance with the specified type
+				{ label: "Option 1", value: "1" },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			correctAnswer: 1,
+		},
+	]}
+/>;
+
+// Quiz with `string` type
+<Quiz<string>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				// @ts-expect-error - `value` type must be in accordance with the specified type
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: "2" },
+				{ label: "Option 3", value: "3" },
+			],
+		},
+	]}
+/>;
+
+// Quiz with `value` as number and `selectedAnswer` as string
+<Quiz<number>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+			selectedAnswer: "1",
+		},
+	]}
+/>;
+
+// Quiz with `value` as string and `selectedAnswer` as number
+<Quiz<string>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: "1" },
+				{ label: "Option 2", value: "2" },
+				{ label: "Option 3", value: "3" },
+			],
+			// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+			selectedAnswer: 1,
+		},
+	]}
+/>;
+
+// Quiz with `value` as number and `correctAnswer` as string
+<Quiz<number>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: 1 },
+				{ label: "Option 2", value: 2 },
+				{ label: "Option 3", value: 3 },
+			],
+			// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+			correctAnswer: "1",
+		},
+	]}
+/>;
+
+// Quiz with `value` as string and `correctAnswer` as number
+<Quiz<string>
+	questions={[
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{ label: "Option 1", value: "1" },
+				{ label: "Option 2", value: "2" },
+				{ label: "Option 3", value: "3" },
+			],
+			// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+			correctAnswer: 1,
+		},
+	]}
+/>;

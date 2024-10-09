@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { type Question } from "./types";
 
-interface Props {
-	initialQuestions: Question[];
+interface Props<AnswerT extends number | string> {
+	initialQuestions: Question<AnswerT>[];
 	validationMessages: {
 		correct: string;
 		incorrect: string;
@@ -12,16 +12,16 @@ interface Props {
 	onFailure?: () => void;
 }
 
-export const useQuiz = ({
+export const useQuiz = <AnswerT extends number | string>({
 	initialQuestions,
 	validationMessages,
 	onSuccess,
 	onFailure,
-}: Props) => {
-	const [quizAnswers, setQuizAnswers] = useState<Question["selectedAnswer"][]>(
-		initialQuestions.map((question) => question.selectedAnswer),
-	);
-	const [questions, setQuestions] = useState<Question[]>([]);
+}: Props<AnswerT>) => {
+	const [quizAnswers, setQuizAnswers] = useState<
+		Question<AnswerT>["selectedAnswer"][]
+	>(initialQuestions.map((question) => question.selectedAnswer));
+	const [questions, setQuestions] = useState<Question<AnswerT>[]>([]);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
 	// Initialize the `questions` state and make it synchronized with `quizAnswers`.
@@ -30,7 +30,7 @@ export const useQuiz = ({
 		const questionsWithChangeHandling = initialQuestions.map(
 			(question, index) => ({
 				...question,
-				onChange: (selectedAnswer: number) => {
+				onChange: (selectedAnswer: AnswerT) => {
 					setQuizAnswers((prevAnswers) =>
 						prevAnswers.map((prevAnswer, prevIndex) =>
 							prevIndex === index ? selectedAnswer : prevAnswer,
@@ -49,19 +49,21 @@ export const useQuiz = ({
 
 	const validateAnswers = () => {
 		setQuestions((prevQuestion) => {
-			const updatedQuestions: Question[] = prevQuestion.map((question) => {
-				const validation: Question["validation"] =
-					question.selectedAnswer === question.correctAnswer
-						? {
-								state: "correct",
-								message: validationMessages.correct,
-							}
-						: {
-								state: "incorrect",
-								message: validationMessages.incorrect,
-							};
-				return { ...question, validation };
-			});
+			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
+				(question) => {
+					const validation: Question<AnswerT>["validation"] =
+						question.selectedAnswer === question.correctAnswer
+							? {
+									state: "correct",
+									message: validationMessages.correct,
+								}
+							: {
+									state: "incorrect",
+									message: validationMessages.incorrect,
+								};
+					return { ...question, validation };
+				},
+			);
 
 			const correctCount = updatedQuestions.filter(
 				({ validation }) => validation?.state === "correct",

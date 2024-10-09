@@ -170,3 +170,64 @@ describe("<QuizQuestion />", () => {
 		).toBeInTheDocument();
 	});
 });
+
+// ------------------------------
+// Type tests
+// ------------------------------
+// QuizQuestion without explicit type
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: "1" },
+		// @ts-expect-error - values must have the same type
+		{ label: "Option 2", value: 2 },
+		// @ts-expect-error - values must have the same type
+		{ label: "Option 3", value: 3 },
+	]}
+/>;
+
+// QuizQuestion with `number` type
+<QuizQuestion<number>
+	question="Lorem ipsum"
+	answers={[
+		// @ts-expect-error - `value` type must be in accordance with the specified type
+		{ label: "Option 1", value: "1" },
+		{ label: "Option 2", value: 2 },
+		{ label: "Option 3", value: 3 },
+	]}
+/>;
+
+// QuizQuestion with `string` type
+<QuizQuestion<string>
+	question="Lorem ipsum"
+	answers={[
+		// @ts-expect-error - `value` type must be in accordance with the specified type
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: "2" },
+		{ label: "Option 3", value: "3" },
+	]}
+/>;
+
+// QuizQuestion with `value` as number and `selectedAnswer` as string
+<QuizQuestion<number>
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+		{ label: "Option 3", value: 3 },
+	]}
+	// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+	selectedAnswer="1"
+/>;
+
+// QuizQuestion with `value` as string and `selectedAnswer` as number
+<QuizQuestion<string>
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: "1" },
+		{ label: "Option 2", value: "2" },
+		{ label: "Option 3", value: "3" },
+	]}
+	// @ts-expect-error - `value` and `selectedAnswer` must have the same type
+	selectedAnswer={1}
+/>;
