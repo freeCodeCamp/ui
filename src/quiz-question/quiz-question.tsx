@@ -65,16 +65,15 @@ export const QuizQuestion = ({
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
 
-			{answers.map(({ value, label, feedback }) => (
-				<Answer
+			{answers.map(({ value, label, feedback }) => {
+				const checked = selectedAnswer === value;
 					key={value}
 					value={value}
 					label={label}
-					feedback={feedback}
-					checked={selectedAnswer === value}
+					feedback={checked && feedback}
+					checked={checked}
 					disabled={disabled}
-					validation={validation}
-					showFeedback={showFeedback}
+					validation={checked ? validation : undefined}
 				/>
 			))}
 		</RadioGroup>

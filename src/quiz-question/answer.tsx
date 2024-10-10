@@ -9,7 +9,6 @@ interface AnswerProps extends QuizQuestionAnswer {
 	checked?: boolean;
 	disabled?: boolean;
 	validation?: QuizQuestionValidation;
-	showFeedback?: boolean;
 }
 
 const radioIconDefaultClasses = [
@@ -109,11 +108,7 @@ export const Answer = ({
 	checked,
 	validation,
 	feedback,
-	showFeedback,
 }: AnswerProps) => {
-	const shouldShowValidation = checked && validation;
-	const shouldShowFeedback = checked && feedback && showFeedback;
-
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 
@@ -149,17 +144,17 @@ export const Answer = ({
 					</>
 				)}
 			</RadioGroup.Option>
-			{(shouldShowValidation || shouldShowFeedback) && (
+			{(!!validation || !!feedback) && (
 				// Remove the default bottom margin of the validation message `p`,
 				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
 				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
-					{shouldShowValidation && (
+					{validation && (
 						<ValidationMessage
 							state={validation.state}
 							message={validation.message}
 						/>
 					)}
-					{shouldShowFeedback && (
+					{feedback && (
 						<div className="text-foreground-primary">{feedback}</div>
 					)}
 				</div>
