@@ -49,11 +49,6 @@ export interface QuizQuestionProps {
 	selectedAnswer?: QuizQuestionAnswer["value"];
 
 	/**
-	 * Whether the feedback is displayed on the selected answer
-	 */
-	showFeedback?: boolean;
-
-	/**
 	 * Change event handler, called when an answer is selected
 	 */
 	onChange?: (selectedAnswer: QuizQuestionAnswer["value"]) => void;

@@ -20,7 +20,6 @@ const QuizQuestionComp = ({
 	validation,
 	position,
 	selectedAnswer,
-	showFeedback,
 }: Partial<QuizQuestionProps>) => {
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps["selectedAnswer"]>(selectedAnswer);
@@ -34,7 +33,6 @@ const QuizQuestionComp = ({
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
-			showFeedback={showFeedback}
 		/>
 	);
 };
@@ -325,7 +323,6 @@ export const CorrectWithAnswerFeedback: Story = {
 		validation: { state: "correct", message: "Correct." },
 		selectedAnswer: 1,
 		disabled: true,
-		showFeedback: true,
 	},
 	parameters: {
 		docs: {
@@ -354,7 +351,6 @@ export const CorrectWithAnswerFeedback: Story = {
       selectedAnswer={answer}
       validation: { state: "correct", message: "Correct." },
       disabled: true,
-      showFeedback: true,
     />
   );
 }`,
@@ -424,7 +420,6 @@ export const IncorrectWithAnswerFeedback: Story = {
 		validation: { state: "incorrect", message: "Incorrect." },
 		selectedAnswer: 1,
 		disabled: true,
-		showFeedback: true,
 	},
 	parameters: {
 		docs: {
@@ -453,7 +448,6 @@ export const IncorrectWithAnswerFeedback: Story = {
       selectedAnswer={answer}
       validation: { state: "incorrect", message: "Incorrect." },
       disabled: true,
-      showFeedback: true,
     />
   );
 }`,

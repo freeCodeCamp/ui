@@ -191,7 +191,6 @@ const QuizWithValidationAndAnswerFeedback = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		showFeedback: true,
 	});
 	const [disabled, setDisabled] = useState(false);
 
@@ -422,7 +421,6 @@ const App = () => {
       correct: "Correct.",
       incorrect: "Incorrect.",
 	  },
-		showFeedback: true,
 	});
 
   const [disabled, setDisabled] = useState(false);

@@ -10,7 +10,6 @@ interface Props {
 	};
 	onSuccess?: () => void;
 	onFailure?: () => void;
-	showFeedback?: boolean;
 }
 
 export const useQuiz = ({
@@ -18,7 +17,6 @@ export const useQuiz = ({
 	validationMessages,
 	onSuccess,
 	onFailure,
-	showFeedback,
 }: Props) => {
 	const [questions, setQuestions] = useState<Question[]>(initialQuestions);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
@@ -50,7 +48,7 @@ export const useQuiz = ({
 								state: "incorrect",
 								message: validationMessages.incorrect,
 							};
-				return { ...question, validation, showFeedback };
+				return { ...question, validation };
 			});
 
 			const correctCount = updatedQuestions.filter(
