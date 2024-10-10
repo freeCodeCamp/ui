@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
-export interface QuizQuestionAnswer {
+export interface QuizQuestionAnswer<T extends number | string> {
 	label: ReactNode;
-	value: number;
+	value: T;
 	feedback?: ReactNode;
 }
 
@@ -11,7 +11,7 @@ export interface QuizQuestionValidation {
 	message: string;
 }
 
-export interface QuizQuestionProps {
+export interface QuizQuestionProps<AnswerT extends number | string> {
 	/**
 	 * Question text, can be plain text or contain code.
 	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
@@ -21,7 +21,7 @@ export interface QuizQuestionProps {
 	/**
 	 * Answer options
 	 */
-	answers: QuizQuestionAnswer[];
+	answers: QuizQuestionAnswer<AnswerT>[];
 
 	/**
 	 * Position of the question amongst its siblings
@@ -46,10 +46,10 @@ export interface QuizQuestionProps {
 	/**
 	 * Value of the selected answer
 	 */
-	selectedAnswer?: QuizQuestionAnswer["value"];
+	selectedAnswer?: AnswerT;
 
 	/**
 	 * Change event handler, called when an answer is selected
 	 */
-	onChange?: (selectedAnswer: QuizQuestionAnswer["value"]) => void;
+	onChange?: (selectedAnswer: AnswerT) => void;
 }

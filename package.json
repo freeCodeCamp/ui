@@ -1,6 +1,6 @@
 {
   "name": "@freecodecamp/ui",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "license": "BSD-3-Clause",
   "description": "The freeCodeCamp.org open-source UI components",
@@ -60,8 +60,8 @@
     "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.25.7",
-    "@babel/preset-env": "7.25.7",
+    "@babel/core": "7.25.8",
+    "@babel/preset-env": "7.25.8",
     "@babel/preset-react": "7.25.7",
     "@babel/preset-typescript": "7.25.7",
     "@rollup/plugin-babel": "5.3.1",

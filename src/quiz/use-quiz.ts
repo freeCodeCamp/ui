@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { type Question } from "./types";
 
-interface Props {
-	initialQuestions: Question[];
+interface Props<AnswerT extends number | string> {
+	initialQuestions: Question<AnswerT>[];
 	validationMessages: {
 		correct: string;
 		incorrect: string;
@@ -12,18 +12,19 @@ interface Props {
 	onFailure?: () => void;
 }
 
-export const useQuiz = ({
+export const useQuiz = <AnswerT extends number | string>({
 	initialQuestions,
 	validationMessages,
 	onSuccess,
 	onFailure,
-}: Props) => {
-	const [questions, setQuestions] = useState<Question[]>(initialQuestions);
+}: Props<AnswerT>) => {
+	const [questions, setQuestions] =
+		useState<Question<AnswerT>[]>(initialQuestions);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
-		onChange: (selectedAnswer: number) => {
+		onChange: (selectedAnswer: AnswerT) => {
 			// update the selected answer for this question
 			setQuestions((prevQuestions) =>
 				prevQuestions.map((prevQuestion, prevIndex) =>
@@ -37,19 +38,21 @@ export const useQuiz = ({
 
 	const validateAnswers = () => {
 		setQuestions((prevQuestion) => {
-			const updatedQuestions: Question[] = prevQuestion.map((question) => {
-				const validation: Question["validation"] =
-					question.selectedAnswer === question.correctAnswer
-						? {
-								state: "correct",
-								message: validationMessages.correct,
-							}
-						: {
-								state: "incorrect",
-								message: validationMessages.incorrect,
-							};
-				return { ...question, validation };
-			});
+			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
+				(question) => {
+					const validation: Question<AnswerT>["validation"] =
+						question.selectedAnswer === question.correctAnswer
+							? {
+									state: "correct",
+									message: validationMessages.correct,
+								}
+							: {
+									state: "incorrect",
+									message: validationMessages.incorrect,
+								};
+					return { ...question, validation };
+				},
+			);
 
 			const correctCount = updatedQuestions.filter(
 				({ validation }) => validation?.state === "correct",
