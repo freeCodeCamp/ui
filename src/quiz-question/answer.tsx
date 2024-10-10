@@ -9,7 +9,6 @@ interface AnswerProps<AnswerT extends number | string>
 	extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
-	validation?: QuizQuestionValidation;
 }
 
 const radioIconDefaultClasses = [
@@ -108,14 +107,15 @@ export const Answer = <AnswerT extends number | string>({
 	disabled,
 	checked,
 	validation,
+	feedback,
 }: AnswerProps<AnswerT>) => {
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 
 		if (checked && validation?.state === "correct")
-			cls.push("bg-foreground-success");
+			cls.push("border-l-background-success");
 		if (checked && validation?.state === "incorrect")
-			cls.push("bg-foreground-danger");
+			cls.push("border-l-background-danger");
 
 		return cls.join(" ");
 	};
@@ -144,14 +144,19 @@ export const Answer = <AnswerT extends number | string>({
 					</>
 				)}
 			</RadioGroup.Option>
-			{checked && validation && (
+			{(!!validation || !!feedback) && (
 				// Remove the default bottom margin of the validation message `p`,
 				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
 				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
-					<ValidationMessage
-						state={validation.state}
-						message={validation.message}
-					/>
+					{validation && (
+						<ValidationMessage
+							state={validation.state}
+							message={validation.message}
+						/>
+					)}
+					{feedback && (
+						<div className="text-foreground-primary">{feedback}</div>
+					)}
 				</div>
 			)}
 		</div>
