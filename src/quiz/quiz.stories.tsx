@@ -15,7 +15,7 @@ const story = {
 type Story = StoryObj<typeof Quiz>;
 
 const QuizDefault = () => {
-	const initialQuestions: Question[] = [
+	const initialQuestions: Question<number>[] = [
 		{
 			question: "Lorem ipsum dolor sit amet",
 			answers: [
@@ -57,7 +57,7 @@ const QuizDefault = () => {
 };
 
 const QuizWithValidation = () => {
-	const initialQuestions: Question[] = [
+	const initialQuestions: Question<number>[] = [
 		{
 			question: "Lorem ipsum dolor sit amet",
 			answers: [

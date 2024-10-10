@@ -13,16 +13,16 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
-const QuizQuestionComp = ({
+const QuizQuestionComp = <AnswerT extends number | string>({
 	question,
 	answers = [],
 	disabled,
 	validation,
 	position,
 	selectedAnswer,
-}: Partial<QuizQuestionProps>) => {
+}: Partial<QuizQuestionProps<AnswerT>>) => {
 	const [answer, setAnswer] =
-		useState<QuizQuestionProps["selectedAnswer"]>(selectedAnswer);
+		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
 
 	return (
 		<QuizQuestion

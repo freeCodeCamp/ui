@@ -1,15 +1,13 @@
 import React from "react";
 
 import { QuizQuestion } from "../quiz-question";
-import { type Question } from "./types";
+import { type QuizProps } from "./types";
 
-export interface QuizProps {
-	questions: Question[];
-	disabled?: boolean;
-	required?: boolean;
-}
-
-export const Quiz = ({ questions, disabled, required }: QuizProps) => {
+export const Quiz = <AnswerT extends number | string>({
+	questions,
+	disabled,
+	required,
+}: QuizProps<AnswerT>) => {
 	return (
 		<ul className="flex flex-col gap-y-[24px]">
 			{questions.map((question, index) => (

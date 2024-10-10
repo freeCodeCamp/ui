@@ -5,7 +5,8 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
 
-interface AnswerProps extends QuizQuestionAnswer {
+interface AnswerProps<AnswerT extends number | string>
+	extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
 	validation?: QuizQuestionValidation;
@@ -101,13 +102,13 @@ const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
 	);
 };
 
-export const Answer = ({
+export const Answer = <AnswerT extends number | string>({
 	value,
 	label,
 	disabled,
 	checked,
 	validation,
-}: AnswerProps) => {
+}: AnswerProps<AnswerT>) => {
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 

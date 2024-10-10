@@ -32,7 +32,7 @@ const QuestionText = ({
  * but instead, it provides a `selectedAnswer` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
-export const QuizQuestion = ({
+export const QuizQuestion = <AnswerT extends number | string>({
 	question,
 	answers,
 	required,
@@ -41,8 +41,10 @@ export const QuizQuestion = ({
 	selectedAnswer,
 	onChange,
 	position,
-}: QuizQuestionProps) => {
-	const handleChange = (selectedOption: QuizQuestionAnswer["value"]) => {
+}: QuizQuestionProps<AnswerT>) => {
+	const handleChange = (
+		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
+	) => {
 		if (!onChange) {
 			return;
 		}
