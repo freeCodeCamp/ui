@@ -126,18 +126,10 @@ describe("<QuizQuestion />", () => {
 					{
 						label: "Option 2",
 						value: 2,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
 					},
 					{
 						label: "Option 3",
 						value: 3,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
 					},
 				]}
 				selectedAnswer={1}
@@ -157,28 +149,20 @@ describe("<QuizQuestion />", () => {
 						label: "Option 1",
 						value: 1,
 						validation: {
-							state: "correct",
-							message: "Correct.",
+							state: "incorrect",
+							message: "Incorrect.",
 						},
 					},
 					{
 						label: "Option 2",
 						value: 2,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
 					},
 					{
 						label: "Option 3",
 						value: 3,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
 					},
 				]}
-				selectedAnswer={2}
+				selectedAnswer={1}
 			/>,
 		);
 
@@ -221,20 +205,10 @@ describe("<QuizQuestion />", () => {
 					{
 						label: "Option 2",
 						value: 2,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
-						feedback: "Culpa dolores aut.",
 					},
 					{
 						label: "Option 3",
 						value: 3,
-						validation: {
-							state: "incorrect",
-							message: "Incorrect.",
-						},
-						feedback: "Culpa dolores aut.",
 					},
 				]}
 				selectedAnswer={1}

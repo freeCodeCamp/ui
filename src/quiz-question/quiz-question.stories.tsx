@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { PrismFormatted } from "../prism-formatted";
 
 import { QuizQuestion } from "./quiz-question";
-import type { QuizQuestionProps, QuizQuestionAnswer } from "./types";
+import type { QuizQuestionProps } from "./types";
 
 const story = {
 	title: "Components/QuizQuestion",
@@ -12,33 +12,6 @@ const story = {
 } satisfies Meta<typeof QuizQuestion>;
 
 type Story = StoryObj<typeof QuizQuestion>;
-
-const answersWithValidation: QuizQuestionAnswer<number>[] = [
-	{
-		label: "Option 1",
-		value: 1,
-		validation: {
-			state: "correct",
-			message: "Correct.",
-		},
-	},
-	{
-		label: "Option 2",
-		value: 2,
-		validation: {
-			state: "incorrect",
-			message: "Incorrect.",
-		},
-	},
-	{
-		label: "Option 3",
-		value: 3,
-		validation: {
-			state: "incorrect",
-			message: "Incorrect.",
-		},
-	},
-];
 
 const QuizQuestionComp = <AnswerT extends number | string>({
 	question,
@@ -291,7 +264,24 @@ export const Correct: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-		answers: answersWithValidation,
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				validation: {
+					state: "correct",
+					message: "Correct.",
+				},
+			},
+			{
+				label: "Option 2",
+				value: 2,
+			},
+			{
+				label: "Option 3",
+				value: 3,
+			},
+		],
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -305,7 +295,14 @@ export const Correct: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
-        { label: "Option 1", value: 1 },
+        { 
+			    label: "Option 1",
+					value: 1,
+					validation: {
+					  state: "correct",
+					  message: "Correct.",
+				  },
+				},
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
@@ -384,8 +381,25 @@ export const Incorrect: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-		answers: answersWithValidation,
-		selectedAnswer: 2,
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				validation: {
+					state: "incorrect",
+					message: "Incorrect.",
+				},
+			},
+			{
+				label: "Option 2",
+				value: 2,
+			},
+			{
+				label: "Option 3",
+				value: 3,
+			},
+		],
+		selectedAnswer: 1,
 		disabled: true,
 	},
 	parameters: {

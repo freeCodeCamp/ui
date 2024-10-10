@@ -42,16 +42,21 @@ export const useQuiz = <AnswerT extends number | string>({
 			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
 				(question) => {
 					const answersWithValidation = question.answers.map((answer) => {
-						const validation: QuizQuestionAnswer<AnswerT>["validation"] =
-							answer.value === question.correctAnswer
-								? {
-										state: "correct",
-										message: validationMessages.correct,
-									}
-								: {
-										state: "incorrect",
-										message: validationMessages.incorrect,
-									};
+						let validation: QuizQuestionAnswer<AnswerT>["validation"];
+
+						// Only pass validation to the selected answer
+						if (answer.value === question.selectedAnswer) {
+							validation =
+								answer.value === question.correctAnswer
+									? {
+											state: "correct",
+											message: validationMessages.correct,
+										}
+									: {
+											state: "incorrect",
+											message: validationMessages.incorrect,
+										};
+						}
 
 						return { ...answer, validation };
 					});
