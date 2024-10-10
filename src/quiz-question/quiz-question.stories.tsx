@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { PrismFormatted } from "../prism-formatted";
 
 import { QuizQuestion } from "./quiz-question";
-import { type QuizQuestionProps } from "./types";
+import type { QuizQuestionProps, QuizQuestionAnswer } from "./types";
 
 const story = {
 	title: "Components/QuizQuestion",
@@ -13,11 +13,37 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
+const answersWithValidation: QuizQuestionAnswer<number>[] = [
+	{
+		label: "Option 1",
+		value: 1,
+		validation: {
+			state: "correct",
+			message: "Correct.",
+		},
+	},
+	{
+		label: "Option 2",
+		value: 2,
+		validation: {
+			state: "incorrect",
+			message: "Incorrect.",
+		},
+	},
+	{
+		label: "Option 3",
+		value: 3,
+		validation: {
+			state: "incorrect",
+			message: "Incorrect.",
+		},
+	},
+];
+
 const QuizQuestionComp = <AnswerT extends number | string>({
 	question,
 	answers = [],
 	disabled,
-	validation,
 	position,
 	selectedAnswer,
 }: Partial<QuizQuestionProps<AnswerT>>) => {
@@ -29,7 +55,6 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 			question={question}
 			answers={answers}
 			disabled={disabled}
-			validation={validation}
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
@@ -266,12 +291,7 @@ export const Correct: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
-		],
-		validation: { state: "correct", message: "Correct." },
+		answers: answersWithValidation,
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -316,11 +336,11 @@ export const CorrectWithAnswerFeedback: Story = {
 						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
 					/>
 				),
+				validation: { state: "correct", message: "Correct." },
 			},
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		validation: { state: "correct", message: "Correct." },
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -343,6 +363,7 @@ export const CorrectWithAnswerFeedback: Story = {
               getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
             />
           ),
+					validation: { state: "correct", message: "Correct." },
         },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
@@ -363,13 +384,8 @@ export const Incorrect: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
-		],
-		validation: { state: "incorrect", message: "Incorrect." },
-		selectedAnswer: 1,
+		answers: answersWithValidation,
+		selectedAnswer: 2,
 		disabled: true,
 	},
 	parameters: {
@@ -413,11 +429,11 @@ export const IncorrectWithAnswerFeedback: Story = {
 						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
 					/>
 				),
+				validation: { state: "incorrect", message: "Incorrect." },
 			},
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		validation: { state: "incorrect", message: "Incorrect." },
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -440,6 +456,7 @@ export const IncorrectWithAnswerFeedback: Story = {
               getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
             />
           ),
+					validation: { state: "incorrect", message: "Incorrect." },
         },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }

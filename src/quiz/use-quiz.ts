@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { type Question } from "./types";
+import { QuizQuestionAnswer } from "../quiz-question";
 
 interface Props<AnswerT extends number | string> {
 	initialQuestions: Question<AnswerT>[];
@@ -40,22 +41,27 @@ export const useQuiz = <AnswerT extends number | string>({
 		setQuestions((prevQuestion) => {
 			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
 				(question) => {
-					const validation: Question<AnswerT>["validation"] =
-						question.selectedAnswer === question.correctAnswer
-							? {
-									state: "correct",
-									message: validationMessages.correct,
-								}
-							: {
-									state: "incorrect",
-									message: validationMessages.incorrect,
-								};
-					return { ...question, validation };
+					const answersWithValidation = question.answers.map((answer) => {
+						const validation: QuizQuestionAnswer<AnswerT>["validation"] =
+							answer.value === question.correctAnswer
+								? {
+										state: "correct",
+										message: validationMessages.correct,
+									}
+								: {
+										state: "incorrect",
+										message: validationMessages.incorrect,
+									};
+
+						return { ...answer, validation };
+					});
+
+					return { ...question, answers: answersWithValidation };
 				},
 			);
 
 			const correctCount = updatedQuestions.filter(
-				({ validation }) => validation?.state === "correct",
+				({ selectedAnswer, correctAnswer }) => selectedAnswer === correctAnswer,
 			).length;
 
 			setCorrectAnswerCount(correctCount);

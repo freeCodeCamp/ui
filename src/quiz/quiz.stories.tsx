@@ -113,7 +113,7 @@ const QuizWithValidation = () => {
 };
 
 const QuizWithValidationAndAnswerFeedback = () => {
-	const initialQuestions: Question[] = [
+	const initialQuestions: Question<number>[] = [
 		{
 			question: "Lorem ipsum dolor sit amet",
 			answers: [

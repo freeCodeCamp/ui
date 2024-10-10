@@ -9,7 +9,6 @@ interface AnswerProps<AnswerT extends number | string>
 	extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
-	validation?: QuizQuestionValidation;
 }
 
 const radioIconDefaultClasses = [

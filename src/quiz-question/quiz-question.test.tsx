@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { QuizQuestion } from "./quiz-question";
-import userEvent from "@testing-library/user-event";
 
 describe("<QuizQuestion />", () => {
 	it("should render as a radio group", () => {
@@ -115,14 +115,31 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+					},
 				]}
-				validation={{
-					state: "correct",
-					message: "Correct.",
-				}}
 				selectedAnswer={1}
 			/>,
 		);
@@ -136,15 +153,32 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+					},
 				]}
-				validation={{
-					state: "incorrect",
-					message: "Incorrect.",
-				}}
-				selectedAnswer={1}
+				selectedAnswer={2}
 			/>,
 		);
 
@@ -175,15 +209,35 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+						feedback: "Quis vel quo saepe.",
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
 				]}
 				selectedAnswer={1}
-				validation={{
-					state: "incorrect",
-					message: "Incorrect.",
-				}}
 			/>,
 		);
 
@@ -217,15 +271,35 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
-					{ label: "Option 2", value: 2, feedback: "Culpa dolores aut." },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+						feedback: "Quis vel quo saepe.",
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
 				]}
 				selectedAnswer={1}
-				validation={{
-					state: "incorrect",
-					message: "Incorrect.",
-				}}
 			/>,
 		);
 
