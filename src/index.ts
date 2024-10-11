@@ -22,4 +22,5 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
 export { Quiz, useQuiz } from "./quiz";
 export { QuizQuestion } from "./quiz-question";
 
+export { usePageLeave } from "./hooks";
 export { getThemingClass } from "./utils";
