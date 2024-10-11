@@ -40,7 +40,6 @@
 	h6,
 	p {
 		margin-bottom: 12.5px;
-		color: var(--foreground-primary);
 	}
 
 	/* Override the Tailwind's placeholder text color. */
