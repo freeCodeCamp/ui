@@ -52,6 +52,7 @@ const radioOptionDefaultClasses = [
 	"p-[20px]",
 	"flex",
 	"items-center",
+	"bg-background-primary",
 ];
 
 const radioWrapperDefaultClasses = [
