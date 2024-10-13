@@ -87,6 +87,9 @@ importers:
       '@storybook/blocks':
         specifier: 8.3.5
         version: 8.3.5(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(storybook@8.3.5)
+      '@storybook/manager-api':
+        specifier: ^8.3.5
+        version: 8.3.5(storybook@8.3.5)
       '@storybook/react':
         specifier: 8.3.5
         version: 8.3.5(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(storybook@8.3.5)(typescript@5.6.3)
