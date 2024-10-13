@@ -1,4 +1,6 @@
-module.exports = {
+import type { StorybookConfig } from "@storybook/react-webpack5";
+
+const config: StorybookConfig = {
 	stories: ["../src/**/*.mdx", "../src/**/*.stories.tsx"],
 
 	addons: [
@@ -7,22 +9,21 @@ module.exports = {
 		"@storybook/addon-a11y",
 		{
 			name: "@storybook/addon-styling-webpack",
-
 			options: {
 				rules: [
 					{
 						test: /\.css$/,
 						sideEffects: true,
 						use: [
-							require.resolve("style-loader"),
+							"style-loader",
 							{
-								loader: require.resolve("css-loader"),
+								loader: "css-loader",
 								options: {
 									importLoaders: 1,
 								},
 							},
 							{
-								loader: require.resolve("postcss-loader"),
+								loader: "postcss-loader",
 								options: {
 									implementation: require.resolve("postcss"),
 								},
@@ -57,3 +58,5 @@ module.exports = {
 
 	staticDirs: [{ from: "../src/assets", to: "/assets" }],
 };
+
+export default config;
