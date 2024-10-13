@@ -103,7 +103,11 @@ const QuizWithValidation = () => {
 
 	return (
 		<div>
-			{correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			{correctAnswerCount > -1 && (
+				<div aria-live="polite">
+					<p>Correct answers: {correctAnswerCount}</p>
+				</div>
+			)}
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>

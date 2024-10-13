@@ -20,7 +20,7 @@ export const useQuiz = <AnswerT extends number | string>({
 }: Props<AnswerT>) => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
-	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+	const [correctAnswerCount, setCorrectAnswerCount] = useState(-1);
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
