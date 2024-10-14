@@ -1,8 +1,4 @@
-import type {
-	QuizQuestionAnswer,
-	QuizQuestionValidation,
-	QuizQuestionProps,
-} from "../quiz-question";
+import type { QuizQuestionAnswer, QuizQuestionProps } from "../quiz-question";
 
 export interface QuizProps<AnswerT extends number | string> {
 	questions: Question<AnswerT>[];
@@ -36,11 +32,6 @@ export interface Question<AnswerT extends number | string> {
 	 * Change event handler, called when an answer is selected
 	 */
 	onChange?: (selectedAnswer: AnswerT) => void;
-
-	/**
-	 * Information needed to render the validation status
-	 */
-	validation?: QuizQuestionValidation;
 
 	/**
 	 * Value of the selected answer

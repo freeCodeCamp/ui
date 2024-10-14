@@ -3,6 +3,12 @@ import { ReactNode } from "react";
 export interface QuizQuestionAnswer<T extends number | string> {
 	label: ReactNode;
 	value: T;
+	feedback?: ReactNode;
+
+	/**
+	 * Information needed to render the validation status
+	 */
+	validation?: QuizQuestionValidation;
 }
 
 export interface QuizQuestionValidation {
@@ -36,11 +42,6 @@ export interface QuizQuestionProps<AnswerT extends number | string> {
 	 * Whether the question is disabled
 	 */
 	disabled?: boolean;
-
-	/**
-	 * Information needed to render the validation status
-	 */
-	validation?: QuizQuestionValidation;
 
 	/**
 	 * Value of the selected answer
