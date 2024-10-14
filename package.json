@@ -26,6 +26,7 @@
   "homepage": "https://github.com/freeCodeCamp/ui#readme",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepublishOnly": "pnpm run build",
     "build-storybook": "storybook build",
     "build": "pnpm clean && pnpm build:css && pnpm build:js",
     "build:js": "cross-env NODE_ENV=production rollup -c",
