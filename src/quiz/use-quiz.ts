@@ -8,6 +8,7 @@ interface Props<AnswerT extends number | string> {
 		correct: string;
 		incorrect: string;
 	};
+	passingGrade?: number;
 	onSuccess?: () => void;
 	onFailure?: () => void;
 }
@@ -17,10 +18,12 @@ export const useQuiz = <AnswerT extends number | string>({
 	validationMessages,
 	onSuccess,
 	onFailure,
+	passingGrade = 100,
 }: Props<AnswerT>) => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+	const [grade, setGrade] = useState(0);
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
@@ -60,7 +63,13 @@ export const useQuiz = <AnswerT extends number | string>({
 
 			setCorrectAnswerCount(correctCount);
 
-			if (correctCount === initialQuestions.length) {
+			const grade = parseFloat(
+				((correctCount / initialQuestions.length) * 100).toFixed(2),
+			);
+
+			setGrade(grade);
+
+			if (grade >= passingGrade) {
 				onSuccess && onSuccess();
 			} else {
 				onFailure && onFailure();
@@ -74,5 +83,6 @@ export const useQuiz = <AnswerT extends number | string>({
 		questions: questionsWithChangeHandling,
 		validateAnswers,
 		correctAnswerCount,
+		grade,
 	};
 };
