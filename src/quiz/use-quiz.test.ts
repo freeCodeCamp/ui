@@ -161,6 +161,10 @@ describe("useQuiz", () => {
 			}),
 		);
 
+		expect(result.current.validated).toBe(false);
+		expect(result.current.correctAnswerCount).toBeUndefined();
+		expect(result.current.grade).toBeUndefined();
+
 		act(() => {
 			result.current.validateAnswers();
 		});
@@ -169,6 +173,7 @@ describe("useQuiz", () => {
 		expect(result.current.questions[1].validation?.message).toBe("Incorrect");
 		expect(result.current.correctAnswerCount).toBe(1);
 		expect(result.current.grade).toBe(50);
+		expect(result.current.validated).toBe(true);
 	});
 
 	it("should call the `onSuccess` function if the quiz results meet the passing grade", () => {

@@ -2,8 +2,17 @@ import { useState } from "react";
 
 import { type Question } from "./types";
 
+type InitialQuestion<AnswerT extends number | string> = Omit<
+	Question<AnswerT>,
+	"onChange"
+>;
+
+type ReturnedQuestion<AnswerT extends number | string> = Question<AnswerT> & {
+	onChange: (selectedAnswer: AnswerT) => void;
+};
+
 interface Props<AnswerT extends number | string> {
-	initialQuestions: Question<AnswerT>[];
+	initialQuestions: InitialQuestion<AnswerT>[];
 	validationMessages: {
 		correct: string;
 		incorrect: string;
@@ -13,17 +22,27 @@ interface Props<AnswerT extends number | string> {
 	onFailure?: () => void;
 }
 
+type ValidationData =
+	| { validated: true; grade: number; correctAnswerCount: number }
+	| { validated: false; grade: undefined; correctAnswerCount: undefined };
+
+type UseQuizReturnType<AnswerT extends number | string> = ValidationData & {
+	questions: ReturnedQuestion<AnswerT>[];
+	validateAnswers: () => void;
+};
+
 export const useQuiz = <AnswerT extends number | string>({
 	initialQuestions,
 	validationMessages,
 	onSuccess,
 	onFailure,
 	passingGrade = 100,
-}: Props<AnswerT>) => {
+}: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
-	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
-	const [grade, setGrade] = useState(0);
+	const [correctAnswerCount, setCorrectAnswerCount] = useState<number>();
+	const [grade, setGrade] = useState<number>();
+	const [validated, setValidated] = useState(false);
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
@@ -61,13 +80,13 @@ export const useQuiz = <AnswerT extends number | string>({
 				({ validation }) => validation?.state === "correct",
 			).length;
 
-			setCorrectAnswerCount(correctCount);
-
 			const grade = parseFloat(
 				((correctCount / initialQuestions.length) * 100).toFixed(2),
 			);
 
+			setCorrectAnswerCount(correctCount);
 			setGrade(grade);
+			setValidated(true);
 
 			if (grade >= passingGrade) {
 				onSuccess && onSuccess();
@@ -82,7 +101,12 @@ export const useQuiz = <AnswerT extends number | string>({
 	return {
 		questions: questionsWithChangeHandling,
 		validateAnswers,
-		correctAnswerCount,
-		grade,
+		...(validated
+			? {
+					validated: true,
+					correctAnswerCount: correctAnswerCount as number,
+					grade: grade as number,
+				}
+			: { validated: false, correctAnswerCount: undefined, grade: undefined }),
 	};
 };
