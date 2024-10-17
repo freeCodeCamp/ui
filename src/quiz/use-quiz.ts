@@ -24,7 +24,7 @@ interface Props<AnswerT extends number | string> {
 
 type ValidationData =
 	| { validated: true; grade: number; correctAnswerCount: number }
-	| { validated: false; grade: undefined; correctAnswerCount: undefined };
+	| { validated: false; grade?: never; correctAnswerCount?: never };
 
 type UseQuizReturnType<AnswerT extends number | string> = ValidationData & {
 	questions: ReturnedQuestion<AnswerT>[];
@@ -40,9 +40,9 @@ export const useQuiz = <AnswerT extends number | string>({
 }: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
-	const [correctAnswerCount, setCorrectAnswerCount] = useState<number>();
-	const [grade, setGrade] = useState<number>();
-	const [validated, setValidated] = useState(false);
+	const [validation, setValidation] = useState<ValidationData>({
+		validated: false,
+	});
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
@@ -84,9 +84,12 @@ export const useQuiz = <AnswerT extends number | string>({
 				((correctCount / initialQuestions.length) * 100).toFixed(2),
 			);
 
-			setCorrectAnswerCount(correctCount);
-			setGrade(grade);
-			setValidated(true);
+			setValidation({
+				validated: true,
+				grade,
+				correctAnswerCount: correctCount,
+			});
+
 
 			if (grade >= passingGrade) {
 				onSuccess && onSuccess();
@@ -101,12 +104,6 @@ export const useQuiz = <AnswerT extends number | string>({
 	return {
 		questions: questionsWithChangeHandling,
 		validateAnswers,
-		...(validated
-			? {
-					validated: true,
-					correctAnswerCount: correctAnswerCount as number,
-					grade: grade as number,
-				}
-			: { validated: false, correctAnswerCount: undefined, grade: undefined }),
+		...validation,
 	};
 };
