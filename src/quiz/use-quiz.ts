@@ -17,7 +17,7 @@ interface Props<AnswerT extends number | string> {
 		correct: string;
 		incorrect: string;
 	};
-	passingGrade?: number;
+	passingGrade: number;
 	onSuccess?: () => void;
 	onFailure?: () => void;
 }
@@ -36,7 +36,7 @@ export const useQuiz = <AnswerT extends number | string>({
 	validationMessages,
 	onSuccess,
 	onFailure,
-	passingGrade = 100,
+	passingGrade,
 }: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
@@ -89,7 +89,6 @@ export const useQuiz = <AnswerT extends number | string>({
 				grade,
 				correctAnswerCount: correctCount,
 			});
-
 
 			if (grade >= passingGrade) {
 				onSuccess && onSuccess();
