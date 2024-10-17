@@ -51,6 +51,7 @@ const QuizDefault = () => {
 			correct: "Correct",
 			incorrect: "Incorrect",
 		},
+		passingGrade: 100,
 	});
 
 	return <Quiz questions={questions} />;
@@ -93,6 +94,7 @@ const QuizWithValidation = () => {
 			correct: "Correct",
 			incorrect: "Incorrect",
 		},
+		passingGrade: 100,
 	});
 	const [disabled, setDisabled] = useState(false);
 

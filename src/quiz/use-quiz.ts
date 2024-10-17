@@ -2,25 +2,47 @@ import { useState } from "react";
 
 import { type Question } from "./types";
 
+type InitialQuestion<AnswerT extends number | string> = Omit<
+	Question<AnswerT>,
+	"onChange"
+>;
+
+type ReturnedQuestion<AnswerT extends number | string> = Question<AnswerT> & {
+	onChange: (selectedAnswer: AnswerT) => void;
+};
+
 interface Props<AnswerT extends number | string> {
-	initialQuestions: Question<AnswerT>[];
+	initialQuestions: InitialQuestion<AnswerT>[];
 	validationMessages: {
 		correct: string;
 		incorrect: string;
 	};
+	passingGrade: number;
 	onSuccess?: () => void;
 	onFailure?: () => void;
 }
+
+type ValidationData =
+	| { validated: true; grade: number; correctAnswerCount: number }
+	| { validated: false; grade?: never; correctAnswerCount?: never };
+
+type UseQuizReturnType<AnswerT extends number | string> = ValidationData & {
+	questions: ReturnedQuestion<AnswerT>[];
+	validateAnswers: () => void;
+};
 
 export const useQuiz = <AnswerT extends number | string>({
 	initialQuestions,
 	validationMessages,
 	onSuccess,
 	onFailure,
-}: Props<AnswerT>) => {
+	passingGrade,
+}: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
-	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+	const [validation, setValidation] = useState<ValidationData>({
+		validated: false,
+	});
 
 	const questionsWithChangeHandling = questions.map((question, index) => ({
 		...question,
@@ -58,9 +80,17 @@ export const useQuiz = <AnswerT extends number | string>({
 				({ validation }) => validation?.state === "correct",
 			).length;
 
-			setCorrectAnswerCount(correctCount);
+			const grade = parseFloat(
+				((correctCount / initialQuestions.length) * 100).toFixed(2),
+			);
 
-			if (correctCount === initialQuestions.length) {
+			setValidation({
+				validated: true,
+				grade,
+				correctAnswerCount: correctCount,
+			});
+
+			if (grade >= passingGrade) {
 				onSuccess && onSuccess();
 			} else {
 				onFailure && onFailure();
@@ -73,6 +103,6 @@ export const useQuiz = <AnswerT extends number | string>({
 	return {
 		questions: questionsWithChangeHandling,
 		validateAnswers,
-		correctAnswerCount,
+		...validation,
 	};
 };
