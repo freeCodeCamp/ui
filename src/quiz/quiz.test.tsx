@@ -41,6 +41,7 @@ const ControlledQuiz = ({ disabled, required }: Partial<QuizProps<number>>) => {
 			correct: "Correct",
 			incorrect: "Incorrect",
 		},
+		passingGrade: 80,
 	});
 
 	return <Quiz questions={questions} disabled={disabled} required={required} />;

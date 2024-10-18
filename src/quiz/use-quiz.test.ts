@@ -32,6 +32,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
+				passingGrade: 100,
 			}),
 		);
 
@@ -89,6 +90,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
+				passingGrade: 100,
 			}),
 		);
 
@@ -122,6 +124,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
+				passingGrade: 100,
 			}),
 		);
 
@@ -158,8 +161,13 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
+				passingGrade: 100,
 			}),
 		);
+
+		expect(result.current.validated).toBe(false);
+		expect(result.current.correctAnswerCount).toBeUndefined();
+		expect(result.current.grade).toBeUndefined();
 
 		act(() => {
 			result.current.validateAnswers();
@@ -185,9 +193,11 @@ describe("useQuiz", () => {
 			"Incorrect",
 		);
 		expect(result.current.correctAnswerCount).toBe(1);
+		expect(result.current.grade).toBe(50);
+		expect(result.current.validated).toBe(true);
 	});
 
-	it("should call the `onSuccess` function if all answers are correct", () => {
+	it("should call the `onSuccess` function if the quiz results meet the passing grade", () => {
 		const onSuccess = jest.fn();
 		const onFailure = jest.fn();
 
@@ -218,6 +228,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
+				passingGrade: 100,
 			}),
 		);
 
@@ -229,7 +240,7 @@ describe("useQuiz", () => {
 		expect(onFailure).toHaveBeenCalledTimes(0);
 	});
 
-	it("should call the `onFailure` function if not all answers are correct", () => {
+	it("should call the `onFailure` function if the quiz results don't meet the passing grade", () => {
 		const onSuccess = jest.fn();
 		const onFailure = jest.fn();
 
@@ -260,6 +271,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
+				passingGrade: 100,
 			}),
 		);
 
@@ -269,5 +281,48 @@ describe("useQuiz", () => {
 
 		expect(onSuccess).toHaveBeenCalledTimes(0);
 		expect(onFailure).toHaveBeenCalledTimes(1);
+	});
+
+	it("should register the passing grade correctly", () => {
+		const onSuccess = jest.fn();
+		const onFailure = jest.fn();
+
+		const { result } = renderHook(() =>
+			useQuiz({
+				initialQuestions: [
+					{
+						question: "Lorem ipsum dolor sit amet",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 1,
+						correctAnswer: 2,
+					},
+					{
+						question: "Consectetur adipiscing elit",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 3,
+						correctAnswer: 3,
+					},
+				],
+				validationMessages,
+				onSuccess,
+				onFailure,
+				passingGrade: 50,
+			}),
+		);
+
+		act(() => {
+			result.current.validateAnswers();
+		});
+
+		expect(onSuccess).toHaveBeenCalledTimes(1);
+		expect(onFailure).toHaveBeenCalledTimes(0);
 	});
 });
