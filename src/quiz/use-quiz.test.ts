@@ -173,8 +173,25 @@ describe("useQuiz", () => {
 			result.current.validateAnswers();
 		});
 
-		expect(result.current.questions[0].validation?.message).toBe("Correct");
-		expect(result.current.questions[1].validation?.message).toBe("Incorrect");
+		expect(result.current.questions[0].answers[0].validation?.message).toBe(
+			"Correct",
+		);
+		expect(
+			result.current.questions[0].answers[1].validation?.message,
+		).toBeUndefined();
+		expect(
+			result.current.questions[0].answers[2].validation?.message,
+		).toBeUndefined();
+
+		expect(
+			result.current.questions[1].answers[0].validation?.message,
+		).toBeUndefined();
+		expect(
+			result.current.questions[1].answers[1].validation?.message,
+		).toBeUndefined();
+		expect(result.current.questions[1].answers[2].validation?.message).toBe(
+			"Incorrect",
+		);
 		expect(result.current.correctAnswerCount).toBe(1);
 		expect(result.current.grade).toBe(50);
 		expect(result.current.validated).toBe(true);

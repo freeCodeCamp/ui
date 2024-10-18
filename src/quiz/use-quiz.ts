@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { type Question } from "./types";
+import { QuizQuestionAnswer } from "../quiz-question";
 
 type InitialQuestion<AnswerT extends number | string> = Omit<
 	Question<AnswerT>,
@@ -62,22 +63,32 @@ export const useQuiz = <AnswerT extends number | string>({
 		setQuestions((prevQuestion) => {
 			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
 				(question) => {
-					const validation: Question<AnswerT>["validation"] =
-						question.selectedAnswer === question.correctAnswer
-							? {
-									state: "correct",
-									message: validationMessages.correct,
-								}
-							: {
-									state: "incorrect",
-									message: validationMessages.incorrect,
-								};
-					return { ...question, validation };
+					const answersWithValidation = question.answers.map((answer) => {
+						let validation: QuizQuestionAnswer<AnswerT>["validation"];
+
+						// Only pass validation to the selected answer
+						if (answer.value === question.selectedAnswer) {
+							validation =
+								answer.value === question.correctAnswer
+									? {
+											state: "correct",
+											message: validationMessages.correct,
+										}
+									: {
+											state: "incorrect",
+											message: validationMessages.incorrect,
+										};
+						}
+
+						return { ...answer, validation };
+					});
+
+					return { ...question, answers: answersWithValidation };
 				},
 			);
 
 			const correctCount = updatedQuestions.filter(
-				({ validation }) => validation?.state === "correct",
+				({ selectedAnswer, correctAnswer }) => selectedAnswer === correctAnswer,
 			).length;
 
 			const grade = parseFloat(

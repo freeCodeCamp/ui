@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { QuizQuestion } from "./quiz-question";
-import userEvent from "@testing-library/user-event";
 
 describe("<QuizQuestion />", () => {
 	it("should render as a radio group", () => {
@@ -115,14 +115,23 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+					},
+					{
+						label: "Option 3",
+						value: 3,
+					},
 				]}
-				validation={{
-					state: "correct",
-					message: "Correct.",
-				}}
 				selectedAnswer={1}
 			/>,
 		);
@@ -136,14 +145,23 @@ describe("<QuizQuestion />", () => {
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+					},
+					{
+						label: "Option 3",
+						value: 3,
+					},
 				]}
-				validation={{
-					state: "incorrect",
-					message: "Incorrect.",
-				}}
 				selectedAnswer={1}
 			/>,
 		);
@@ -168,6 +186,106 @@ describe("<QuizQuestion />", () => {
 		expect(
 			screen.getByRole("radiogroup", { name: "1. Lorem ipsum" }),
 		).toBeInTheDocument();
+	});
+
+	it("should render answer feedback if both `feedback` and `validation` are provided", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+						feedback: "Quis vel quo saepe.",
+					},
+					{
+						label: "Option 2",
+						value: 2,
+					},
+					{
+						label: "Option 3",
+						value: 3,
+					},
+				]}
+				selectedAnswer={1}
+			/>,
+		);
+
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(
+			within(radioGroup).getByText("Quis vel quo saepe."),
+		).toBeInTheDocument();
+	});
+
+	it("should not render answer feedback if `feedback` is provided but `validation` is not", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				selectedAnswer={1}
+			/>,
+		);
+
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+		expect(
+			within(radioGroup).queryByText("Quis vel quo saepe."),
+		).not.toBeInTheDocument();
+	});
+
+	it("should only render the feedback of the selected answer", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							state: "correct",
+							message: "Correct.",
+						},
+						feedback: "Quis vel quo saepe.",
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							state: "incorrect",
+							message: "Incorrect.",
+						},
+						feedback: "Culpa dolores aut.",
+					},
+				]}
+				selectedAnswer={1}
+			/>,
+		);
+
+		const radioGroup = screen.getByRole("radiogroup", { name: "Lorem ipsum" });
+
+		expect(
+			within(radioGroup).getByText("Quis vel quo saepe."),
+		).toBeInTheDocument();
+
+		expect(
+			within(radioGroup).queryByText("Culpa dolores aut."),
+		).not.toBeInTheDocument();
 	});
 });
 

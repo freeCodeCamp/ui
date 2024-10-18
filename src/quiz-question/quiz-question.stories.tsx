@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { PrismFormatted } from "../prism-formatted";
 
 import { QuizQuestion } from "./quiz-question";
-import { type QuizQuestionProps } from "./types";
+import type { QuizQuestionProps } from "./types";
 
 const story = {
 	title: "Components/QuizQuestion",
@@ -17,7 +17,6 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 	question,
 	answers = [],
 	disabled,
-	validation,
 	position,
 	selectedAnswer,
 }: Partial<QuizQuestionProps<AnswerT>>) => {
@@ -29,7 +28,6 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 			question={question}
 			answers={answers}
 			disabled={disabled}
-			validation={validation}
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
@@ -267,11 +265,23 @@ export const Correct: Story = {
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{
+				label: "Option 1",
+				value: 1,
+				validation: {
+					state: "correct",
+					message: "Correct.",
+				},
+			},
+			{
+				label: "Option 2",
+				value: 2,
+			},
+			{
+				label: "Option 3",
+				value: 3,
+			},
 		],
-		validation: { state: "correct", message: "Correct." },
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -285,7 +295,14 @@ export const Correct: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
-        { label: "Option 1", value: 1 },
+        { 
+			    label: "Option 1",
+					value: 1,
+					validation: {
+					  state: "correct",
+					  message: "Correct.",
+				  },
+				},
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
@@ -302,16 +319,86 @@ export const Correct: Story = {
 	},
 };
 
+export const CorrectWithAnswerFeedback: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				feedback: (
+					<PrismFormatted
+						text={`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				validation: { state: "correct", message: "Correct." },
+			},
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		selectedAnswer: 1,
+		disabled: true,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+      answers={[
+        { 
+          label: "Option 1", 
+          value: 1,
+          feedback: (
+            <PrismFormatted
+              text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
+              getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+            />
+          ),
+					validation: { state: "correct", message: "Correct." },
+        },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+      validation: { state: "correct", message: "Correct." },
+      disabled: true,
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
 export const Incorrect: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{
+				label: "Option 1",
+				value: 1,
+				validation: {
+					state: "incorrect",
+					message: "Incorrect.",
+				},
+			},
+			{
+				label: "Option 2",
+				value: 2,
+			},
+			{
+				label: "Option 3",
+				value: 3,
+			},
 		],
-		validation: { state: "incorrect", message: "Incorrect." },
 		selectedAnswer: 1,
 		disabled: true,
 	},
@@ -334,6 +421,64 @@ export const Incorrect: Story = {
       validation={{ state: "incorrect", message: "Incorrect." }}
 			selectedAnswer: 1,
 			disabled: true
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
+export const IncorrectWithAnswerFeedback: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				feedback: (
+					<PrismFormatted
+						text={`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>`}
+						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+					/>
+				),
+				validation: { state: "incorrect", message: "Incorrect." },
+			},
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		selectedAnswer: 1,
+		disabled: true,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+      answers={[
+        { 
+          label: "Option 1", 
+          value: 1,
+          feedback: (
+            <PrismFormatted
+              text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
+              getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+            />
+          ),
+					validation: { state: "incorrect", message: "Incorrect." },
+        },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+      validation: { state: "incorrect", message: "Incorrect." },
+      disabled: true,
     />
   );
 }`,
