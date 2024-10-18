@@ -51,7 +51,6 @@ const radioOptionDefaultClasses = [
 	"p-[20px]",
 	"flex",
 	"items-center",
-	"bg-background-primary",
 ];
 
 const radioWrapperDefaultClasses = [
@@ -61,6 +60,7 @@ const radioWrapperDefaultClasses = [
 	"border-t-4",
 	"last:border-b-4",
 	"border-background-tertiary",
+	"bg-background-primary",
 ];
 
 const RadioIcon = ({
