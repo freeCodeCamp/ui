@@ -95,6 +95,7 @@ const QuizWithValidation = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
+		passingGrade: 80,
 	});
 	const [disabled, setDisabled] = useState(false);
 
