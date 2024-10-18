@@ -104,7 +104,7 @@ const QuizWithValidation = () => {
 
 	return (
 		<div>
-			{correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			{!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
@@ -432,7 +432,7 @@ const App = () => {
 
   return (
     <div>
-      {correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+      {!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
       <Quiz questions={questions} disabled={disabled} />
       <Spacer size="m" />
       <Button onClick={handleSubmit}>Submit</Button>
