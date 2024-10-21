@@ -106,11 +106,9 @@ const QuizWithValidation = () => {
 
 	return (
 		<div>
-			{!!correctAnswerCount && (
-				<div aria-live="polite">
-					<p>Correct answers: {correctAnswerCount}</p>
-				</div>
-			)}
+			<div aria-live="polite">
+				{!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			</div>
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
@@ -208,11 +206,9 @@ const QuizWithValidationAndAnswerFeedback = () => {
 
 	return (
 		<div>
-			{correctAnswerCount && (
-				<div aria-live="polite">
-					<p>Correct answers: {correctAnswerCount}</p>
-				</div>
-			)}
+			<div aria-live="polite">
+				{!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			</div>
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
