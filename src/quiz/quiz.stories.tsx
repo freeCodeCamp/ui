@@ -106,7 +106,13 @@ const QuizWithValidation = () => {
 
 	return (
 		<div>
-			{!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			<div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
@@ -204,7 +210,13 @@ const QuizWithValidationAndAnswerFeedback = () => {
 
 	return (
 		<div>
-			{correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+			<div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
 			<Quiz questions={questions} disabled={disabled} />
 			<Spacer size="m" />
 			<Button onClick={handleSubmit}>Submit</Button>
@@ -324,7 +336,13 @@ const App = () => {
 
   return (
     <div>
-      {correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+      <div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
       <Quiz questions={questions} disabled={disabled} />
       <Spacer size="m" />
       <Button onClick={handleSubmit}>Submit</Button>
@@ -435,7 +453,13 @@ const App = () => {
 
   return (
     <div>
-      {!!correctAnswerCount && <p>Correct answers: {correctAnswerCount}</p>}
+      <div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
       <Quiz questions={questions} disabled={disabled} />
       <Spacer size="m" />
       <Button onClick={handleSubmit}>Submit</Button>
