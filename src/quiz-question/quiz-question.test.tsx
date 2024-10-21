@@ -24,6 +24,19 @@ describe("<QuizQuestion />", () => {
 		expect(screen.getByRole("radio", { name: "Option 1" })).toBeInTheDocument();
 		expect(screen.getByRole("radio", { name: "Option 2" })).toBeInTheDocument();
 		expect(screen.getByRole("radio", { name: "Option 3" })).toBeInTheDocument();
+
+		expect(screen.getByRole("radio", { name: "Option 1" })).toHaveAttribute(
+			"data-value",
+			"1",
+		);
+		expect(screen.getByRole("radio", { name: "Option 2" })).toHaveAttribute(
+			"data-value",
+			"2",
+		);
+		expect(screen.getByRole("radio", { name: "Option 3" })).toHaveAttribute(
+			"data-value",
+			"3",
+		);
 	});
 
 	it("should have the `required` attribute set to `true` if the `required` prop is specified", () => {

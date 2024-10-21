@@ -134,6 +134,7 @@ export const Answer = <AnswerT extends number | string>({
 			<RadioGroup.Option
 				key={value}
 				value={value}
+				data-value={value}
 				className={getRadioOptionCls()}
 			>
 				{({ active }) => (
