@@ -9,7 +9,7 @@ export const Quiz = <AnswerT extends number | string>({
 	required,
 }: QuizProps<AnswerT>) => {
 	return (
-		<ul className="flex flex-col gap-y-[24px]">
+		<ul className="flex flex-col gap-y-[48px]">
 			{questions.map((question, index) => (
 				<li key={index}>
 					<QuizQuestion
