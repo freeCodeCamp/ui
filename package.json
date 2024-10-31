@@ -75,7 +75,7 @@
     "@storybook/addon-docs": "8.4.0",
     "@storybook/addon-essentials": "8.4.0",
     "@storybook/addon-links": "8.4.0",
-    "@storybook/addon-styling-webpack": "1.0.0",
+    "@storybook/addon-styling-webpack": "1.0.1",
     "@storybook/addon-webpack5-compiler-babel": "3.0.3",
     "@storybook/blocks": "8.4.0",
     "@storybook/react": "8.4.0",
