@@ -79,8 +79,8 @@ importers:
         specifier: 8.4.0
         version: 8.4.0(react@16.14.0)(storybook@8.4.0(prettier@3.3.3))
       '@storybook/addon-styling-webpack':
-        specifier: 1.0.0
-        version: 1.0.0(webpack@5.91.0(esbuild@0.23.0))
+        specifier: 1.0.1
+        version: 1.0.1(webpack@5.91.0(esbuild@0.23.0))
       '@storybook/addon-webpack5-compiler-babel':
         specifier: 3.0.3
         version: 3.0.3(webpack@5.91.0(esbuild@0.23.0))
@@ -1465,8 +1465,8 @@ packages:
     peerDependencies:
       storybook: ^8.4.0
 
-  '@storybook/addon-styling-webpack@1.0.0':
-    resolution: {integrity: sha512-jo1kzn7pi+NA+LZxrWoRvW6w7dXIKY/BjTG80XX2uU92lIKT+X1k/9vYk/0KPVK3Bsf4tO6ToAuqIRyOk7MHtg==}
+  '@storybook/addon-styling-webpack@1.0.1':
+    resolution: {integrity: sha512-5n+SXPfMTc4m7sWaJWPWjoHYWc6/B111M2Ia55toQ3GV4ON4vVlTgH9FX+EgCkDticElj99HLTMDJkHRj2yvkg==}
     peerDependencies:
       webpack: ^5.0.0
 
@@ -6759,7 +6759,7 @@ snapshots:
       storybook: 8.4.0(prettier@3.3.3)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-styling-webpack@1.0.0(webpack@5.91.0(esbuild@0.23.0))':
+  '@storybook/addon-styling-webpack@1.0.1(webpack@5.91.0(esbuild@0.23.0))':
     dependencies:
       '@storybook/node-logger': 8.0.9
       webpack: 5.91.0(esbuild@0.23.0)
