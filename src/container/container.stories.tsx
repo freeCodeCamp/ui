@@ -17,18 +17,42 @@ const story = {
 const Template: StoryFn<typeof Container> = (args) => {
 	return (
 		<Container {...args}>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
-			<p>Random text to test the element width</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
+			<p className="text-foreground-primary">
+				Random text to test the element width
+			</p>
 		</Container>
 	);
 };
