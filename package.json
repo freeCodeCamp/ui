@@ -97,7 +97,7 @@
     "css-loader": "6.11.0",
     "eslint": "8.57.1",
     "eslint-plugin-jest": "28.9.0",
-    "eslint-plugin-jest-dom": "5.4.0",
+    "eslint-plugin-jest-dom": "5.5.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "4.6.2",
