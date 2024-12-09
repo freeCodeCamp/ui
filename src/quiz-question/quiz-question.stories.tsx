@@ -49,8 +49,7 @@ export const Default: Story = {
 			{
 				label: (
 					<PrismFormatted
-						text={`<pre><code class="language-html"><p>Molestiae sed id accusantium.</p>
-<p>Lorem ipsum.</p></code></pre>`}
+						text={`<pre><code class="language-html">&#x3C;form>\n  &#x3C;input type="text" name="username" placeholder="Dolorem quod aut ipsa velit voluptate vel voluptas. Rem amet consectetur qui beatae.">\n&#x3C;/form>\n</code></pre>`}
 						getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
 					/>
 				),
@@ -113,8 +112,7 @@ export const Default: Story = {
 			{
 				label: (
 					<PrismFormatted
-						text={\`<pre><code class="language-html"><p>Molestiae sed id accusantium.</p>
-<p>Lorem ipsum.</p></code></pre>\`}
+						text={\`<pre><code class="language-html">&#x3C;form>\n  &#x3C;input type="text" name="username" placeholder="Dolorem quod aut ipsa velit voluptate vel voluptas. Rem amet consectetur qui beatae.">\n&#x3C;/form>\n</code></pre>\`}
 						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
 					/>
 				),

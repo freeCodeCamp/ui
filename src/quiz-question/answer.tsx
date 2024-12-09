@@ -140,7 +140,7 @@ export const Answer = <AnswerT extends number | string>({
 				{({ active }) => (
 					<>
 						<RadioIcon active={active} checked={!!checked} />
-						<RadioGroup.Label className="m-0 text-foreground-primary">
+						<RadioGroup.Label className="m-0 text-foreground-primary overflow-auto">
 							{label}
 						</RadioGroup.Label>
 					</>
