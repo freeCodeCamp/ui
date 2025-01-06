@@ -21,6 +21,7 @@ module.exports = {
 					"css",
 					"html",
 					"javascript",
+					"json",
 					"jsx",
 					"markup",
 					"mathml",
