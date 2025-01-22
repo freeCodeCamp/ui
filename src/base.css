@@ -48,6 +48,148 @@
 	textarea::placeholder {
 		@apply text-foreground-quaternary opacity-80;
 	}
+
+	label {
+		display: inline-block;
+		max-width: 100%;
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+
+	blockquote {
+		padding: 10px 20px;
+		margin: 0 0 20px;
+		font-size: 17.5px;
+		border-left: 5px solid #eeeeee;
+	}
+
+	blockquote footer,
+	blockquote small,
+	blockquote .small {
+		display: block;
+		font-size: 80%;
+		line-height: 1.42857143;
+		color: var(--gray-45);
+	}
+
+	blockquote footer:before,
+	blockquote small:before,
+	blockquote .small:before {
+		content: "\2014 \00A0";
+	}
+
+	ul {
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-inline-start: 40px;
+		list-style-type: disc;
+	}
+
+	ol {
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-inline-start: 40px;
+		list-style-type: decimal;
+	}
+
+	hr {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border: 0;
+		border-top: 1px solid var(--quaternary-background);
+	}
+
+	/* This is to override Tailwind as it sets the font-weight to `bolder`.*/
+	b,
+	strong {
+		font-weight: bold;
+	}
+
+	label {
+		display: inline-block;
+		max-width: 100%;
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+
+	/* TODO: Some styles might need to be dropped. */
+	legend {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin-bottom: 20px;
+		font-size: 21px;
+		line-height: inherit;
+		color: #333;
+		border: 0;
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	blockquote {
+		padding: 10px 20px;
+		margin: 0 0 20px;
+		font-size: 17.5px;
+		border-left: 5px solid #eeeeee;
+	}
+
+	blockquote footer,
+	blockquote small,
+	blockquote .small {
+		display: block;
+		font-size: 80%;
+		line-height: 1.42857143;
+		color: var(--gray-45);
+	}
+
+	blockquote footer:before,
+	blockquote small:before,
+	blockquote .small:before {
+		content: "\2014 \00A0";
+	}
+
+	ul {
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-inline-start: 40px;
+		list-style-type: disc;
+	}
+
+	ol {
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-inline-start: 40px;
+		list-style-type: decimal;
+	}
+
+	hr {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border: 0;
+		border-top: 1px solid var(--quaternary-background);
+	}
+
+	pre {
+		color: inherit;
+		background-color: inherit;
+		border: none;
+		border-radius: 0;
+		display: block;
+		padding: 9.5px;
+		margin: 0 0 10px;
+		font-size: 17px;
+		line-height: 1.42857143;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+
+	pre code {
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: pre-wrap;
+		background-color: transparent;
+		border-radius: 0;
+	}
 }
 
 @tailwind components;
