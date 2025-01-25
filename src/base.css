@@ -96,19 +96,12 @@
 		margin-top: 20px;
 		margin-bottom: 20px;
 		border: 0;
-		border-top: 1px solid var(--quaternary-background);
+		border-top: 1px solid var(--background-quaternary);
 	}
 
 	/* This is to override Tailwind as it sets the font-weight to `bolder`.*/
 	b,
 	strong {
-		font-weight: bold;
-	}
-
-	label {
-		display: inline-block;
-		max-width: 100%;
-		margin-bottom: 5px;
 		font-weight: bold;
 	}
 
@@ -123,49 +116,6 @@
 		color: #333;
 		border: 0;
 		border-bottom: 1px solid #e5e5e5;
-	}
-
-	blockquote {
-		padding: 10px 20px;
-		margin: 0 0 20px;
-		font-size: 17.5px;
-		border-left: 5px solid #eeeeee;
-	}
-
-	blockquote footer,
-	blockquote small,
-	blockquote .small {
-		display: block;
-		font-size: 80%;
-		line-height: 1.42857143;
-		color: var(--gray-45);
-	}
-
-	blockquote footer:before,
-	blockquote small:before,
-	blockquote .small:before {
-		content: "\2014 \00A0";
-	}
-
-	ul {
-		margin-top: 0;
-		margin-bottom: 10px;
-		padding-inline-start: 40px;
-		list-style-type: disc;
-	}
-
-	ol {
-		margin-top: 0;
-		margin-bottom: 10px;
-		padding-inline-start: 40px;
-		list-style-type: decimal;
-	}
-
-	hr {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 0;
-		border-top: 1px solid var(--quaternary-background);
 	}
 
 	pre {
