@@ -31,6 +31,7 @@ module.exports = {
 					"svg",
 					"typescript",
 					"xml",
+					"bash",
 				],
 				theme: "default",
 				css: true,
