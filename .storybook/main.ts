@@ -20,6 +20,12 @@ const config: StorybookConfig = {
 								loader: "css-loader",
 								options: {
 									importLoaders: 1,
+									// Enable Interoperable CSS mode so that CSS variables can be imported into JS via the `:export` syntax.
+									// We should not need this mode if/when we use CSS modules in our codebase.
+									// https://webpack.js.org/loaders/css-loader/#separating-interoperable-css-only-and-css-module-features
+									modules: {
+										mode: "icss",
+									},
 								},
 							},
 							{
