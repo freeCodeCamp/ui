@@ -28,12 +28,6 @@ const config: StorybookConfig = {
 									},
 								},
 							},
-							{
-								loader: "postcss-loader",
-								options: {
-									implementation: require.resolve("postcss"),
-								},
-							},
 						],
 					},
 				],
