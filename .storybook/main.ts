@@ -28,6 +28,9 @@ const config: StorybookConfig = {
 									},
 								},
 							},
+							{
+								loader: "postcss-loader",
+							},
 						],
 					},
 				],
