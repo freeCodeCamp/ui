@@ -306,7 +306,6 @@ export const Correct: Story = {
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
-      validation={{ state: "correct", message: "Correct." }}
 			selectedAnswer: 1,
 			disabled: true
     />
@@ -365,7 +364,6 @@ export const CorrectWithAnswerFeedback: Story = {
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
-      validation: { state: "correct", message: "Correct." },
       disabled: true,
     />
   );
@@ -410,15 +408,26 @@ export const Incorrect: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
-        { label: "Option 1", value: 1 },
-        { label: "Option 2", value: 2 },
-        { label: "Option 3", value: 3 }
+        { 
+	        label: "Option 1",
+		      value: 1, 
+		      validation: {
+		        state: "incorrect",
+		        message: "Incorrect."
+		      },
+		    },
+        { 
+	        label: "Option 2",
+		      value: 2,
+		    },
+        { 
+	        label: "Option 3",
+		      value: 3,
+		    },
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
-      selectedAnswer={answer}
-      validation={{ state: "incorrect", message: "Incorrect." }}
 			selectedAnswer: 1,
-			disabled: true
+			disabled: true,
     />
   );
 }`,
@@ -475,7 +484,6 @@ export const IncorrectWithAnswerFeedback: Story = {
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
-      validation: { state: "incorrect", message: "Incorrect." },
       disabled: true,
     />
   );
