@@ -409,24 +409,25 @@ export const Incorrect: Story = {
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
         { 
-	      label: "Option 1",
-		  value: 1, 
-		  validation={{ 
-		    state: "correct",
-		    message: "Correct."
-		  }} 
-		},
+	        label: "Option 1",
+		      value: 1, 
+		      validation: {
+		        state: "incorrect",
+		        message: "Incorrect."
+		      },
+		    },
         { 
-	      label: "Option 2",
-		  value: 2,
-		},
+	        label: "Option 2",
+		      value: 2,
+		    },
         { 
-	      label: "Option 3",
-		  value: 3,
-		},
+	        label: "Option 3",
+		      value: 3,
+		    },
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
-      selectedAnswer={answer}
+			selectedAnswer: 1,
+			disabled: true,
     />
   );
 }`,
