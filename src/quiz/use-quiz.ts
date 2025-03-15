@@ -21,6 +21,7 @@ interface Props<AnswerT extends number | string> {
 	passingGrade: number;
 	onSuccess?: () => void;
 	onFailure?: () => void;
+	showCorrectAnswersOnSuccess?: boolean;
 }
 
 type ValidationData =
@@ -38,6 +39,7 @@ export const useQuiz = <AnswerT extends number | string>({
 	onSuccess,
 	onFailure,
 	passingGrade,
+	showCorrectAnswersOnSuccess,
 }: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
@@ -61,12 +63,20 @@ export const useQuiz = <AnswerT extends number | string>({
 
 	const validateAnswers = () => {
 		setQuestions((prevQuestion) => {
+			const correctCount = prevQuestion.filter(
+				({ selectedAnswer, correctAnswer }) => selectedAnswer === correctAnswer,
+			).length;
+
+			const grade = parseFloat(
+				((correctCount / initialQuestions.length) * 100).toFixed(2),
+			);
+
 			const updatedQuestions: Question<AnswerT>[] = prevQuestion.map(
 				(question) => {
 					const answersWithValidation = question.answers.map((answer) => {
 						let validation: QuizQuestionAnswer<AnswerT>["validation"];
 
-						// Only pass validation to the selected answer
+						// Pass validation to the selected answer
 						if (answer.value === question.selectedAnswer) {
 							validation =
 								answer.value === question.correctAnswer
@@ -78,6 +88,18 @@ export const useQuiz = <AnswerT extends number | string>({
 											state: "incorrect",
 											message: validationMessages.incorrect,
 										};
+						} else {
+							// Reveal the correct answer if the results meet the passing grade
+							if (
+								answer.value === question.correctAnswer &&
+								grade >= passingGrade &&
+								showCorrectAnswersOnSuccess
+							) {
+								validation = {
+									state: "correct",
+									message: validationMessages.correct,
+								};
+							}
 						}
 
 						return { ...answer, validation };
@@ -85,14 +107,6 @@ export const useQuiz = <AnswerT extends number | string>({
 
 					return { ...question, answers: answersWithValidation };
 				},
-			);
-
-			const correctCount = updatedQuestions.filter(
-				({ selectedAnswer, correctAnswer }) => selectedAnswer === correctAnswer,
-			).length;
-
-			const grade = parseFloat(
-				((correctCount / initialQuestions.length) * 100).toFixed(2),
 			);
 
 			setValidation({
