@@ -101,6 +101,7 @@
 	--foreground-tertiary: var(--gray80);
 	--foreground-quaternary: var(--gray75);
 	--foreground-danger: var(--red15);
+	--foreground-danger-disabled: var(--red70);
 	--foreground-success: var(--green40);
 	--foreground-info: var(--blue30);
 	--foreground-warning: var(--yellow45);
@@ -110,6 +111,7 @@
 	--background-tertiary: var(--gray10);
 	--background-quaternary: var(--gray15);
 	--background-danger: var(--red90);
+	--background-danger-disabled: var(--red05);
 	--background-success: var(--green90);
 	--background-info: var(--blue90);
 	--background-selection: var(--blue90-translucent);
@@ -132,6 +134,7 @@
 	--background-tertiary: var(--gray80);
 	--background-quaternary: var(--gray75);
 	--background-danger: var(--red15);
+	--background-danger-disabled: var(--red05);
 	--background-success: var(--green40);
 	--background-info: var(--blue30);
 	--background-selection: var(--blue30-translucent);
