@@ -15,7 +15,6 @@ const story = {
 		smOffset: { options: [1, 2, 3, 4, undefined] },
 		mdOffset: { options: [1, 2, 3, 4, undefined] },
 		lgOffset: { options: [0, 1, 2, undefined] },
-		smPush: { options: [1, undefined] },
 	},
 } satisfies Meta<typeof Col>;
 

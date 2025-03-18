@@ -9,5 +9,4 @@ export interface ColProps extends React.HTMLAttributes<HTMLDivElement> {
 	smOffset?: 1 | 2 | 3 | 4;
 	mdOffset?: 1 | 2 | 3 | 4;
 	lgOffset?: 0 | 1 | 2;
-	smPush?: 1;
 }
