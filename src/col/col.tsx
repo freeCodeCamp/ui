@@ -3,6 +3,7 @@ import React from "react";
 import { ColProps } from "./types";
 
 const ExtraSmallClasses = {
+	4: "w-1/3",
 	6: "w-1/2",
 	8: "w-2/3",
 	10: "w-5/6",
