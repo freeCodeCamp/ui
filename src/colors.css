@@ -125,6 +125,7 @@
 	--foreground-tertiary: var(--gray10);
 	--foreground-quaternary: var(--gray15);
 	--foreground-danger: var(--red90);
+	--foreground-danger-disabled: var(--red15);
 	--foreground-success: var(--green90);
 	--foreground-info: var(--blue90);
 	--foreground-warning: var(--yellow40);
@@ -134,7 +135,7 @@
 	--background-tertiary: var(--gray80);
 	--background-quaternary: var(--gray75);
 	--background-danger: var(--red15);
-	--background-danger-disabled: var(--red05);
+	--background-danger-disabled: var(--red70);
 	--background-success: var(--green40);
 	--background-info: var(--blue30);
 	--background-selection: var(--blue30-translucent);
