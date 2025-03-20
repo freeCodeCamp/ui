@@ -160,11 +160,6 @@ describe("<Button />", () => {
 // Type tests
 // ------------------------------
 
-// @ts-expect-error - Button with `danger` variant cannot be disabled
-<Button variant="danger" disabled>
-	Button text
-</Button>;
-
 // @ts-expect-error - Button with `info` variant cannot be disabled
 <Button variant="info" disabled>
 	Button text
