@@ -32,6 +32,29 @@
 		@apply border-1 border-gray-450 px-[4px] py-[1px];
 	}
 
+	pre {
+		color: inherit;
+		background-color: inherit;
+		border: none;
+		border-radius: 0;
+		display: block;
+		padding: 9.5px;
+		margin: 0 0 10px;
+		font-size: 17px;
+		line-height: 1.42857143;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+
+	pre code {
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: pre-wrap;
+		background-color: transparent;
+		border-radius: 0;
+	}
+
 	h1,
 	h2,
 	h3,
@@ -60,22 +83,7 @@
 		padding: 10px 20px;
 		margin: 0 0 20px;
 		font-size: 17.5px;
-		border-left: 5px solid #eeeeee;
-	}
-
-	blockquote footer,
-	blockquote small,
-	blockquote .small {
-		display: block;
-		font-size: 80%;
-		line-height: 1.42857143;
-		color: var(--gray-45);
-	}
-
-	blockquote footer:before,
-	blockquote small:before,
-	blockquote .small:before {
-		content: "\2014 \00A0";
+		border-left: 5px solid var(--background-quaternary);
 	}
 
 	ul {
@@ -105,7 +113,6 @@
 		font-weight: bold;
 	}
 
-	/* TODO: Some styles might need to be dropped. */
 	legend {
 		display: block;
 		width: 100%;
@@ -113,32 +120,6 @@
 		margin-bottom: 20px;
 		font-size: 21px;
 		line-height: inherit;
-		color: #333;
-		border: 0;
-		border-bottom: 1px solid #e5e5e5;
-	}
-
-	pre {
-		color: inherit;
-		background-color: inherit;
-		border: none;
-		border-radius: 0;
-		display: block;
-		padding: 9.5px;
-		margin: 0 0 10px;
-		font-size: 17px;
-		line-height: 1.42857143;
-		word-break: break-all;
-		word-wrap: break-word;
-	}
-
-	pre code {
-		padding: 0;
-		font-size: inherit;
-		color: inherit;
-		white-space: pre-wrap;
-		background-color: transparent;
-		border-radius: 0;
 	}
 }
 
