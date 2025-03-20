@@ -32,7 +32,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -90,7 +90,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -124,7 +124,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -161,7 +161,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -223,7 +223,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 50,
+				passingPercent: 50,
 				showCorrectAnswersOnSuccess: true,
 			}),
 		);
@@ -327,7 +327,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -370,7 +370,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -413,7 +413,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 50,
+				passingPercent: 50,
 			}),
 		);
 

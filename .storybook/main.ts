@@ -30,9 +30,6 @@ const config: StorybookConfig = {
 							},
 							{
 								loader: "postcss-loader",
-								options: {
-									implementation: require.resolve("postcss"),
-								},
 							},
 						],
 					},
@@ -63,6 +60,11 @@ const config: StorybookConfig = {
 	},
 
 	staticDirs: [{ from: "../src/assets", to: "/assets" }],
+
+	managerHead: (head) => `
+		${head}
+		<link rel="icon" type="image/png" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico">
+	`,
 };
 
 export default config;

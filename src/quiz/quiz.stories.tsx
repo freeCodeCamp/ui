@@ -52,7 +52,7 @@ const QuizDefault = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 100,
+		passingPercent: 100,
 	});
 
 	return <Quiz questions={questions} />;
@@ -95,7 +95,7 @@ const QuizWithValidation = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 80,
+		passingPercent: 80,
 	});
 	const [disabled, setDisabled] = useState(false);
 
@@ -199,7 +199,7 @@ const QuizWithValidationAndAnswerFeedback = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 100,
+		passingPercent: 100,
 	});
 	const [disabled, setDisabled] = useState(false);
 

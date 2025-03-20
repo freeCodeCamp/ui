@@ -3,6 +3,7 @@ import React from "react";
 import { ColProps } from "./types";
 
 const ExtraSmallClasses = {
+	4: "w-1/3",
 	6: "w-1/2",
 	8: "w-2/3",
 	10: "w-5/6",
@@ -66,7 +67,6 @@ export const Col = ({
 	sm,
 	md,
 	lg,
-	smPush,
 	xsOffset,
 	smOffset,
 	mdOffset,
@@ -75,7 +75,6 @@ export const Col = ({
 }: ColProps) => {
 	const xsClass = xs ? ExtraSmallClasses[xs] : "";
 	const xsOffsetClass = xsOffset ? ExtraSmallOffsetClasses[xsOffset] : "";
-	const smPushClass = smPush ? "md:left-[8.3%]" : "";
 	const smClass = sm ? SmallClasses[sm] : "";
 	const smOffsetClass = smOffset ? SmallOffsetClasses[smOffset] : "";
 	const mdClass = md ? MediumClasses[md] : "";
@@ -89,7 +88,7 @@ export const Col = ({
 		<div
 			className={`${
 				className ?? ""
-			} min-h-[1px] px-[15px] ${xsClass} ${smClass} ${mdClass} ${lgClass} ${xsOffsetClass} ${smOffsetClass} ${mdOffsetClass} ${lgOffsetClass} ${smPushClass} `}
+			} min-h-[1px] px-[15px] ${xsClass} ${smClass} ${mdClass} ${lgClass} ${xsOffsetClass} ${smOffsetClass} ${mdOffsetClass} ${lgOffsetClass} `}
 			{...props}
 		>
 			{children}
