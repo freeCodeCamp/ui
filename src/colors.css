@@ -125,7 +125,7 @@
 	--foreground-tertiary: var(--gray10);
 	--foreground-quaternary: var(--gray15);
 	--foreground-danger: var(--red90);
-	--foreground-danger-disabled: var(--red15);
+	--foreground-danger-disabled: var(--red05);
 	--foreground-success: var(--green90);
 	--foreground-info: var(--blue90);
 	--foreground-warning: var(--yellow40);
