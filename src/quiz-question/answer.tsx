@@ -113,9 +113,9 @@ export const Answer = <AnswerT extends number | string>({
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 
-		if (checked && validation?.state === "correct")
+		if (validation?.state === "correct")
 			cls.push("border-l-background-success");
-		if (checked && validation?.state === "incorrect")
+		if (validation?.state === "incorrect")
 			cls.push("border-l-background-danger");
 
 		return cls.join(" ");
