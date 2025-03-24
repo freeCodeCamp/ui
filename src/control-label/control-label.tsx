@@ -22,10 +22,10 @@ export const ControlLabel = ({
 		: "text-foreground-primary";
 	const screenOnlyClass = srOnly ? "sr-only" : undefined;
 	const defaultClasses = [
+		"font-bold",
 		labelStyle,
 		screenOnlyClass,
 		className,
-		"font-bold",
 	].join(" ");
 
 	return (
