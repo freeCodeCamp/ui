@@ -21,7 +21,12 @@ export const ControlLabel = ({
 		? validationLabel[validationState]
 		: "text-foreground-primary";
 	const screenOnlyClass = srOnly ? "sr-only" : undefined;
-	const defaultClasses = [labelStyle, screenOnlyClass, className].join(" ");
+	const defaultClasses = [
+		labelStyle,
+		screenOnlyClass,
+		className,
+		"font-bold",
+	].join(" ");
 
 	return (
 		<label
