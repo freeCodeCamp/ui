@@ -303,7 +303,7 @@ const QuizWithCorrectAnswersShownOnSuccess = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 50,
+		passingPercent: 50,
 		showCorrectAnswersOnSuccess: true,
 	});
 	const [disabled, setDisabled] = useState(false);
@@ -664,7 +664,7 @@ const App = () => {
       correct: "Correct.",
       incorrect: "Incorrect.",
 	  },
-		passingGrade: 50,
+		passingPercent: 50,
 		showCorrectAnswersOnSuccess: true
 	});
 
