@@ -82,8 +82,8 @@ importers:
         specifier: 1.0.1
         version: 1.0.1(webpack@5.91.0(esbuild@0.25.0))
       '@storybook/addon-webpack5-compiler-babel':
-        specifier: 3.0.5
-        version: 3.0.5(webpack@5.91.0(esbuild@0.25.0))
+        specifier: 3.0.6
+        version: 3.0.6(webpack@5.91.0(esbuild@0.25.0))
       '@storybook/blocks':
         specifier: 8.6.11
         version: 8.6.11(react-dom@16.14.0(react@16.14.0))(react@16.14.0)(storybook@8.6.11(prettier@3.5.3))
@@ -1495,8 +1495,8 @@ packages:
     peerDependencies:
       storybook: ^8.6.11
 
-  '@storybook/addon-webpack5-compiler-babel@3.0.5':
-    resolution: {integrity: sha512-9dlc5PrehEFUHqkgj8x+aKtOY9XH9Zk6WBbtpgY/JCQ7waJ2VvhyDnrgJeXfek+WYlSkJElnta6SlqP+XRG0PQ==}
+  '@storybook/addon-webpack5-compiler-babel@3.0.6':
+    resolution: {integrity: sha512-J4uVxEfkd2iAxPxcT90iebt5wuLSd0EYuMJa94t1jVUGlvZZAvnmqXAqscRITNU37nOr0c9yZ2YVS/sFOZyOVw==}
     engines: {node: '>=18'}
 
   '@storybook/blocks@8.6.11':
@@ -7085,7 +7085,7 @@ snapshots:
       memoizerific: 1.11.3
       storybook: 8.6.11(prettier@3.5.3)
 
-  '@storybook/addon-webpack5-compiler-babel@3.0.5(webpack@5.91.0(esbuild@0.25.0))':
+  '@storybook/addon-webpack5-compiler-babel@3.0.6(webpack@5.91.0(esbuild@0.25.0))':
     dependencies:
       '@babel/core': 7.26.10
       babel-loader: 9.2.1(@babel/core@7.26.10)(webpack@5.91.0(esbuild@0.25.0))
