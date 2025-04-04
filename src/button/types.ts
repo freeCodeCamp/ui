@@ -28,7 +28,7 @@ interface InfoButtonProps extends BaseButtonProps {
 
 interface DangerButtonProps extends BaseButtonProps {
 	variant: "danger";
-	disabled?: false;
+	disabled?: boolean;
 }
 
 export type ButtonProps =
