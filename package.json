@@ -52,7 +52,7 @@
     "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@fortawesome/react-fontawesome": "0.2.2",
     "@headlessui/react": "1.7.19",
-    "@radix-ui/react-tabs": "1.1.9",
+    "@radix-ui/react-tabs": "1.1.10",
     "babel-plugin-prismjs": "2.1.0",
     "prismjs": "1.30.0"
   },

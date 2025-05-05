@@ -21,8 +21,8 @@ importers:
         specifier: 1.7.19
         version: 1.7.19(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@radix-ui/react-tabs':
-        specifier: 1.1.9
-        version: 1.1.9(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+        specifier: 1.1.10
+        version: 1.1.10(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       babel-plugin-prismjs:
         specifier: 2.1.0
         version: 2.1.0(prismjs@1.30.0)
@@ -1236,8 +1236,8 @@ packages:
   '@radix-ui/primitive@1.1.2':
     resolution: {integrity: sha512-XnbHrrprsNqZKQhStrSwgRUQzoCI1glLzdw79xiZPoofhGICeZRSQ3dIxAKH1gb3OHfNf4d6f+vAv3kil2eggA==}
 
-  '@radix-ui/react-collection@1.1.4':
-    resolution: {integrity: sha512-cv4vSf7HttqXilDnAnvINd53OTl1/bjUYVZrkFnA7nwmY9Ob2POUy0WY0sfqBAe1s5FyKsyceQlqiEGPYNTadg==}
+  '@radix-ui/react-collection@1.1.5':
+    resolution: {integrity: sha512-BSItQMpSTKJmqzoUvWcE8QxbObfA90sC02qOe34mprZwTzx6DTj2EesFZrP2E9cYA1YJrUrbkuscMvSbpUsXoQ==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -1298,8 +1298,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@radix-ui/react-primitive@2.1.0':
-    resolution: {integrity: sha512-/J/FhLdK0zVcILOwt5g+dH4KnkonCtkVJsa2G6JmvbbtZfBEI1gMsO3QMjseL4F/SwfAMt1Vc/0XKYKq+xJ1sw==}
+  '@radix-ui/react-primitive@2.1.1':
+    resolution: {integrity: sha512-+YilAeO2cNOSdE7hh0lp5AJCRI8bwl2sNVWRdl9aQN3JUXZ1/TNZomOAHFvXamLXj1/KPSyjA2p+/Evl6rRrqA==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -1311,8 +1311,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@radix-ui/react-roving-focus@1.1.7':
-    resolution: {integrity: sha512-C6oAg451/fQT3EGbWHbCQjYTtbyjNO1uzQgMzwyivcHT3GKNEmu1q3UuREhN+HzHAVtv3ivMVK08QlC+PkYw9Q==}
+  '@radix-ui/react-roving-focus@1.1.8':
+    resolution: {integrity: sha512-PGRim2FokHCquqmKuDVXZZ/Xk7Daf39q/y00B+/uHKBG5fysenNzxTW9L5/sXsAxX4KwYrg+ckqs+MK4p2/Ssg==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -1324,8 +1324,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@radix-ui/react-slot@1.2.0':
-    resolution: {integrity: sha512-ujc+V6r0HNDviYqIK3rW4ffgYiZ8g5DEHrGJVk4x7kTlLXRDILnKX9vAUYeIsLOoDpDJ0ujpqMkjH4w2ofuo6w==}
+  '@radix-ui/react-slot@1.2.1':
+    resolution: {integrity: sha512-RJMUK12Fr2fUEK18xtbY9akYytRqhPzbeTTlWZoCNfXjxCGDnprfBzpobZBS2oWHNtVZnrfTQ2iC8sdUFG3SvQ==}
     peerDependencies:
       '@types/react': '*'
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
@@ -1333,8 +1333,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@radix-ui/react-tabs@1.1.9':
-    resolution: {integrity: sha512-KIjtwciYvquiW/wAFkELZCVnaNLBsYNhTNcvl+zfMAbMhRkcvNuCLXDDd22L0j7tagpzVh/QwbFpwAATg7ILPw==}
+  '@radix-ui/react-tabs@1.1.10':
+    resolution: {integrity: sha512-8Z/GnJNk+6haBS7kdjTj1nSM759tIABWpXoEUt9Ii2ctgwPCXCKvjMKnHl4KyBB2dOEKeTbiEJdjLGMgiKP9ow==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -6825,12 +6825,12 @@ snapshots:
 
   '@radix-ui/primitive@1.1.2': {}
 
-  '@radix-ui/react-collection@1.1.4(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@radix-ui/react-collection@1.1.5(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-context': 1.1.2(@types/react@16.14.63)(react@16.14.0)
-      '@radix-ui/react-primitive': 2.1.0(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@radix-ui/react-slot': 1.2.0(@types/react@16.14.63)(react@16.14.0)
+      '@radix-ui/react-primitive': 2.1.1(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@radix-ui/react-slot': 1.2.1(@types/react@16.14.63)(react@16.14.0)
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
     optionalDependencies:
@@ -6872,24 +6872,24 @@ snapshots:
       '@types/react': 16.14.63
       '@types/react-dom': 16.9.25(@types/react@16.14.63)
 
-  '@radix-ui/react-primitive@2.1.0(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@radix-ui/react-primitive@2.1.1(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
-      '@radix-ui/react-slot': 1.2.0(@types/react@16.14.63)(react@16.14.0)
+      '@radix-ui/react-slot': 1.2.1(@types/react@16.14.63)(react@16.14.0)
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
     optionalDependencies:
       '@types/react': 16.14.63
       '@types/react-dom': 16.9.25(@types/react@16.14.63)
 
-  '@radix-ui/react-roving-focus@1.1.7(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@radix-ui/react-roving-focus@1.1.8(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@radix-ui/primitive': 1.1.2
-      '@radix-ui/react-collection': 1.1.4(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@radix-ui/react-collection': 1.1.5(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-context': 1.1.2(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-direction': 1.1.1(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-id': 1.1.1(@types/react@16.14.63)(react@16.14.0)
-      '@radix-ui/react-primitive': 2.1.0(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@radix-ui/react-primitive': 2.1.1(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@radix-ui/react-use-callback-ref': 1.1.1(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@16.14.63)(react@16.14.0)
       react: 16.14.0
@@ -6898,22 +6898,22 @@ snapshots:
       '@types/react': 16.14.63
       '@types/react-dom': 16.9.25(@types/react@16.14.63)
 
-  '@radix-ui/react-slot@1.2.0(@types/react@16.14.63)(react@16.14.0)':
+  '@radix-ui/react-slot@1.2.1(@types/react@16.14.63)(react@16.14.0)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@16.14.63)(react@16.14.0)
       react: 16.14.0
     optionalDependencies:
       '@types/react': 16.14.63
 
-  '@radix-ui/react-tabs@1.1.9(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@radix-ui/react-tabs@1.1.10(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@radix-ui/primitive': 1.1.2
       '@radix-ui/react-context': 1.1.2(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-direction': 1.1.1(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-id': 1.1.1(@types/react@16.14.63)(react@16.14.0)
       '@radix-ui/react-presence': 1.1.4(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@radix-ui/react-primitive': 2.1.0(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@radix-ui/react-roving-focus': 1.1.7(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@radix-ui/react-primitive': 2.1.1(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@radix-ui/react-roving-focus': 1.1.8(@types/react-dom@16.9.25(@types/react@16.14.63))(@types/react@16.14.63)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@16.14.63)(react@16.14.0)
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
