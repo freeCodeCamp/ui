@@ -12,7 +12,7 @@ type ReturnedQuestion<AnswerT extends number | string> = Question<AnswerT> & {
 	onChange: (selectedAnswer: AnswerT) => void;
 };
 
-interface Props<AnswerT extends number | string> {
+interface UseQuizProps<AnswerT extends number | string> {
 	initialQuestions: InitialQuestion<AnswerT>[];
 	validationMessages: {
 		correct: string;
@@ -27,7 +27,7 @@ type ValidationData =
 	| { validated: true; grade: number; correctAnswerCount: number }
 	| { validated: false; grade?: never; correctAnswerCount?: never };
 
-type UseQuizReturnType<AnswerT extends number | string> = ValidationData & {
+type UseQuizResult<AnswerT extends number | string> = ValidationData & {
 	questions: ReturnedQuestion<AnswerT>[];
 	validateAnswers: () => void;
 };
@@ -38,7 +38,7 @@ export const useQuiz = <AnswerT extends number | string>({
 	onSuccess,
 	onFailure,
 	passingPercent,
-}: Props<AnswerT>): UseQuizReturnType<AnswerT> => {
+}: UseQuizProps<AnswerT>): UseQuizResult<AnswerT> => {
 	const [questions, setQuestions] =
 		useState<Question<AnswerT>[]>(initialQuestions);
 	const [validation, setValidation] = useState<ValidationData>({
