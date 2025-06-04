@@ -12,7 +12,7 @@ type ReturnedQuestion<AnswerT extends number | string> = Question<AnswerT> & {
 	onChange: (selectedAnswer: AnswerT) => void;
 };
 
-interface UseQuizProps<AnswerT extends number | string> {
+export interface UseQuizProps<AnswerT extends number | string> {
 	initialQuestions: InitialQuestion<AnswerT>[];
 	validationMessages: {
 		correct: string;
@@ -27,7 +27,7 @@ type ValidationData =
 	| { validated: true; grade: number; correctAnswerCount: number }
 	| { validated: false; grade?: never; correctAnswerCount?: never };
 
-type UseQuizResult<AnswerT extends number | string> = ValidationData & {
+export type UseQuizResult<AnswerT extends number | string> = ValidationData & {
 	questions: ReturnedQuestion<AnswerT>[];
 	validateAnswers: () => void;
 };

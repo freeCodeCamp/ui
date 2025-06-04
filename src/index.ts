@@ -21,5 +21,6 @@ export { Table } from "./table";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
 export { Quiz, useQuiz } from "./quiz";
 export { QuizQuestion } from "./quiz-question";
+export { UseQuizResult, UseQuizProps } from "./quiz/use-quiz";
 
 export { getThemingClass } from "./utils";
