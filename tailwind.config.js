@@ -78,6 +78,9 @@ module.exports = {
 					800: "var(--red80)",
 					900: "var(--red90)",
 				},
+				orange: {
+					30: "var(--orange30)",
+				},
 			},
 			borderWidth: {
 				1: "1px",
