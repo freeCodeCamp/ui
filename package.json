@@ -96,7 +96,7 @@
     "cross-env": "7.0.3",
     "css-loader": "6.11.0",
     "eslint": "8.57.1",
-    "eslint-plugin-jest": "28.13.0",
+    "eslint-plugin-jest": "28.13.1",
     "eslint-plugin-jest-dom": "5.5.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
