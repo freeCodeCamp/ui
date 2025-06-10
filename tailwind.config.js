@@ -79,7 +79,7 @@ module.exports = {
 					900: "var(--red90)",
 				},
 				orange: {
-					30: "var(--orange30)",
+					300: "var(--orange30)",
 				},
 			},
 			borderWidth: {
