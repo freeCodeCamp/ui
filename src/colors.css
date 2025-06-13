@@ -47,6 +47,8 @@
 	--red70: #a94442;
 	--red80: #f82153;
 	--red90: #850000;
+
+	--orange30: #eda971;
 }
 
 /* Export the variables in order to use them on the Color System Storybook page */
@@ -93,6 +95,8 @@
 	--red70: var(--red70);
 	--red80: var(--red80);
 	--red90: var(--red90);
+
+	--orange30: var(--orange30);
 }
 
 .light-palette {
