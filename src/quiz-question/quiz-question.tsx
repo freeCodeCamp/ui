@@ -75,7 +75,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 						feedback={checked && validation && feedback}
 						checked={checked}
 						disabled={disabled}
-						validation={checked ? validation : undefined}
+						validation={validation}
 					/>
 				);
 			})}
