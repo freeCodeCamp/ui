@@ -7,7 +7,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import bundleSize from "rollup-plugin-bundle-size";
 
 // See https://rollupjs.org/command-line-interface/#importing-package-json
-import pkgJson from "./package.json" assert { type: "json" };
+import pkgJson from "./package.json" with { type: "json" };
 
 const production = process.env.NODE_ENV !== "development";
 
