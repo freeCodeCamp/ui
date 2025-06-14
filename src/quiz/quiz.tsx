@@ -2,8 +2,10 @@ import React from "react";
 
 import { QuizQuestion } from "../quiz-question";
 import { type QuizProps } from "./types";
+import { QuestionLabel } from "../question-label";
+import { OptionLabel } from "../option-label";
 
-export const Quiz = <AnswerT extends number | string>({
+const Quiz = <AnswerT extends number | string>({
 	questions,
 	disabled,
 	required,
@@ -23,3 +25,8 @@ export const Quiz = <AnswerT extends number | string>({
 		</ul>
 	);
 };
+
+Quiz.QuestionLabel = QuestionLabel;
+Quiz.OptionLabel = OptionLabel;
+
+export { Quiz };
