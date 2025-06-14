@@ -22,6 +22,7 @@ module.exports = {
 				"foreground-tertiary": "var(--foreground-tertiary)",
 				"foreground-quaternary": "var(--foreground-quaternary)",
 				"foreground-danger": "var(--foreground-danger)",
+				"foreground-danger-disabled": "var(--foreground-danger-disabled)",
 				"foreground-success": "var(--foreground-success)",
 				"foreground-info": "var(--foreground-info)",
 				// Background
@@ -30,6 +31,7 @@ module.exports = {
 				"background-tertiary": "var(--background-tertiary)",
 				"background-quaternary": "var(--background-quaternary)",
 				"background-danger": "var(--background-danger)",
+				"background-danger-disabled": "var(--background-danger-disabled)",
 				"background-success": "var(--background-success)",
 				"background-info": "var(--background-info)",
 				// Focus outline
