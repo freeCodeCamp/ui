@@ -13,18 +13,35 @@ const defaultClasses =
 
 const FormControl = ({
 	componentClass,
-	...props
+	id,
+	className,
+	...otherProps
 }: FormControlProps<"input" | "textarea">): JSX.Element => {
 	const { controlId } = useContext(FormContext);
-	const { id, className } = props;
 
 	const Component = componentClass || "input";
 	if (Component !== "textarea") variantClass = " h-8";
 
 	//row and componentClass
-	const classes = [className, defaultClasses, variantClass].join(" ");
+	const classes = [defaultClasses, variantClass, className].join(" ");
 
-	return <Component id={id || controlId} className={classes} {...props} />;
+	if (Component === "textarea") {
+		return (
+			<textarea
+				id={id || controlId}
+				className={classes}
+				{...(otherProps as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+			/>
+		);
+	}
+
+	return (
+		<input
+			id={id || controlId}
+			className={classes}
+			{...(otherProps as React.InputHTMLAttributes<HTMLInputElement>)}
+		/>
+	);
 };
 
 FormControl.Feedback = FormControlFeedback;

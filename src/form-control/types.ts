@@ -1,9 +1,7 @@
-import React, { type ComponentProps } from "react";
+import React from "react";
 
-export type FormControlProps<
-	TElement extends
-		| keyof JSX.IntrinsicElements
-		| React.JSXElementConstructor<unknown> = "input",
-> = {
-	componentClass?: TElement | string;
-} & ComponentProps<TElement>;
+export type FormControlProps<T extends "input" | "textarea" = "input"> = {
+	componentClass?: T;
+} & (T extends "textarea"
+	? React.TextareaHTMLAttributes<HTMLTextAreaElement>
+	: React.InputHTMLAttributes<HTMLInputElement>);
