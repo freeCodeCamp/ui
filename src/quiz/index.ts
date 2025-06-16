@@ -1,2 +1,2 @@
 export { Quiz } from "./quiz";
-export { useQuiz } from "./use-quiz";
+export { useQuiz, type UseQuizResult, type UseQuizProps } from "./use-quiz";

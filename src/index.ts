@@ -19,7 +19,7 @@ export { Row } from "./row";
 export { Spacer } from "./spacer";
 export { Table } from "./table";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
-export { Quiz, useQuiz } from "./quiz";
+export { Quiz, useQuiz, type UseQuizResult, type UseQuizProps } from "./quiz";
 export { QuizQuestion } from "./quiz-question";
 
 export { getThemingClass } from "./utils";
