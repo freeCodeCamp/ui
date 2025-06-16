@@ -7,10 +7,10 @@ export type AlertProps = ComponentProps<"div"> & {
 };
 
 const variantClasses = {
-	success: "text-green-800 bg-green-50 border-green-100",
-	info: "text-blue-800 bg-blue-50 border-blue-100",
-	warning: "text-yellow-800 bg-yellow-50 border-yellow-100",
-	danger: "text-red-900 bg-red-50 border-red-100",
+	success: "text-green-700 bg-green-50 border-green-100",
+	info: "text-blue-700 bg-blue-50 border-blue-100",
+	warning: "text-yellow-700 bg-yellow-50 border-yellow-100",
+	danger: "text-red-700 bg-red-50 border-red-100",
 };
 
 /**
