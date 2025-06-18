@@ -13,12 +13,11 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version: 22
 
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 9
           run_install: true
 
       - name: Build Storybook

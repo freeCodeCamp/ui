@@ -13,9 +13,10 @@
   ],
   "private": false,
   "engines": {
-    "node": ">=20",
-    "pnpm": "9"
+    "node": ">=22",
+    "pnpm": ">=10"
   },
+  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/freeCodeCamp/ui.git"
@@ -96,7 +97,7 @@
     "cross-env": "7.0.3",
     "css-loader": "6.11.0",
     "eslint": "8.57.1",
-    "eslint-plugin-jest": "28.13.5",
+    "eslint-plugin-jest": "28.14.0",
     "eslint-plugin-jest-dom": "5.5.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
@@ -107,11 +108,11 @@
     "jest-environment-jsdom": "29.7.0",
     "lint-staged": "15.5.2",
     "npm-run-all2": "5.0.2",
-    "postcss": "8.5.5",
+    "postcss": "8.5.6",
     "postcss-import": "14.1.0",
     "postcss-loader": "8.1.1",
     "prettier": "3.5.3",
-    "rollup": "3.29.5",
+    "rollup": "4.43.0",
     "rollup-plugin-bundle-size": "1.0.3",
     "rollup-plugin-postcss": "4.0.2",
     "storybook": "8.6.14",
