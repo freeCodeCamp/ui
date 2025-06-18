@@ -7,15 +7,14 @@ const story = {
 	component: Col,
 	argTypes: {
 		className: { control: { type: "text" } },
-		xs: { options: [8, 12, undefined] },
+		xs: { options: [4, 6, 8, 12, undefined] },
 		sm: { options: [2, 4, 6, 8, 10, 12, undefined] },
-		md: { options: [4, 6, 8, 10, undefined] },
+		md: { options: [4, 6, 8, 10, 12, undefined] },
 		lg: { options: [6, 8, 10, undefined] },
-		xsOffset: { options: [2, 3, undefined] },
+		xsOffset: { options: [1, 2, 3, undefined] },
 		smOffset: { options: [1, 2, 3, 4, undefined] },
 		mdOffset: { options: [1, 2, 3, 4, undefined] },
 		lgOffset: { options: [0, 1, 2, undefined] },
-		smPush: { options: [1, undefined] },
 	},
 } satisfies Meta<typeof Col>;
 

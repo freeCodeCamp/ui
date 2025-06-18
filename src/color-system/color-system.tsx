@@ -62,6 +62,7 @@ export const AllPalettes = (): JSX.Element => {
 			<Palette colors={getPaletteByColorName("blue")} />
 			<Palette colors={getPaletteByColorName("green")} />
 			<Palette colors={getPaletteByColorName("red")} />
+			<Palette colors={getPaletteByColorName("orange")} />
 		</>
 	);
 };

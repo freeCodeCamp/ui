@@ -52,7 +52,7 @@ const QuizDefault = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 100,
+		passingPercent: 100,
 	});
 
 	return <Quiz questions={questions} />;
@@ -95,7 +95,7 @@ const QuizWithValidation = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 80,
+		passingPercent: 80,
 	});
 	const [disabled, setDisabled] = useState(false);
 
@@ -199,7 +199,112 @@ const QuizWithValidationAndAnswerFeedback = () => {
 			correct: "Correct.",
 			incorrect: "Incorrect.",
 		},
-		passingGrade: 100,
+		passingPercent: 100,
+	});
+	const [disabled, setDisabled] = useState(false);
+
+	const handleSubmit = () => {
+		validateAnswers();
+		setDisabled(true);
+	};
+
+	return (
+		<div>
+			<div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
+			<Quiz questions={questions} disabled={disabled} />
+			<Spacer size="m" />
+			<Button onClick={handleSubmit}>Submit</Button>
+		</div>
+	);
+};
+
+const QuizWithCorrectAnswersShownOnSuccess = () => {
+	const initialQuestions: Question<number>[] = [
+		{
+			question: "Lorem ipsum dolor sit amet",
+			answers: [
+				{
+					label: "Option 1",
+					value: 1,
+					feedback: (
+						<PrismFormatted
+							text={`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>`}
+							getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+						/>
+					),
+				},
+				{
+					label: "Option 2",
+					value: 2,
+					feedback:
+						"Recusandae necessitatibus consequatur voluptatem sapiente.",
+				},
+				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+			],
+			correctAnswer: 1,
+		},
+		{
+			question: "Consectetur adipiscing elit",
+			answers: [
+				{
+					label: "Option 1",
+					value: 1,
+					feedback: (
+						<PrismFormatted
+							text={`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>`}
+							getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+						/>
+					),
+				},
+				{
+					label: "Option 2",
+					value: 2,
+					feedback:
+						"Recusandae necessitatibus consequatur voluptatem sapiente.",
+				},
+				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+			],
+			correctAnswer: 2,
+		},
+		{
+			question: "Fugit itaque delectus voluptatem alias aliquid",
+			answers: [
+				{
+					label: "Option 1",
+					value: 1,
+					feedback: (
+						<PrismFormatted
+							text={`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>`}
+							getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+						/>
+					),
+				},
+				{
+					label: "Option 2",
+					value: 2,
+					feedback:
+						"Recusandae necessitatibus consequatur voluptatem sapiente.",
+				},
+				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+			],
+			correctAnswer: 3,
+		},
+	];
+
+	const { questions, validateAnswers, correctAnswerCount } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct.",
+			incorrect: "Incorrect.",
+		},
+		passingPercent: 50,
+		showCorrectAnswersOnSuccess: true,
 	});
 	const [disabled, setDisabled] = useState(false);
 
@@ -442,6 +547,125 @@ const App = () => {
       correct: "Correct.",
       incorrect: "Incorrect.",
 	  },
+	});
+
+  const [disabled, setDisabled] = useState(false);
+
+  const handleSubmit = () => {
+    validateAnswers();
+    setDisabled(true);
+  };
+
+  return (
+    <div>
+      <div aria-live="polite">
+				{!!correctAnswerCount && (
+					<p className="text-foreground-primary">
+						Correct answers: {correctAnswerCount}
+					</p>
+				)}
+			</div>
+      <Quiz questions={questions} disabled={disabled} />
+      <Spacer size="m" />
+      <Button onClick={handleSubmit}>Submit</Button>
+    </div>
+  );
+};`,
+			},
+		},
+	},
+};
+
+export const WithCorrectAnswersShownOnSuccess: Story = {
+	render: QuizWithCorrectAnswersShownOnSuccess,
+	args: {},
+	parameters: {
+		docs: {
+			source: {
+				code: `
+import { Quiz, useQuiz, Button, Spacer } from '@freecodecamp/ui';
+
+const initialQuestions = [
+  {
+		question: "Lorem ipsum dolor sit amet",
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				feedback: (
+					<PrismFormatted
+						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+			},
+			{
+				label: "Option 2",
+				value: 2,
+				feedback:
+					"Recusandae necessitatibus consequatur voluptatem sapiente.",
+			},
+			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+		],
+		correctAnswer: 1,
+	},
+	{
+		question: "Consectetur adipiscing elit",
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				feedback: (
+					<PrismFormatted
+						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+			},
+			{
+				label: "Option 2",
+				value: 2,
+				feedback:
+					"Recusandae necessitatibus consequatur voluptatem sapiente.",
+			},
+			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+		],
+		correctAnswer: 2,
+	},
+	{
+		question: "Fugit itaque delectus voluptatem alias aliquid",
+		answers: [
+			{
+				label: "Option 1",
+				value: 1,
+				feedback: (
+					<PrismFormatted
+						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
+						getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
+					/>
+				),
+			},
+			{
+				label: "Option 2",
+				value: 2,
+				feedback:
+					"Recusandae necessitatibus consequatur voluptatem sapiente.",
+			},
+			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+		],
+		correctAnswer: 3,
+	},
+];
+
+const App = () => {
+  const { questions, validateAnswers } = useQuiz({
+	  initialQuestions,
+    validationMessages: {
+      correct: "Correct.",
+      incorrect: "Incorrect.",
+	  },
+		passingPercent: 50,
+		showCorrectAnswersOnSuccess: true
 	});
 
   const [disabled, setDisabled] = useState(false);

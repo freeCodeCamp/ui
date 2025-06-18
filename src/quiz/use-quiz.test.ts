@@ -32,7 +32,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -90,7 +90,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -124,7 +124,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -161,7 +161,7 @@ describe("useQuiz", () => {
 					},
 				],
 				validationMessages,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -192,6 +192,105 @@ describe("useQuiz", () => {
 		expect(result.current.questions[1].answers[2].validation?.message).toBe(
 			"Incorrect",
 		);
+		expect(result.current.correctAnswerCount).toBe(1);
+		expect(result.current.grade).toBe(50);
+		expect(result.current.validated).toBe(true);
+	});
+
+	it("should return the questions array with the correct validation status if `showCorrectAnswersOnSuccess` is `true`", () => {
+		const { result } = renderHook(() =>
+			useQuiz({
+				initialQuestions: [
+					{
+						question: "Lorem ipsum dolor sit amet",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 1,
+						correctAnswer: 1,
+					},
+					{
+						question: "Consectetur adipiscing elit",
+						answers: [
+							{ label: "Option 1", value: 1 },
+							{ label: "Option 2", value: 2 },
+							{ label: "Option 3", value: 3 },
+						],
+						selectedAnswer: 3,
+						correctAnswer: 2,
+					},
+				],
+				validationMessages,
+				passingPercent: 50,
+				showCorrectAnswersOnSuccess: true,
+			}),
+		);
+
+		expect(result.current.validated).toBe(false);
+		expect(result.current.correctAnswerCount).toBeUndefined();
+		expect(result.current.grade).toBeUndefined();
+
+		act(() => {
+			result.current.validateAnswers();
+		});
+
+		expect(result.current.questions).toMatchObject([
+			{
+				question: "Lorem ipsum dolor sit amet",
+				answers: [
+					{
+						label: "Option 1",
+						value: 1,
+						validation: {
+							message: "Correct",
+							state: "correct",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+					},
+					{
+						label: "Option 3",
+						value: 3,
+					},
+				],
+				onChange: expect.any(Function),
+				selectedAnswer: 1,
+				correctAnswer: 1,
+			},
+			{
+				question: "Consectetur adipiscing elit",
+				answers: [
+					{
+						label: "Option 1",
+						value: 1,
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						validation: {
+							message: "Correct",
+							state: "correct",
+						},
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						validation: {
+							message: "Incorrect",
+							state: "incorrect",
+						},
+					},
+				],
+				onChange: expect.any(Function),
+				selectedAnswer: 3,
+				correctAnswer: 2,
+			},
+		]);
+
 		expect(result.current.correctAnswerCount).toBe(1);
 		expect(result.current.grade).toBe(50);
 		expect(result.current.validated).toBe(true);
@@ -228,7 +327,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -271,7 +370,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 100,
+				passingPercent: 100,
 			}),
 		);
 
@@ -314,7 +413,7 @@ describe("useQuiz", () => {
 				validationMessages,
 				onSuccess,
 				onFailure,
-				passingGrade: 50,
+				passingPercent: 50,
 			}),
 		);
 

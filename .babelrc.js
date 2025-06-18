@@ -32,6 +32,8 @@ module.exports = {
 					"typescript",
 					"xml",
 					"bash",
+					"sass",
+					"scss",
 				],
 				theme: "default",
 				css: true,
