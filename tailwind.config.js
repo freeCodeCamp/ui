@@ -81,6 +81,7 @@ module.exports = {
 					700: "var(--red70)",
 					800: "var(--red80)",
 					900: "var(--red90)",
+					1000: "var(--red100)",
 				},
 				orange: {
 					300: "var(--orange30)",

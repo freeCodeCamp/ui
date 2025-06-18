@@ -46,7 +46,7 @@ const computeClassNames = ({
 			classNames.push(
 				...(disabled
 					? [
-							"border-foreground-danger-disabled",
+							"border-gray-450",
 							"bg-background-danger-disabled",
 							"text-foreground-danger-disabled",
 						]
