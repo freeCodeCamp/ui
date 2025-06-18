@@ -44,17 +44,25 @@ const computeClassNames = ({
 	switch (variant) {
 		case "danger":
 			classNames.push(
-				"border-foreground-danger",
-				"bg-background-danger",
-				"text-foreground-danger",
-				"hover:bg-foreground-danger",
-				"hover:text-background-danger",
-				// This hover rule is redundant for the component library,
-				// but is needed to override the border color set in client's `global.css`.
-				// We can remove it once we have completely removed the CSS overrides in client.
-				"hover:border-foreground-danger",
-				"dark:hover:bg-background-danger",
-				"dark:hover:text-foreground-danger",
+				...(disabled
+					? [
+							"border-gray-450",
+							"bg-background-danger-disabled",
+							"text-foreground-danger-disabled",
+						]
+					: [
+							"border-foreground-danger",
+							"bg-background-danger",
+							"text-foreground-danger",
+							"hover:bg-foreground-danger",
+							"hover:text-background-danger",
+							// This hover rule is redundant for the component library,
+							// but is needed to override the border color set in client's `global.css`.
+							// We can remove it once we have completely removed the CSS overrides in client.
+							"hover:border-foreground-danger",
+							"dark:hover:bg-background-danger",
+							"dark:hover:text-foreground-danger",
+						]),
 			);
 			break;
 		case "info":
@@ -78,12 +86,7 @@ const computeClassNames = ({
 				"bg-background-quaternary",
 				"text-foreground-secondary",
 				...(disabled
-					? [
-							"active:before:hidden",
-							"border-gray-450",
-							"aria-disabled:cursor-not-allowed",
-							"aria-disabled:opacity-80",
-						]
+					? ["border-gray-450"]
 					: [
 							"border-foreground-secondary",
 							"hover:bg-foreground-primary",
@@ -96,6 +99,14 @@ const computeClassNames = ({
 							"dark:hover:text-foreground-primary",
 						]),
 			);
+	}
+
+	if (disabled) {
+		classNames.push(
+			"active:before:hidden",
+			"aria-disabled:cursor-not-allowed",
+			"aria-disabled:opacity-80",
+		);
 	}
 
 	switch (size) {
