@@ -4,8 +4,8 @@ import {
 	List,
 	Trigger,
 	Content,
-	TabsTriggerProps,
-	TabsListProps,
+	type TabsTriggerProps,
+	type TabsListProps,
 } from "@radix-ui/react-tabs";
 
 const buttonClassNames =
