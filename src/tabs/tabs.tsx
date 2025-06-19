@@ -1,5 +1,12 @@
-import React, { type ComponentPropsWithoutRef } from "react";
-import { Root, List, Trigger, Content } from "@radix-ui/react-tabs";
+import React from "react";
+import {
+	Root,
+	List,
+	Trigger,
+	Content,
+	type TabsTriggerProps,
+	type TabsListProps,
+} from "@radix-ui/react-tabs";
 
 const buttonClassNames =
 	"flex-1 block relative px-2.5 py-[5px] text-sm text-foreground-secondary border-none aria-selected:font-bold aria-selected:bg-foreground-quaternary aria-selected:text-background-secondary hover:bg-background-quaternary";
@@ -10,7 +17,7 @@ const listClassNames =
 
 export const TabsTrigger = React.forwardRef<
 	React.ElementRef<typeof Trigger>,
-	ComponentPropsWithoutRef<typeof Trigger>
+	TabsTriggerProps
 >(({ className, ...props }, ref) => {
 	const triggerClasses = [buttonClassNames, className].join(" ");
 	return <Trigger ref={ref} className={triggerClasses} {...props} />;
@@ -18,7 +25,7 @@ export const TabsTrigger = React.forwardRef<
 
 export const TabsList = React.forwardRef<
 	React.ElementRef<typeof List>,
-	ComponentPropsWithoutRef<typeof List>
+	TabsListProps
 >(({ className, ...props }, ref) => {
 	const listClasses = [listClassNames, className].join(" ");
 	return <List ref={ref} className={listClasses} {...props} />;
