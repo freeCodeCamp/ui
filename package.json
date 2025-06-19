@@ -112,7 +112,7 @@
     "postcss-import": "14.1.0",
     "postcss-loader": "8.1.1",
     "prettier": "3.5.3",
-    "rollup": "4.43.0",
+    "rollup": "4.44.0",
     "rollup-plugin-bundle-size": "1.0.3",
     "rollup-plugin-postcss": "4.0.2",
     "storybook": "8.6.14",
