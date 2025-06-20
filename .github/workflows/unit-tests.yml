@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        react-version: [16, 17]
+        react-version: [17]
         testing-library-version: [12]
         include:
           - react-version: 18
