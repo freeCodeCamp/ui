@@ -51,7 +51,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.7.2",
     "@fortawesome/free-solid-svg-icons": "6.7.2",
-    "@fortawesome/react-fontawesome": "0.2.3",
+    "@fortawesome/react-fontawesome": "0.2.6",
     "@headlessui/react": "1.7.19",
     "@radix-ui/react-tabs": "1.1.13",
     "babel-plugin-prismjs": "2.1.0",
