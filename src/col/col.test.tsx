@@ -28,4 +28,34 @@ describe("<Col />", () => {
 			"min-h-[1px] px-[15px] certificate-outer-wrapper",
 		);
 	});
+
+	// Test new grid values
+	it("should support new xs grid values", () => {
+		const { rerender } = render(<Col xs={1}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("w-1/12");
+
+		rerender(<Col xs={3}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("w-1/4");
+
+		rerender(<Col xs={5}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("w-5/12");
+	});
+
+	it("should support new lg grid values", () => {
+		const { rerender } = render(<Col lg={1}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("min-[1200px]:w-1/12");
+
+		rerender(<Col lg={12}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("min-[1200px]:w-full");
+	});
+
+	it("should support new offset values", () => {
+		const { rerender } = render(<Col xsOffset={5}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass("ml-[41.7%]");
+
+		rerender(<Col lgOffset={10}>Test content</Col>);
+		expect(screen.getByText("Test content")).toHaveClass(
+			"min-[1200px]:ml-[83.3%]",
+		);
+	});
 });
