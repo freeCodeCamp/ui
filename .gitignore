@@ -5,6 +5,7 @@ node_modules/
 types/
 dist/
 storybook-static/
+debug-storybook.log
 
 # dotenv environment variables file
 .env
