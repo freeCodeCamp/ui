@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Col } from ".";
 
 const story = {
@@ -20,19 +20,57 @@ const story = {
 	},
 } satisfies Meta<typeof Col>;
 
-const Template: StoryFn<typeof Col> = (args) => {
-	return (
-		<Col className="bg-gray-700" {...args}>
-			<p>Random text to test the element width</p>
+export const WithoutOffset: StoryFn<typeof Col> = () => (
+	<div className="container mx-auto">
+		<Col xs={12} sm={6} md={4} lg={3} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">xs=12 sm=6 md=4 lg=3</p>
 		</Col>
-	);
+		<Col xs={12} sm={6} md={4} lg={3} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">xs=12 sm=6 md=4 lg=3</p>
+		</Col>
+		<Col xs={12} sm={12} md={4} lg={6} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">xs=12 sm=12 md=4 lg=6</p>
+		</Col>
+		<Col xs={12} sm={12} md={12} lg={12} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">
+				Full width at all breakpoints
+			</p>
+		</Col>
+	</div>
+);
+
+WithoutOffset.parameters = {
+	docs: {
+		description: {
+			story: "Responsive example using `xs`, `sm`, `md`, `lg` without offsets.",
+		},
+	},
 };
 
-export const Default: StoryObj<typeof Col> = {
-	render: Template,
+export const WithOffset: StoryFn<typeof Col> = () => (
+	<div className="container mx-auto">
+		<Col xs={12} sm={6} md={4} lg={3} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">xs=12 sm=6 md=4 lg=3</p>
+		</Col>
 
-	args: {
-		// default props go here
+		<Col xs={12} sm={6} mdOffset={2} lgOffset={3} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">
+				xs=12 sm=6 mdOffset=2 lgOffset=3
+			</p>
+		</Col>
+
+		<Col xs={12} sm={12} md={4} lg={4} className="mb-4 bg-blue-700">
+			<p className="text-white px-3 py-2 text-center">xs=12 sm=12 md=4 lg=4</p>
+		</Col>
+	</div>
+);
+
+WithOffset.parameters = {
+	docs: {
+		description: {
+			story:
+				"Responsive example that uses `xs`, `sm`, `md`, `lg` with offset props to demonstrate shifting columns.",
+		},
 	},
 };
 
