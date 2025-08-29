@@ -22,7 +22,7 @@ export const Default: Story = {
 					Column 1
 				</Col>
 				<Col
-					xs={2}
+					xs={4}
 					md={8}
 					className="bg-blue-700 my-2 px-3 py-2 text-white text-center"
 				>
