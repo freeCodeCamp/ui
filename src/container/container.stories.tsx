@@ -20,20 +20,8 @@ const Template: StoryFn<typeof Container> = (args) => {
 	return (
 		<Container {...args}>
 			<Row>
-				<Col xs={12} md={4} className="bg-blue-700">
-					<p className={"text-white px-3 py-2 text-center"}>Column 1</p>
-				</Col>
-				<Col xs={12} md={8} className="bg-blue-700">
-					<p className={"text-white px-3 py-2 text-center"}>Column 2</p>
-				</Col>
-			</Row>
-
-			<Row orientation="horizontal" className="mt-4">
-				<Col xs={12} md={4} className="bg-blue-700">
-					<p className={"text-white px-3 py-2 text-center"}>Column 1</p>
-				</Col>
-				<Col xs={12} md={6} mdOffset={2} className="bg-blue-700">
-					<p className={"text-white px-3 py-2 text-center"}>Column 2</p>
+				<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
+					Column
 				</Col>
 			</Row>
 		</Container>
