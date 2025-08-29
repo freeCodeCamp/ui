@@ -86,6 +86,11 @@ module.exports = {
 				orange: {
 					300: "var(--orange30)",
 				},
+				purple: {
+					100: "var(--purple10)",
+					500: "var(--purple50)",
+					900: "var(--purple90)",
+				},
 			},
 			borderWidth: {
 				1: "1px",
