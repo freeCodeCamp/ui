@@ -30,7 +30,7 @@ const DropUpChildren = () => (
 			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
 				Option 2
 			</MenuItem>
-			<MenuItem href="#" onClick={(e) => e.preventDefault()} disabled>
+			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
 				Option 3
 			</MenuItem>
 		</Dropdown.Menu>
