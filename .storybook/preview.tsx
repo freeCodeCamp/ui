@@ -1,51 +1,104 @@
-import React from "react";
+import React, { useEffect } from "react";
+import type { Preview, Decorator } from "@storybook/react";
 import "../src/base.css";
 import "../src/fonts.css";
 
-export const parameters = {
-	controls: {
-		matchers: {
-			color: /(background|color)$/i,
-			date: /Date$/,
-		},
+const THEME_OPTIONS = {
+	light: {
+		name: "Light",
+		value: "light-palette",
+		backgroundColor: "#f5f6f7",
 	},
-	backgrounds: {
-		default: "light-palette",
-		values: [
-			{
-				name: "light-palette",
-				value: "#f5f6f7",
-			},
-			{
-				name: "dark-palette",
-				value: "#1b1b32",
-			},
-		],
+	dark: {
+		name: "Dark",
+		value: "dark-palette",
+		backgroundColor: "#1b1b32",
+	},
+} as const;
+
+/**
+ * Theme decorator that applies theme classes to the body and story container
+ */
+const withThemeProvider: Decorator = (Story, context) => {
+	const theme = context.globals.theme || THEME_OPTIONS.light.value;
+	const themeConfig =
+		Object.values(THEME_OPTIONS).find((t) => t.value === theme) ||
+		THEME_OPTIONS.light;
+
+	useEffect(() => {
+		const body = document.body;
+
+		Object.values(THEME_OPTIONS).forEach((t) => {
+			body.classList.remove(t.value);
+		});
+
+		body.classList.add(theme);
+
+		// Story page
+		const canvas = document.querySelector(".sb-show-main") as HTMLElement;
+
+		// Docs page
+		const docsStories = document.querySelectorAll(".docs-story");
+
+		if (canvas) {
+			canvas.style.backgroundColor = themeConfig.backgroundColor;
+		}
+
+		if (docsStories.length > 0) {
+			docsStories.forEach((el) => {
+				(el as HTMLElement).style.backgroundColor = themeConfig.backgroundColor;
+			});
+		}
+
+		return () => {
+			Object.values(THEME_OPTIONS).forEach((t) => {
+				body.classList.remove(t.value);
+			});
+		};
+	}, [theme, themeConfig.backgroundColor]);
+
+	return <Story />;
+};
+
+export const globalTypes = {
+	theme: {
+		name: "Theme",
+		description: "Global theme for components",
+		defaultValue: THEME_OPTIONS.light.value,
+		toolbar: {
+			icon: "paintbrush",
+			// Array of plain string values or MenuItem shape
+			items: [
+				{
+					value: THEME_OPTIONS.light.value,
+					title: THEME_OPTIONS.light.name,
+					icon: "sun",
+				},
+				{
+					value: THEME_OPTIONS.dark.value,
+					title: THEME_OPTIONS.dark.name,
+					icon: "moon",
+				},
+			],
+			// Change title based on selected value
+			dynamicTitle: true,
+		},
 	},
 };
 
-export const decorators = [renderTheme];
+const preview: Preview = {
+	parameters: {
+		controls: {
+			matchers: {
+				color: /(background|color)$/i,
+				date: /Date$/i,
+			},
+		},
+		// Remove backgrounds to disable the default background selector
+		backgrounds: { disable: true },
+	},
+	globalTypes,
+	decorators: [withThemeProvider],
+};
 
-/**
- * Gets matching theme name for currently selected background and provides it
- * to the story.
- */
-function renderTheme(Story, context) {
-	const selectedBackgroundValue = context.globals.backgrounds?.value;
-	const selectedBackgroundName = parameters.backgrounds.values.find(
-		(bg) => bg.value === selectedBackgroundValue,
-	)?.name;
-
-	// Use the value of the default background to prevent "undefined" className
-	const className = selectedBackgroundName || parameters.backgrounds.default;
-
-	if (className === "light-palette") {
-		document.body.classList.remove("dark-palette");
-		document.body.classList.add("light-palette");
-	} else {
-		document.body.classList.remove("light-palette");
-		document.body.classList.add("dark-palette");
-	}
-
-	return <Story />;
-}
+export default preview;
