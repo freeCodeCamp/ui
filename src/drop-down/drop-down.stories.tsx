@@ -11,9 +11,13 @@ const DropDownChildren = () => (
 	<>
 		<Dropdown.Toggle>Options</Dropdown.Toggle>
 		<Dropdown.Menu>
-			<MenuItem onClick={() => alert("hi")}>Option 1</MenuItem>
-			<MenuItem href={"https://www.google.com"}>Option 2</MenuItem>
-			<MenuItem href={"https://www.google.com"}>Option 3</MenuItem>
+			<MenuItem onClick={() => {}}>Option 1</MenuItem>
+			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
+				Option 2
+			</MenuItem>
+			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
+				Option 3
+			</MenuItem>
 		</Dropdown.Menu>
 	</>
 );
@@ -22,9 +26,11 @@ const DropUpChildren = () => (
 	<>
 		<Dropdown.Toggle>Options</Dropdown.Toggle>
 		<Dropdown.Menu>
-			<MenuItem onClick={() => alert("hi")}>Option 1</MenuItem>
-			<MenuItem href={"https://www.google.com"}>Option 2</MenuItem>
-			<MenuItem href={"https://www.google.com"} disabled>
+			<MenuItem onClick={() => {}}>Option 1</MenuItem>
+			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
+				Option 2
+			</MenuItem>
+			<MenuItem href="#" onClick={(e) => e.preventDefault()}>
 				Option 3
 			</MenuItem>
 		</Dropdown.Menu>
