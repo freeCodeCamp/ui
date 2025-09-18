@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/react";
 
 import { Button } from "../button";
@@ -223,6 +223,55 @@ export const StartAlignedBody: Story = {
 	args: {
 		bodyAlignment: "start",
 	},
+};
+
+const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
+	const [open, setOpen] = useState(false);
+	const customFocusRef = useRef<HTMLButtonElement>(null);
+
+	const handleClose = () => setOpen(false);
+
+	return (
+		<div>
+			<Button onClick={() => setOpen(true)}>Open modal</Button>
+			<Modal
+				{...args}
+				open={open}
+				onClose={handleClose}
+				initialFocus={customFocusRef}
+			>
+				<Modal.Header>Custom Focus Demo</Modal.Header>
+				<Modal.Body>
+					<p>
+						When this modal opens, focus will be set to the &quot;Custom Focus
+						Target&quot; button instead of the default close button.
+					</p>
+					<p>
+						This is useful for forms or other scenarios where you want to direct
+						the user&apos;s attention to a specific element immediately.
+					</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large" onClick={handleClose}>
+						Normal Button
+					</Button>
+					<Spacer size="xxs" />
+					<Button ref={customFocusRef} block size="large" variant="primary">
+						Custom Focus Target
+					</Button>
+					<Spacer size="xxs" />
+					<Button block size="large" onClick={handleClose}>
+						Cancel
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</div>
+	);
+};
+
+export const WithInitialFocus: Story = {
+	render: InitialFocusTemplate,
+	args: {},
 };
 
 export const EndAlignedFooter: Story = {

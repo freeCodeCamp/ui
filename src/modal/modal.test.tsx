@@ -159,4 +159,70 @@ describe("<Modal />", () => {
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
+
+	it("should focus on the specified element when `initialFocus` is provided", async () => {
+		const initialFocusRef = React.createRef<HTMLButtonElement>();
+
+		render(
+			<Modal open={true} onClose={() => {}} initialFocus={initialFocusRef}>
+				<Modal.Header>Lorem ipsum</Modal.Header>
+				<Modal.Body>
+					<p>Laboriosam autem non et nisi.</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button ref={initialFocusRef} block size="large">
+						Custom Focus Button
+					</Button>
+					<Button block size="large">
+						Submit
+					</Button>
+					<Button block size="large">
+						Cancel
+					</Button>
+				</Modal.Footer>
+			</Modal>,
+		);
+
+		const dialog = await screen.findByRole("dialog", { name: "Lorem ipsum" });
+		expect(dialog).toBeInTheDocument();
+
+		const customFocusButton = within(dialog).getByRole("button", {
+			name: "Custom Focus Button",
+		});
+		expect(customFocusButton).toHaveFocus();
+	});
+
+	it("should focus on the specified element even when close button is present and `initialFocus` is provided", async () => {
+		const initialFocusRef = React.createRef<HTMLButtonElement>();
+
+		render(
+			<Modal open={true} onClose={() => {}} initialFocus={initialFocusRef}>
+				<Modal.Header showCloseButton={true}>Lorem ipsum</Modal.Header>
+				<Modal.Body>
+					<p>Laboriosam autem non et nisi.</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large">
+						Submit
+					</Button>
+					<Button ref={initialFocusRef} block size="large">
+						Custom Focus Button
+					</Button>
+				</Modal.Footer>
+			</Modal>,
+		);
+
+		const dialog = await screen.findByRole("dialog", { name: "Lorem ipsum" });
+		expect(dialog).toBeInTheDocument();
+
+		// Even though close button is present, the custom focus target should have focus
+		const customFocusButton = within(dialog).getByRole("button", {
+			name: "Custom Focus Button",
+		});
+		expect(customFocusButton).toHaveFocus();
+
+		// The close button should not have focus
+		const closeButton = within(dialog).getByRole("button", { name: "Close" });
+		expect(closeButton).not.toHaveFocus();
+	});
 });

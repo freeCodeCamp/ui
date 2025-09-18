@@ -99,6 +99,7 @@ const Modal = ({
 	onKeyDown,
 	size = "medium",
 	variant = "default",
+	initialFocus,
 }: ModalProps) => {
 	let panelClasses = PANEL_DEFAULT_CLASSES;
 
@@ -123,6 +124,7 @@ const Modal = ({
 					onClose={onClose}
 					className="relative z-1050 w-screen h-screen"
 					onKeyDown={onKeyDown}
+					initialFocus={initialFocus}
 				>
 					{/* The backdrop, rendered as a fixed sibling to the panel container */}
 					<div aria-hidden className="fixed inset-0 bg-gray-900 opacity-50" />
