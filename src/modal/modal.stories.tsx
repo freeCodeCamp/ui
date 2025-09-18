@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/react";
 
 import { Button } from "../button";
+import { FormControl } from "../form-control";
 import { Spacer } from "../spacer";
 import { Modal } from "./modal";
 import {
@@ -227,7 +228,7 @@ export const StartAlignedBody: Story = {
 
 const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 	const [open, setOpen] = useState(false);
-	const customFocusRef = useRef<HTMLButtonElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleClose = () => setOpen(false);
 
@@ -238,26 +239,21 @@ const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 				{...args}
 				open={open}
 				onClose={handleClose}
-				initialFocus={customFocusRef}
+				initialFocus={inputRef}
 			>
-				<Modal.Header>Custom Focus Demo</Modal.Header>
+				<Modal.Header>Enter Your Name</Modal.Header>
 				<Modal.Body>
-					<p>
-						When this modal opens, focus will be set to the &quot;Custom Focus
-						Target&quot; button instead of the default close button.
-					</p>
-					<p>
-						This is useful for forms or other scenarios where you want to direct
-						the user&apos;s attention to a specific element immediately.
-					</p>
+					<p>Please enter your full name below:</p>
+					<FormControl
+						ref={inputRef}
+						type="text"
+						placeholder="Your full name"
+						componentClass="input"
+					/>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button block size="large" onClick={handleClose}>
-						Normal Button
-					</Button>
-					<Spacer size="xxs" />
-					<Button ref={customFocusRef} block size="large" variant="primary">
-						Custom Focus Target
+					<Button block size="large" variant="primary">
+						Submit
 					</Button>
 					<Spacer size="xxs" />
 					<Button block size="large" onClick={handleClose}>
@@ -272,6 +268,14 @@ const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 export const WithInitialFocus: Story = {
 	render: InitialFocusTemplate,
 	args: {},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This example demonstrates the `initialFocus` prop. When the modal opens, focus will be set to the input field instead of the default close button. This is useful for forms or other scenarios where you want to direct the user's attention to a specific element immediately.",
+			},
+		},
+	},
 };
 
 export const EndAlignedFooter: Story = {
