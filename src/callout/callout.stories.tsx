@@ -1,3 +1,4 @@
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Callout } from "./callout";
@@ -38,6 +39,24 @@ export const Danger: Story = {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "danger",
+	},
+};
+
+export const WithButtonAndLink: Story = {
+	args: {
+		variant: "success",
+		children: (
+			<>
+				<p>
+					This is a callout with a{" "}
+					<a href="#test" onClick={(e) => e.preventDefault()}>
+						link
+					</a>{" "}
+					and a button.
+				</p>
+				<button className="btn">Click me</button>
+			</>
+		),
 	},
 };
 

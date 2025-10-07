@@ -72,4 +72,22 @@ export const WithHeadingAndParagraphs: Story = {
 	},
 };
 
+export const WithButtonAndLink: Story = {
+	args: {
+		variant: "info",
+		children: (
+			<>
+				<p>
+					This is an alert with a{" "}
+					<a href="#test" onClick={(e) => e.preventDefault()}>
+						link
+					</a>{" "}
+					and a button.
+				</p>
+				<button className="btn">Click me</button>
+			</>
+		),
+	},
+};
+
 export default story;

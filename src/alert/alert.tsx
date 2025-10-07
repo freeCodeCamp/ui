@@ -28,6 +28,11 @@ export const Alert = ({
 
 	const classes = [
 		"p-4 mb-6 border border-solid border-1 break-words",
+		"[&_button]:bg-transparent [&_button]:text-current [&_button]:border-current",
+		"[&_button:hover]:bg-[#31708f] [&_button:hover]:text-[#d9edf7] [&_button:hover]:border-[#31708f]",
+		"[&_button:focus]:bg-[#31708f] [&_button:focus]:text-[#d9edf7] [&_button:focus]:border-[#31708f]",
+		"[&_a:hover]:bg-[#31708f] [&_a:hover]:text-[#d9edf7]",
+		"[&_a:focus]:bg-[#31708f] [&_a:focus]:text-[#d9edf7]",
 		variantClass,
 		className,
 	].join(" ");
