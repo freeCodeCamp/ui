@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../button";
 import { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./alert";
 
@@ -67,6 +68,24 @@ export const WithHeadingAndParagraphs: Story = {
 					commodi cumque dicta ducimus eum iure, maiores mollitia, odit porro
 					quas quod rerum soluta sunt tempora unde, vel voluptas voluptates.
 				</p>
+			</>
+		),
+	},
+};
+
+export const WithButtonAndLink: Story = {
+	args: {
+		variant: "info",
+		children: (
+			<>
+				<p>
+					This is an alert with a{" "}
+					<a href="#test" onClick={(e) => e.preventDefault()}>
+						link
+					</a>{" "}
+					and a button.
+				</p>
+				<Button>Click me</Button>
 			</>
 		),
 	},
