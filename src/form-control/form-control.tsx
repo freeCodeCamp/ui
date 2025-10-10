@@ -13,6 +13,10 @@ const defaultClasses =
 
 type FormControlElement = HTMLInputElement | HTMLTextAreaElement;
 
+// Using FormControlProps without explicit type parameter allows TypeScript to infer
+// the correct element type from the componentClass prop, preserving element-specific
+// props like 'type' for input elements. Using FormControlProps<"input" | "textarea">
+// would create an intersection that only includes common props between both elements.
 const FormControlComponent = React.forwardRef<
 	FormControlElement,
 	FormControlProps
