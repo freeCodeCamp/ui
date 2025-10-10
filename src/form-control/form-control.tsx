@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, forwardRef } from "react";
 import { FormContext } from "../form-group/form-group";
 
 import { FormControlFeedback } from "./form-control-feedback";
@@ -11,15 +11,20 @@ let variantClass: string;
 const defaultClasses =
 	"outline-0 block w-full py-1.5 px-2.5 text-md text-foreground-primary bg-background-primary bg-none rounded-none border-1 border-solid border-background-quaternary shadow-none transition ease-in-out duration-150 focus:border-foreground-tertiary";
 
-type FormControlElement = HTMLInputElement | HTMLTextAreaElement;
+interface FormControlStatics {
+	Feedback: typeof FormControlFeedback;
+	Static: typeof FormControlStatic;
+}
 
-// Using FormControlProps without explicit type parameter allows TypeScript to infer
-// the correct element type from the componentClass prop, preserving element-specific
-// props like 'type' for input elements. Using FormControlProps<"input" | "textarea">
-// would create an intersection that only includes common props between both elements.
-const FormControlComponent = React.forwardRef<
-	FormControlElement,
-	FormControlProps
+type FormControlComponent = React.ForwardRefExoticComponent<
+	FormControlProps<"input" | "textarea"> &
+		React.RefAttributes<HTMLInputElement | HTMLTextAreaElement>
+> &
+	FormControlStatics;
+
+const FormControl = forwardRef<
+	HTMLInputElement | HTMLTextAreaElement,
+	FormControlProps<"input" | "textarea">
 >(({ componentClass, ...props }, ref) => {
 	const { controlId } = useContext(FormContext);
 	const { id, className } = props;
@@ -33,15 +38,9 @@ const FormControlComponent = React.forwardRef<
 	return (
 		<Component id={id || controlId} className={classes} ref={ref} {...props} />
 	);
-});
+}) as FormControlComponent;
 
-FormControlComponent.displayName = "FormControl";
-
-const FormControl = FormControlComponent as typeof FormControlComponent & {
-	Feedback: typeof FormControlFeedback;
-	Static: typeof FormControlStatic;
-};
-
+FormControl.displayName = "FormControl";
 FormControl.Feedback = FormControlFeedback;
 FormControl.Static = FormControlStatic;
 
