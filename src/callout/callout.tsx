@@ -1,11 +1,32 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faCircleCheck,
+	faCircleInfo,
+	faTriangleExclamation,
+	faCircleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { CalloutProps } from "./types";
 
 const variantClasses = {
-	success: "text-green-800 bg-green-50 border-green-700",
-	info: "text-blue-800 bg-blue-50 border-blue-700",
-	warning: "text-yellow-800 bg-yellow-50 border-yellow-700",
-	danger: "text-red-900 bg-red-50 border-red-700",
+	tip: "text-green-800 bg-green-50 border-l-green-700",
+	note: "text-blue-800 bg-blue-50 border-l-blue-700",
+	warning: "text-yellow-800 bg-yellow-50 border-l-yellow-700",
+	caution: "text-red-900 bg-red-50 border-l-red-700",
+};
+
+const variantIcons = {
+	tip: faCircleCheck,
+	note: faCircleInfo,
+	warning: faTriangleExclamation,
+	caution: faCircleExclamation,
+};
+
+const variantLabels = {
+	tip: "Tip",
+	note: "Note",
+	warning: "Warning",
+	caution: "Caution",
 };
 
 /**
@@ -22,13 +43,17 @@ export const Callout = ({
 	const variantClass = variantClasses[variant];
 
 	const classes = [
-		"p-4 mb-6 border border-solid border-1 break-words",
+		"p-4 mb-6 border-l-4 break-words",
 		variantClass,
 		className,
 	].join(" ");
 
 	return (
 		<div className={classes} {...others}>
+			<div className="flex items-start mb-2">
+				<FontAwesomeIcon icon={variantIcons[variant]} className="me-2 mt-1" />
+				<strong>{variantLabels[variant]}</strong>
+			</div>
 			{children}
 		</div>
 	);
