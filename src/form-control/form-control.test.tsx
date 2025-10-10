@@ -22,6 +22,28 @@ describe("<FormControl />", () => {
 		expect(input).toBeInTheDocument();
 		expect(input).toHaveAttribute("id", "bar");
 	});
+
+	it("should forward refs to the input element", () => {
+		const ref = React.createRef<HTMLInputElement>();
+		render(<FormControl ref={ref} aria-label="test input" />);
+
+		expect(ref.current).toBeInstanceOf(HTMLInputElement);
+		expect(ref.current).toBe(screen.getByLabelText("test input"));
+	});
+
+	it("should forward refs to the textarea element", () => {
+		const ref = React.createRef<HTMLTextAreaElement>();
+		render(
+			<FormControl
+				componentClass="textarea"
+				ref={ref}
+				aria-label="test textarea"
+			/>,
+		);
+
+		expect(ref.current).toBeInstanceOf(HTMLTextAreaElement);
+		expect(ref.current).toBe(screen.getByLabelText("test textarea"));
+	});
 });
 
 describe("<FormControl.Static />", () => {
