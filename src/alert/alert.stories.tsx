@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../button";
 import { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./alert";
 
@@ -84,7 +85,7 @@ export const WithButtonAndLink: Story = {
 					</a>{" "}
 					and a button.
 				</p>
-				<button className="btn">Click me</button>
+				<Button>Click me</Button>
 			</>
 		),
 	},

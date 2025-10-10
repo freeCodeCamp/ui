@@ -2,6 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Callout } from "./callout";
+import { Button } from "../button";
 
 const story = {
 	title: "Components/Callout",
@@ -54,7 +55,7 @@ export const WithButtonAndLink: Story = {
 					</a>{" "}
 					and a button.
 				</p>
-				<button className="btn">Click me</button>
+				<Button>Click me</Button>
 			</>
 		),
 	},
