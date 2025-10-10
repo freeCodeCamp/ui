@@ -12,41 +12,47 @@ export interface DropdownProps {
 	children: React.ReactNode;
 	dropup?: boolean;
 	id?: string;
+	block?: boolean;
 }
 
 interface DropDownButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
 	className?: string;
+	block?: boolean;
 }
 
 interface DropDownContextProps {
 	dropup?: boolean;
 	menuButtonRef: React.MutableRefObject<HTMLButtonElement | null>;
+	block?: boolean;
 }
 
 const DropDownContext = createContext<DropDownContextProps>({
 	menuButtonRef: React.createRef(),
+	block: false,
 });
 
 const dropDownItems =
-	"list-none bg-background-primary text-center border-1 border-solid border-foreground-secondary focus:outline-transparent origin-top-right absolute w-full min-w-max py-1 px-0 z-10";
+	"list-none bg-background-primary text-center border-1 border-solid border-foreground-primary focus:outline-transparent origin-top-right absolute min-w-max py-1 px-0 z-10";
 const dropUpItems = dropDownItems + " transform -translate-y-full top-0";
-const toggleClassNames =
-	"cursor-pointer border-3 border-solid w-full flex items-center justify-center text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 mt-[0.5px] relative hover:bg-foreground-secondary hover:text-background-secondary border-foreground-secondary ";
+const baseToggleClassNames =
+	"cursor-pointer border-3 border-solid flex items-center justify-center text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 mt-[0.5px] relative hover:bg-foreground-secondary hover:text-background-secondary border-foreground-secondary";
 
 export const MenuItems = React.forwardRef<HTMLDivElement, MenuItemsProps>(
 	({ children, className }, ref): JSX.Element => {
-		const { dropup, menuButtonRef } = useContext(DropDownContext);
+		const { dropup, menuButtonRef, block } = useContext(DropDownContext);
 
 		const handleClick = () => {
 			menuButtonRef.current?.focus();
 		};
 
 		const itemsClasses = dropup ? dropUpItems : dropDownItems;
-		const buttonClass: string = [className, itemsClasses].join(" ");
+		const menuClass: string = [className, itemsClasses, block ? "w-full" : ""]
+			.join(" ")
+			.trim();
 		return (
-			<Menu.Items className={buttonClass} ref={ref} onClick={handleClick}>
+			<Menu.Items className={menuClass} ref={ref} onClick={handleClick}>
 				{children}
 			</Menu.Items>
 		);
@@ -58,9 +64,12 @@ const DropDownButton = ({
 	className,
 	...rest
 }: DropDownButtonProps): JSX.Element => {
-	const { dropup, menuButtonRef } = useContext(DropDownContext);
+	const { dropup, menuButtonRef, block } = useContext(DropDownContext);
 
-	const classes = [className, toggleClassNames].join(" ");
+	const classes = [className, baseToggleClassNames, block ? "block w-full" : ""]
+		.join(" ")
+		.trim();
+
 	return (
 		<Menu.Button ref={menuButtonRef} className={classes} {...rest}>
 			{children}
@@ -77,12 +86,13 @@ export const Dropdown = ({
 	children,
 	id,
 	dropup,
+	block = false,
 }: DropdownProps): JSX.Element => {
 	const menuButtonRef = useRef(null);
-	const context = { dropup, menuButtonRef };
+	const context = { dropup, menuButtonRef, block };
 	return (
 		<DropDownContext.Provider value={context}>
-			<Menu className="relative w-full" as="div" id={id}>
+			<Menu className="relative" as="div" id={id}>
 				{children}
 			</Menu>
 		</DropDownContext.Provider>
