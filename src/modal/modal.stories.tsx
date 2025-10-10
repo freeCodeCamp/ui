@@ -180,6 +180,51 @@ const EndAlignedFooterTemplate: StoryFn<StoryProps> = ({
 	);
 };
 
+const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
+	const [open, setOpen] = useState(false);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleClose = () => setOpen(false);
+
+	return (
+		<div>
+			<Button onClick={() => setOpen(true)}>Open modal</Button>
+			<Modal
+				{...args}
+				open={open}
+				onClose={handleClose}
+				initialFocus={inputRef}
+			>
+				<Modal.Header>Modal with Initial Focus</Modal.Header>
+				<Modal.Body>
+					<p>
+						This modal demonstrates initial focus on the input field. When the
+						modal opens, focus will be set to the input field instead of the
+						default close button.
+					</p>
+					<FormControl
+						ref={inputRef}
+						id="modal-fullname-input"
+						type="text"
+						placeholder="Your full name"
+						componentClass="input"
+						aria-label="Full name"
+					/>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large" variant="primary">
+						Submit
+					</Button>
+					<Spacer size="xxs" />
+					<Button block size="large" onClick={handleClose}>
+						Cancel
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</div>
+	);
+};
+
 export const Default: Story = {
 	render: DefaultTemplate,
 };
@@ -226,43 +271,11 @@ export const StartAlignedBody: Story = {
 	},
 };
 
-const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
-	const [open, setOpen] = useState(false);
-	const inputRef = useRef<HTMLInputElement>(null);
-
-	const handleClose = () => setOpen(false);
-
-	return (
-		<div>
-			<Button onClick={() => setOpen(true)}>Open modal</Button>
-			<Modal
-				{...args}
-				open={open}
-				onClose={handleClose}
-				initialFocus={inputRef}
-			>
-				<Modal.Header>Enter Your Name</Modal.Header>
-				<Modal.Body>
-					<p>Please enter your full name below:</p>
-					<FormControl
-						ref={inputRef}
-						type="text"
-						placeholder="Your full name"
-						componentClass="input"
-					/>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button block size="large" variant="primary">
-						Submit
-					</Button>
-					<Spacer size="xxs" />
-					<Button block size="large" onClick={handleClose}>
-						Cancel
-					</Button>
-				</Modal.Footer>
-			</Modal>
-		</div>
-	);
+export const EndAlignedFooter: Story = {
+	render: EndAlignedFooterTemplate,
+	args: {
+		footerAlignment: "end",
+	},
 };
 
 export const WithInitialFocus: Story = {
@@ -275,13 +288,6 @@ export const WithInitialFocus: Story = {
 					"This example demonstrates the `initialFocus` prop. When the modal opens, focus will be set to the input field instead of the default close button. This is useful for forms or other scenarios where you want to direct the user's attention to a specific element immediately.",
 			},
 		},
-	},
-};
-
-export const EndAlignedFooter: Story = {
-	render: EndAlignedFooterTemplate,
-	args: {
-		footerAlignment: "end",
 	},
 };
 
