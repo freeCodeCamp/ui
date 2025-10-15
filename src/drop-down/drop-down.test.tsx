@@ -25,7 +25,7 @@ describe("<DropDownButton>", () => {
 		expect(item).toHaveLength(3);
 	});
 
-	it("should render button with direction to up", async () => {
+	it("should render button with direction to up and menu with up direction class", async () => {
 		render(
 			<Dropdown dropup={true}>
 				<Dropdown.Toggle>Some Button</Dropdown.Toggle>
@@ -36,12 +36,40 @@ describe("<DropDownButton>", () => {
 				</Dropdown.Menu>
 			</Dropdown>,
 		);
+
 		const dropdownTrigger = screen.getByRole("button", { name: "Some Button" });
+		const upIcon = within(dropdownTrigger).getByRole("img", { hidden: true });
+
+		expect(upIcon).toHaveAttribute("data-icon", "caret-up");
+
 		await userEvent.click(dropdownTrigger);
 		const unorderedList = screen.getByRole("menu");
-		expect(unorderedList).toHaveClass(
-			"list-none bg-foreground-secondary text-center border-1 border-solid border-background-quaternary focus:outline-transparent origin-top-right absolute w-full min-w-max py-1 px-0 z-10 transform -translate-y-full top-0",
+
+		expect(unorderedList).toHaveClass("transform");
+		expect(unorderedList).toHaveClass("-translate-y-full");
+		expect(unorderedList).toHaveClass("top-0");
+	});
+
+	it("should apply w-full to button and menu when `block` is true", async () => {
+		render(
+			<Dropdown block>
+				<Dropdown.Toggle>Block Button</Dropdown.Toggle>
+				<Dropdown.Menu>
+					<MenuItem>Block Menu Item 1</MenuItem>
+					<MenuItem>Block Menu Item 2</MenuItem>
+				</Dropdown.Menu>
+			</Dropdown>,
 		);
+		const dropdownTrigger = screen.getByRole("button", {
+			name: "Block Button",
+		});
+
+		expect(dropdownTrigger).toHaveClass("w-full");
+
+		await userEvent.click(dropdownTrigger);
+		const unorderedList = screen.getByRole("menu");
+
+		expect(unorderedList).toHaveClass("w-full");
 	});
 
 	it("should have the role 'button' and render the correct text", async () => {
