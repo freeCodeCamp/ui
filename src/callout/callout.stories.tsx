@@ -11,19 +11,19 @@ const story = {
 
 type Story = StoryObj<typeof Callout>;
 
-export const Success: Story = {
+export const Tip: Story = {
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
-		variant: "success",
+		variant: "tip",
 	},
 };
 
-export const Info: Story = {
+export const Note: Story = {
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
-		variant: "info",
+		variant: "note",
 	},
 };
 
@@ -35,11 +35,11 @@ export const Warning: Story = {
 	},
 };
 
-export const Danger: Story = {
+export const Caution: Story = {
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
-		variant: "danger",
+		variant: "caution",
 	},
 };
 
