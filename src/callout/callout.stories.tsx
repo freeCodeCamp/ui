@@ -16,6 +16,7 @@ export const Tip: Story = {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "tip",
+		label: "Tip",
 	},
 };
 
@@ -24,6 +25,7 @@ export const Note: Story = {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "note",
+		label: "Note",
 	},
 };
 
@@ -32,6 +34,7 @@ export const Warning: Story = {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "warning",
+		label: "Warning",
 	},
 };
 
@@ -40,12 +43,14 @@ export const Caution: Story = {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "caution",
+		label: "Caution",
 	},
 };
 
 export const WithButtonAndLink: Story = {
 	args: {
 		variant: "tip",
+		label: "Tip",
 		children: (
 			<>
 				<p>
