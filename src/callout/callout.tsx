@@ -22,13 +22,6 @@ const variantIcons = {
 	caution: faCircleExclamation,
 };
 
-const variantLabels = {
-	tip: "Tip",
-	note: "Note",
-	warning: "Warning",
-	caution: "Caution",
-};
-
 /**
  * A `Callout` is used to emphasize an important snippet of information within the flow of a page.
  * Content in a callout should be something on the page that you want to highlight, but that is not critical information.
@@ -38,6 +31,7 @@ export const Callout = ({
 	children,
 	className,
 	variant,
+	label,
 	...others
 }: CalloutProps): JSX.Element => {
 	const variantClass = variantClasses[variant];
@@ -59,7 +53,7 @@ export const Callout = ({
 		<div className={classes} {...others}>
 			<div className="flex items-start mb-2">
 				<FontAwesomeIcon icon={variantIcons[variant]} className="me-2 mt-1" />
-				<strong>{variantLabels[variant]}</strong>
+				<strong>{label}</strong>
 			</div>
 			{children}
 		</div>
