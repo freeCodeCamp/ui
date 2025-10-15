@@ -45,7 +45,7 @@ export const Caution: Story = {
 
 export const WithButtonAndLink: Story = {
 	args: {
-		variant: "success",
+		variant: "tip",
 		children: (
 			<>
 				<p>
