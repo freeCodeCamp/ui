@@ -15,6 +15,13 @@ const variantClasses = {
 	caution: "text-red-900 bg-red-50 border-l-red-700",
 };
 
+const variantLabelClasses = {
+	tip: "text-green-800",
+	note: "text-blue-800",
+	warning: "text-yellow-800",
+	caution: "text-red-900",
+};
+
 const variantIcons = {
 	tip: faCircleCheck,
 	note: faCircleInfo,
@@ -53,7 +60,7 @@ export const Callout = ({
 		<div className={classes} {...others}>
 			<div className="flex items-start mb-2">
 				<FontAwesomeIcon icon={variantIcons[variant]} className="me-2 mt-1" />
-				<strong>{label}</strong>
+				<strong className={variantLabelClasses[variant]}>{label}</strong>
 			</div>
 			{children}
 		</div>
