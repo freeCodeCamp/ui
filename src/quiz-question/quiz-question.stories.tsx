@@ -38,9 +38,11 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 export const Default: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: (
+			<QuizQuestion.QuestionLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit?" />
+		),
 		answers: [
-			{ label: "Option 1", value: 1 },
+			{ label: <QuizQuestion.OptionLabel text="Option 1" />, value: 1 },
 			{
 				label:
 					"Tempora sed magnam consequatur dolor alias placeat aspernatur. Odio et non repudiandae debitis fugit. Quia ut tempore eaque et nisi qui aspernatur. Molestiae sed id accusantium. Temporibus in magni ut. Est aut distinctio molestiae sed. Dicta consequatur impedit totam totam incidunt dolor possimus. Aut totam officia iure consequatur ea.",
@@ -168,22 +170,21 @@ export const WithCodeInQuestionText: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: (
-			<PrismFormatted
+			<QuizQuestion.QuestionLabel
 				text={`<p>Given the following code:</p>
-<pre><code class="language-python">temp = "5 degrees"
-cel = 0
-fahr = float(temp)
-cel = (fahr - 32.0) * 5.0 / 9.0
-print(cel)
-</code></pre>
-<p>Which line/lines should be surrounded by <code>try</code> block?</p>`}
-				getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
+	<pre><code class="language-python">temp = "5 degrees"
+	cel = 0
+	fahr = float(temp)
+	cel = (fahr - 32.0) * 5.0 / 9.0
+	print(cel)
+	</code></pre>
+	<p>Which line/lines should be surrounded by <code>try</code> block?</p>`}
 			/>
 		),
 		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{ label: <QuizQuestion.OptionLabel text="Option 1" />, value: 1 },
+			{ label: <QuizQuestion.OptionLabel text="Option 2" />, value: 2 },
+			{ label: <QuizQuestion.OptionLabel text="Option 3" />, value: 3 },
 		],
 	},
 	parameters: {
@@ -225,11 +226,13 @@ print(cel)
 export const Disabled: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+		question: (
+			<QuizQuestion.QuestionLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" />
+		),
 		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{ label: <QuizQuestion.OptionLabel text="Option 1" />, value: 1 },
+			{ label: <QuizQuestion.OptionLabel text="Option 2" />, value: 2 },
+			{ label: <QuizQuestion.OptionLabel text="Option 3" />, value: 3 },
 		],
 		disabled: true,
 	},
@@ -261,10 +264,12 @@ export const Disabled: Story = {
 export const Correct: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+		question: (
+			<QuizQuestion.QuestionLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" />
+		),
 		answers: [
 			{
-				label: "Option 1",
+				label: <QuizQuestion.OptionLabel text="Option 1" />,
 				value: 1,
 				validation: {
 					state: "correct",
@@ -272,11 +277,11 @@ export const Correct: Story = {
 				},
 			},
 			{
-				label: "Option 2",
+				label: <QuizQuestion.OptionLabel text="Option 2" />,
 				value: 2,
 			},
 			{
-				label: "Option 3",
+				label: <QuizQuestion.OptionLabel text="Option 3" />,
 				value: 3,
 			},
 		],
@@ -319,10 +324,12 @@ export const Correct: Story = {
 export const CorrectWithAnswerFeedback: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: (
+			<QuizQuestion.QuestionLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit?" />
+		),
 		answers: [
 			{
-				label: "Option 1",
+				label: <QuizQuestion.OptionLabel text="Option 1" />,
 				value: 1,
 				feedback: (
 					<PrismFormatted
@@ -332,8 +339,8 @@ export const CorrectWithAnswerFeedback: Story = {
 				),
 				validation: { state: "correct", message: "Correct." },
 			},
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{ label: <QuizQuestion.OptionLabel text="Option 2" />, value: 2 },
+			{ label: <QuizQuestion.OptionLabel text="Option 3" />, value: 3 },
 		],
 		selectedAnswer: 1,
 		disabled: true,
@@ -439,10 +446,12 @@ export const Incorrect: Story = {
 export const IncorrectWithAnswerFeedback: Story = {
 	render: QuizQuestionComp,
 	args: {
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: (
+			<QuizQuestion.QuestionLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit?" />
+		),
 		answers: [
 			{
-				label: "Option 1",
+				label: <QuizQuestion.OptionLabel text="Option 1" />,
 				value: 1,
 				feedback: (
 					<PrismFormatted
@@ -452,8 +461,8 @@ export const IncorrectWithAnswerFeedback: Story = {
 				),
 				validation: { state: "incorrect", message: "Incorrect." },
 			},
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{ label: <QuizQuestion.OptionLabel text="Option 2" />, value: 2 },
+			{ label: <QuizQuestion.OptionLabel text="Option 3" />, value: 3 },
 		],
 		selectedAnswer: 1,
 		disabled: true,
@@ -497,7 +506,7 @@ export const WithPosistion: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: (
-			<PrismFormatted
+			<QuizQuestion.QuestionLabel
 				text={`<p>Given the following code:</p>
 <pre><code class="language-python">temp = "5 degrees"
 cel = 0
@@ -506,13 +515,12 @@ cel = (fahr - 32.0) * 5.0 / 9.0
 print(cel)
 </code></pre>
 <p>Which line/lines should be surrounded by <code>try</code> block?</p>`}
-				getCodeBlockAriaLabel={(codeName) => `${codeName} code example`}
 			/>
 		),
 		answers: [
-			{ label: "Option 1", value: 1 },
-			{ label: "Option 2", value: 2 },
-			{ label: "Option 3", value: 3 },
+			{ label: <QuizQuestion.OptionLabel text="Option 1" />, value: 1 },
+			{ label: <QuizQuestion.OptionLabel text="Option 2" />, value: 2 },
+			{ label: <QuizQuestion.OptionLabel text="Option 3" />, value: 3 },
 		],
 		position: 1,
 	},

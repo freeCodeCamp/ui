@@ -18,29 +18,31 @@ type Story = StoryObj<typeof Quiz>;
 const QuizDefault = () => {
 	const initialQuestions: Question<number>[] = [
 		{
-			question: "Lorem ipsum dolor sit amet",
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 1,
 		},
 		{
-			question: "Consectetur adipiscing elit",
+			question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 2,
 		},
 		{
-			question: "Fugit itaque delectus voluptatem alias aliquid",
+			question: (
+				<Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />
+			),
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 3,
 		},
@@ -61,29 +63,31 @@ const QuizDefault = () => {
 const QuizWithValidation = () => {
 	const initialQuestions: Question<number>[] = [
 		{
-			question: "Lorem ipsum dolor sit amet",
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 1,
 		},
 		{
-			question: "Consectetur adipiscing elit",
+			question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 2,
 		},
 		{
-			question: "Fugit itaque delectus voluptatem alias aliquid",
+			question: (
+				<Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />
+			),
 			answers: [
-				{ label: "Option 1", value: 1 },
-				{ label: "Option 2", value: 2 },
-				{ label: "Option 3", value: 3 },
+				{ label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+				{ label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
 			],
 			correctAnswer: 3,
 		},
@@ -123,10 +127,10 @@ const QuizWithValidation = () => {
 const QuizWithValidationAndAnswerFeedback = () => {
 	const initialQuestions: Question<number>[] = [
 		{
-			question: "Lorem ipsum dolor sit amet",
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -136,20 +140,24 @@ const QuizWithValidationAndAnswerFeedback = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 1,
 		},
 		{
-			question: "Consectetur adipiscing elit",
+			question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -159,20 +167,26 @@ const QuizWithValidationAndAnswerFeedback = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 2,
 		},
 		{
-			question: "Fugit itaque delectus voluptatem alias aliquid",
+			question: (
+				<Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />
+			),
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -182,12 +196,16 @@ const QuizWithValidationAndAnswerFeedback = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 3,
 		},
@@ -227,10 +245,10 @@ const QuizWithValidationAndAnswerFeedback = () => {
 const QuizWithCorrectAnswersShownOnSuccess = () => {
 	const initialQuestions: Question<number>[] = [
 		{
-			question: "Lorem ipsum dolor sit amet",
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -240,20 +258,24 @@ const QuizWithCorrectAnswersShownOnSuccess = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 1,
 		},
 		{
-			question: "Consectetur adipiscing elit",
+			question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -263,20 +285,26 @@ const QuizWithCorrectAnswersShownOnSuccess = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 2,
 		},
 		{
-			question: "Fugit itaque delectus voluptatem alias aliquid",
+			question: (
+				<Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />
+			),
 			answers: [
 				{
-					label: "Option 1",
+					label: <Quiz.OptionLabel text="Option 1" />,
 					value: 1,
 					feedback: (
 						<PrismFormatted
@@ -286,12 +314,16 @@ const QuizWithCorrectAnswersShownOnSuccess = () => {
 					),
 				},
 				{
-					label: "Option 2",
+					label: <Quiz.OptionLabel text="Option 2" />,
 					value: 2,
 					feedback:
 						"Recusandae necessitatibus consequatur voluptatem sapiente.",
 				},
-				{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
+				{
+					label: <Quiz.OptionLabel text="Option 3" />,
+					value: 3,
+					feedback: "Voluptas et et animi quo.",
+				},
 			],
 			correctAnswer: 3,
 		},
@@ -340,29 +372,29 @@ import { Quiz, useQuiz } from '@freecodecamp/ui';
 
 const initialQuestions = [
   {
-    question: "Lorem ipsum dolor sit amet",
+    question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 1,
   },
   {
-    question: "Consectetur adipiscing elit",
+    question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 2,
   },
   {
-    question: "Fugit itaque delectus voluptatem alias aliquid",
+    question: <Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 3,
   },
@@ -395,29 +427,29 @@ import { Quiz, useQuiz, Button, Spacer } from '@freecodecamp/ui';
 
 const initialQuestions = [
   {
-    question: "Lorem ipsum dolor sit amet",
+    question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 1,
   },
   {
-    question: "Consectetur adipiscing elit",
+    question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 2,
   },
   {
-    question: "Fugit itaque delectus voluptatem alias aliquid",
+    question: <Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />,
     answers: [
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: 2 },
-      { label: "Option 3", value: 3 },
+      { label: <Quiz.OptionLabel text="Option 1" />, value: 1 },
+      { label: <Quiz.OptionLabel text="Option 2" />, value: 2 },
+      { label: <Quiz.OptionLabel text="Option 3" />, value: 3 },
     ],
     correctAnswer: 3,
   },
@@ -469,12 +501,12 @@ export const WithValidationAndAnswerFeedback: Story = {
 import { Quiz, useQuiz, Button, Spacer } from '@freecodecamp/ui';
 
 const initialQuestions = [
-  {
-		question: "Lorem ipsum dolor sit amet",
-		answers: [
-			{
-				label: "Option 1",
-				value: 1,
+		{
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
+			answers: [
+				{
+					label: <Quiz.OptionLabel text="Option 1" />,
+					value: 1,
 				feedback: (
 					<PrismFormatted
 						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
@@ -482,22 +514,22 @@ const initialQuestions = [
 					/>
 				),
 			},
-			{
-				label: "Option 2",
-				value: 2,
+				{
+					label: <Quiz.OptionLabel text="Option 2" />,
+					value: 2,
 				feedback:
 					"Recusandae necessitatibus consequatur voluptatem sapiente.",
-			},
-			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
-		],
+				},
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3, feedback: "Voluptas et et animi quo." },
+			],
 		correctAnswer: 1,
 	},
-	{
-		question: "Consectetur adipiscing elit",
-		answers: [
-			{
-				label: "Option 1",
-				value: 1,
+		{
+			question: <Quiz.QuestionLabel text="Consectetur adipiscing elit" />,
+			answers: [
+				{
+					label: <Quiz.OptionLabel text="Option 1" />,
+					value: 1,
 				feedback: (
 					<PrismFormatted
 						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
@@ -505,22 +537,22 @@ const initialQuestions = [
 					/>
 				),
 			},
-			{
-				label: "Option 2",
-				value: 2,
+				{
+					label: <Quiz.OptionLabel text="Option 2" />,
+					value: 2,
 				feedback:
 					"Recusandae necessitatibus consequatur voluptatem sapiente.",
-			},
-			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
-		],
+				},
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3, feedback: "Voluptas et et animi quo." },
+			],
 		correctAnswer: 2,
 	},
-	{
-		question: "Fugit itaque delectus voluptatem alias aliquid",
-		answers: [
-			{
-				label: "Option 1",
-				value: 1,
+		{
+			question: <Quiz.QuestionLabel text="Fugit itaque delectus voluptatem alias aliquid" />,
+			answers: [
+				{
+					label: <Quiz.OptionLabel text="Option 1" />,
+					value: 1,
 				feedback: (
 					<PrismFormatted
 						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
@@ -528,14 +560,14 @@ const initialQuestions = [
 					/>
 				),
 			},
-			{
-				label: "Option 2",
-				value: 2,
+				{
+					label: <Quiz.OptionLabel text="Option 2" />,
+					value: 2,
 				feedback:
 					"Recusandae necessitatibus consequatur voluptatem sapiente.",
-			},
-			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
-		],
+				},
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3, feedback: "Voluptas et et animi quo." },
+			],
 		correctAnswer: 3,
 	},
 ];
@@ -586,12 +618,12 @@ export const WithCorrectAnswersShownOnSuccess: Story = {
 import { Quiz, useQuiz, Button, Spacer } from '@freecodecamp/ui';
 
 const initialQuestions = [
-  {
-		question: "Lorem ipsum dolor sit amet",
-		answers: [
-			{
-				label: "Option 1",
-				value: 1,
+		{
+			question: <Quiz.QuestionLabel text="Lorem ipsum dolor sit amet" />,
+			answers: [
+				{
+					label: <Quiz.OptionLabel text="Option 1" />,
+					value: 1,
 				feedback: (
 					<PrismFormatted
 						text={\`<p>Quaerat in autem sapiente illum. Vel mollitia omnis qui dolorem <code>um</code> esse eos maiores possimus. Est laborum quam aliquam qui sunt. Ut ea et qui provident voluptatibus. Eius quam odit sint cumque sint. Corporis quia et dicta.</p>\`}
@@ -599,14 +631,14 @@ const initialQuestions = [
 					/>
 				),
 			},
-			{
-				label: "Option 2",
-				value: 2,
+				{
+					label: <Quiz.OptionLabel text="Option 2" />,
+					value: 2,
 				feedback:
 					"Recusandae necessitatibus consequatur voluptatem sapiente.",
-			},
-			{ label: "Option 3", value: 3, feedback: "Voluptas et et animi quo." },
-		],
+				},
+				{ label: <Quiz.OptionLabel text="Option 3" />, value: 3, feedback: "Voluptas et et animi quo." },
+			],
 		correctAnswer: 1,
 	},
 	{
