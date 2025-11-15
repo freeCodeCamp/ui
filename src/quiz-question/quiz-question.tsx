@@ -3,6 +3,40 @@ import { RadioGroup } from "@headlessui/react";
 
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
+import { PrismFormatted } from "../prism-formatted";
+
+type LabelProps = { text: string };
+
+const removeParagraphTags = (text: string): string => {
+	if (text.startsWith("<p>") && text.endsWith("</p>")) {
+		return text.slice(3, -4);
+	}
+	return text;
+};
+
+const defaultGetCodeBlockAriaLabel = (codeName: string) =>
+	`${codeName} code example`;
+
+const QuestionLabel = ({ text }: LabelProps) => {
+	return (
+		<PrismFormatted
+			text={text}
+			getCodeBlockAriaLabel={defaultGetCodeBlockAriaLabel}
+		/>
+	);
+};
+
+const OptionLabel = ({ text }: LabelProps) => {
+	const cleanedText = removeParagraphTags(text);
+	return (
+		<PrismFormatted
+			text={cleanedText}
+			useSpan
+			noAria
+			getCodeBlockAriaLabel={defaultGetCodeBlockAriaLabel}
+		/>
+	);
+};
 
 const QuestionText = ({
 	question,
@@ -24,6 +58,13 @@ const QuestionText = ({
 	);
 };
 
+type QuizQuestionComponent = (<AnswerT extends number | string>(
+	props: QuizQuestionProps<AnswerT>,
+) => JSX.Element) & {
+	QuestionLabel: typeof QuestionLabel;
+	OptionLabel: typeof OptionLabel;
+};
+
 /**
  * QuizQuestion is a radio group that allows users to select a single option from a list of multiple options.
  * The component can be used as a standalone component or in a group of multiple questions.
@@ -32,7 +73,7 @@ const QuestionText = ({
  * but instead, it provides a `selectedAnswer` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
-export const QuizQuestion = <AnswerT extends number | string>({
+const QuizQuestionBase = <AnswerT extends number | string>({
 	question,
 	answers,
 	required,
@@ -82,3 +123,11 @@ export const QuizQuestion = <AnswerT extends number | string>({
 		</RadioGroup>
 	);
 };
+
+export const QuizQuestion: QuizQuestionComponent = Object.assign(
+	QuizQuestionBase,
+	{
+		QuestionLabel,
+		OptionLabel,
+	},
+);
