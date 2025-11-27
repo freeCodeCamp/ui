@@ -29,11 +29,3 @@ pnpm-lock.yaml
 
 /package.json
 /pnpm-lock.yaml
-
-# -------------------------------------------------
-# Files that need attention from Staff
-# -------------------------------------------------
-
-# README, LICENSE, etc.
-/*.md @freeCodeCamp/staff
-
