@@ -15,8 +15,7 @@ export interface DropdownProps {
 	block?: boolean;
 }
 
-interface DropDownButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface DropDownButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
 	className?: string;
 	block?: boolean;

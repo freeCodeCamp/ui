@@ -5,8 +5,9 @@ import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
 
-interface AnswerProps<AnswerT extends number | string>
-	extends QuizQuestionAnswer<AnswerT> {
+interface AnswerProps<
+	AnswerT extends number | string,
+> extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
 }

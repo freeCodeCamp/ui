@@ -4,8 +4,9 @@ export type ButtonVariant = "primary" | "danger" | "info";
 
 export type ButtonSize = "small" | "medium" | "large";
 
-interface BaseButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
+interface BaseButtonProps extends React.ButtonHTMLAttributes<
+	HTMLButtonElement | HTMLAnchorElement
+> {
 	children: React.ReactNode;
 	size?: ButtonSize;
 	onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
