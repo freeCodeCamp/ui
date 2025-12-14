@@ -16,7 +16,7 @@ const QuestionText = ({
 	}
 
 	return (
-		<span className="text-foreground-primary flex">
+		<span className="text-foreground-primary flex items-baseline">
 			<span>{position}.</span>
 			&nbsp;
 			{question}

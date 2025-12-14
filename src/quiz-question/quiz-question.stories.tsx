@@ -553,4 +553,52 @@ print(cel)
 	},
 };
 
+export const WithRubyText: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: (
+			<span>
+				What does{" "}
+				<ruby>
+					你好<rt>nǐ hǎo</rt>
+				</ruby>{" "}
+				mean?
+			</span>
+		),
+		answers: [
+			{ label: "Hello", value: 1 },
+			{ label: "Goodbye", value: 2 },
+			{ label: "Thank you", value: 3 },
+		],
+		position: 1,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question={
+        <span>
+          What does <ruby>你好<rt>nǐ hǎo</rt></ruby> mean?
+        </span>
+      }
+      answers={[
+        { label: "Hello", value: 1 },
+        { label: "Goodbye", value: 2 },
+        { label: "Thank you", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+			position={1}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
 export default story;
