@@ -40,7 +40,10 @@ export const QuizQuestion = <AnswerT extends number | string>({
 	selectedAnswer,
 	onChange,
 	position,
-}: QuizQuestionProps<AnswerT>) => {
+	renderAnswerAction,
+}: QuizQuestionProps<AnswerT> & {
+	renderAnswerAction?: (answer: QuizQuestionAnswer<AnswerT>) => ReactNode;
+}) => {
 	const handleChange = (
 		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
 	) => {
@@ -53,6 +56,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 
 	return (
 		<RadioGroup
+			as="fieldset"
 			onChange={handleChange}
 			aria-required={required}
 			disabled={disabled}
@@ -60,25 +64,51 @@ export const QuizQuestion = <AnswerT extends number | string>({
 			// or React will automatically consider QuizQuestion an uncontrolled component
 			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
 			value={selectedAnswer ?? null}
+			className="grid grid-cols-[1fr_auto] gap-4 items-center min-w-0"
 		>
-			<RadioGroup.Label className="block mb-[20px]">
+			<RadioGroup.Label as="legend" className="col-span-full block mb-[20px]">
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
 
-			{answers.map(({ value, label, feedback, validation }) => {
-				const checked = selectedAnswer === value;
-				return (
-					<Answer
-						key={value}
-						value={value}
-						label={label}
-						feedback={checked && validation && feedback}
-						checked={checked}
-						disabled={disabled}
-						validation={validation}
-					/>
-				);
-			})}
+			<div className="contents">
+				{answers.map(({ value, label, feedback, validation }, index) => {
+					const checked = selectedAnswer === value;
+					const rowIndex = index + 2;
+					return (
+						<div
+							key={value}
+							className="col-start-1"
+							style={{ gridRow: rowIndex }}
+						>
+							<Answer
+								value={value}
+								label={label}
+								feedback={checked && validation && feedback}
+								checked={checked}
+								disabled={disabled}
+								validation={validation}
+							/>
+						</div>
+					);
+				})}
+			</div>
+
+			{renderAnswerAction && (
+				<div className="contents">
+					{answers.map((answer, index) => {
+						const rowIndex = index + 2;
+						return (
+							<div
+								key={answer.value}
+								className="col-start-2"
+								style={{ gridRow: rowIndex }}
+							>
+								{renderAnswerAction(answer)}
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</RadioGroup>
 	);
 };

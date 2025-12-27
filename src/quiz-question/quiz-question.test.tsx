@@ -300,6 +300,28 @@ describe("<QuizQuestion />", () => {
 			within(radioGroup).queryByText("Culpa dolores aut."),
 		).not.toBeInTheDocument();
 	});
+
+	it("should render action buttons if `renderAnswerAction` is provided", () => {
+		const handleAction = jest.fn();
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+				]}
+				// @ts-expect-error - renderAnswerAction is not in types yet
+				renderAnswerAction={(answer) => (
+					<button onClick={() => handleAction(answer.value)}>
+						Action {answer.value}
+					</button>
+				)}
+			/>,
+		);
+
+		expect(screen.getByText("Action 1")).toBeInTheDocument();
+		expect(screen.getByText("Action 2")).toBeInTheDocument();
+	});
 });
 
 // ------------------------------
