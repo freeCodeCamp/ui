@@ -4,9 +4,13 @@ freeCodeCamp's component library is a collection of reusable React components th
 
 ## Installation
 
-- Run the following command to install the library:
+- Install the library using your preferred package manager:
 
 ```bash
+# Using npm
+npm install @freecodecamp/ui
+
+# Using pnpm
 pnpm install @freecodecamp/ui
 ```
 
