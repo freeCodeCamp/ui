@@ -3,6 +3,8 @@ import { RadioGroup } from "@headlessui/react";
 
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
+import { QuestionLabel } from "../quiz/question-label";
+import { OptionLabel } from "../quiz/option-label";
 
 const QuestionText = ({
 	question,
@@ -17,9 +19,7 @@ const QuestionText = ({
 
 	return (
 		<span className="text-foreground-primary flex items-baseline">
-			<span>{position}.</span>
-			&nbsp;
-			{question}
+			<span>{position}.</span>&nbsp;{question}
 		</span>
 	);
 };
@@ -32,7 +32,7 @@ const QuestionText = ({
  * but instead, it provides a `selectedAnswer` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
-export const QuizQuestion = <AnswerT extends number | string>({
+const QuizQuestion = <AnswerT extends number | string>({
 	question,
 	answers,
 	required,
@@ -44,10 +44,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 	const handleChange = (
 		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
 	) => {
-		if (!onChange) {
-			return;
-		}
-
+		if (!onChange) return;
 		onChange(selectedOption);
 	};
 
@@ -56,9 +53,6 @@ export const QuizQuestion = <AnswerT extends number | string>({
 			onChange={handleChange}
 			aria-required={required}
 			disabled={disabled}
-			// `selectedAnswer` should not be `undefined`
-			// or React will automatically consider QuizQuestion an uncontrolled component
-			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
 			value={selectedAnswer ?? null}
 		>
 			<RadioGroup.Label className="block mb-[20px]">
@@ -67,6 +61,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 
 			{answers.map(({ value, label, feedback, validation }) => {
 				const checked = selectedAnswer === value;
+
 				return (
 					<Answer
 						key={value}
@@ -82,3 +77,8 @@ export const QuizQuestion = <AnswerT extends number | string>({
 		</RadioGroup>
 	);
 };
+
+QuizQuestion.QuestionLabel = QuestionLabel;
+QuizQuestion.OptionLabel = OptionLabel;
+
+export { QuizQuestion };
