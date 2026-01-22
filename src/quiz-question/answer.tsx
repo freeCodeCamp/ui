@@ -63,9 +63,8 @@ const radioOptionDefaultClasses = [
 
 const radioWrapperDefaultClasses = [
 	"grid",
-	"grid-cols-[1fr_auto]",
+	"grid-cols-1",
 	"grid-rows-[auto_auto]",
-	"gap-x-4",
 	"border-x-4",
 	"border-t-4",
 	"last:border-b-4",
@@ -126,6 +125,11 @@ export const Answer = <AnswerT extends number | string>({
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 
+		// Add second column for action button when action is provided
+		if (action) {
+			cls.push("grid-cols-[1fr_auto]", "gap-x-4");
+		}
+
 		if (validation?.state === "correct")
 			cls.push("border-l-background-success");
 		if (validation?.state === "incorrect")
@@ -155,7 +159,7 @@ export const Answer = <AnswerT extends number | string>({
 						<RadioIcon active={active} checked={!!checked} />
 						<RadioGroup.Label
 							id={labelId}
-							className="m-0 text-foreground-primary overflow-auto"
+							className="m-0 text-foreground-primary break-words min-w-0"
 						>
 							{label}
 						</RadioGroup.Label>
