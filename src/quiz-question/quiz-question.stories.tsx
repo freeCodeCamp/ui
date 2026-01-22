@@ -611,7 +611,7 @@ export const WithActionButtons: Story = {
 				value: 1,
 				action: {
 					onClick: () => alert("Playing audio for: Hello, how are you?"),
-					ariaLabel: "Practice speaking this answer",
+					ariaLabel: "Practice speaking",
 				},
 			},
 			{
@@ -619,7 +619,7 @@ export const WithActionButtons: Story = {
 				value: 2,
 				action: {
 					onClick: () => alert("Playing audio for: Hi there!"),
-					ariaLabel: "Practice speaking this answer",
+					ariaLabel: "Practice speaking",
 				},
 			},
 			{
@@ -627,7 +627,7 @@ export const WithActionButtons: Story = {
 				value: 3,
 				action: {
 					onClick: () => alert("Playing audio for: Good morning"),
-					ariaLabel: "Practice speaking this answer",
+					ariaLabel: "Practice speaking",
 				},
 			},
 			{
@@ -653,7 +653,7 @@ export const WithActionButtons: Story = {
           value: 1,
           action: {
             onClick: () => console.log("Open speaking modal"),
-            ariaLabel: "Practice speaking this answer"
+            ariaLabel: "Practice speaking"
           }
         },
         {
@@ -661,7 +661,7 @@ export const WithActionButtons: Story = {
           value: 2,
           action: {
             onClick: () => console.log("Open speaking modal"),
-            ariaLabel: "Practice speaking this answer"
+            ariaLabel: "Practice speaking"
           }
         },
         {
@@ -669,7 +669,7 @@ export const WithActionButtons: Story = {
           value: 3,
           action: {
             onClick: () => console.log("Open speaking modal"),
-            ariaLabel: "Practice speaking this answer"
+            ariaLabel: "Practice speaking"
           }
         },
         {

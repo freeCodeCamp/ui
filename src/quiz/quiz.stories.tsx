@@ -696,8 +696,6 @@ const App = () => {
 };
 
 const QuizWithActionButtons = () => {
-	const [actionLog, setActionLog] = useState<string[]>([]);
-
 	const initialQuestions: Question<number>[] = [
 		{
 			question: "Which question is incorrect?",
@@ -707,13 +705,9 @@ const QuizWithActionButtons = () => {
 					value: 1,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [
-								...prev,
-								"Practice: Are you into photography?",
-							]);
-							console.log("Speaking practice: Are you into photography?");
+							alert("Speaking practice: Are you into photography?");
 						},
-						ariaLabel: "Practice speaking Are you into photography?",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{
@@ -721,13 +715,9 @@ const QuizWithActionButtons = () => {
 					value: 2,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [
-								...prev,
-								"Practice: Are they into photography?",
-							]);
-							console.log("Speaking practice: Are they into photography?");
+							alert("Speaking practice: Are they into photography?");
 						},
-						ariaLabel: "Practice speaking Are they into photography?",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{
@@ -735,13 +725,9 @@ const QuizWithActionButtons = () => {
 					value: 3,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [
-								...prev,
-								"Practice: Is he into photography?",
-							]);
-							console.log("Speaking practice: Is he into photography?");
+							alert("Speaking practice: Is he into photography?");
 						},
-						ariaLabel: "Practice speaking Is he into photography?",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{ label: "Am we into photography?", value: 4 },
@@ -756,10 +742,9 @@ const QuizWithActionButtons = () => {
 					value: 1,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [...prev, "Practice: Friendly"]);
-							console.log("Speaking practice: Friendly");
+							alert("Speaking practice: Friendly");
 						},
-						ariaLabel: "Practice speaking Friendly",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{
@@ -767,10 +752,9 @@ const QuizWithActionButtons = () => {
 					value: 2,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [...prev, "Practice: Cool"]);
-							console.log("Speaking practice: Cool");
+							alert("Speaking practice: Cool");
 						},
-						ariaLabel: "Practice speaking Cool",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{
@@ -778,10 +762,9 @@ const QuizWithActionButtons = () => {
 					value: 3,
 					action: {
 						onClick: () => {
-							setActionLog((prev) => [...prev, "Practice: Supportive"]);
-							console.log("Speaking practice: Supportive");
+							alert("Speaking practice: Supportive");
 						},
-						ariaLabel: "Practice speaking Supportive",
+						ariaLabel: "Practice speaking",
 					},
 				},
 				{ label: "Boring", value: 4 },
@@ -810,21 +793,7 @@ const QuizWithActionButtons = () => {
 		passingPercent: 100,
 	});
 
-	return (
-		<div>
-			{actionLog.length > 0 && (
-				<div className="mb-4 p-4 border border-gray-300 rounded">
-					<p className="text-foreground-primary font-bold mb-2">Action Log:</p>
-					<ul className="list-disc list-inside text-foreground-primary">
-						{actionLog.map((log, index) => (
-							<li key={index}>{log}</li>
-						))}
-					</ul>
-				</div>
-			)}
-			<Quiz questions={questions} />
-		</div>
-	);
+	return <Quiz questions={questions} />;
 };
 
 export const WithActionButtons: Story = {
@@ -849,9 +818,9 @@ const initialQuestions = [
         value: 1,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Are you into photography?");
+            alert("Speaking practice: Are you into photography?");
           },
-          ariaLabel: "Practice speaking Are you into photography?",
+          ariaLabel: "Practice speaking",
         },
       },
       {
@@ -859,9 +828,9 @@ const initialQuestions = [
         value: 2,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Are they into photography?");
+            alert("Speaking practice: Are they into photography?");
           },
-          ariaLabel: "Practice speaking Are they into photography?",
+          ariaLabel: "Practice speaking",
         },
       },
       {
@@ -869,9 +838,9 @@ const initialQuestions = [
         value: 3,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Is he into photography?");
+            alert("Speaking practice: Is he into photography?");
           },
-          ariaLabel: "Practice speaking Is he into photography?",
+          ariaLabel: "Practice speaking",
         },
       },
       { label: "Am we into photography?", value: 4 },
@@ -886,9 +855,9 @@ const initialQuestions = [
         value: 1,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Friendly");
+            alert("Speaking practice: Friendly");
           },
-          ariaLabel: "Practice speaking Friendly",
+          ariaLabel: "Practice speaking",
         },
       },
       {
@@ -896,9 +865,9 @@ const initialQuestions = [
         value: 2,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Cool");
+            alert("Speaking practice: Cool");
           },
-          ariaLabel: "Practice speaking Cool",
+          ariaLabel: "Practice speaking",
         },
       },
       {
@@ -906,9 +875,9 @@ const initialQuestions = [
         value: 3,
         action: {
           onClick: () => {
-            console.log("Speaking practice: Supportive");
+            alert("Speaking practice: Supportive");
           },
-          ariaLabel: "Practice speaking Supportive",
+          ariaLabel: "Practice speaking",
         },
       },
       { label: "Boring", value: 4 },
@@ -924,42 +893,6 @@ const initialQuestions = [
       { label: "You played them in the past.", value: 4 },
     ],
     correctAnswer: 4,
-  },
-  {
-    question: "What does 'ubiquitous' mean?",
-    answers: [
-      {
-        label: "Rare or uncommon",
-        value: 1,
-        action: {
-          onClick: () => {
-            console.log("Speaking practice: Rare or uncommon");
-          },
-          ariaLabel: "Practice speaking Rare or uncommon",
-        },
-      },
-      {
-        label: "Present everywhere",
-        value: 2,
-        action: {
-          onClick: () => {
-            console.log("Speaking practice: Present everywhere");
-          },
-          ariaLabel: "Practice speaking Present everywhere",
-        },
-      },
-      { label: "Very expensive", value: 3 },
-    ],
-    correctAnswer: 2,
-  },
-  {
-    question: "What is the past tense of 'run' in English?",
-    answers: [
-      { label: "Runned", value: 1 },
-      { label: "Ran", value: 2 },
-      { label: "Running", value: 3 },
-    ],
-    correctAnswer: 2,
   },
 ];
 

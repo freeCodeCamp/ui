@@ -170,11 +170,9 @@ export const Answer = <AnswerT extends number | string>({
 			{action && (
 				<div className="col-start-2 row-start-1 flex items-center justify-center pe-[20px]">
 					<Button
-						size="medium"
 						onClick={action.onClick}
 						aria-label={action.ariaLabel}
 						aria-describedby={labelId}
-						role="button"
 					>
 						<FontAwesomeIcon icon={faMicrophone} />
 					</Button>
