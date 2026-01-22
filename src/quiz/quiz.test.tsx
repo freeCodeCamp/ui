@@ -123,6 +123,97 @@ describe("<Quiz />", () => {
 			expect(question).toBeRequired();
 		});
 	});
+
+	it("should render action buttons when answers have action configuration", async () => {
+		const actionHandlers = {
+			q1a1: jest.fn(),
+			q1a2: jest.fn(),
+			q2a1: jest.fn(),
+		};
+
+		const questions = [
+			{
+				question: "Question 1",
+				answers: [
+					{
+						label: "Answer 1",
+						value: 1,
+						action: {
+							onClick: actionHandlers.q1a1,
+							ariaLabel: "Practice Answer 1",
+						},
+					},
+					{
+						label: "Answer 2",
+						value: 2,
+						action: {
+							onClick: actionHandlers.q1a2,
+							ariaLabel: "Practice Answer 2",
+						},
+					},
+					{ label: "Answer 3", value: 3 },
+				],
+				correctAnswer: 1,
+			},
+			{
+				question: "Question 2",
+				answers: [
+					{
+						label: "Answer A",
+						value: 1,
+						action: {
+							onClick: actionHandlers.q2a1,
+							ariaLabel: "Practice Answer A",
+						},
+					},
+					{ label: "Answer B", value: 2 },
+				],
+				correctAnswer: 1,
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const question1Button1 = screen.getByRole("button", {
+			name: "Practice Answer 1",
+		});
+		const question1Button2 = screen.getByRole("button", {
+			name: "Practice Answer 2",
+		});
+		const question2Button1 = screen.getByRole("button", {
+			name: "Practice Answer A",
+		});
+
+		expect(question1Button1).toBeInTheDocument();
+		expect(question1Button2).toBeInTheDocument();
+		expect(question2Button1).toBeInTheDocument();
+
+		await userEvent.click(question1Button1);
+		await userEvent.click(question1Button2);
+		await userEvent.click(question2Button1);
+
+		expect(actionHandlers.q1a1).toHaveBeenCalledTimes(1);
+		expect(actionHandlers.q1a2).toHaveBeenCalledTimes(1);
+		expect(actionHandlers.q2a1).toHaveBeenCalledTimes(1);
+	});
+
+	it("should not render action buttons when answers do not have action configuration", () => {
+		const questions = [
+			{
+				question: "Question 1",
+				answers: [
+					{ label: "Answer 1", value: 1 },
+					{ label: "Answer 2", value: 2 },
+				],
+				correctAnswer: 1,
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const buttons = screen.queryAllByRole("button");
+		expect(buttons).toHaveLength(0);
+	});
 });
 
 // ------------------------------

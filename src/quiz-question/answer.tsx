@@ -1,8 +1,13 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+	faCheck,
+	faXmark,
+	faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
 
+import { Button } from "../button";
 import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
 
 interface AnswerProps<
@@ -52,11 +57,15 @@ const radioOptionDefaultClasses = [
 	"p-[20px]",
 	"flex",
 	"items-center",
+	"col-start-1",
+	"row-start-1",
 ];
 
 const radioWrapperDefaultClasses = [
-	"flex",
-	"flex-col",
+	"grid",
+	"grid-cols-[1fr_auto]",
+	"grid-rows-[auto_auto]",
+	"gap-x-4",
 	"border-x-4",
 	"border-t-4",
 	"last:border-b-4",
@@ -110,7 +119,10 @@ export const Answer = <AnswerT extends number | string>({
 	checked,
 	validation,
 	feedback,
+	action,
 }: AnswerProps<AnswerT>) => {
+	const labelId = `quiz-answer-${value}-label`;
+
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
 
@@ -141,16 +153,35 @@ export const Answer = <AnswerT extends number | string>({
 				{({ active }) => (
 					<>
 						<RadioIcon active={active} checked={!!checked} />
-						<RadioGroup.Label className="m-0 text-foreground-primary overflow-auto">
+						<RadioGroup.Label
+							id={labelId}
+							className="m-0 text-foreground-primary overflow-auto"
+						>
 							{label}
 						</RadioGroup.Label>
 					</>
 				)}
 			</RadioGroup.Option>
+
+			{action && (
+				<div className="col-start-2 row-start-1 flex items-center justify-center pe-[20px]">
+					<Button
+						size="medium"
+						onClick={action.onClick}
+						aria-label={action.ariaLabel}
+						aria-describedby={labelId}
+						role="button"
+					>
+						<FontAwesomeIcon icon={faMicrophone} />
+					</Button>
+				</div>
+			)}
+
 			{(!!validation || !!feedback) && (
 				// Remove the default bottom margin of the validation message `p`,
 				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
-				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
+				// Span both columns for feedback
+				<div className="col-span-2 row-start-2 ps-[20px] pb-[20px] [&>p:last-child]:m-0">
 					{validation && (
 						<ValidationMessage
 							state={validation.state}

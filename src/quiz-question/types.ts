@@ -9,6 +9,21 @@ export interface QuizQuestionAnswer<T extends number | string> {
 	 * Information needed to render the validation status
 	 */
 	validation?: QuizQuestionValidation;
+
+	/**
+	 * Optional action button configuration.
+	 * When provided, renders an action button next to this answer.
+	 */
+	action?: {
+		/**
+		 * Click handler for the action button
+		 */
+		onClick: () => void;
+		/**
+		 * Accessible label for the action button
+		 */
+		ariaLabel: string;
+	};
 }
 
 export interface QuizQuestionValidation {

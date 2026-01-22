@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { QuizQuestion } from "./quiz-question";
@@ -299,6 +299,89 @@ describe("<QuizQuestion />", () => {
 		expect(
 			within(radioGroup).queryByText("Culpa dolores aut."),
 		).not.toBeInTheDocument();
+	});
+
+	it("should render action buttons when provided", () => {
+		const handleAction1 = jest.fn();
+		const handleAction2 = jest.fn();
+
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{
+						label: "Option 1",
+						value: 1,
+						action: {
+							onClick: handleAction1,
+							ariaLabel: "Practice speaking option 1",
+						},
+					},
+					{
+						label: "Option 2",
+						value: 2,
+						action: {
+							onClick: handleAction2,
+							ariaLabel: "Practice speaking option 2",
+						},
+					},
+					{
+						label: "Option 3",
+						value: 3,
+						// No action for this option
+					},
+				]}
+			/>,
+		);
+
+		const actionButton1 = screen.getByRole("button", {
+			name: "Practice speaking option 1",
+		});
+		const actionButton2 = screen.getByRole("button", {
+			name: "Practice speaking option 2",
+		});
+
+		expect(actionButton1).toBeInTheDocument();
+		expect(actionButton2).toBeInTheDocument();
+
+		expect(actionButton1).toHaveAttribute(
+			"aria-describedby",
+			"quiz-answer-1-label",
+		);
+		expect(actionButton2).toHaveAttribute(
+			"aria-describedby",
+			"quiz-answer-2-label",
+		);
+
+		fireEvent.click(actionButton1);
+		expect(handleAction1).toHaveBeenCalledTimes(1);
+
+		fireEvent.click(actionButton2);
+		expect(handleAction2).toHaveBeenCalledTimes(1);
+
+		// Verify no action button for option 3
+		expect(
+			screen.queryByRole("button", {
+				name: "Practice speaking option 3",
+			}),
+		).not.toBeInTheDocument();
+	});
+
+	it("should not render action buttons when not provided", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+			/>,
+		);
+
+		// Verify no buttons are rendered
+		const allButtons = screen.queryAllByRole("button", { hidden: true });
+		expect(allButtons).toHaveLength(0);
 	});
 });
 

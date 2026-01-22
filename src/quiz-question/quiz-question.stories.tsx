@@ -601,4 +601,92 @@ export const WithRubyText: Story = {
 	},
 };
 
+export const WithActionButtons: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Which of the following is the correct greeting?",
+		answers: [
+			{
+				label: "Hello, how are you?",
+				value: 1,
+				action: {
+					onClick: () => alert("Playing audio for: Hello, how are you?"),
+					ariaLabel: "Practice speaking this answer",
+				},
+			},
+			{
+				label: "Hi there!",
+				value: 2,
+				action: {
+					onClick: () => alert("Playing audio for: Hi there!"),
+					ariaLabel: "Practice speaking this answer",
+				},
+			},
+			{
+				label: "Good morning",
+				value: 3,
+				action: {
+					onClick: () => alert("Playing audio for: Good morning"),
+					ariaLabel: "Practice speaking this answer",
+				},
+			},
+			{
+				label: "Hey",
+				value: 4,
+				// No action for this answer
+			},
+		],
+		position: 1,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Which of the following is the correct greeting?"
+      answers={[
+        {
+          label: "Hello, how are you?",
+          value: 1,
+          action: {
+            onClick: () => console.log("Open speaking modal"),
+            ariaLabel: "Practice speaking this answer"
+          }
+        },
+        {
+          label: "Hi there!",
+          value: 2,
+          action: {
+            onClick: () => console.log("Open speaking modal"),
+            ariaLabel: "Practice speaking this answer"
+          }
+        },
+        {
+          label: "Good morning",
+          value: 3,
+          action: {
+            onClick: () => console.log("Open speaking modal"),
+            ariaLabel: "Practice speaking this answer"
+          }
+        },
+        {
+          label: "Hey",
+          value: 4
+          // No action for this answer
+        }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+      position={1}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
 export default story;

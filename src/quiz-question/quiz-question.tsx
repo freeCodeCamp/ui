@@ -65,7 +65,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 				<QuestionText question={question} position={position} />
 			</RadioGroup.Label>
 
-			{answers.map(({ value, label, feedback, validation }) => {
+			{answers.map(({ value, label, feedback, validation, action }) => {
 				const checked = selectedAnswer === value;
 				return (
 					<Answer
@@ -76,6 +76,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 						checked={checked}
 						disabled={disabled}
 						validation={validation}
+						action={action}
 					/>
 				);
 			})}
