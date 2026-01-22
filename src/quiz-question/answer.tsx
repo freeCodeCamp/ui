@@ -173,6 +173,7 @@ export const Answer = <AnswerT extends number | string>({
 						onClick={action.onClick}
 						aria-label={action.ariaLabel}
 						aria-describedby={labelId}
+						role="button"
 					>
 						<FontAwesomeIcon icon={faMicrophone} />
 					</Button>
