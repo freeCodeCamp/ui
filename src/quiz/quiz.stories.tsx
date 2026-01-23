@@ -695,4 +695,222 @@ const App = () => {
 	},
 };
 
+const QuizWithActionButtons = () => {
+	const initialQuestions: Question<number>[] = [
+		{
+			question: "Which question is incorrect?",
+			answers: [
+				{
+					label: "Are you into photography?",
+					value: 1,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Are you into photography?");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{
+					label: "Are they into photography?",
+					value: 2,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Are they into photography?");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{
+					label: "Is he into photography?",
+					value: 3,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Is he into photography?");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{ label: "Am we into photography?", value: 4 },
+			],
+			correctAnswer: 4,
+		},
+		{
+			question: "Which adjective shows a negative feeling?",
+			answers: [
+				{
+					label: "Friendly",
+					value: 1,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Friendly");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{
+					label: "Cool",
+					value: 2,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Cool");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{
+					label: "Supportive",
+					value: 3,
+					action: {
+						onClick: () => {
+							alert("Speaking practice: Supportive");
+						},
+						ariaLabel: "Practice speaking",
+					},
+				},
+				{ label: "Boring", value: 4 },
+			],
+			correctAnswer: 4,
+		},
+		{
+			question:
+				"What does this sentence mean: `I've played these games before`?",
+			answers: [
+				{ label: "You are playing them now.", value: 1 },
+				{ label: "You will play them later.", value: 2 },
+				{ label: "You never played them.", value: 3 },
+				{ label: "You played them in the past.", value: 4 },
+			],
+			correctAnswer: 4,
+		},
+	];
+
+	const { questions } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct.",
+			incorrect: "Incorrect.",
+		},
+		passingPercent: 100,
+	});
+
+	return <Quiz questions={questions} />;
+};
+
+export const WithActionButtons: Story = {
+	render: QuizWithActionButtons,
+	args: {},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"Quiz with action buttons on selected answers. Useful for language learning features like 'Practice speaking'. Some answers have action buttons while others do not, demonstrating mixed configurations across questions.",
+			},
+			source: {
+				code: `
+import { Quiz, useQuiz } from '@freecodecamp/ui';
+
+const initialQuestions = [
+  {
+    question: "Which question is incorrect?",
+    answers: [
+      {
+        label: "Are you into photography?",
+        value: 1,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Are you into photography?");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      {
+        label: "Are they into photography?",
+        value: 2,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Are they into photography?");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      {
+        label: "Is he into photography?",
+        value: 3,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Is he into photography?");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      { label: "Am we into photography?", value: 4 },
+    ],
+    correctAnswer: 4,
+  },
+  {
+    question: "Which adjective shows a negative feeling?",
+    answers: [
+      {
+        label: "Friendly",
+        value: 1,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Friendly");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      {
+        label: "Cool",
+        value: 2,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Cool");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      {
+        label: "Supportive",
+        value: 3,
+        action: {
+          onClick: () => {
+            alert("Speaking practice: Supportive");
+          },
+          ariaLabel: "Practice speaking",
+        },
+      },
+      { label: "Boring", value: 4 },
+    ],
+    correctAnswer: 4,
+  },
+  {
+    question: "What does this sentence mean: \`I've played these games before\`?",
+    answers: [
+      { label: "You are playing them now.", value: 1 },
+      { label: "You will play them later.", value: 2 },
+      { label: "You never played them.", value: 3 },
+      { label: "You played them in the past.", value: 4 },
+    ],
+    correctAnswer: 4,
+  },
+];
+
+const App = () => {
+  const { questions } = useQuiz({
+    initialQuestions,
+    validationMessages: {
+      correct: "Correct.",
+      incorrect: "Incorrect.",
+    },
+    passingPercent: 100,
+  });
+
+  return <Quiz questions={questions} />;
+};`,
+			},
+		},
+	},
+};
+
 export default story;
