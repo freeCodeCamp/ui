@@ -3,6 +3,8 @@ import { RadioGroup } from "@headlessui/react";
 
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
+import { QuestionLabel } from "../question-label";
+import { OptionLabel } from "../option-label";
 
 const QuestionText = ({
 	question,
@@ -32,7 +34,7 @@ const QuestionText = ({
  * but instead, it provides a `selectedAnswer` and an `onChange` props,
  * giving the parent component full control over the selection handling logic.
  */
-export const QuizQuestion = <AnswerT extends number | string>({
+const QuizQuestion = <AnswerT extends number | string>({
 	question,
 	answers,
 	required,
@@ -83,3 +85,8 @@ export const QuizQuestion = <AnswerT extends number | string>({
 		</RadioGroup>
 	);
 };
+
+QuizQuestion.QuestionLabel = QuestionLabel;
+QuizQuestion.OptionLabel = OptionLabel;
+
+export { QuizQuestion };
