@@ -3,6 +3,7 @@ import { RadioGroup } from "@headlessui/react";
 
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
+import { Audio } from "./audio";
 
 const QuestionText = ({
 	question,
@@ -40,6 +41,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 	selectedAnswer,
 	onChange,
 	position,
+	audioUrl,
 }: QuizQuestionProps<AnswerT>) => {
 	const handleChange = (
 		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
@@ -61,9 +63,19 @@ export const QuizQuestion = <AnswerT extends number | string>({
 			// Ref: https://react.dev/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled
 			value={selectedAnswer ?? null}
 		>
-			<RadioGroup.Label className="block mb-[20px]">
-				<QuestionText question={question} position={position} />
-			</RadioGroup.Label>
+			<div className="mb-[20px]">
+				<RadioGroup.Label className="block">
+					<QuestionText question={question} position={position} />
+				</RadioGroup.Label>
+
+				{audioUrl && (
+					<Audio
+						src={audioUrl}
+						aria-label={`Audio for question${position ? ` ${position}` : ""}`}
+						className="mt-3"
+					/>
+				)}
+			</div>
 
 			{answers.map(({ value, label, feedback, validation, action }) => {
 				const checked = selectedAnswer === value;

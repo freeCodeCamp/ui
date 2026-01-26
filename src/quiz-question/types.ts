@@ -67,4 +67,9 @@ export interface QuizQuestionProps<AnswerT extends number | string> {
 	 * Change event handler, called when an answer is selected
 	 */
 	onChange?: (selectedAnswer: AnswerT) => void;
+
+	/**
+	 * Optional URL to an audio file for the question
+	 */
+	audioUrl?: string;
 }

@@ -383,6 +383,61 @@ describe("<QuizQuestion />", () => {
 		const allButtons = screen.queryAllByRole("button", { hidden: true });
 		expect(allButtons).toHaveLength(0);
 	});
+
+	it("should render audio when audioUrl is provided", () => {
+		const { container } = render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				audioUrl="test-audio.mp3"
+			/>,
+		);
+
+		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+		const audio = container.querySelector("audio");
+		expect(audio).toBeInTheDocument();
+		expect(audio).toHaveAttribute("src", "test-audio.mp3");
+	});
+
+	it("should render audio with correct aria-label when position is provided", () => {
+		const { container } = render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				audioUrl="test-audio.mp3"
+				position={1}
+			/>,
+		);
+
+		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+		const audio = container.querySelector("audio");
+		expect(audio).toHaveAttribute("aria-label", "Audio for question 1");
+	});
+
+	it("should not render audio when audioUrl is not provided", () => {
+		const { container } = render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+			/>,
+		);
+
+		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+		const audio = container.querySelector("audio");
+		expect(audio).not.toBeInTheDocument();
+	});
 });
 
 // ------------------------------

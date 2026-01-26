@@ -19,6 +19,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 	disabled,
 	position,
 	selectedAnswer,
+	audioUrl,
 }: Partial<QuizQuestionProps<AnswerT>>) => {
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
@@ -31,6 +32,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
+			audioUrl={audioUrl}
 		/>
 	);
 };
@@ -686,6 +688,20 @@ export const WithActionButtons: Story = {
 }`,
 			},
 		},
+	},
+};
+
+export const WithAudio: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Listen to the audio and select the correct answer:",
+		audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+		answers: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+		position: 1,
 	},
 };
 

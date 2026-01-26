@@ -37,4 +37,9 @@ export interface Question<AnswerT extends number | string> {
 	 * Value of the selected answer
 	 */
 	selectedAnswer?: AnswerT;
+
+	/**
+	 * Optional URL to an audio file for the question
+	 */
+	audioUrl?: string;
 }

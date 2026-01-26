@@ -913,4 +913,45 @@ const App = () => {
 	},
 };
 
+const QuizWithAudio = () => {
+	const initialQuestions: Question<number>[] = [
+		{
+			question: "Listen to the audio and answer: Who is the graphic designer?",
+			audioUrl:
+				"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+			answers: [
+				{ label: "Tom", value: 1 },
+				{ label: "Maria", value: 2 },
+				{ label: "Both of them", value: 3 },
+			],
+			correctAnswer: 2,
+		},
+		{
+			question: "What is Maria's role?",
+			answers: [
+				{ label: "Graphic designer", value: 1 },
+				{ label: "Software engineer", value: 2 },
+				{ label: "Team lead", value: 3 },
+			],
+			correctAnswer: 2,
+		},
+	];
+
+	const { questions } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct.",
+			incorrect: "Incorrect.",
+		},
+		passingPercent: 100,
+	});
+
+	return <Quiz questions={questions} />;
+};
+
+export const WithAudio: Story = {
+	render: QuizWithAudio,
+	args: {},
+};
+
 export default story;
