@@ -16,20 +16,53 @@ type Story = StoryObj<typeof Audio>;
 
 export const Default: Story = {
 	args: {
-		src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+		src: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		"aria-label": "Audio player",
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<Audio 
+  src="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+  aria-label="Audio player"
+/>`,
+			},
+		},
 	},
 };
 
 export const WithAriaLabel: Story = {
 	args: {
-		src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+		src: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
 		"aria-label": "Example audio clip",
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<Audio 
+  src="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+  aria-label="Example audio clip"
+/>`,
+			},
+		},
 	},
 };
 
 export const WithCustomClass: Story = {
 	args: {
-		src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+		src: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		"aria-label": "Audio player",
 		className: "mt-4",
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<Audio 
+  src="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+  aria-label="Audio player"
+  className="mt-4"
+/>`,
+			},
+		},
 	},
 };

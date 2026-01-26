@@ -13,16 +13,21 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
-const QuizQuestionComp = <AnswerT extends number | string>({
-	question,
-	answers = [],
-	disabled,
-	position,
-	selectedAnswer,
-	audioUrl,
-}: Partial<QuizQuestionProps<AnswerT>>) => {
+const QuizQuestionComp = <AnswerT extends number | string>(
+	props: Partial<QuizQuestionProps<AnswerT>>,
+) => {
+	const { question, answers = [], disabled, position, selectedAnswer } = props;
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
+
+	const audioProps =
+		"audioUrl" in props && props.audioUrl
+			? {
+					audioUrl: props.audioUrl,
+					audioAriaLabel: props.audioAriaLabel || "",
+					transcript: props.transcript || "",
+				}
+			: {};
 
 	return (
 		<QuizQuestion
@@ -32,7 +37,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
-			audioUrl={audioUrl}
+			{...audioProps}
 		/>
 	);
 };
@@ -695,13 +700,44 @@ export const WithAudio: Story = {
 	render: QuizQuestionComp,
 	args: {
 		question: "Listen to the audio and select the correct answer:",
-		audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+		audioUrl:
+			"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		audioAriaLabel: "Audio for question",
+		transcript: `
+			Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+			Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.`,
 		answers: [
 			{ label: "Option 1", value: 1 },
 			{ label: "Option 2", value: 2 },
 			{ label: "Option 3", value: 3 },
 		],
-		position: 1,
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Listen to the audio and select the correct answer:"
+      audioUrl="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+      audioAriaLabel="Audio for question"
+      transcript={\`
+        Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+        Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.\`}
+      answers={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+    />
+  );
+}`,
+			},
+		},
 	},
 };
 

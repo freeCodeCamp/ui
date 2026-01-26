@@ -15,7 +15,7 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 			<summary
 				onClick={handleToggle}
 				aria-expanded={isOpen}
-				className="cursor-pointer font-bold mt-6 text-foreground-primary"
+				className="cursor-pointer font-bold text-foreground-primary"
 			>
 				Transcript
 			</summary>

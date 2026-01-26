@@ -394,6 +394,8 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 3", value: 3 },
 				]}
 				audioUrl="test-audio.mp3"
+				audioAriaLabel="Audio for question"
+				transcript="Test transcript"
 			/>,
 		);
 
@@ -413,6 +415,8 @@ describe("<QuizQuestion />", () => {
 					{ label: "Option 3", value: 3 },
 				]}
 				audioUrl="test-audio.mp3"
+				audioAriaLabel="Audio for question 1"
+				transcript="Test transcript"
 				position={1}
 			/>,
 		);
@@ -437,6 +441,41 @@ describe("<QuizQuestion />", () => {
 		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
 		const audio = container.querySelector("audio");
 		expect(audio).not.toBeInTheDocument();
+	});
+
+	it("should render transcript when audioUrl is provided", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				audioUrl="test-audio.mp3"
+				audioAriaLabel="Audio for question"
+				transcript="Test transcript content"
+			/>,
+		);
+
+		const transcript = screen.getByText("Transcript");
+		expect(transcript).toBeInTheDocument();
+	});
+
+	it("should not render transcript when audioUrl is not provided", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+			/>,
+		);
+
+		const transcript = screen.queryByText("Transcript");
+		expect(transcript).not.toBeInTheDocument();
 	});
 });
 
@@ -499,4 +538,62 @@ describe("<QuizQuestion />", () => {
 	]}
 	// @ts-expect-error - `value` and `selectedAnswer` must have the same type
 	selectedAnswer={1}
+/>;
+
+// QuizQuestion with audioUrl but missing audioAriaLabel
+// @ts-expect-error - audioAriaLabel is required when audioUrl is provided
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+	]}
+	audioUrl="https://example.com/audio.mp3"
+	transcript="Audio transcript"
+/>;
+
+// QuizQuestion with audioUrl but missing transcript
+// @ts-expect-error - transcript is required when audioUrl is provided
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+	]}
+	audioUrl="https://example.com/audio.mp3"
+	audioAriaLabel="Audio for question"
+/>;
+
+// QuizQuestion with audioAriaLabel but no audioUrl
+// @ts-expect-error - audioAriaLabel can only be provided when audioUrl is present
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+	]}
+	audioAriaLabel="Audio for question"
+/>;
+
+// QuizQuestion with transcript but no audioUrl
+// @ts-expect-error - transcript can only be provided when audioUrl is present
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+	]}
+	transcript="Audio transcript"
+/>;
+
+// QuizQuestion with valid audio props
+<QuizQuestion
+	question="Lorem ipsum"
+	answers={[
+		{ label: "Option 1", value: 1 },
+		{ label: "Option 2", value: 2 },
+	]}
+	audioUrl="https://example.com/audio.mp3"
+	audioAriaLabel="Audio for question"
+	transcript="Audio transcript"
 />;

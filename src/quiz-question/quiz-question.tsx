@@ -4,6 +4,7 @@ import { RadioGroup } from "@headlessui/react";
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";
 import { Answer } from "./answer";
 import { Audio } from "./audio";
+import { Transcript } from "./transcript";
 
 const QuestionText = ({
 	question,
@@ -42,6 +43,8 @@ export const QuizQuestion = <AnswerT extends number | string>({
 	onChange,
 	position,
 	audioUrl,
+	audioAriaLabel,
+	transcript,
 }: QuizQuestionProps<AnswerT>) => {
 	const handleChange = (
 		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
@@ -69,11 +72,14 @@ export const QuizQuestion = <AnswerT extends number | string>({
 				</RadioGroup.Label>
 
 				{audioUrl && (
-					<Audio
-						src={audioUrl}
-						aria-label={`Audio for question${position ? ` ${position}` : ""}`}
-						className="mt-3"
-					/>
+					<div className="ps-4">
+						<Audio
+							src={audioUrl}
+							aria-label={audioAriaLabel}
+							className="mt-3"
+						/>
+						<Transcript transcript={transcript} />
+					</div>
 				)}
 			</div>
 

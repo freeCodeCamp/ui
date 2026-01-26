@@ -31,7 +31,7 @@ export interface QuizQuestionValidation {
 	message: string;
 }
 
-export interface QuizQuestionProps<AnswerT extends number | string> {
+interface QuizQuestionBaseProps<AnswerT extends number | string> {
 	/**
 	 * Question text, can be plain text or contain code.
 	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
@@ -67,9 +67,31 @@ export interface QuizQuestionProps<AnswerT extends number | string> {
 	 * Change event handler, called when an answer is selected
 	 */
 	onChange?: (selectedAnswer: AnswerT) => void;
-
-	/**
-	 * Optional URL to an audio file for the question
-	 */
-	audioUrl?: string;
 }
+
+type QuizQuestionWithoutAudio<AnswerT extends number | string> =
+	QuizQuestionBaseProps<AnswerT> & {
+		audioUrl?: never;
+		audioAriaLabel?: never;
+		transcript?: never;
+	};
+
+type QuizQuestionWithAudio<AnswerT extends number | string> =
+	QuizQuestionBaseProps<AnswerT> & {
+		/**
+		 * URL to an audio file for the question
+		 */
+		audioUrl: string;
+		/**
+		 * Accessible label for the audio element
+		 */
+		audioAriaLabel: string;
+		/**
+		 * Transcript text for the audio
+		 */
+		transcript: string;
+	};
+
+export type QuizQuestionProps<AnswerT extends number | string> =
+	| QuizQuestionWithoutAudio<AnswerT>
+	| QuizQuestionWithAudio<AnswerT>;
