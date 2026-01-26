@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-import type { TranscriptProps } from "./types";
+interface TranscriptProps {
+	transcript: string;
+}
 
 export const Transcript = ({ transcript }: TranscriptProps) => {
 	const [isOpen, setIsOpen] = useState(false);

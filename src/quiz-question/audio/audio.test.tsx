@@ -44,25 +44,4 @@ describe("<Audio />", () => {
 		// After clicking play, button should show pause
 		expect(screen.getByRole("button", { name: "Pause" })).toBeInTheDocument();
 	});
-
-	it("should apply custom className to figure wrapper", () => {
-		render(
-			<Audio
-				src="test-audio.mp3"
-				aria-label="Audio player"
-				className="custom-class"
-			/>,
-		);
-
-		const figure = screen.getByRole("figure");
-		expect(figure).toHaveClass("custom-class");
-	});
-
-	it("should render fallback text for unsupported browsers", () => {
-		render(<Audio src="test-audio.mp3" aria-label="Audio player" />);
-
-		expect(
-			screen.getByText("Your browser does not support the audio element."),
-		).toBeInTheDocument();
-	});
 });

@@ -214,6 +214,32 @@ describe("<Quiz />", () => {
 		const buttons = screen.queryAllByRole("button");
 		expect(buttons).toHaveLength(0);
 	});
+
+	it("should render audio and transcript when question has audioUrl", () => {
+		const questions = [
+			{
+				question: "Question with audio",
+				answers: [
+					{ label: "Answer 1", value: 1 },
+					{ label: "Answer 2", value: 2 },
+				],
+				correctAnswer: 1,
+				audioUrl: "test-audio.mp3",
+				audioAriaLabel: "Audio for question",
+				transcript: "Test transcript",
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const audio = screen.getByLabelText("Audio for question");
+		expect(audio).toBeInTheDocument();
+		expect(audio.tagName).toBe("AUDIO");
+		expect(audio).toHaveAttribute("src", "test-audio.mp3");
+
+		const transcript = screen.getByText("Transcript");
+		expect(transcript).toBeInTheDocument();
+	});
 });
 
 // ------------------------------

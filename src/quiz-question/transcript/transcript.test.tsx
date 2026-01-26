@@ -13,9 +13,9 @@ describe("<Transcript />", () => {
 		expect(screen.getByText("Transcript")).toBeVisible();
 
 		const details = screen.getByRole("group", { hidden: true });
-		expect(details.tagName.toLowerCase()).toBe("details");
+		expect(details.tagName).toBe("DETAILS");
 		const summary = screen.getByText("Transcript");
-		expect(summary.tagName.toLowerCase()).toBe("summary");
+		expect(summary.tagName).toBe("SUMMARY");
 	});
 
 	it("should render collapsed by default", () => {
@@ -56,8 +56,8 @@ describe("<Transcript />", () => {
 
 		const tomElement = screen.getByText("Tom:");
 		const mariaElement = screen.getByText("Maria:");
-		expect(tomElement.tagName.toLowerCase()).toBe("b");
-		expect(mariaElement.tagName.toLowerCase()).toBe("b");
+		expect(tomElement.tagName).toBe("B");
+		expect(mariaElement.tagName).toBe("B");
 
 		expect(screen.getByText("Hello there!")).toBeInTheDocument();
 		expect(screen.getByText("Hi Tom, how are you?")).toBeInTheDocument();

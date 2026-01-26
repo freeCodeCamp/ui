@@ -384,8 +384,8 @@ describe("<QuizQuestion />", () => {
 		expect(allButtons).toHaveLength(0);
 	});
 
-	it("should render audio when audioUrl is provided", () => {
-		const { container } = render(
+	it("should render audio and transcript when audioUrl is provided", () => {
+		render(
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
@@ -399,14 +399,17 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-		const audio = container.querySelector("audio");
+		const audio = screen.getByLabelText("Audio for question");
 		expect(audio).toBeInTheDocument();
+		expect(audio.tagName).toBe("AUDIO");
 		expect(audio).toHaveAttribute("src", "test-audio.mp3");
+
+		const transcript = screen.getByText("Transcript");
+		expect(transcript).toBeInTheDocument();
 	});
 
 	it("should render audio with correct aria-label when position is provided", () => {
-		const { container } = render(
+		render(
 			<QuizQuestion
 				question="Lorem ipsum"
 				answers={[
@@ -421,48 +424,12 @@ describe("<QuizQuestion />", () => {
 			/>,
 		);
 
-		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-		const audio = container.querySelector("audio");
+		const audio = screen.getByLabelText("Audio for question 1");
+		expect(audio.tagName).toBe("AUDIO");
 		expect(audio).toHaveAttribute("aria-label", "Audio for question 1");
 	});
 
-	it("should not render audio when audioUrl is not provided", () => {
-		const { container } = render(
-			<QuizQuestion
-				question="Lorem ipsum"
-				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				]}
-			/>,
-		);
-
-		// eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-		const audio = container.querySelector("audio");
-		expect(audio).not.toBeInTheDocument();
-	});
-
-	it("should render transcript when audioUrl is provided", () => {
-		render(
-			<QuizQuestion
-				question="Lorem ipsum"
-				answers={[
-					{ label: "Option 1", value: 1 },
-					{ label: "Option 2", value: 2 },
-					{ label: "Option 3", value: 3 },
-				]}
-				audioUrl="test-audio.mp3"
-				audioAriaLabel="Audio for question"
-				transcript="Test transcript content"
-			/>,
-		);
-
-		const transcript = screen.getByText("Transcript");
-		expect(transcript).toBeInTheDocument();
-	});
-
-	it("should not render transcript when audioUrl is not provided", () => {
+	it("should not render audio or transcript when audioUrl is not provided", () => {
 		render(
 			<QuizQuestion
 				question="Lorem ipsum"
@@ -473,6 +440,8 @@ describe("<QuizQuestion />", () => {
 				]}
 			/>,
 		);
+
+		expect(screen.queryByRole("figure")).not.toBeInTheDocument();
 
 		const transcript = screen.queryByText("Transcript");
 		expect(transcript).not.toBeInTheDocument();

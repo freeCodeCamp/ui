@@ -13,21 +13,26 @@ const story = {
 
 type Story = StoryObj<typeof QuizQuestion>;
 
-const QuizQuestionComp = <AnswerT extends number | string>(
-	props: Partial<QuizQuestionProps<AnswerT>>,
-) => {
-	const { question, answers = [], disabled, position, selectedAnswer } = props;
+const QuizQuestionComp = <AnswerT extends number | string>({
+	question,
+	answers = [],
+	disabled,
+	position,
+	selectedAnswer,
+	audioUrl,
+	audioAriaLabel,
+	transcript,
+}: Partial<QuizQuestionProps<AnswerT>>) => {
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
 
-	const audioProps =
-		"audioUrl" in props && props.audioUrl
-			? {
-					audioUrl: props.audioUrl,
-					audioAriaLabel: props.audioAriaLabel || "",
-					transcript: props.transcript || "",
-				}
-			: {};
+	const audioProps = audioUrl
+		? {
+				audioUrl,
+				audioAriaLabel: audioAriaLabel || "",
+				transcript: transcript || "",
+			}
+		: {};
 
 	return (
 		<QuizQuestion

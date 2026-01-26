@@ -2,7 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
 
-import type { AudioProps } from "./types";
+interface AudioProps {
+	src: string;
+	"aria-label": string;
+	className?: string;
+}
 
 export const Audio = ({
 	src,
@@ -74,9 +78,7 @@ export const Audio = ({
 		<figure className={className}>
 			{/* Transcript is added separately in a different component */}
 			{/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-			<audio ref={audioRef} src={src} aria-label={ariaLabel}>
-				Your browser does not support the audio element.
-			</audio>
+			<audio ref={audioRef} src={src} aria-label={ariaLabel}></audio>
 			<div className="flex items-center gap-3 bg-background-primary px-2.5 py-2 w-full max-w-md rounded border-x-4 border-t-4 border-b-4 border-background-tertiary">
 				<button
 					onClick={togglePlay}
@@ -95,7 +97,7 @@ export const Audio = ({
 					<input
 						type="range"
 						min="0"
-						max={duration || 0}
+						max={duration}
 						value={currentTime}
 						onChange={handleSeek}
 						className="flex-1 h-1 bg-background-tertiary rounded appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-foreground-tertiary [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-foreground-tertiary [&::-moz-range-thumb]:border-0 [&::-webkit-slider-track]:bg-background-tertiary [&::-moz-range-track]:bg-background-tertiary"
