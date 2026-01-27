@@ -19,9 +19,20 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 	disabled,
 	position,
 	selectedAnswer,
+	audioUrl,
+	audioAriaLabel,
+	transcript,
 }: Partial<QuizQuestionProps<AnswerT>>) => {
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
+
+	const audioProps = audioUrl
+		? {
+				audioUrl,
+				audioAriaLabel: audioAriaLabel || "",
+				transcript: transcript || "",
+			}
+		: {};
 
 	return (
 		<QuizQuestion
@@ -31,6 +42,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 			onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer={answer}
 			position={position}
+			{...audioProps}
 		/>
 	);
 };
@@ -681,6 +693,51 @@ export const WithActionButtons: Story = {
       onChange={(newAnswer) => setAnswer(newAnswer)}
       selectedAnswer={answer}
       position={1}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
+export const WithAudio: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Listen to the audio and select the correct answer:",
+		audioUrl:
+			"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		audioAriaLabel: "Audio for question",
+		transcript: `
+			Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+			Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.`,
+		answers: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Listen to the audio and select the correct answer:"
+      audioUrl="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+      audioAriaLabel="Audio for question"
+      transcript={\`
+        Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+        Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.\`}
+      answers={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
     />
   );
 }`,

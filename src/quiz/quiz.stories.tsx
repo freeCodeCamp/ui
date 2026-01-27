@@ -913,4 +913,95 @@ const App = () => {
 	},
 };
 
+const QuizWithAudio = () => {
+	const initialQuestions: Question<number>[] = [
+		{
+			question: "Listen to the audio and answer: Who is the graphic designer?",
+			audioUrl:
+				"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+			audioAriaLabel: "Audio for question 1",
+			transcript: `
+			Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+			Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.`,
+			answers: [
+				{ label: "Tom", value: 1 },
+				{ label: "Maria", value: 2 },
+				{ label: "Tom and Maria", value: 3 },
+			],
+			correctAnswer: 2,
+		},
+		{
+			question: "What is Maria's role?",
+			answers: [
+				{ label: "Graphic designer", value: 1 },
+				{ label: "Software engineer", value: 2 },
+				{ label: "Team lead", value: 3 },
+			],
+			correctAnswer: 2,
+		},
+	];
+
+	const { questions } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct.",
+			incorrect: "Incorrect.",
+		},
+		passingPercent: 100,
+	});
+
+	return <Quiz questions={questions} />;
+};
+
+export const WithAudio: Story = {
+	render: QuizWithAudio,
+	args: {},
+	parameters: {
+		docs: {
+			source: {
+				code: `
+import { Quiz, useQuiz } from '@freecodecamp/ui';
+
+const initialQuestions = [
+  {
+    question: "Listen to the audio and answer: Who is the graphic designer?",
+    audioUrl: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+    audioAriaLabel: "Audio for question 1",
+    transcript: \`
+      Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
+      Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.\`,
+    answers: [
+      { label: "Tom", value: 1 },
+      { label: "Maria", value: 2 },
+      { label: "Tom and Maria", value: 3 }
+    ],
+    correctAnswer: 2
+  },
+  {
+    question: "What is Maria's role?",
+    answers: [
+      { label: "Graphic designer", value: 1 },
+      { label: "Software engineer", value: 2 },
+      { label: "Team lead", value: 3 }
+    ],
+    correctAnswer: 3
+  }
+];
+
+const App = () => {
+  const { questions } = useQuiz({
+    initialQuestions,
+    validationMessages: {
+      correct: "Correct.",
+      incorrect: "Incorrect."
+    }
+  });
+
+  return <Quiz questions={questions} />;
+};`,
+			},
+		},
+	},
+};
+
 export default story;
