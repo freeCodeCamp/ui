@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, within, fireEvent } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { QuizQuestion } from "./quiz-question";
@@ -301,7 +301,7 @@ describe("<QuizQuestion />", () => {
 		).not.toBeInTheDocument();
 	});
 
-	it("should render action buttons when provided", () => {
+	it("should render action buttons when provided", async () => {
 		const handleAction1 = jest.fn();
 		const handleAction2 = jest.fn();
 
@@ -353,10 +353,10 @@ describe("<QuizQuestion />", () => {
 			"quiz-answer-2-label",
 		);
 
-		fireEvent.click(actionButton1);
+		await userEvent.click(actionButton1);
 		expect(handleAction1).toHaveBeenCalledTimes(1);
 
-		fireEvent.click(actionButton2);
+		await userEvent.click(actionButton2);
 		expect(handleAction2).toHaveBeenCalledTimes(1);
 
 		// Verify no action button for option 3
