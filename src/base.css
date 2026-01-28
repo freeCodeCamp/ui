@@ -120,6 +120,19 @@
 		font-size: 21px;
 		line-height: inherit;
 	}
+
+	p:has(ruby),
+	li:has(> ruby) {
+		padding: 0.5rem 0;
+	}
+
+	ruby {
+		font-size: 1.3rem;
+	}
+
+	rt {
+		font-size: 0.9rem;
+	}
 }
 
 @tailwind components;
