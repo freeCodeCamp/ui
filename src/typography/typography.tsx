@@ -2,7 +2,7 @@ import React from "react";
 
 export const Typography = (): JSX.Element => {
 	return (
-		<div className="p-4">
+		<div className="p-4 text-foreground-primary">
 			<section className="mb-6">
 				<div className="text-lg font-bold mb-4">Headings</div>
 				<h1>Heading 1</h1>
@@ -65,38 +65,11 @@ export const Typography = (): JSX.Element => {
 			<hr />
 
 			<section className="mb-6">
-				<div className="text-lg font-bold mb-4">Code</div>
-				<p>
-					Inline code example: <code>{`const example = "Hello World";`}</code>
-				</p>
-				<pre>
-					<code>{`function greet(name) {
-  return "Hello, " + name;
-}`}</code>
-				</pre>
-			</section>
-
-			<hr />
-
-			<section className="mb-6">
 				<div className="text-lg font-bold mb-4">Blockquote</div>
 				<blockquote>
 					This is a blockquote. It is used to highlight quoted text or important
 					information.
 				</blockquote>
-			</section>
-
-			<hr />
-
-			<section className="mb-6">
-				<div className="text-lg font-bold mb-4">Label</div>
-				<label htmlFor="example-input">Example Label</label>
-				<input
-					id="example-input"
-					type="text"
-					placeholder="Enter text here"
-					className="border-1 border-gray-450 p-2 w-full"
-				/>
 			</section>
 
 			<hr />
@@ -112,38 +85,31 @@ export const Typography = (): JSX.Element => {
 			<hr />
 
 			<section className="mb-6">
-				<div className="text-lg font-bold mb-4">Ruby Annotation (Furigana)</div>
+				<div className="text-lg font-bold mb-4">Ruby Annotation</div>
 				<p>
-					Japanese text with furigana annotations:{" "}
+					Chinese text with pinyin annotations:{" "}
 					<ruby>
-						漢字<rt>かんじ</rt>
+						汉字<rt>hàn zì</rt>
 					</ruby>
-					です。
-				</p>
-				<p>
-					The word{" "}
-					<ruby>
-						東京<rt>とうきょう</rt>
-					</ruby>{" "}
-					means Tokyo.
+					。
 				</p>
 				<h3>Ruby in Lists</h3>
 				<ul>
 					<li>
 						<ruby>
-							日本<rt>にほん</rt>
+							中国<rt>zhōng guó</rt>
 						</ruby>
-						: Japan
+						: China
 					</li>
 					<li>
 						<ruby>
-							勉強<rt>べんきょう</rt>
+							学习<rt>xué xí</rt>
 						</ruby>
 						: Study
 					</li>
 					<li>
 						<ruby>
-							先生<rt>せんせい</rt>
+							老师<rt>lǎo shī</rt>
 						</ruby>
 						: Teacher
 					</li>
