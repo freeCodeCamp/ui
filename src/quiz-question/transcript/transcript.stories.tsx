@@ -4,7 +4,7 @@ import { Transcript } from "./transcript";
 
 const meta: Meta<typeof Transcript> = {
 	component: Transcript,
-	title: "Components/Transcript",
+	title: "Internal Components/Transcript",
 	parameters: {
 		controls: { expanded: true },
 	},

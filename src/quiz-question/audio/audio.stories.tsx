@@ -4,7 +4,7 @@ import { Audio } from "./audio";
 
 const meta: Meta<typeof Audio> = {
 	component: Audio,
-	title: "Components/Audio",
+	title: "Internal Components/Audio",
 	parameters: {
 		controls: { expanded: true },
 	},
