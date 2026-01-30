@@ -226,7 +226,7 @@ describe("<Quiz />", () => {
 				correctAnswer: 1,
 				audioUrl: "test-audio.mp3",
 				audioAriaLabel: "Audio for question",
-				transcript: "Test transcript",
+				transcript: "<p>Test transcript</p>",
 			},
 		];
 

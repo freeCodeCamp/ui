@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import sanitizeHtml from "sanitize-html";
 
 interface TranscriptProps {
+	/**
+	 * The transcript text as an HTML string.
+	 *
+	 * Example:
+	 * `<p><b>Speaker:</b> Dialogue text</p>`
+	 *
+	 * Supported tags: p, b, strong, i, em, ruby, rt, rp
+	 */
 	transcript: string;
 }
 
@@ -12,6 +21,17 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 		setIsOpen(!isOpen);
 	};
 
+	const sanitizedTranscript = useMemo(
+		() =>
+			sanitizeHtml(transcript, {
+				allowedTags: ["ruby", "rt", "rp", "b", "strong", "i", "em", "p"],
+				allowedAttributes: {
+					p: ["class"],
+				},
+			}),
+		[transcript],
+	);
+
 	return (
 		<details open={isOpen} className="mt-3">
 			<summary
@@ -21,35 +41,10 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 			>
 				Transcript
 			</summary>
-			<div className="mt-4 border border-foreground-primary">
-				{transcript
-					.split("\n")
-					.filter((line) => line.trim() !== "")
-					.map((line, idx) => {
-						const colonIndex = line.indexOf(":");
-						if (colonIndex === -1) {
-							return (
-								<p
-									key={idx}
-									className="px-3.5 py-2 mb-0 odd:bg-background-tertiary text-foreground-primary"
-								>
-									{line}
-								</p>
-							);
-						}
-						const speaker = line.substring(0, colonIndex + 1);
-						const dialogue = line.substring(colonIndex + 1);
-						return (
-							<p
-								key={idx}
-								className="px-3.5 py-2 mb-0 odd:bg-background-tertiary text-foreground-primary"
-							>
-								<b>{speaker}</b>
-								{dialogue}
-							</p>
-						);
-					})}
-			</div>
+			<div
+				className="mt-4 border border-foreground-primary [&_p]:px-3.5 [&_p]:py-2 [&_p]:mb-0 [&_p]:text-foreground-primary [&_p:nth-child(odd)]:bg-background-tertiary"
+				dangerouslySetInnerHTML={{ __html: sanitizedTranscript }}
+			/>
 		</details>
 	);
 };

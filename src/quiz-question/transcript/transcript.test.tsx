@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { Transcript } from "./transcript";
 
 const baseProps = {
-	transcript: "Sample transcript text",
+	transcript: "<p>Sample transcript text</p>",
 };
 
 describe("<Transcript />", () => {
@@ -37,30 +37,62 @@ describe("<Transcript />", () => {
 		expect(screen.getByText("Sample transcript text")).toBeVisible();
 	});
 
-	it("should filter out empty lines", async () => {
-		const transcript = `Hello\n\n\nWorld\n  \n`;
+	it("should render HTML with bold tags and paragraphs", async () => {
+		const transcript = `<p><b>Tom:</b> Hello there!</p><p><b>Maria:</b> Hi Tom, how are you?</p>`;
 		render(<Transcript transcript={transcript} />);
 
 		await userEvent.click(screen.getByText("Transcript"));
 
-		const paragraphs = screen.getAllByText(/Hello|World/);
-		expect(paragraphs).toHaveLength(2);
-		expect(paragraphs[0]).toHaveTextContent("Hello");
-		expect(paragraphs[1]).toHaveTextContent("World");
-	});
-
-	it("should render speaker names in bold", async () => {
-		const transcript = `Tom: Hello there!\nMaria: Hi Tom, how are you?`;
-		render(<Transcript transcript={transcript} />);
-
-		await userEvent.click(screen.getByText("Transcript"));
-
+		/* eslint-disable testing-library/no-node-access */
 		const tomElement = screen.getByText("Tom:");
-		const mariaElement = screen.getByText("Maria:");
+		expect(tomElement).toBeVisible();
 		expect(tomElement.tagName).toBe("B");
+
+		const tomP = tomElement.parentElement;
+		expect(tomP?.tagName).toBe("P");
+		expect(tomP?.textContent).toContain("Tom:");
+		expect(tomP?.textContent).toContain("Hello there!");
+
+		const mariaElement = screen.getByText("Maria:");
+		expect(mariaElement).toBeVisible();
 		expect(mariaElement.tagName).toBe("B");
 
-		expect(screen.getByText("Hello there!")).toBeInTheDocument();
-		expect(screen.getByText("Hi Tom, how are you?")).toBeInTheDocument();
+		const mariaP = mariaElement.parentElement;
+		expect(mariaP?.tagName).toBe("P");
+		expect(mariaP?.textContent).toContain("Maria:");
+		expect(mariaP?.textContent).toContain("Hi Tom, how are you?");
+		/* eslint-enable testing-library/no-node-access */
+	});
+
+	it("should render HTML in dialogue with ruby elements", async () => {
+		const transcript = `<p><b>Speaker:</b> This is <ruby>中文<rt>zhōngwén</rt></ruby></p>`;
+		render(<Transcript transcript={transcript} />);
+
+		await userEvent.click(screen.getByText("Transcript"));
+
+		const speakerElement = screen.getByText("Speaker:");
+		expect(speakerElement.tagName).toBe("B");
+
+		/* eslint-disable testing-library/no-node-access */
+		const rtElement = screen.getByText("zhōngwén");
+		expect(rtElement.tagName).toBe("RT");
+		const rubyElement = rtElement.parentElement;
+		expect(rubyElement?.tagName).toBe("RUBY");
+		expect(rubyElement?.textContent).toContain("中文");
+		expect(rubyElement?.textContent).toContain("zhōngwén");
+		/* eslint-enable testing-library/no-node-access */
+	});
+
+	it("should sanitize dangerous HTML tags and attributes", async () => {
+		const transcript = `<script>alert('xss')</script><p onClick="alert('malicious')">Safe text</p>`;
+		render(<Transcript transcript={transcript} />);
+
+		await userEvent.click(screen.getByText("Transcript"));
+
+		const safeTextElement = screen.getByText("Safe text");
+		expect(safeTextElement).toBeInTheDocument();
+		expect(safeTextElement.tagName).toBe("P");
+		expect(safeTextElement).not.toHaveAttribute("onClick");
+		expect(screen.queryByText(/xss/)).not.toBeInTheDocument();
 	});
 });

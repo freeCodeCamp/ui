@@ -395,7 +395,7 @@ describe("<QuizQuestion />", () => {
 				]}
 				audioUrl="test-audio.mp3"
 				audioAriaLabel="Audio for question"
-				transcript="Test transcript"
+				transcript="<p>Test transcript</p>"
 			/>,
 		);
 
@@ -419,7 +419,7 @@ describe("<QuizQuestion />", () => {
 				]}
 				audioUrl="test-audio.mp3"
 				audioAriaLabel="Audio for question 1"
-				transcript="Test transcript"
+				transcript="<p>Test transcript</p>"
 				position={1}
 			/>,
 		);
@@ -518,7 +518,7 @@ describe("<QuizQuestion />", () => {
 		{ label: "Option 2", value: 2 },
 	]}
 	audioUrl="https://example.com/audio.mp3"
-	transcript="Audio transcript"
+	transcript="<p>Audio transcript</p>"
 />;
 
 // QuizQuestion with audioUrl but missing transcript
@@ -552,7 +552,7 @@ describe("<QuizQuestion />", () => {
 		{ label: "Option 1", value: 1 },
 		{ label: "Option 2", value: 2 },
 	]}
-	transcript="Audio transcript"
+	transcript="<p>Audio transcript</p>"
 />;
 
 // QuizQuestion with valid audio props
@@ -564,5 +564,5 @@ describe("<QuizQuestion />", () => {
 	]}
 	audioUrl="https://example.com/audio.mp3"
 	audioAriaLabel="Audio for question"
-	transcript="Audio transcript"
+	transcript="<p>Audio transcript</p>"
 />;
