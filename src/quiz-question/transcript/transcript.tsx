@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import sanitizeHtml from "sanitize-html";
 
 interface TranscriptProps {
 	/**
-	 * The transcript text, which may include HTML tags.
+	 * The transcript text as an HTML string.
+	 *
+	 * Example:
+	 * `<p><b>Speaker:</b> Dialogue text</p>`
+	 *
+	 * Supported tags: p, b, strong, i, em, ruby, rt, rp
 	 */
 	transcript: string;
 }
@@ -16,12 +21,16 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 		setIsOpen(!isOpen);
 	};
 
-	const sanitizedTranscript = sanitizeHtml(transcript, {
-		allowedTags: ["ruby", "rt", "rp", "b", "strong", "i", "em", "p"],
-		allowedAttributes: {
-			p: ["class"],
-		},
-	});
+	const sanitizedTranscript = useMemo(
+		() =>
+			sanitizeHtml(transcript, {
+				allowedTags: ["ruby", "rt", "rp", "b", "strong", "i", "em", "p"],
+				allowedAttributes: {
+					p: ["class"],
+				},
+			}),
+		[transcript],
+	);
 
 	return (
 		<details open={isOpen} className="mt-3">

@@ -65,13 +65,13 @@ describe("<Transcript />", () => {
 	});
 
 	it("should render HTML in dialogue with ruby elements", async () => {
-		const transcript = `<p><b>Teacher:</b> This is <ruby>中文<rt>zhōngwén</rt></ruby></p>`;
+		const transcript = `<p><b>Speaker:</b> This is <ruby>中文<rt>zhōngwén</rt></ruby></p>`;
 		render(<Transcript transcript={transcript} />);
 
 		await userEvent.click(screen.getByText("Transcript"));
 
-		const teacherElement = screen.getByText("Teacher:");
-		expect(teacherElement.tagName).toBe("B");
+		const speakerElement = screen.getByText("Speaker:");
+		expect(speakerElement.tagName).toBe("B");
 
 		/* eslint-disable testing-library/no-node-access */
 		const rtElement = screen.getByText("zhōngwén");
@@ -83,8 +83,8 @@ describe("<Transcript />", () => {
 		/* eslint-enable testing-library/no-node-access */
 	});
 
-	it("should sanitize dangerous HTML tags", async () => {
-		const transcript = `<p onClick="alert('malicious')">Safe text</p>`;
+	it("should sanitize dangerous HTML tags and attributes", async () => {
+		const transcript = `<script>alert('xss')</script><p onClick="alert('malicious')">Safe text</p>`;
 		render(<Transcript transcript={transcript} />);
 
 		await userEvent.click(screen.getByText("Transcript"));
@@ -93,5 +93,6 @@ describe("<Transcript />", () => {
 		expect(safeTextElement).toBeInTheDocument();
 		expect(safeTextElement.tagName).toBe("P");
 		expect(safeTextElement).not.toHaveAttribute("onClick");
+		expect(screen.queryByText(/xss/)).not.toBeInTheDocument();
 	});
 });
