@@ -708,9 +708,8 @@ export const WithAudio: Story = {
 		audioUrl:
 			"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
 		audioAriaLabel: "Audio for question",
-		transcript: `
-			Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
-			Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.`,
+		transcript: `<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>
+<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.</p>`,
 		answers: [
 			{ label: "Option 1", value: 1 },
 			{ label: "Option 2", value: 2 },
@@ -728,9 +727,8 @@ export const WithAudio: Story = {
       question="Listen to the audio and select the correct answer:"
       audioUrl="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
       audioAriaLabel="Audio for question"
-      transcript={\`
-        Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
-        Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.\`}
+      transcript={\`<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>
+<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.</p>\`}
       answers={[
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: 2 },

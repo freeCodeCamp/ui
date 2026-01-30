@@ -920,9 +920,8 @@ const QuizWithAudio = () => {
 			audioUrl:
 				"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
 			audioAriaLabel: "Audio for question 1",
-			transcript: `
-			Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
-			Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.`,
+			transcript: `<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>
+<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.</p>`,
 			answers: [
 				{ label: "Tom", value: 1 },
 				{ label: "Maria", value: 2 },
@@ -967,9 +966,8 @@ const initialQuestions = [
     question: "Listen to the audio and answer: Who is the graphic designer?",
     audioUrl: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
     audioAriaLabel: "Audio for question 1",
-    transcript: \`
-      Maria: Hello. You're the new graphic designer, right? I'm Maria, the team lead.
-      Tom: Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.\`,
+    transcript: \`<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>
+<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.</p>\`,
     answers: [
       { label: "Tom", value: 1 },
       { label: "Maria", value: 2 },
