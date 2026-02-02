@@ -59,7 +59,10 @@ export const Callout = ({
 	return (
 		<div className={classes} {...others}>
 			<div className="flex items-start mb-2">
-				<FontAwesomeIcon icon={variantIcons[variant]} className="me-2 mt-1" />
+				<FontAwesomeIcon
+					icon={variantIcons[variant]}
+					className="me-2 mt-1 fa-width-auto"
+				/>
 				<strong className={variantLabelClasses[variant]}>{label}</strong>
 			</div>
 			{children}
