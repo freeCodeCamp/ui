@@ -88,6 +88,7 @@ export const Audio = ({
 					<FontAwesomeIcon
 						icon={isPlaying ? faCirclePause : faCirclePlay}
 						size="3x"
+						className="fa-width-auto"
 					/>
 				</button>
 				<div className="flex-1 flex items-center gap-2">

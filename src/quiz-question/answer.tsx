@@ -96,7 +96,7 @@ const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
 		<p className="text-background-success">
 			<FontAwesomeIcon
 				icon={faCheck}
-				className="text-background-success me-[8px]"
+				className="text-background-success me-[8px] fa-width-auto"
 			/>
 			{message}
 		</p>
@@ -104,7 +104,7 @@ const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
 		<p className="text-background-danger">
 			<FontAwesomeIcon
 				icon={faXmark}
-				className="text-background-danger me-[8px]"
+				className="text-background-danger me-[8px] fa-width-auto"
 			/>
 			{message}
 		</p>
@@ -175,7 +175,7 @@ export const Answer = <AnswerT extends number | string>({
 						aria-describedby={labelId}
 						role="button"
 					>
-						<FontAwesomeIcon icon={faMicrophone} />
+						<FontAwesomeIcon icon={faMicrophone} className="fa-width-auto" />
 					</Button>
 				</div>
 			)}

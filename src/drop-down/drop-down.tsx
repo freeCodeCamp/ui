@@ -74,7 +74,7 @@ const DropDownButton = ({
 			{children}
 			<FontAwesomeIcon
 				icon={dropup ? faCaretUp : faCaretDown}
-				className="mx-2 h-3"
+				className="mx-2 h-3 fa-width-auto"
 				aria-hidden="true"
 			/>
 		</Menu.Button>
