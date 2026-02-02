@@ -7,7 +7,6 @@ import { FormControlProps } from "./types";
 
 // Uses controlId from <FormGroup> if not explicitly specified.
 // type Only relevant if componentClass is 'input'.
-let variantClass: string;
 const defaultClasses =
 	"outline-0 block w-full py-1.5 px-2.5 text-md text-foreground-primary bg-background-primary bg-none rounded-none border-1 border-solid border-background-quaternary shadow-none transition ease-in-out duration-150 focus:border-foreground-tertiary";
 
@@ -30,7 +29,7 @@ const FormControl = forwardRef<
 	const { id, className } = props;
 
 	const Component = componentClass || "input";
-	if (Component !== "textarea") variantClass = " h-8";
+	const variantClass = Component !== "textarea" ? " h-8" : "";
 
 	//row and componentClass
 	const classes = [className, defaultClasses, variantClass].join(" ");

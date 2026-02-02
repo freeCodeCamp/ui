@@ -117,9 +117,13 @@ export const useQuiz = <AnswerT extends number | string>({
 			});
 
 			if (grade >= passingPercent) {
-				onSuccess && onSuccess();
+				if (onSuccess) {
+					onSuccess();
+				}
 			} else {
-				onFailure && onFailure();
+				if (onFailure) {
+					onFailure();
+				}
 			}
 
 			return updatedQuestions;
