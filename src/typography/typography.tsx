@@ -76,7 +76,7 @@ export const Typography = (): JSX.Element => {
 
 			<section className="mb-6">
 				<div className="text-lg font-bold mb-4">Legend</div>
-				<fieldset className="border-1 border-gray-450 p-4">
+				<fieldset>
 					<legend>Form Section</legend>
 					<p>Content within a fieldset with a legend element.</p>
 				</fieldset>
