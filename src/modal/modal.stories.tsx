@@ -225,6 +225,33 @@ const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 	);
 };
 
+const LongContentTemplate: StoryFn<ModalProps> = (args) => {
+	const [open, setOpen] = React.useState(false);
+	const handleClose = () => setOpen(false);
+	return (
+		<div>
+			<Button onClick={() => setOpen(true)}>Open modal</Button>
+			<Modal {...args} open={open} onClose={handleClose}>
+				<Modal.Header>Modal with Long Content</Modal.Header>
+				<Modal.Body>
+					<div>
+						{[...Array(30)].map((_, i) => (
+							<p key={i}>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								Pellentesque euismod, nisi vel consectetur euismod, nisl nisi
+								consectetur nisi, euismod euismod nisi nisi euismod.
+							</p>
+						))}
+					</div>
+				</Modal.Body>
+				<Modal.Footer alignment="end">
+					<Button onClick={handleClose}>Close</Button>
+				</Modal.Footer>
+			</Modal>
+		</div>
+	);
+};
+
 export const Default: Story = {
 	render: DefaultTemplate,
 };
@@ -254,6 +281,22 @@ export const WithoutCloseButton: Story = {
 	render: DefaultTemplate,
 	args: {
 		showCloseButton: false,
+	},
+};
+
+export const WithLongContent: Story = {
+	render: LongContentTemplate,
+	args: {
+		size: "medium",
+		variant: "default",
+	},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This story demonstrates the Modal component with enough content to trigger a vertical scrollbar.",
+			},
+		},
 	},
 };
 
