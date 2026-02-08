@@ -446,6 +446,29 @@ describe("<QuizQuestion />", () => {
 		const transcript = screen.queryByText("Transcript");
 		expect(transcript).not.toBeInTheDocument();
 	});
+
+	it("should pass audioStartTime and audioFinishTime to Audio component", () => {
+		render(
+			<QuizQuestion
+				question="Lorem ipsum"
+				answers={[
+					{ label: "Option 1", value: 1 },
+					{ label: "Option 2", value: 2 },
+					{ label: "Option 3", value: 3 },
+				]}
+				audioUrl="test-audio.mp3"
+				audioAriaLabel="Audio segment for question"
+				transcript="<p>Test transcript</p>"
+				audioStartTime={5}
+				audioFinishTime={10}
+			/>,
+		);
+
+		const audio = screen.getByLabelText("Audio segment for question");
+		expect(audio).toBeInTheDocument();
+		// Audio segment should have media fragment in src when startTime > 0
+		expect(audio).toHaveAttribute("src", "test-audio.mp3#t=5");
+	});
 });
 
 // ------------------------------
@@ -565,4 +588,54 @@ describe("<QuizQuestion />", () => {
 	audioUrl="https://example.com/audio.mp3"
 	audioAriaLabel="Audio for question"
 	transcript="<p>Audio transcript</p>"
+/>;
+
+// Type tests for audio segment props
+// Should allow audioStartTime and audioFinishTime only when audioUrl is present
+<QuizQuestion
+	question="Audio segment question"
+	answers={[{ label: "Option 1", value: 1 }]}
+	audioUrl="test-audio.mp3"
+	audioAriaLabel="Audio segment"
+	transcript="<p>Transcript</p>"
+	audioStartTime={0}
+	audioFinishTime={5}
+/>;
+
+// Should error if audioStartTime is present without audioUrl
+// @ts-expect-error audioStartTime not allowed without audioUrl
+<QuizQuestion
+	question="Audio segment question"
+	answers={[{ label: "Option 1", value: 1 }]}
+	audioStartTime={0}
+/>;
+
+// Should error if audioFinishTime is present without audioUrl
+// @ts-expect-error audioFinishTime not allowed without audioUrl
+<QuizQuestion
+	question="Audio segment question"
+	answers={[{ label: "Option 1", value: 1 }]}
+	audioFinishTime={5}
+/>;
+
+// Should error if audioStartTime is not a number
+<QuizQuestion
+	question="Audio segment question"
+	answers={[{ label: "Option 1", value: 1 }]}
+	audioUrl="test-audio.mp3"
+	audioAriaLabel="Audio segment"
+	transcript="<p>Transcript</p>"
+	// @ts-expect-error audioStartTime must be a number
+	audioStartTime="0"
+/>;
+
+// Should error if audioFinishTime is not a number
+<QuizQuestion
+	question="Audio segment question"
+	answers={[{ label: "Option 1", value: 1 }]}
+	audioUrl="test-audio.mp3"
+	audioAriaLabel="Audio segment"
+	transcript="<p>Transcript</p>"
+	// @ts-expect-error audioFinishTime must be a number
+	audioFinishTime="5"
 />;
