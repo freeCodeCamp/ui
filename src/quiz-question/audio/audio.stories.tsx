@@ -66,3 +66,26 @@ export const WithCustomClass: Story = {
 		},
 	},
 };
+
+export const WithAudioSegment: Story = {
+	args: {
+		src: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		"aria-label": "Audio segment demo",
+		startTime: 2,
+		finishTime: 5,
+		className: "mt-4",
+	},
+	parameters: {
+		docs: {
+			source: {
+				code: `<Audio 
+  src="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+  aria-label="Audio segment demo"
+  startTime={2}
+  finishTime={5}
+  className="mt-4"
+/>`,
+			},
+		},
+	},
+};
