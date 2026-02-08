@@ -1054,6 +1054,10 @@ export const WithAudioSegment: Story = {
 	args: {},
 	parameters: {
 		docs: {
+			description: {
+				story:
+					"This story demonstrates the Quiz component with questions that use `audioStartTime` and `audioFinishTime` props, which play only specific segments of the audio instead of the full clip.",
+			},
 			source: {
 				code: `
 import { Quiz, useQuiz } from '@freecodecamp/ui';

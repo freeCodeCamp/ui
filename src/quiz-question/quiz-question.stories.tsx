@@ -766,6 +766,10 @@ export const WithAudioSegment: Story = {
 	},
 	parameters: {
 		docs: {
+			description: {
+				story:
+					"This story demonstrates the QuizQuestion component with `audioStartTime` and `audioFinishTime` props, which play only a segment of the audio instead of the full clip.",
+			},
 			source: {
 				code: `const App = () => {
   const [answer, setAnswer] = useState();
