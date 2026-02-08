@@ -131,7 +131,7 @@ const Modal = ({
 
 					{/* Full-screen container of the panel */}
 					<div
-						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-hidden`}
+						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-auto`}
 					>
 						<Transition.Child
 							as={Fragment}
