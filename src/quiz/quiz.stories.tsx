@@ -1002,4 +1002,111 @@ const App = () => {
 	},
 };
 
+const QuizWithAudioSegment = () => {
+	const initialQuestions: Question<number>[] = [
+		{
+			question:
+				"Listen to the audio segment and answer: What does Maria say first?",
+			audioUrl:
+				"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+			audioAriaLabel: "Audio segment for question 1",
+			transcript: `<p><b>Maria:</b> Hello. You're the new graphic designer, right?</p>`,
+			audioStartTime: 0,
+			audioFinishTime: 2.5,
+			answers: [
+				{ label: "Hello. You're the new graphic designer, right?", value: 1 },
+				{ label: "I'm Maria, the team lead.", value: 2 },
+				{ label: "It's a pleasure to meet you.", value: 3 },
+			],
+			correctAnswer: 1,
+		},
+		{
+			question: "Listen to this segment: Who introduces themselves?",
+			audioUrl:
+				"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+			audioAriaLabel: "Audio segment for question 2",
+			transcript: `<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie.</p>`,
+			audioStartTime: 4,
+			audioFinishTime: 7,
+			answers: [
+				{ label: "Maria", value: 1 },
+				{ label: "Tom", value: 2 },
+				{ label: "Both", value: 3 },
+			],
+			correctAnswer: 2,
+		},
+	];
+
+	const { questions } = useQuiz({
+		initialQuestions,
+		validationMessages: {
+			correct: "Correct.",
+			incorrect: "Incorrect.",
+		},
+		passingPercent: 100,
+	});
+
+	return <Quiz questions={questions} />;
+};
+
+export const WithAudioSegment: Story = {
+	render: QuizWithAudioSegment,
+	args: {},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This story demonstrates the Quiz component with questions that use `audioStartTime` and `audioFinishTime` props, which play only specific segments of the audio instead of the full clip.",
+			},
+			source: {
+				code: `
+import { Quiz, useQuiz } from '@freecodecamp/ui';
+
+const initialQuestions = [
+  {
+    question: "Listen to the audio segment and answer: What does Maria say first?",
+    audioUrl: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+    audioAriaLabel: "Audio segment for question 1",
+    transcript: \`<p><b>Maria:</b> Hello. You're the new graphic designer, right?</p>\`,
+    audioStartTime: 0,
+    audioFinishTime: 2.5,
+    answers: [
+      { label: "Hello. You're the new graphic designer, right?", value: 1 },
+      { label: "I'm Maria, the team lead.", value: 2 },
+      { label: "It's a pleasure to meet you.", value: 3 }
+    ],
+    correctAnswer: 1
+  },
+  {
+    question: "Listen to this segment: Who introduces themselves?",
+    audioUrl: "https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+    audioAriaLabel: "Audio segment for question 2",
+    transcript: \`<p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie.</p>\`,
+    audioStartTime: 4,
+    audioFinishTime: 7,
+    answers: [
+      { label: "Maria", value: 1 },
+      { label: "Tom", value: 2 },
+      { label: "Both", value: 3 }
+    ],
+    correctAnswer: 2
+  }
+];
+
+const App = () => {
+  const { questions } = useQuiz({
+    initialQuestions,
+    validationMessages: {
+      correct: "Correct.",
+      incorrect: "Incorrect."
+    }
+  });
+
+  return <Quiz questions={questions} />;
+};`,
+			},
+		},
+	},
+};
+
 export default story;

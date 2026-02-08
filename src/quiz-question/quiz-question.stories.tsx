@@ -22,6 +22,8 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 	audioUrl,
 	audioAriaLabel,
 	transcript,
+	audioStartTime,
+	audioFinishTime,
 }: Partial<QuizQuestionProps<AnswerT>>) => {
 	const [answer, setAnswer] =
 		useState<QuizQuestionProps<AnswerT>["selectedAnswer"]>(selectedAnswer);
@@ -31,6 +33,8 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 				audioUrl,
 				audioAriaLabel: audioAriaLabel || "",
 				transcript: transcript || "",
+				...(audioStartTime !== undefined && { audioStartTime }),
+				...(audioFinishTime !== undefined && { audioFinishTime }),
 			}
 		: {};
 
@@ -729,6 +733,55 @@ export const WithAudio: Story = {
       audioAriaLabel="Audio for question"
       transcript={\`<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>
 <p><b>Tom:</b> Hi, that's right. I'm Tom McKenzie. It's a pleasure to meet you.</p>\`}
+      answers={[
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: 2 },
+        { label: "Option 3", value: 3 }
+      ]}
+      onChange={(newAnswer) => setAnswer(newAnswer)}
+      selectedAnswer={answer}
+    />
+  );
+}`,
+			},
+		},
+	},
+};
+
+export const WithAudioSegment: Story = {
+	render: QuizQuestionComp,
+	args: {
+		question: "Listen to the audio segment and select the correct answer:",
+		audioUrl:
+			"https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3",
+		audioAriaLabel: "Audio segment for question",
+		transcript: `<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>`,
+		audioStartTime: 0,
+		audioFinishTime: 3,
+		answers: [
+			{ label: "Option 1", value: 1 },
+			{ label: "Option 2", value: 2 },
+			{ label: "Option 3", value: 3 },
+		],
+	},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This story demonstrates the QuizQuestion component with `audioStartTime` and `audioFinishTime` props, which play only a segment of the audio instead of the full clip.",
+			},
+			source: {
+				code: `const App = () => {
+  const [answer, setAnswer] = useState();
+
+  return (
+    <QuizQuestion
+      question="Listen to the audio segment and select the correct answer:"
+      audioUrl="https://cdn.freecodecamp.org/curriculum/english/animation-assets/sounds/1.1-1.mp3"
+      audioAriaLabel="Audio segment for question"
+      transcript={\`<p><b>Maria:</b> Hello. You're the new graphic designer, right? I'm Maria, the team lead.</p>\`}
+      audioStartTime={0}
+      audioFinishTime={3}
       answers={[
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: 2 },

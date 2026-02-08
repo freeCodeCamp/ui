@@ -45,6 +45,8 @@ export const QuizQuestion = <AnswerT extends number | string>({
 	audioUrl,
 	audioAriaLabel,
 	transcript,
+	audioStartTime,
+	audioFinishTime,
 }: QuizQuestionProps<AnswerT>) => {
 	const handleChange = (
 		selectedOption: QuizQuestionAnswer<AnswerT>["value"],
@@ -77,6 +79,8 @@ export const QuizQuestion = <AnswerT extends number | string>({
 							src={audioUrl}
 							aria-label={audioAriaLabel}
 							className="mt-3"
+							startTime={audioStartTime}
+							finishTime={audioFinishTime}
 						/>
 						<Transcript transcript={transcript} />
 					</div>

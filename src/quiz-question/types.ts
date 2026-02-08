@@ -74,6 +74,8 @@ type QuizQuestionWithoutAudio<AnswerT extends number | string> =
 		audioUrl?: never;
 		audioAriaLabel?: never;
 		transcript?: never;
+		audioStartTime?: never;
+		audioFinishTime?: never;
 	};
 
 type QuizQuestionWithAudio<AnswerT extends number | string> =
@@ -90,6 +92,14 @@ type QuizQuestionWithAudio<AnswerT extends number | string> =
 		 * Transcript text for the audio
 		 */
 		transcript: string;
+		/**
+		 * Start time in seconds for the audio segment
+		 */
+		audioStartTime?: number;
+		/**
+		 * Finish time in seconds for the audio segment
+		 */
+		audioFinishTime?: number;
 	};
 
 export type QuizQuestionProps<AnswerT extends number | string> =
