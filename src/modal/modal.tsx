@@ -122,7 +122,7 @@ const Modal = ({
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					onClose={onClose}
-					className="relative z-1050 w-screen h-screen"
+					className="relative z-1050 w-full h-full "
 					onKeyDown={onKeyDown}
 					initialFocus={initialFocus}
 				>
@@ -131,7 +131,7 @@ const Modal = ({
 
 					{/* Full-screen container of the panel */}
 					<div
-						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-scroll`}
+						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-auto`}
 					>
 						<Transition.Child
 							as={Fragment}
