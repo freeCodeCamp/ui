@@ -122,7 +122,7 @@ const Modal = ({
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					onClose={onClose}
-					className="relative z-1050 w-full h-full "
+					className="fixed inset-0 z-1050"
 					onKeyDown={onKeyDown}
 					initialFocus={initialFocus}
 				>
