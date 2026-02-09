@@ -1,10 +1,11 @@
-// Silence the `jest-dom/prefer-enabled-disabled` rule as the rule looks for the `disabled` attribute
+// Silence the `vitest/prefer-enabled-disabled` rule as the rule looks for the `disabled` attribute
 // while the Button component doesn't use it.
-/* eslint-disable jest-dom/prefer-enabled-disabled */
+/* eslint-disable vitest/prefer-to-be */
 
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
+import { vi } from "vitest";
 
 import { Button } from "./button";
 
@@ -34,7 +35,7 @@ describe("<Button />", () => {
 	});
 
 	it("should trigger the onClick prop on click if the component is a button element", async () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 
 		render(<Button onClick={onClick}>Hello world</Button>);
 
@@ -57,7 +58,7 @@ describe("<Button />", () => {
 	});
 
 	it("should not trigger the onClick prop if the button is disabled", async () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 
 		render(
 			<Button disabled onClick={onClick}>
@@ -72,7 +73,7 @@ describe("<Button />", () => {
 	});
 
 	it("should not trigger form submission if the button has `submit` type and is disabled", async () => {
-		const handleSubmit = jest.fn();
+		const handleSubmit = vi.fn();
 
 		render(
 			<form onSubmit={handleSubmit}>
@@ -140,7 +141,7 @@ describe("<Button />", () => {
 	});
 
 	it("should trigger the onClick prop on click if the component is an anchor element", async () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 
 		render(
 			<Button href="https://www.freecodecamp.org" onClick={onClick}>

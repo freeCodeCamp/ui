@@ -1,6 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
+import { vi } from "vitest";
 import { MenuItem } from "./menu-item";
 import { Dropdown } from "./drop-down";
 
@@ -91,7 +92,7 @@ describe("<DropDownButton>", () => {
 	});
 
 	it("should trigger the onClick prop on click", async () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 
 		render(
 			<Dropdown>
@@ -136,7 +137,7 @@ describe("<DropDownButton>", () => {
 	});
 
 	it("should not trigger the onClick prop if the button is disabled", async () => {
-		const onClick = jest.fn();
+		const onClick = vi.fn();
 
 		render(
 			<Dropdown>

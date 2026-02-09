@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { Button } from "../button";
 import { Modal } from "./modal";
@@ -15,16 +16,18 @@ describe("<Modal />", () => {
 		// Ref: https://github.com/jsdom/jsdom/issues/3368
 		Object.defineProperty(window, "ResizeObserver", {
 			writable: true,
-			value: jest.fn(() => ({
-				observe: jest.fn(),
-				unobserve: jest.fn(),
-				disconnect: jest.fn(),
-			})),
+			value: vi.fn(function () {
+				return {
+					observe: vi.fn(),
+					unobserve: vi.fn(),
+					disconnect: vi.fn(),
+				};
+			}),
 		});
 	});
 
 	afterEach(() => {
-		jest.clearAllMocks();
+		vi.clearAllMocks();
 	});
 
 	afterAll(() => {
@@ -134,7 +137,7 @@ describe("<Modal />", () => {
 	});
 
 	it("should trigger the `onClose` prop on close button click", async () => {
-		const onClose = jest.fn();
+		const onClose = vi.fn();
 
 		setup({ open: true, onClose });
 
@@ -148,7 +151,7 @@ describe("<Modal />", () => {
 	});
 
 	it("should trigger the `onClose` prop on Escape key press", async () => {
-		const onClose = jest.fn();
+		const onClose = vi.fn();
 
 		setup({ open: true, onClose });
 

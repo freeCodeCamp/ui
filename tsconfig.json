@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["vitest/globals"]
   },
   "ts-node": {
     "compilerOptions": {

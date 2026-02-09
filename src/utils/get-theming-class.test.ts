@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { getThemingClass } from "./get-theming-class";
 
 // We are interested in the `matches` value
@@ -7,7 +8,7 @@ import { getThemingClass } from "./get-theming-class";
 const mockSystemTheme = (theme?: "light" | "dark") => {
 	Object.defineProperty(window, "matchMedia", {
 		writable: true,
-		value: jest.fn().mockImplementation((query) => ({
+		value: vi.fn().mockImplementation((query) => ({
 			matches: query.includes(theme),
 			media: query,
 		})),

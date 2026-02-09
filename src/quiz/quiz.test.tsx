@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { Quiz } from "./quiz";
 import { type QuizProps } from "./types";
@@ -126,9 +127,9 @@ describe("<Quiz />", () => {
 
 	it("should render action buttons when answers have action configuration", async () => {
 		const actionHandlers = {
-			q1a1: jest.fn(),
-			q1a2: jest.fn(),
-			q2a1: jest.fn(),
+			q1a1: vi.fn(),
+			q1a2: vi.fn(),
+			q2a1: vi.fn(),
 		};
 
 		const questions = [
