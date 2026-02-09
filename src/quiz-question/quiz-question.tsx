@@ -74,11 +74,10 @@ export const QuizQuestion = <AnswerT extends number | string>({
 				</RadioGroup.Label>
 
 				{audioUrl && (
-					<div className="ps-4">
+					<div className="ps-4 w-full max-w-lg mt-3 space-y-3">
 						<Audio
 							src={audioUrl}
 							aria-label={audioAriaLabel}
-							className="mt-3"
 							startTime={audioStartTime}
 							finishTime={audioFinishTime}
 						/>
