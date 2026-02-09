@@ -11,11 +11,5 @@
     "noEmit": true,
     "skipLibCheck": true,
     "types": ["vitest/globals"]
-  },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    },
-    "transpileOnly": true
   }
 }
