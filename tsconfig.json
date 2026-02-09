@@ -9,12 +9,7 @@
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
-    "skipLibCheck": true
-  },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    },
-    "transpileOnly": true
+    "skipLibCheck": true,
+    "types": ["vitest/globals"]
   }
 }

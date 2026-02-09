@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
+import { vi } from "vitest";
 
 import { useQuiz } from "./use-quiz";
 
@@ -297,8 +298,8 @@ describe("useQuiz", () => {
 	});
 
 	it("should call the `onSuccess` function if the quiz results meet the passing grade", () => {
-		const onSuccess = jest.fn();
-		const onFailure = jest.fn();
+		const onSuccess = vi.fn();
+		const onFailure = vi.fn();
 
 		const { result } = renderHook(() =>
 			useQuiz({
@@ -340,8 +341,8 @@ describe("useQuiz", () => {
 	});
 
 	it("should call the `onFailure` function if the quiz results don't meet the passing grade", () => {
-		const onSuccess = jest.fn();
-		const onFailure = jest.fn();
+		const onSuccess = vi.fn();
+		const onFailure = vi.fn();
 
 		const { result } = renderHook(() =>
 			useQuiz({
@@ -383,8 +384,8 @@ describe("useQuiz", () => {
 	});
 
 	it("should register the passing grade correctly", () => {
-		const onSuccess = jest.fn();
-		const onFailure = jest.fn();
+		const onSuccess = vi.fn();
+		const onFailure = vi.fn();
 
 		const { result } = renderHook(() =>
 			useQuiz({

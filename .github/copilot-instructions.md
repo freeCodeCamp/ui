@@ -10,7 +10,7 @@ This is the freeCodeCamp UI component library, built with React and Tailwind CSS
 - Each component folder typically contains:
   - `*.tsx`: Component implementation
   - `*.stories.tsx`: Storybook stories
-  - `*.test.tsx`: Jest tests
+  - `*.test.tsx`: Vitest tests
   - `types.ts`: TypeScript types for props
 - Components are exported via `src/index.ts`.
 - Styles are managed with Tailwind CSS. The main stylesheet is `src/base.css`, built to `dist/base.css`.
@@ -20,7 +20,7 @@ This is the freeCodeCamp UI component library, built with React and Tailwind CSS
 
 - **Install dependencies:** `pnpm install`
 - **Run Storybook:** `pnpm run storybook` (see components in isolation)
-- **Run tests:** `pnpm test` (Jest, Testing Library)
+- **Run tests:** `pnpm test` (Vitest, Testing Library)
 - **Lint:** `pnpm lint`
 - **Typecheck:** `pnpm typecheck`
 - **Build:** `pnpm run build` (runs clean, CSS build, JS build)
@@ -29,7 +29,7 @@ This is the freeCodeCamp UI component library, built with React and Tailwind CSS
 
 ## Testing
 
-- Tests use Jest and React Testing Library.
+- Tests use Vitest and React Testing Library.
 - CSS imports are stubbed in tests via `__mocks__/styleMock.ts`.
 - Use the `should` style for assertions.
 
