@@ -1,7 +1,3 @@
-// Silence the `vitest/prefer-enabled-disabled` rule as the rule looks for the `disabled` attribute
-// while the Button component doesn't use it.
-/* eslint-disable vitest/prefer-to-be */
-
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
