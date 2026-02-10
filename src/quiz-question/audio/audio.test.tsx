@@ -27,22 +27,10 @@ describe("<Audio />", () => {
 
 		// Check for custom controls
 		expect(screen.getByRole("button", { name: "Play" })).toBeInTheDocument();
-		expect(
-			screen.getByRole("slider", { name: "Seek audio" }),
-		).toBeInTheDocument();
-	});
-
-	it("should toggle play/pause when button is clicked", async () => {
-		const user = userEvent.setup();
-		render(<Audio src="test-audio.mp3" aria-label="Audio player" />);
-
-		const playButton = screen.getByRole("button", { name: "Play" });
-		expect(playButton).toBeInTheDocument();
-
-		await user.click(playButton);
-
-		// After clicking play, button should show pause
-		expect(screen.getByRole("button", { name: "Pause" })).toBeInTheDocument();
+		const slider = screen.getByRole("slider", { name: "Seek audio" });
+		expect(slider).toBeInTheDocument();
+		expect(slider).toHaveAttribute("type", "range");
+		expect(slider).toHaveAttribute("min", "0");
 	});
 
 	it("should render with audio segment when startTime is provided", () => {
@@ -87,6 +75,7 @@ describe("<Audio />", () => {
 		// Segment duration should be 10 seconds (20 - 10)
 		const slider = screen.getByRole("slider", { name: "Seek audio" });
 		expect(slider).toHaveAttribute("max", "10");
+		expect(slider).toHaveAttribute("min", "0");
 	});
 
 	it("should set audio currentTime to startTime on load", () => {
@@ -120,8 +109,12 @@ describe("<Audio />", () => {
 		expect(currentTime).toBe(15);
 	});
 
-	it("should pause when pause button is clicked", async () => {
+	it("should toggle play/pause when button is clicked", async () => {
 		const user = userEvent.setup();
+		const playMock = jest.spyOn(
+			HTMLMediaElement.prototype,
+			"play",
+		) as jest.Mock;
 		const pauseMock = jest.spyOn(
 			HTMLMediaElement.prototype,
 			"pause",
@@ -130,13 +123,21 @@ describe("<Audio />", () => {
 		render(<Audio src="test-audio.mp3" aria-label="Audio player" />);
 
 		const playButton = screen.getByRole("button", { name: "Play" });
+		expect(playButton).toBeInTheDocument();
+
+		// Click play
 		await user.click(playButton);
+		expect(playMock).toHaveBeenCalled();
 
-		// Now pause
+		// After clicking play, button should show pause
 		const pauseButton = screen.getByRole("button", { name: "Pause" });
-		await user.click(pauseButton);
+		expect(pauseButton).toBeInTheDocument();
 
+		// Click pause
+		await user.click(pauseButton);
 		expect(pauseMock).toHaveBeenCalled();
+
+		// Should be back to play
 		expect(screen.getByRole("button", { name: "Play" })).toBeInTheDocument();
 	});
 
@@ -300,6 +301,7 @@ describe("<Audio />", () => {
 
 		// currentTime should be updated to startTime + 5 = 15
 		expect(currentTime).toBe(15);
+		expect(slider).toHaveValue("5");
 	});
 
 	it("should format time correctly", () => {
@@ -363,6 +365,7 @@ describe("<Audio />", () => {
 		// Segment duration should be total duration - startTime = 100 - 20 = 80
 		const slider = screen.getByRole("slider", { name: "Seek audio" });
 		expect(slider).toHaveAttribute("max", "80");
+		expect(slider).toHaveAttribute("min", "0");
 	});
 
 	it("should not reset when finishTime is not reached", () => {
