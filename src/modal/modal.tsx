@@ -99,6 +99,7 @@ const Modal = ({
 	onKeyDown,
 	size = "medium",
 	variant = "default",
+	initialFocus,
 }: ModalProps) => {
 	let panelClasses = PANEL_DEFAULT_CLASSES;
 
@@ -121,15 +122,16 @@ const Modal = ({
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					onClose={onClose}
-					className="relative z-1050 w-screen h-screen"
+					className="fixed inset-0 z-1050"
 					onKeyDown={onKeyDown}
+					initialFocus={initialFocus}
 				>
 					{/* The backdrop, rendered as a fixed sibling to the panel container */}
 					<div aria-hidden className="fixed inset-0 bg-gray-900 opacity-50" />
 
 					{/* Full-screen container of the panel */}
 					<div
-						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-scroll`}
+						className={`fixed inset-0 flex items-start justify-center p-[10px] md:pt-[30px] md:pb-[30px] overflow-auto`}
 					>
 						<Transition.Child
 							as={Fragment}

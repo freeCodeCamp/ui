@@ -41,8 +41,9 @@ export const useQuiz = <AnswerT extends number | string>({
 	passingPercent,
 	showCorrectAnswersOnSuccess,
 }: UseQuizProps<AnswerT>): UseQuizResult<AnswerT> => {
-	const [questions, setQuestions] =
-		useState<Question<AnswerT>[]>(initialQuestions);
+	const [questions, setQuestions] = useState<Question<AnswerT>[]>(
+		initialQuestions as Question<AnswerT>[],
+	);
 	const [validation, setValidation] = useState<ValidationData>({
 		validated: false,
 	});
@@ -116,9 +117,13 @@ export const useQuiz = <AnswerT extends number | string>({
 			});
 
 			if (grade >= passingPercent) {
-				onSuccess && onSuccess();
+				if (onSuccess) {
+					onSuccess();
+				}
 			} else {
-				onFailure && onFailure();
+				if (onFailure) {
+					onFailure();
+				}
 			}
 
 			return updatedQuestions;

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/react";
 
 import { Button } from "../button";
+import { FormControl } from "../form-control";
 import { Spacer } from "../spacer";
 import { Modal } from "./modal";
 import {
@@ -179,6 +180,78 @@ const EndAlignedFooterTemplate: StoryFn<StoryProps> = ({
 	);
 };
 
+const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
+	const [open, setOpen] = useState(false);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleClose = () => setOpen(false);
+
+	return (
+		<div>
+			<Button onClick={() => setOpen(true)}>Open modal</Button>
+			<Modal
+				{...args}
+				open={open}
+				onClose={handleClose}
+				initialFocus={inputRef}
+			>
+				<Modal.Header>Modal with Initial Focus</Modal.Header>
+				<Modal.Body>
+					<p>
+						This modal demonstrates initial focus on the input field. When the
+						modal opens, focus will be set to the input field instead of the
+						default close button.
+					</p>
+					<FormControl
+						ref={inputRef}
+						id="modal-fullname-input"
+						type="text"
+						placeholder="Your full name"
+						componentClass="input"
+						aria-label="Full name"
+					/>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large" variant="primary">
+						Submit
+					</Button>
+					<Spacer size="xxs" />
+					<Button block size="large" onClick={handleClose}>
+						Cancel
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</div>
+	);
+};
+
+const LongContentTemplate: StoryFn<ModalProps> = (args) => {
+	const [open, setOpen] = React.useState(false);
+	const handleClose = () => setOpen(false);
+	return (
+		<div>
+			<Button onClick={() => setOpen(true)}>Open modal</Button>
+			<Modal {...args} open={open} onClose={handleClose}>
+				<Modal.Header>Modal with Long Content</Modal.Header>
+				<Modal.Body>
+					<div>
+						{[...Array(30)].map((_, i) => (
+							<p key={i}>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								Pellentesque euismod, nisi vel consectetur euismod, nisl nisi
+								consectetur nisi, euismod euismod nisi nisi euismod.
+							</p>
+						))}
+					</div>
+				</Modal.Body>
+				<Modal.Footer alignment="end">
+					<Button onClick={handleClose}>Close</Button>
+				</Modal.Footer>
+			</Modal>
+		</div>
+	);
+};
+
 export const Default: Story = {
 	render: DefaultTemplate,
 };
@@ -211,6 +284,22 @@ export const WithoutCloseButton: Story = {
 	},
 };
 
+export const WithLongContent: Story = {
+	render: LongContentTemplate,
+	args: {
+		size: "medium",
+		variant: "default",
+	},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This story demonstrates the Modal component with enough content to trigger a vertical scrollbar.",
+			},
+		},
+	},
+};
+
 export const LeftAlignedBody: Story = {
 	render: DefaultTemplate,
 	args: {
@@ -229,6 +318,19 @@ export const EndAlignedFooter: Story = {
 	render: EndAlignedFooterTemplate,
 	args: {
 		footerAlignment: "end",
+	},
+};
+
+export const WithInitialFocus: Story = {
+	render: InitialFocusTemplate,
+	args: {},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"This example demonstrates the `initialFocus` prop. When the modal opens, focus will be set to the input field instead of the default close button. This is useful for forms or other scenarios where you want to direct the user's attention to a specific element immediately.",
+			},
+		},
 	},
 };
 

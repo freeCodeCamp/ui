@@ -123,6 +123,147 @@ describe("<Quiz />", () => {
 			expect(question).toBeRequired();
 		});
 	});
+
+	it("should render action buttons when answers have action configuration", async () => {
+		const actionHandlers = {
+			q1a1: jest.fn(),
+			q1a2: jest.fn(),
+			q2a1: jest.fn(),
+		};
+
+		const questions = [
+			{
+				question: "Question 1",
+				answers: [
+					{
+						label: "Answer 1",
+						value: 1,
+						action: {
+							onClick: actionHandlers.q1a1,
+							ariaLabel: "Practice Answer 1",
+						},
+					},
+					{
+						label: "Answer 2",
+						value: 2,
+						action: {
+							onClick: actionHandlers.q1a2,
+							ariaLabel: "Practice Answer 2",
+						},
+					},
+					{ label: "Answer 3", value: 3 },
+				],
+				correctAnswer: 1,
+			},
+			{
+				question: "Question 2",
+				answers: [
+					{
+						label: "Answer A",
+						value: 1,
+						action: {
+							onClick: actionHandlers.q2a1,
+							ariaLabel: "Practice Answer A",
+						},
+					},
+					{ label: "Answer B", value: 2 },
+				],
+				correctAnswer: 1,
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const question1Button1 = screen.getByRole("button", {
+			name: "Practice Answer 1",
+		});
+		const question1Button2 = screen.getByRole("button", {
+			name: "Practice Answer 2",
+		});
+		const question2Button1 = screen.getByRole("button", {
+			name: "Practice Answer A",
+		});
+
+		expect(question1Button1).toBeInTheDocument();
+		expect(question1Button2).toBeInTheDocument();
+		expect(question2Button1).toBeInTheDocument();
+
+		await userEvent.click(question1Button1);
+		await userEvent.click(question1Button2);
+		await userEvent.click(question2Button1);
+
+		expect(actionHandlers.q1a1).toHaveBeenCalledTimes(1);
+		expect(actionHandlers.q1a2).toHaveBeenCalledTimes(1);
+		expect(actionHandlers.q2a1).toHaveBeenCalledTimes(1);
+	});
+
+	it("should not render action buttons when answers do not have action configuration", () => {
+		const questions = [
+			{
+				question: "Question 1",
+				answers: [
+					{ label: "Answer 1", value: 1 },
+					{ label: "Answer 2", value: 2 },
+				],
+				correctAnswer: 1,
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const buttons = screen.queryAllByRole("button");
+		expect(buttons).toHaveLength(0);
+	});
+
+	it("should render audio and transcript when question has audioUrl", () => {
+		const questions = [
+			{
+				question: "Question with audio",
+				answers: [
+					{ label: "Answer 1", value: 1 },
+					{ label: "Answer 2", value: 2 },
+				],
+				correctAnswer: 1,
+				audioUrl: "test-audio.mp3",
+				audioAriaLabel: "Audio for question",
+				transcript: "<p>Test transcript</p>",
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const audio = screen.getByLabelText("Audio for question");
+		expect(audio).toBeInTheDocument();
+		expect(audio.tagName).toBe("AUDIO");
+		expect(audio).toHaveAttribute("src", "test-audio.mp3");
+
+		const transcript = screen.getByText("Transcript");
+		expect(transcript).toBeInTheDocument();
+	});
+
+	it("should pass audioStartTime and audioFinishTime to questions with audio segments", () => {
+		const questions = [
+			{
+				question: "Question with audio segment",
+				answers: [
+					{ label: "Answer 1", value: 1 },
+					{ label: "Answer 2", value: 2 },
+				],
+				correctAnswer: 1,
+				audioUrl: "test-audio.mp3",
+				audioAriaLabel: "Audio segment for question",
+				transcript: "<p>Test transcript</p>",
+				audioStartTime: 3,
+				audioFinishTime: 8,
+			},
+		];
+
+		render(<Quiz questions={questions} />);
+
+		const audio = screen.getByLabelText("Audio segment for question");
+		expect(audio).toBeInTheDocument();
+		expect(audio).toHaveAttribute("src", "test-audio.mp3#t=3");
+	});
 });
 
 // ------------------------------
@@ -235,6 +376,80 @@ describe("<Quiz />", () => {
 			],
 			// @ts-expect-error - `value` and `selectedAnswer` must have the same type
 			correctAnswer: 1,
+		},
+	]}
+/>;
+
+// Type tests for audio segment props in Quiz
+<Quiz
+	questions={[
+		{
+			question: "Audio segment question",
+			answers: [{ label: "Option 1", value: 1 }],
+			correctAnswer: 1,
+			audioUrl: "test-audio.mp3",
+			audioAriaLabel: "Audio segment",
+			transcript: "<p>Transcript</p>",
+			audioStartTime: 0,
+			audioFinishTime: 5,
+		},
+	]}
+/>;
+
+// Should error if audioStartTime is present without audioUrl
+<Quiz
+	questions={[
+		// @ts-expect-error audioStartTime not allowed without audioUrl
+		{
+			question: "Audio segment question",
+			answers: [{ label: "Option 1", value: 1 }],
+			correctAnswer: 1,
+			audioStartTime: 0,
+		},
+	]}
+/>;
+
+// Should error if audioFinishTime is present without audioUrl
+<Quiz
+	questions={[
+		// @ts-expect-error audioFinishTime not allowed without audioUrl
+		{
+			question: "Audio segment question",
+			answers: [{ label: "Option 1", value: 1 }],
+			correctAnswer: 1,
+			audioFinishTime: 5,
+		},
+	]}
+/>;
+
+// Should error if audioStartTime is not a number
+<Quiz
+	questions={[
+		{
+			question: "Audio segment question",
+			answers: [{ label: "Option 1", value: 1 }],
+			correctAnswer: 1,
+			audioUrl: "test-audio.mp3",
+			audioAriaLabel: "Audio segment",
+			transcript: "<p>Transcript</p>",
+			// @ts-expect-error audioStartTime must be a number
+			audioStartTime: "0",
+		},
+	]}
+/>;
+
+// Should error if audioFinishTime is not a number
+<Quiz
+	questions={[
+		{
+			question: "Audio segment question",
+			answers: [{ label: "Option 1", value: 1 }],
+			correctAnswer: 1,
+			audioUrl: "test-audio.mp3",
+			audioAriaLabel: "Audio segment",
+			transcript: "<p>Transcript</p>",
+			// @ts-expect-error audioFinishTime must be a number
+			audioFinishTime: "5",
 		},
 	]}
 />;

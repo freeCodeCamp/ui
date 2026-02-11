@@ -11,7 +11,7 @@ export interface QuizProps<AnswerT extends number | string> {
 // their configurations don't collide with Quiz'.
 // For example: Quiz should be able to apply `disabled` to all questions
 // without being overriden by the `disabled` prop of the individual question.
-export interface Question<AnswerT extends number | string> {
+interface QuestionBase<AnswerT extends number | string> {
 	/**
 	 * Question text, can be plain text or contain code.
 	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
@@ -38,3 +38,40 @@ export interface Question<AnswerT extends number | string> {
 	 */
 	selectedAnswer?: AnswerT;
 }
+
+type QuestionWithoutAudio<AnswerT extends number | string> =
+	QuestionBase<AnswerT> & {
+		audioUrl?: never;
+		audioAriaLabel?: never;
+		transcript?: never;
+		audioStartTime?: never;
+		audioFinishTime?: never;
+	};
+
+type QuestionWithAudio<AnswerT extends number | string> =
+	QuestionBase<AnswerT> & {
+		/**
+		 * URL to an audio file for the question
+		 */
+		audioUrl: string;
+		/**
+		 * Accessible label for the audio element
+		 */
+		audioAriaLabel: string;
+		/**
+		 * Transcript text for the audio
+		 */
+		transcript: string;
+		/**
+		 * Start time in seconds for the audio segment
+		 */
+		audioStartTime?: number;
+		/**
+		 * Finish time in seconds for the audio segment
+		 */
+		audioFinishTime?: number;
+	};
+
+export type Question<AnswerT extends number | string> =
+	| QuestionWithoutAudio<AnswerT>
+	| QuestionWithAudio<AnswerT>;

@@ -19,7 +19,7 @@ const THEME_OPTIONS = {
 /**
  * Theme decorator that applies theme classes to the body and story container
  */
-const withThemeProvider: Decorator = (Story, context) => {
+const WithThemeProvider: Decorator = (Story, context) => {
 	const theme = context.globals.theme || THEME_OPTIONS.light.value;
 	const themeConfig =
 		Object.values(THEME_OPTIONS).find((t) => t.value === theme) ||
@@ -98,7 +98,7 @@ const preview: Preview = {
 		backgrounds: { disable: true },
 	},
 	globalTypes,
-	decorators: [withThemeProvider],
+	decorators: [WithThemeProvider],
 };
 
 export default preview;

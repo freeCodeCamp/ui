@@ -1,12 +1,18 @@
 import React from "react";
 import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+	faCheck,
+	faXmark,
+	faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
 
+import { Button } from "../button";
 import { QuizQuestionValidation, type QuizQuestionAnswer } from "./types";
 
-interface AnswerProps<AnswerT extends number | string>
-	extends QuizQuestionAnswer<AnswerT> {
+interface AnswerProps<
+	AnswerT extends number | string,
+> extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
 }
@@ -51,11 +57,14 @@ const radioOptionDefaultClasses = [
 	"p-[20px]",
 	"flex",
 	"items-center",
+	"col-start-1",
+	"row-start-1",
 ];
 
 const radioWrapperDefaultClasses = [
-	"flex",
-	"flex-col",
+	"grid",
+	"grid-cols-1",
+	"grid-rows-[auto_auto]",
 	"border-x-4",
 	"border-t-4",
 	"last:border-b-4",
@@ -87,7 +96,7 @@ const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
 		<p className="text-background-success">
 			<FontAwesomeIcon
 				icon={faCheck}
-				className="text-background-success me-[8px]"
+				className="text-background-success me-[8px] fa-width-auto"
 			/>
 			{message}
 		</p>
@@ -95,7 +104,7 @@ const ValidationMessage = ({ state, message }: QuizQuestionValidation) => {
 		<p className="text-background-danger">
 			<FontAwesomeIcon
 				icon={faXmark}
-				className="text-background-danger me-[8px]"
+				className="text-background-danger me-[8px] fa-width-auto"
 			/>
 			{message}
 		</p>
@@ -109,9 +118,17 @@ export const Answer = <AnswerT extends number | string>({
 	checked,
 	validation,
 	feedback,
+	action,
 }: AnswerProps<AnswerT>) => {
+	const labelId = `quiz-answer-${value}-label`;
+
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
+
+		// Add second column for action button when action is provided
+		if (action) {
+			cls.push("grid-cols-[1fr_auto]", "gap-x-4");
+		}
 
 		if (validation?.state === "correct")
 			cls.push("border-l-background-success");
@@ -140,16 +157,34 @@ export const Answer = <AnswerT extends number | string>({
 				{({ active }) => (
 					<>
 						<RadioIcon active={active} checked={!!checked} />
-						<RadioGroup.Label className="m-0 text-foreground-primary overflow-auto">
+						<RadioGroup.Label
+							id={labelId}
+							className="m-0 text-foreground-primary break-words min-w-0"
+						>
 							{label}
 						</RadioGroup.Label>
 					</>
 				)}
 			</RadioGroup.Option>
+
+			{action && (
+				<div className="col-start-2 row-start-1 flex items-center justify-center pe-[20px]">
+					<Button
+						onClick={action.onClick}
+						aria-label={action.ariaLabel}
+						aria-describedby={labelId}
+						role="button"
+					>
+						<FontAwesomeIcon icon={faMicrophone} className="fa-width-auto" />
+					</Button>
+				</div>
+			)}
+
 			{(!!validation || !!feedback) && (
 				// Remove the default bottom margin of the validation message `p`,
 				// and apply a bottom padding of 20px to match the top padding of RadioGroup.Option
-				<div className="ps-[20px] pb-[20px] [&>p:last-child]:m-0">
+				// Span both columns for feedback
+				<div className="col-span-2 row-start-2 ps-[20px] pb-[20px] [&>p:last-child]:m-0">
 					{validation && (
 						<ValidationMessage
 							state={validation.state}
