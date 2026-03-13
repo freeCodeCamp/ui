@@ -147,6 +147,10 @@
 		background-color: var(--background-tertiary);
 	}
 
+	table td:has(ruby) {
+		padding-block: 8px;
+	}
+
 	p:has(ruby),
 	li:has(> ruby) {
 		padding: 0.5rem 0;
