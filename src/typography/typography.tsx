@@ -114,6 +114,41 @@ export const Typography = (): JSX.Element => {
 						: Teacher
 					</li>
 				</ul>
+				<h3>Ruby in Tables</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Number</th>
+							<th>Chinese</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0</td>
+							<td>
+								<ruby>
+									零<rt>líng</rt>
+								</ruby>
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>
+								<ruby>
+									一<rt>yī</rt>
+								</ruby>
+							</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>
+								<ruby>
+									二<rt>èr</rt>
+								</ruby>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 		</div>
 	);
