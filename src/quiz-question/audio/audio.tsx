@@ -124,7 +124,7 @@ export const Audio = ({
 			{/* Transcript is added separately in a different component */}
 			{/* eslint-disable-next-line jsx-a11y/media-has-caption */}
 			<audio ref={audioRef} src={audioSrc} aria-label={ariaLabel}></audio>
-			<div className="flex items-center gap-3 bg-background-primary px-2.5 py-2 w-full max-w-md rounded border-x-4 border-t-4 border-b-4 border-background-tertiary">
+			<div className="flex items-center gap-3 bg-background-primary px-2.5 py-2 rounded border-x-4 border-t-4 border-b-4 border-background-tertiary">
 				<button
 					onClick={togglePlay}
 					className="text-foreground-tertiary bg-transparent border-none p-0 scale-75 transition-transform"

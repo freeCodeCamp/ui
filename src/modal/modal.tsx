@@ -117,12 +117,32 @@ const Modal = ({
 		panelClasses = panelClasses.concat(" ", "text-background-danger");
 	}
 
+	const showFocusRingOnInitialFocus = () => {
+		const el = document.activeElement as HTMLElement | null;
+		if (!el) return;
+
+		el.style.outline = "3px solid var(--focus-outline-color)";
+		el.style.outlineOffset = "0px";
+		el.addEventListener(
+			"blur",
+			() => {
+				el.style.outline = "";
+				el.style.outlineOffset = "";
+			},
+			{ once: true },
+		);
+	};
+
 	return (
 		<ModalContext.Provider value={{ onClose, variant }}>
-			<Transition.Root show={open} as={Fragment}>
+			<Transition.Root
+				show={open}
+				as={Fragment}
+				afterEnter={showFocusRingOnInitialFocus}
+			>
 				<Dialog
 					onClose={onClose}
-					className="relative z-1050 w-full h-full "
+					className="fixed inset-0 z-1050"
 					onKeyDown={onKeyDown}
 					initialFocus={initialFocus}
 				>

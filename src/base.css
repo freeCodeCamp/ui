@@ -121,6 +121,36 @@
 		line-height: inherit;
 	}
 
+	table {
+		display: inline-block;
+		overflow: auto;
+	}
+
+	table thead {
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+
+	table th {
+		font-weight: 700;
+	}
+
+	table th,
+	table td {
+		padding: 6px 13px;
+		border: 1px solid var(--foreground-secondary);
+		text-align: center;
+	}
+
+	table tbody tr:nth-of-type(odd) {
+		background-color: var(--background-tertiary);
+	}
+
+	table td:has(ruby) {
+		padding-block: 8px;
+	}
+
 	p:has(ruby),
 	li:has(> ruby) {
 		padding: 0.5rem 0;

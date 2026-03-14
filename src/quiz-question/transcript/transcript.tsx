@@ -42,7 +42,7 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 				Transcript
 			</summary>
 			<div
-				className="mt-4 border border-foreground-primary [&_p]:px-3.5 [&_p]:py-2 [&_p]:mb-0 [&_p]:text-foreground-primary [&_p:nth-child(odd)]:bg-background-tertiary"
+				className="mt-3 border border-foreground-primary [&_p]:px-2.5 [&_p]:py-2 [&_p]:mb-0 [&_p]:text-foreground-primary [&_p:nth-child(odd)]:bg-background-tertiary"
 				dangerouslySetInnerHTML={{ __html: sanitizedTranscript }}
 			/>
 		</details>

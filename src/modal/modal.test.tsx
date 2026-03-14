@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 
@@ -28,6 +28,7 @@ describe("<Modal />", () => {
 
 	afterEach(() => {
 		vi.clearAllMocks();
+		vi.useRealTimers();
 	});
 
 	afterAll(() => {
@@ -203,5 +204,56 @@ describe("<Modal />", () => {
 
 		const closeButton = within(dialog).getByRole("button", { name: "Close" });
 		expect(closeButton).toHaveFocus();
+	});
+
+	it("should show a focus ring on the initially focused element after the modal opens", async () => {
+		// headlessui only fires afterEnter when `show` transitions false → true (not on
+		// initial mount). Use fake timers so requestAnimationFrame callbacks — which
+		// headlessui uses to detect when the CSS enter transition finishes — are
+		// controlled by jest and fire synchronously via vi.runAllTimers().
+		vi.useFakeTimers();
+
+		const initialFocusRef = React.createRef<HTMLButtonElement>();
+
+		const modal = (open: boolean) => (
+			<Modal open={open} onClose={() => {}} initialFocus={initialFocusRef}>
+				<Modal.Header>Lorem ipsum</Modal.Header>
+				<Modal.Body>
+					<p>Laboriosam autem non et nisi.</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button ref={initialFocusRef} block size="large">
+						Submit
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+
+		const { rerender } = render(modal(false));
+
+		// Trigger the enter transition (false → true).
+		rerender(modal(true));
+
+		// headlessui's d.nextFrame() fires afterEnter via two nested RAFs.
+		// Advance fake timers twice to flush both frames.
+		act(() => {
+			vi.runAllTimers();
+		}); // outer RAF fires, schedules inner RAF
+		act(() => {
+			vi.runAllTimers();
+		}); // inner RAF fires → afterEnter
+
+		// headlessui's nesting.onStop calls afterEnter via a Promise chain
+		// (.then().then()). Flush the microtask queue so those callbacks run.
+		// eslint-disable-next-line testing-library/no-unnecessary-act
+		await act(async () => {});
+
+		const dialog = screen.getByRole("dialog", { name: "Lorem ipsum" });
+		const submitButton = within(dialog).getByRole("button", { name: "Submit" });
+
+		expect(submitButton).toHaveStyle(
+			"outline: 3px solid var(--focus-outline-color)",
+		);
+		expect(submitButton).toHaveStyle("outline-offset: 0px");
 	});
 });
