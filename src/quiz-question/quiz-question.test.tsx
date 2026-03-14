@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { QuizQuestion } from "./quiz-question";
 
@@ -103,7 +104,7 @@ describe("<QuizQuestion />", () => {
 	});
 
 	it("should call `onChange` with the value of the selected option", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 
 		render(
 			<QuizQuestion
@@ -302,8 +303,8 @@ describe("<QuizQuestion />", () => {
 	});
 
 	it("should render action buttons when provided", async () => {
-		const handleAction1 = jest.fn();
-		const handleAction2 = jest.fn();
+		const handleAction1 = vi.fn();
+		const handleAction2 = vi.fn();
 
 		render(
 			<QuizQuestion

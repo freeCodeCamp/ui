@@ -1,4 +1,5 @@
 import Prism from "prismjs";
+import "prismjs/plugins/line-numbers/prism-line-numbers";
 import React, { useRef, useEffect } from "react";
 
 import type { PrismFormattedProps } from "./types";
@@ -148,7 +149,16 @@ export const PrismFormatted = ({
 	const cls = className ? [...defaultClasses, className] : [...defaultClasses];
 
 	if (hasLineNumbers) {
-		cls.push("line-numbers");
+		// Add line-numbers class to <pre> element for PrismJS line numbers plugin
+		text = text.replace(
+			/<pre([^>]*)class="([^"]*)"/,
+			'<pre$1class="$2 line-numbers"',
+		);
+		// If pre element doesn't have a class attribute, add one
+		text = text.replace(
+			/<pre(?![^>]*class)([^>]*)>/,
+			'<pre$1 class="line-numbers">',
+		);
 	}
 
 	if (noAria) {

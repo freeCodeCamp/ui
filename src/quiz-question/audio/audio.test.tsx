@@ -1,20 +1,21 @@
 import React from "react";
 import { render, screen, within, act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi, type Mock } from "vitest";
 
 import { Audio } from "./audio";
 
 describe("<Audio />", () => {
 	beforeEach(() => {
 		// Mock HTMLMediaElement methods that aren't implemented in jsdom
-		window.HTMLMediaElement.prototype.play = jest
+		window.HTMLMediaElement.prototype.play = vi
 			.fn()
 			.mockImplementation(() => Promise.resolve());
-		window.HTMLMediaElement.prototype.pause = jest.fn();
+		window.HTMLMediaElement.prototype.pause = vi.fn();
 	});
 
 	afterEach(() => {
-		jest.restoreAllMocks();
+		vi.restoreAllMocks();
 	});
 
 	it("should render an audio element with custom controls", () => {
@@ -111,14 +112,8 @@ describe("<Audio />", () => {
 
 	it("should toggle play/pause when button is clicked", async () => {
 		const user = userEvent.setup();
-		const playMock = jest.spyOn(
-			HTMLMediaElement.prototype,
-			"play",
-		) as jest.Mock;
-		const pauseMock = jest.spyOn(
-			HTMLMediaElement.prototype,
-			"pause",
-		) as jest.Mock;
+		const playMock = vi.spyOn(HTMLMediaElement.prototype, "play") as Mock;
+		const pauseMock = vi.spyOn(HTMLMediaElement.prototype, "pause") as Mock;
 
 		render(<Audio src="test-audio.mp3" aria-label="Audio player" />);
 
@@ -180,10 +175,7 @@ describe("<Audio />", () => {
 
 	it("should reset audio when finishTime is reached", () => {
 		let currentTime = 10;
-		const pauseMock = jest.spyOn(
-			HTMLMediaElement.prototype,
-			"pause",
-		) as jest.Mock;
+		const pauseMock = vi.spyOn(HTMLMediaElement.prototype, "pause") as Mock;
 
 		Object.defineProperty(HTMLMediaElement.prototype, "currentTime", {
 			get: () => currentTime,
@@ -227,10 +219,7 @@ describe("<Audio />", () => {
 
 	it("should reset audio when ended event fires", () => {
 		let currentTime = 10;
-		const pauseMock = jest.spyOn(
-			HTMLMediaElement.prototype,
-			"pause",
-		) as jest.Mock;
+		const pauseMock = vi.spyOn(HTMLMediaElement.prototype, "pause") as Mock;
 
 		Object.defineProperty(HTMLMediaElement.prototype, "currentTime", {
 			get: () => currentTime,
@@ -370,10 +359,7 @@ describe("<Audio />", () => {
 
 	it("should not reset when finishTime is not reached", () => {
 		let currentTime = 10;
-		const pauseMock = jest.spyOn(
-			HTMLMediaElement.prototype,
-			"pause",
-		) as jest.Mock;
+		const pauseMock = vi.spyOn(HTMLMediaElement.prototype, "pause") as Mock;
 
 		Object.defineProperty(HTMLMediaElement.prototype, "currentTime", {
 			get: () => currentTime,

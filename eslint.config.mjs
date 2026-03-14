@@ -3,8 +3,7 @@ import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
-import jestPlugin from "eslint-plugin-jest";
-import jestDomPlugin from "eslint-plugin-jest-dom";
+import vitestPlugin from "eslint-plugin-vitest";
 import testingLibraryPlugin from "eslint-plugin-testing-library";
 import globals from "globals";
 
@@ -63,17 +62,6 @@ export default [
 		},
 	},
 
-	// Jest DOM recommended
-	{
-		files: ["**/*.{js,jsx,ts,tsx}"],
-		plugins: {
-			"jest-dom": jestDomPlugin,
-		},
-		rules: {
-			...jestDomPlugin.configs.recommended.rules,
-		},
-	},
-
 	// Testing Library React
 	{
 		files: ["**/*.{js,jsx,ts,tsx}"],
@@ -89,16 +77,15 @@ export default [
 	{
 		files: ["**/*.test.{js,ts,jsx,tsx}", "**/*.spec.{js,ts,jsx,tsx}"],
 		plugins: {
-			jest: jestPlugin,
+			vitest: vitestPlugin,
 		},
 		languageOptions: {
 			globals: {
-				...jestPlugin.environments.globals.globals,
+				...vitestPlugin.environments.env.globals,
 			},
 		},
 		rules: {
-			...jestPlugin.configs.recommended.rules,
-			...jestPlugin.configs.style.rules,
+			...vitestPlugin.configs.recommended.rules,
 		},
 	},
 

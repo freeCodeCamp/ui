@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { Button } from "../button";
 import { Modal } from "./modal";
@@ -15,17 +16,19 @@ describe("<Modal />", () => {
 		// Ref: https://github.com/jsdom/jsdom/issues/3368
 		Object.defineProperty(window, "ResizeObserver", {
 			writable: true,
-			value: jest.fn(() => ({
-				observe: jest.fn(),
-				unobserve: jest.fn(),
-				disconnect: jest.fn(),
-			})),
+			value: vi.fn(function () {
+				return {
+					observe: vi.fn(),
+					unobserve: vi.fn(),
+					disconnect: vi.fn(),
+				};
+			}),
 		});
 	});
 
 	afterEach(() => {
-		jest.clearAllMocks();
-		jest.useRealTimers();
+		vi.clearAllMocks();
+		vi.useRealTimers();
 	});
 
 	afterAll(() => {
@@ -135,7 +138,7 @@ describe("<Modal />", () => {
 	});
 
 	it("should trigger the `onClose` prop on close button click", async () => {
-		const onClose = jest.fn();
+		const onClose = vi.fn();
 
 		setup({ open: true, onClose });
 
@@ -149,7 +152,7 @@ describe("<Modal />", () => {
 	});
 
 	it("should trigger the `onClose` prop on Escape key press", async () => {
-		const onClose = jest.fn();
+		const onClose = vi.fn();
 
 		setup({ open: true, onClose });
 
@@ -207,8 +210,8 @@ describe("<Modal />", () => {
 		// headlessui only fires afterEnter when `show` transitions false → true (not on
 		// initial mount). Use fake timers so requestAnimationFrame callbacks — which
 		// headlessui uses to detect when the CSS enter transition finishes — are
-		// controlled by jest and fire synchronously via jest.runAllTimers().
-		jest.useFakeTimers();
+		// controlled by jest and fire synchronously via vi.runAllTimers().
+		vi.useFakeTimers();
 
 		const initialFocusRef = React.createRef<HTMLButtonElement>();
 
@@ -233,8 +236,12 @@ describe("<Modal />", () => {
 
 		// headlessui's d.nextFrame() fires afterEnter via two nested RAFs.
 		// Advance fake timers twice to flush both frames.
-		act(() => jest.runAllTimers()); // outer RAF fires, schedules inner RAF
-		act(() => jest.runAllTimers()); // inner RAF fires → afterEnter
+		act(() => {
+			vi.runAllTimers();
+		}); // outer RAF fires, schedules inner RAF
+		act(() => {
+			vi.runAllTimers();
+		}); // inner RAF fires → afterEnter
 
 		// headlessui's nesting.onStop calls afterEnter via a Promise chain
 		// (.then().then()). Flush the microtask queue so those callbacks run.

@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { ToggleButton } from ".";
 
@@ -12,7 +13,7 @@ describe("<ToggleButton />", () => {
 	});
 
 	it("should call onChange when clicked", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(<ToggleButton onChange={onChange}>On</ToggleButton>);
 
 		await userEvent.click(screen.getByRole("button", { name: /on/i }));
@@ -50,7 +51,7 @@ describe("<ToggleButton />", () => {
 	});
 
 	it("should not trigger onChange if disabled prop is true", async () => {
-		const onChange = jest.fn();
+		const onChange = vi.fn();
 		render(
 			<ToggleButton disabled={true} onChange={onChange}>
 				On
