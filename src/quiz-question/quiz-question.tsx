@@ -35,6 +35,7 @@ const QuestionText = ({
  * giving the parent component full control over the selection handling logic.
  */
 export const QuizQuestion = <AnswerT extends number | string>({
+	id: questionId,
 	question,
 	answers,
 	required,
@@ -98,6 +99,7 @@ export const QuizQuestion = <AnswerT extends number | string>({
 						disabled={disabled}
 						validation={validation}
 						action={action}
+						questionId={questionId}
 					/>
 				);
 			})}

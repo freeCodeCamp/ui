@@ -33,6 +33,11 @@ export interface QuizQuestionValidation {
 
 interface QuizQuestionBaseProps<AnswerT extends number | string> {
 	/**
+	 * Unique identifier for the question, used to generate accessible IDs for answers
+	 */
+	id: string;
+
+	/**
 	 * Question text, can be plain text or contain code.
 	 * If the question text contains code, use the PrismFormatted component to ensure the code is rendered correctly.
 	 */
