@@ -3,7 +3,7 @@
     "module": "ES6",
     "target": "ES2017",
     "sourceMap": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
