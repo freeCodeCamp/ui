@@ -9,6 +9,7 @@ describe("<QuizQuestion />", () => {
 	it("should render as a radio group", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -43,6 +44,7 @@ describe("<QuizQuestion />", () => {
 	it("should have the `required` attribute set to `true` if the `required` prop is specified", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -61,6 +63,7 @@ describe("<QuizQuestion />", () => {
 	it("should have the `aria-disabled` attribute set to `true` if the `disabled` prop is specified", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -88,6 +91,7 @@ describe("<QuizQuestion />", () => {
 	it("should have the correct `checked` attribute according to the `selectedOption` prop", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -108,6 +112,7 @@ describe("<QuizQuestion />", () => {
 
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -127,6 +132,7 @@ describe("<QuizQuestion />", () => {
 	it("should render the correct state properly", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{
@@ -157,6 +163,7 @@ describe("<QuizQuestion />", () => {
 	it("should render the incorrect state properly", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{
@@ -187,6 +194,7 @@ describe("<QuizQuestion />", () => {
 	it("should render the question position properly", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -205,6 +213,7 @@ describe("<QuizQuestion />", () => {
 	it("should render answer feedback if both `feedback` and `validation` are provided", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{
@@ -238,6 +247,7 @@ describe("<QuizQuestion />", () => {
 	it("should not render answer feedback if `feedback` is provided but `validation` is not", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1, feedback: "Quis vel quo saepe." },
@@ -257,6 +267,7 @@ describe("<QuizQuestion />", () => {
 	it("should only render the feedback of the selected answer", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{
@@ -308,6 +319,7 @@ describe("<QuizQuestion />", () => {
 
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{
@@ -345,13 +357,17 @@ describe("<QuizQuestion />", () => {
 		expect(actionButton1).toBeInTheDocument();
 		expect(actionButton2).toBeInTheDocument();
 
+		const label1 = screen.getByText("Option 1");
+		const label2 = screen.getByText("Option 2");
+		expect(label1).toHaveAttribute("id", "quiz-answer-question-0-1-label");
+		expect(label2).toHaveAttribute("id", "quiz-answer-question-0-2-label");
 		expect(actionButton1).toHaveAttribute(
 			"aria-describedby",
-			"quiz-answer-1-label",
+			"quiz-answer-question-0-1-label",
 		);
 		expect(actionButton2).toHaveAttribute(
 			"aria-describedby",
-			"quiz-answer-2-label",
+			"quiz-answer-question-0-2-label",
 		);
 
 		await userEvent.click(actionButton1);
@@ -371,6 +387,7 @@ describe("<QuizQuestion />", () => {
 	it("should not render action buttons when not provided", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -388,6 +405,7 @@ describe("<QuizQuestion />", () => {
 	it("should render audio and transcript when audioUrl is provided", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -412,6 +430,7 @@ describe("<QuizQuestion />", () => {
 	it("should render audio with correct aria-label when position is provided", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -433,6 +452,7 @@ describe("<QuizQuestion />", () => {
 	it("should not render audio or transcript when audioUrl is not provided", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -451,6 +471,7 @@ describe("<QuizQuestion />", () => {
 	it("should pass audioStartTime and audioFinishTime to Audio component", () => {
 		render(
 			<QuizQuestion
+				id="question-0"
 				question="Lorem ipsum"
 				answers={[
 					{ label: "Option 1", value: 1 },
@@ -581,6 +602,7 @@ describe("<QuizQuestion />", () => {
 
 // QuizQuestion with valid audio props
 <QuizQuestion
+	id="question-0"
 	question="Lorem ipsum"
 	answers={[
 		{ label: "Option 1", value: 1 },
@@ -594,6 +616,7 @@ describe("<QuizQuestion />", () => {
 // Type tests for audio segment props
 // Should allow audioStartTime and audioFinishTime only when audioUrl is present
 <QuizQuestion
+	id="question-0"
 	question="Audio segment question"
 	answers={[{ label: "Option 1", value: 1 }]}
 	audioUrl="test-audio.mp3"

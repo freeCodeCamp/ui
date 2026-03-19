@@ -14,6 +14,7 @@ const story = {
 type Story = StoryObj<typeof QuizQuestion>;
 
 const QuizQuestionComp = <AnswerT extends number | string>({
+	id = "question-0",
 	question,
 	answers = [],
 	disabled,
@@ -40,6 +41,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 
 	return (
 		<QuizQuestion
+			id={id}
 			question={question}
 			answers={answers}
 			disabled={disabled}
