@@ -34,8 +34,14 @@ const FormControl = forwardRef<
 	//row and componentClass
 	const classes = [className, defaultClasses, variantClass].join(" ");
 
+	const Comp = Component as "input";
 	return (
-		<Component id={id || controlId} className={classes} ref={ref} {...props} />
+		<Comp
+			id={id || controlId}
+			className={classes}
+			ref={ref as React.RefObject<HTMLInputElement>}
+			{...(props as React.ComponentProps<"input">)}
+		/>
 	);
 }) as FormControlComponent;
 

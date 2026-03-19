@@ -1,10 +1,14 @@
-import { type ReactNode, type MutableRefObject } from "react";
+import {
+	type ReactNode,
+	type MutableRefObject,
+	type KeyboardEventHandler,
+} from "react";
 
 export interface ModalProps {
 	children: ReactNode;
 	open: boolean;
 	onClose: () => void;
-	onKeyDown?: React.KeyboardEventHandler;
+	onKeyDown?: KeyboardEventHandler;
 	size?: "medium" | "large" | "xLarge";
 	variant?: "default" | "danger";
 	initialFocus?: MutableRefObject<HTMLElement | null>;
