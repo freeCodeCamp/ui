@@ -9,6 +9,12 @@ export { ControlLabel } from "./control-label";
 export { Dropdown } from "./drop-down";
 export { FormControl } from "./form-control";
 export { FormGroup, type FormGroupProps } from "./form-group";
+export {
+	HeadlessDisclosure,
+	type DisclosureProps,
+	type DisclosureButtonProps,
+	type DisclosurePanelProps,
+} from "./headless-disclosure";
 export { HelpBlock } from "./help-block";
 export { Image } from "./image";
 export { MenuItem } from "./drop-down/menu-item";
