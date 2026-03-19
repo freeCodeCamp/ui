@@ -25,7 +25,13 @@ const config = {
 			sourcemap: true,
 		},
 	],
-	external: Object.keys(pkgJson.peerDependencies),
+	// Externalize peer dependencies and all their subpaths
+	// so we don't bundle packages like `react/jsx-runtime`
+	// which would duplicate React internals in the consumer's bundle.
+	external: (id) => {
+		const deps = Object.keys(pkgJson.peerDependencies || {});
+		return deps.some((dep) => id === dep || id.startsWith(`${dep}/`));
+	},
 	plugins: [
 		postcss(),
 		resolve(),
