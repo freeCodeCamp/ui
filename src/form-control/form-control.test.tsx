@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { FormGroup } from "../form-group";
@@ -24,7 +24,7 @@ describe("<FormControl />", () => {
 	});
 
 	it("should forward refs to the input element", () => {
-		const ref = createRef<HTMLInputElement>();
+		const ref = React.createRef<HTMLInputElement>();
 		render(<FormControl ref={ref} aria-label="test input" />);
 
 		expect(ref.current).toBeInstanceOf(HTMLInputElement);
@@ -32,7 +32,7 @@ describe("<FormControl />", () => {
 	});
 
 	it("should forward refs to the textarea element", () => {
-		const ref = createRef<HTMLTextAreaElement>();
+		const ref = React.createRef<HTMLTextAreaElement>();
 		render(
 			<FormControl
 				componentClass="textarea"

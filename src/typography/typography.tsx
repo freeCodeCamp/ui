@@ -1,3 +1,5 @@
+import React from "react";
+
 export const Typography = (): JSX.Element => {
 	return (
 		<div className="p-4 text-foreground-primary">

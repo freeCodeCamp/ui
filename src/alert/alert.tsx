@@ -1,4 +1,4 @@
-import { type ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 
 type AlertVariant = "success" | "info" | "warning" | "danger";
 

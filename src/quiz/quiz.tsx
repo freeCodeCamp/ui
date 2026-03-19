@@ -1,3 +1,5 @@
+import React from "react";
+
 import { QuizQuestion } from "../quiz-question";
 import { type QuizProps } from "./types";
 

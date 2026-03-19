@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react";
+import React from "react";
 
 import { TableProps } from "./types";
 
@@ -28,9 +28,9 @@ const computeClassNames = ({
 	return classNames.join(" ");
 };
 
-export const Table = forwardRef<HTMLTableElement, TableProps>(
+export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 	({ striped = false, condensed = false, ...props }, ref) => {
-		const classNames = useMemo(
+		const classNames = React.useMemo(
 			() => computeClassNames({ condensed, striped }),
 			[condensed, striped],
 		);

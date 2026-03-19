@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import React from "react";
 import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
@@ -165,7 +165,7 @@ describe("<Modal />", () => {
 	});
 
 	it("should focus on the specified element when `initialFocus` is provided", async () => {
-		const initialFocusRef = createRef<HTMLButtonElement>();
+		const initialFocusRef = React.createRef<HTMLButtonElement>();
 
 		render(
 			<Modal open={true} onClose={() => {}} initialFocus={initialFocusRef}>
@@ -213,7 +213,7 @@ describe("<Modal />", () => {
 		// controlled by jest and fire synchronously via vi.runAllTimers().
 		vi.useFakeTimers();
 
-		const initialFocusRef = createRef<HTMLButtonElement>();
+		const initialFocusRef = React.createRef<HTMLButtonElement>();
 
 		const modal = (open: boolean) => (
 			<Modal open={open} onClose={() => {}} initialFocus={initialFocusRef}>

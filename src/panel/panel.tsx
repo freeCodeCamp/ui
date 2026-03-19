@@ -1,4 +1,4 @@
-import { createContext, useContext, type ComponentProps } from "react";
+import React, { createContext, useContext, type ComponentProps } from "react";
 
 import { PanelProps } from "./types";
 

@@ -1,9 +1,9 @@
-import { type ComponentProps, type JSXElementConstructor } from "react";
+import React, { type ComponentProps } from "react";
 
 export type FormControlProps<
 	TElement extends
 		| keyof JSX.IntrinsicElements
-		| JSXElementConstructor<unknown> = "input",
+		| React.JSXElementConstructor<unknown> = "input",
 > = {
 	componentClass?: TElement | string;
 } & ComponentProps<TElement>;

@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { FormControl } from "../form-control";
@@ -122,7 +122,7 @@ export const AsADownloadLink: Story = {
 const FormWithSubmitButton = () => {
 	const [username, setUsername] = useState("");
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setUsername(event.target.value);
 	};
 

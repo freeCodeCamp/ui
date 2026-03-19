@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { Image } from "./image";
 
 // Additional type assertion necessary due to a bug of how Storybook handles the `decorators` property in meta

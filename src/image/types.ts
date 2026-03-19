@@ -1,5 +1,5 @@
-import { type ImgHTMLAttributes } from "react";
-export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+import React from "react";
+export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 	alt: string;
 	src: string;
 	/**

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import type { Preview, Decorator } from "@storybook/react";
 import "../src/base.css";
 import "../src/fonts.css";

@@ -1,3 +1,4 @@
+import React from "react";
 import type { ContainerProps } from "./types";
 
 export const Container = ({

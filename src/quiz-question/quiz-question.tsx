@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { RadioGroup } from "@headlessui/react";
 
 import type { QuizQuestionAnswer, QuizQuestionProps } from "./types";

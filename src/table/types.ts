@@ -1,6 +1,6 @@
-import { type TableHTMLAttributes } from "react";
+import React from "react";
 
-export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {
+export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
 	condensed?: boolean;
 	striped?: boolean;
 }

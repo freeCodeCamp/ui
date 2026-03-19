@@ -1,3 +1,5 @@
+import React from "react";
+
 const sizes = {
 	xxs: "h-[5px]",
 	xs: "h-[10px]",

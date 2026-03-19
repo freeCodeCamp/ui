@@ -1,4 +1,4 @@
-import { type ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { FormControl } from ".";
 

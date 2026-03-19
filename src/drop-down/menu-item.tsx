@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react";
-import { type ComponentPropsWithoutRef } from "react";
+import React, { type ComponentPropsWithoutRef } from "react";
 import { type ButtonProps, HeadlessButton } from "../button";
 
 export type MenuItemsProps = ComponentPropsWithoutRef<typeof Menu.Items> &

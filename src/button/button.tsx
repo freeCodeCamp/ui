@@ -1,10 +1,4 @@
-import {
-	forwardRef,
-	useMemo,
-	type ElementRef,
-	type MouseEvent,
-	type Ref,
-} from "react";
+import React, { useMemo } from "react";
 import { ButtonProps, ButtonSize, ButtonVariant } from "./types";
 
 const defaultClassNames = [
@@ -130,7 +124,7 @@ const computeClassNames = ({
 	return classNames.join(" ");
 };
 
-const StylessButton = forwardRef<ElementRef<"button">, ButtonProps>(
+const StylessButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
 	(
 		{ className, onClick, disabled, children, type = "button", ...rest },
 		ref,
@@ -138,7 +132,7 @@ const StylessButton = forwardRef<ElementRef<"button">, ButtonProps>(
 		// Manually prevent the click event if the button is disabled
 		// as `aria-disabled` marks the element disabled but still registers the click event.
 		// Ref: https://css-tricks.com/making-disabled-buttons-more-inclusive/#aa-the-difference-between-disabled-and-aria-disabled
-		const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+		const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 			if (disabled) {
 				event.preventDefault();
 				return;
@@ -164,7 +158,7 @@ const StylessButton = forwardRef<ElementRef<"button">, ButtonProps>(
 	},
 );
 
-const Link = forwardRef<ElementRef<"a">, ButtonProps>(
+const Link = React.forwardRef<React.ElementRef<"a">, ButtonProps>(
 	({ className, href, download, target, children, ...rest }, ref) => {
 		return (
 			<a
@@ -181,8 +175,8 @@ const Link = forwardRef<ElementRef<"a">, ButtonProps>(
 	},
 );
 
-export const HeadlessButton = forwardRef<
-	ElementRef<"button" | "a">,
+export const HeadlessButton = React.forwardRef<
+	React.ElementRef<"button" | "a">,
 	ButtonProps
 >(
 	(
@@ -197,7 +191,7 @@ export const HeadlessButton = forwardRef<
 					download={download}
 					target={target}
 					rel={target === "_blank" ? "noopener noreferrer" : ""}
-					ref={ref as Ref<HTMLAnchorElement>}
+					ref={ref as React.Ref<HTMLAnchorElement>}
 					onClick={onClick}
 					{...rest}
 				>
@@ -215,7 +209,7 @@ export const HeadlessButton = forwardRef<
 					className={className}
 					onClick={onClick}
 					disabled={disabled}
-					ref={ref as Ref<HTMLButtonElement>}
+					ref={ref as React.Ref<HTMLButtonElement>}
 					{...rest}
 				>
 					{children}
@@ -225,7 +219,10 @@ export const HeadlessButton = forwardRef<
 	},
 );
 
-export const Button = forwardRef<ElementRef<"button" | "a">, ButtonProps>(
+export const Button = React.forwardRef<
+	React.ElementRef<"button" | "a">,
+	ButtonProps
+>(
 	(
 		{
 			className,

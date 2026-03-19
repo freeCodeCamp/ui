@@ -1,3 +1,5 @@
+import React from "react";
+
 import { RowProps } from "./types";
 
 export const Row = ({

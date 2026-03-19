@@ -1,5 +1,5 @@
-import { type HTMLAttributes } from "react";
+import React from "react";
 
-export interface PanelProps extends HTMLAttributes<HTMLDivElement> {
+export interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
 	variant?: "primary" | "info" | "danger";
 }

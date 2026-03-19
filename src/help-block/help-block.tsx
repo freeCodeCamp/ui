@@ -1,4 +1,4 @@
-import { forwardRef, useContext, type ComponentProps } from "react";
+import React, { useContext, type ComponentProps } from "react";
 import { FormContext } from "../form-group/form-group";
 
 const defaultClasses = "block mt-1 mb-2";
@@ -8,20 +8,21 @@ const validationLabel = {
 	error: "text-background-danger",
 };
 
-export const HelpBlock = forwardRef<HTMLSpanElement, ComponentProps<"span">>(
-	({ className, children, ...props }, ref): JSX.Element => {
-		const { validationState } = useContext(FormContext);
+export const HelpBlock = React.forwardRef<
+	HTMLSpanElement,
+	ComponentProps<"span">
+>(({ className, children, ...props }, ref): JSX.Element => {
+	const { validationState } = useContext(FormContext);
 
-		const labelStyle = validationState
-			? validationLabel[validationState]
-			: "text-foreground-quaternary";
-		const classes = [className, defaultClasses, labelStyle].join(" ");
-		return (
-			<span ref={ref} data-testid="help-block" className={classes} {...props}>
-				{children}
-			</span>
-		);
-	},
-);
+	const labelStyle = validationState
+		? validationLabel[validationState]
+		: "text-foreground-quaternary";
+	const classes = [className, defaultClasses, labelStyle].join(" ");
+	return (
+		<span ref={ref} data-testid="help-block" className={classes} {...props}>
+			{children}
+		</span>
+	);
+});
 
 HelpBlock.displayName = "HelpBlock";

@@ -1,6 +1,6 @@
-import { type LabelHTMLAttributes } from "react";
+import React from "react";
 
-export interface ControlLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+export interface ControlLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
 	htmlFor?: string;
 	srOnly?: boolean;
 }
