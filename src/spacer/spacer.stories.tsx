@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Spacer } from "./spacer";
 import { Button } from "../button";

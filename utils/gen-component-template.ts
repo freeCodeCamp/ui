@@ -1,7 +1,5 @@
 // component.tsx
 export const component = (name: string): string => `
-import React from 'react';
-
 import { ${name}Props } from './types';
 
 export const ${name} = ({}: ${name}Props) => {
@@ -18,7 +16,6 @@ export interface ${name}Props {
 
 // component.test.tsx
 export const test = (name: string): string => `
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -31,7 +28,6 @@ describe('<${name} />', () => {
 
 // component.stories.tsx
 export const story = (name: string): string => `
-import React from 'react';
 import { Story } from '@storybook/react';
 import { ${name}, ${name}Props } from '.';
 

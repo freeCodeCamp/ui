@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import { forwardRef, useMemo } from "react";
 
 import { LinkProps } from "./types";
 
-export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 	({ children, to, target, block }, ref) => {
 		const classes = useMemo(() => {
 			const cls = [

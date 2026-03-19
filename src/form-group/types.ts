@@ -1,7 +1,7 @@
-import React from "react";
+import { Component, type HTMLAttributes } from "react";
 
-export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-	as?: typeof React.Component;
+export interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
+	as?: typeof Component;
 	controlId?: string;
 	validationState?: "success" | "warning" | "error" | null;
 }

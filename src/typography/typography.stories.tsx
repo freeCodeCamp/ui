@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "./typography";
 
 const story = {

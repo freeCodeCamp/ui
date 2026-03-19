@@ -1,5 +1,3 @@
-import React from "react";
-
 import colorList from "../colors.css";
 import { Color, ColorList, PaletteProps } from "./types";
 

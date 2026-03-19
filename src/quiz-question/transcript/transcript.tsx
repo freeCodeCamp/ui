@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState, type MouseEvent } from "react";
 import sanitizeHtml from "sanitize-html";
 
 interface TranscriptProps {
@@ -16,7 +16,7 @@ interface TranscriptProps {
 export const Transcript = ({ transcript }: TranscriptProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const handleToggle = (e: React.MouseEvent<HTMLDetailsElement>) => {
+	const handleToggle = (e: MouseEvent<HTMLDetailsElement>) => {
 		e.preventDefault();
 		setIsOpen(!isOpen);
 	};

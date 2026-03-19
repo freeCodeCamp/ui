@@ -1,4 +1,4 @@
-import React from "react";
+import { forwardRef, type ElementRef } from "react";
 import {
 	Root,
 	List,
@@ -15,21 +15,20 @@ const buttonClassNames =
 const listClassNames =
 	"flex mb-0 pl-0 mt-0 border-b-[1px] border-solid border-foreground-quaternary";
 
-export const TabsTrigger = React.forwardRef<
-	React.ElementRef<typeof Trigger>,
+export const TabsTrigger = forwardRef<
+	ElementRef<typeof Trigger>,
 	TabsTriggerProps
 >(({ className, ...props }, ref) => {
 	const triggerClasses = [buttonClassNames, className].join(" ");
 	return <Trigger ref={ref} className={triggerClasses} {...props} />;
 });
 
-export const TabsList = React.forwardRef<
-	React.ElementRef<typeof List>,
-	TabsListProps
->(({ className, ...props }, ref) => {
-	const listClasses = [listClassNames, className].join(" ");
-	return <List ref={ref} className={listClasses} {...props} />;
-});
+export const TabsList = forwardRef<ElementRef<typeof List>, TabsListProps>(
+	({ className, ...props }, ref) => {
+		const listClasses = [listClassNames, className].join(" ");
+		return <List ref={ref} className={listClasses} {...props} />;
+	},
+);
 
 export const Tabs = Root;
 export const TabsContent = Content;

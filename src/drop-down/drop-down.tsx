@@ -1,34 +1,43 @@
-import React, { createContext, useContext, useRef } from "react";
+import {
+	createContext,
+	createRef,
+	forwardRef,
+	useContext,
+	useRef,
+	type ButtonHTMLAttributes,
+	type MutableRefObject,
+	type ReactNode,
+} from "react";
 import { Menu } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 interface MenuItemsProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 }
 
 export interface DropdownProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	dropup?: boolean;
 	id?: string;
 	block?: boolean;
 }
 
-interface DropDownButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	children: React.ReactNode;
+interface DropDownButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+	children: ReactNode;
 	className?: string;
 	block?: boolean;
 }
 
 interface DropDownContextProps {
 	dropup?: boolean;
-	menuButtonRef: React.MutableRefObject<HTMLButtonElement | null>;
+	menuButtonRef: MutableRefObject<HTMLButtonElement | null>;
 	block?: boolean;
 }
 
 const DropDownContext = createContext<DropDownContextProps>({
-	menuButtonRef: React.createRef(),
+	menuButtonRef: createRef(),
 	block: false,
 });
 
@@ -38,7 +47,7 @@ const dropUpItems = dropDownItems + " transform -translate-y-full top-0";
 const baseToggleClassNames =
 	"cursor-pointer border-3 border-solid flex items-center justify-center text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 mt-[0.5px] relative hover:bg-foreground-secondary hover:text-background-secondary border-foreground-secondary";
 
-export const MenuItems = React.forwardRef<HTMLDivElement, MenuItemsProps>(
+export const MenuItems = forwardRef<HTMLDivElement, MenuItemsProps>(
 	({ children, className }, ref): JSX.Element => {
 		const { dropup, menuButtonRef, block } = useContext(DropDownContext);
 

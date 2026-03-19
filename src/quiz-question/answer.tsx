@@ -1,4 +1,3 @@
-import React from "react";
 import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

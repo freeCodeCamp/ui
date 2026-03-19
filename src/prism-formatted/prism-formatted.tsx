@@ -1,6 +1,6 @@
 import Prism from "prismjs";
 import "prismjs/plugins/line-numbers/prism-line-numbers";
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 import type { PrismFormattedProps } from "./types";
 

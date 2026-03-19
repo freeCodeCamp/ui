@@ -1,4 +1,11 @@
-import React, { useContext, forwardRef } from "react";
+import {
+	useContext,
+	forwardRef,
+	type ForwardRefExoticComponent,
+	type RefAttributes,
+	type RefObject,
+	type ComponentProps,
+} from "react";
 import { FormContext } from "../form-group/form-group";
 
 import { FormControlFeedback } from "./form-control-feedback";
@@ -15,9 +22,9 @@ interface FormControlStatics {
 	Static: typeof FormControlStatic;
 }
 
-type FormControlComponent = React.ForwardRefExoticComponent<
+type FormControlComponent = ForwardRefExoticComponent<
 	FormControlProps<"input" | "textarea"> &
-		React.RefAttributes<HTMLInputElement | HTMLTextAreaElement>
+		RefAttributes<HTMLInputElement | HTMLTextAreaElement>
 > &
 	FormControlStatics;
 
@@ -39,8 +46,8 @@ const FormControl = forwardRef<
 		<Comp
 			id={id || controlId}
 			className={classes}
-			ref={ref as React.RefObject<HTMLInputElement>}
-			{...(props as React.ComponentProps<"input">)}
+			ref={ref as RefObject<HTMLInputElement>}
+			{...(props as ComponentProps<"input">)}
 		/>
 	);
 }) as FormControlComponent;

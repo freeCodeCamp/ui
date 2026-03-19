@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import {
+	useRef,
+	useState,
+	useEffect,
+	useCallback,
+	type ChangeEvent,
+} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
 
@@ -96,7 +102,7 @@ export const Audio = ({
 		}
 	};
 
-	const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSeek = (e: ChangeEvent<HTMLInputElement>) => {
 		const audio = audioRef.current;
 		if (!audio) return;
 

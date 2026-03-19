@@ -1,7 +1,7 @@
-import React from "react";
+import { forwardRef } from "react";
 import { type ImageProps } from "./types";
 
-export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
+export const Image = forwardRef<HTMLImageElement, ImageProps>(
 	({ alt, src, responsive, className, ...props }, ref): JSX.Element => {
 		// The image scales with its container by default (`max-width` being 100%).
 		// If `responsive` is `false`, remove the width constraint and let the image grows to its true size.

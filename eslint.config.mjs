@@ -94,6 +94,9 @@ export default [
 		files: ["**/*.{js,mjs,cjs,jsx,ts,tsx}"],
 		rules: {
 			"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+			// Not needed with the automatic JSX transform
+			"react/react-in-jsx-scope": "off",
+			"react/jsx-uses-react": "off",
 		},
 	},
 ];

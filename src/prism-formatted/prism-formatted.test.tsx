@@ -2,7 +2,6 @@
 /* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/no-container */
 
-import React from "react";
 import { render, screen, within } from "@testing-library/react";
 
 import { PrismFormatted } from "./prism-formatted";

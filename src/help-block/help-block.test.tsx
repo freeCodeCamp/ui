@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import React from "react";
 import { HelpBlock } from "./help-block";
 
 describe("Render the helpblock component", () => {

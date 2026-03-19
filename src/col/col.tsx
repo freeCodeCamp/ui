@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ColProps } from "./types";
 
 const ExtraSmallClasses = {

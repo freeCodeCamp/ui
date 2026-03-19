@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from ".";
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface CloseButtonProps {
 	className?: string;
 	label?: string;

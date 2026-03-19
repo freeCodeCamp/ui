@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/react";
 
 import { Button } from "../button";
@@ -226,7 +226,7 @@ const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 };
 
 const LongContentTemplate: StoryFn<ModalProps> = (args) => {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const handleClose = () => setOpen(false);
 	return (
 		<div>
