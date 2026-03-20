@@ -1,9 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { ControlLabel } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/ControlLabel",
 	component: ControlLabel,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: ["className"],
@@ -14,14 +15,12 @@ const story = {
 		htmlFor: { control: { type: "text" } },
 		srOnly: { options: ["srOnly", ""] },
 	},
-} satisfies Meta<typeof ControlLabel>;
+});
 
-type Story = StoryObj<typeof ControlLabel>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: "Control Label",
 	},
-};
+});
 
-export default story;
+export default meta;

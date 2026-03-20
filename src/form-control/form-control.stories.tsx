@@ -1,10 +1,12 @@
 import React, { type ComponentProps } from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import preview from "#.storybook/preview";
 import { FormControl } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/FormControl",
 	component: FormControl,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: [
@@ -19,10 +21,12 @@ const story = {
 			],
 		},
 	},
+	args: {
+		onChange: fn(),
+	},
 	argTypes: {
 		className: { control: { type: "text" } },
 		id: { control: { type: "text" } },
-		onChange: { action: "changed" },
 		value: { control: { type: "text" } },
 		componentClass: {
 			options: ["input", "textarea"],
@@ -31,27 +35,23 @@ const story = {
 		required: { control: "boolean" },
 		type: { options: ["text", "email", "url"] },
 	},
-} satisfies Meta<typeof FormControl>;
+});
 
-type Story = StoryObj<typeof FormControl>;
+export const Default = meta.story({});
 
-export const Default: Story = {};
-
-const StaticTemplate: StoryFn<(typeof FormControl)["Static"]> = (args) => {
-	return <FormControl.Static {...args} />;
-};
-
-export const Static: StoryObj<typeof FormControl.Static> = {
-	render: StaticTemplate,
+export const Static = meta.story({
+	render: (args) => {
+		return (
+			<FormControl.Static
+				{...(args as ComponentProps<typeof FormControl.Static>)}
+			/>
+		);
+	},
 
 	args: {
 		children: "foo@bar.com",
 	},
-};
-
-const FeedBackTemplate: StoryFn<ComponentProps<"span">> = (args) => {
-	return <FormControl.Feedback {...args} />;
-};
+});
 
 const checkMark = (
 	<svg
@@ -69,12 +69,18 @@ const checkMark = (
 	</svg>
 );
 
-export const Feedback: StoryObj<typeof FormControl.Feedback> = {
-	render: FeedBackTemplate,
+export const Feedback = meta.story({
+	render: (args) => {
+		return (
+			<FormControl.Feedback
+				{...(args as ComponentProps<typeof FormControl.Feedback>)}
+			/>
+		);
+	},
 
 	args: {
 		children: checkMark,
 	},
-};
+});
 
-export default story;
+export default meta;

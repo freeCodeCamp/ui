@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 
 import { PrismFormatted } from "../prism-formatted";
 
 import { QuizQuestion } from "./quiz-question";
 import type { QuizQuestionProps } from "./types";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/QuizQuestion",
 	component: QuizQuestion,
-} satisfies Meta<typeof QuizQuestion>;
-
-type Story = StoryObj<typeof QuizQuestion>;
+	tags: ["autodocs"],
+});
 
 const QuizQuestionComp = <AnswerT extends number | string>({
 	question,
@@ -51,7 +50,7 @@ const QuizQuestionComp = <AnswerT extends number | string>({
 	);
 };
 
-export const Default: Story = {
+export const Default = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
@@ -178,9 +177,9 @@ export const Default: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithCodeInQuestionText: Story = {
+export const WithCodeInQuestionText = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: (
@@ -236,9 +235,9 @@ print(cel)
 			},
 		},
 	},
-};
+});
 
-export const Disabled: Story = {
+export const Disabled = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -272,9 +271,9 @@ export const Disabled: Story = {
 			},
 		},
 	},
-};
+});
 
-export const Correct: Story = {
+export const Correct = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -309,14 +308,14 @@ export const Correct: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
-        { 
-			    label: "Option 1",
-					value: 1,
-					validation: {
-					  state: "correct",
-					  message: "Correct.",
-				  },
-				},
+        {
+		    label: "Option 1",
+				value: 1,
+				validation: {
+				  state: "correct",
+				  message: "Correct.",
+			  },
+			},
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
       ]}
@@ -330,9 +329,9 @@ export const Correct: Story = {
 			},
 		},
 	},
-};
+});
 
-export const CorrectWithAnswerFeedback: Story = {
+export const CorrectWithAnswerFeedback = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
@@ -364,8 +363,8 @@ export const CorrectWithAnswerFeedback: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       answers={[
-        { 
-          label: "Option 1", 
+        {
+          label: "Option 1",
           value: 1,
           feedback: (
             <PrismFormatted
@@ -373,7 +372,7 @@ export const CorrectWithAnswerFeedback: Story = {
               getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
             />
           ),
-					validation: { state: "correct", message: "Correct." },
+				validation: { state: "correct", message: "Correct." },
         },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
@@ -387,9 +386,9 @@ export const CorrectWithAnswerFeedback: Story = {
 			},
 		},
 	},
-};
+});
 
-export const Incorrect: Story = {
+export const Incorrect = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -424,22 +423,22 @@ export const Incorrect: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       answers={[
-        { 
-	        label: "Option 1",
-		      value: 1, 
-		      validation: {
-		        state: "incorrect",
-		        message: "Incorrect."
-		      },
-		    },
-        { 
-	        label: "Option 2",
-		      value: 2,
-		    },
-        { 
-	        label: "Option 3",
-		      value: 3,
-		    },
+        {
+        label: "Option 1",
+	      value: 1,
+	      validation: {
+	        state: "incorrect",
+	        message: "Incorrect."
+	      },
+	    },
+        {
+        label: "Option 2",
+	      value: 2,
+	    },
+        {
+        label: "Option 3",
+	      value: 3,
+	    },
       ]}
       onChange={(newAnswer) => setAnswer(newAnswer)}
 			selectedAnswer: 1,
@@ -450,9 +449,9 @@ export const Incorrect: Story = {
 			},
 		},
 	},
-};
+});
 
-export const IncorrectWithAnswerFeedback: Story = {
+export const IncorrectWithAnswerFeedback = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
@@ -484,8 +483,8 @@ export const IncorrectWithAnswerFeedback: Story = {
     <QuizQuestion
       question="Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       answers={[
-        { 
-          label: "Option 1", 
+        {
+          label: "Option 1",
           value: 1,
           feedback: (
             <PrismFormatted
@@ -493,7 +492,7 @@ export const IncorrectWithAnswerFeedback: Story = {
               getCodeBlockAriaLabel={(codeName) => \`\${codeName} code example\`}
             />
           ),
-					validation: { state: "incorrect", message: "Incorrect." },
+				validation: { state: "incorrect", message: "Incorrect." },
         },
         { label: "Option 2", value: 2 },
         { label: "Option 3", value: 3 }
@@ -507,9 +506,9 @@ export const IncorrectWithAnswerFeedback: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithPosistion: Story = {
+export const WithPosistion = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: (
@@ -567,9 +566,9 @@ print(cel)
 			},
 		},
 	},
-};
+});
 
-export const WithRubyText: Story = {
+export const WithRubyText = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: (
@@ -615,9 +614,9 @@ export const WithRubyText: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithActionButtons: Story = {
+export const WithActionButtons = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Which of the following is the correct greeting?",
@@ -703,9 +702,9 @@ export const WithActionButtons: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithAudio: Story = {
+export const WithAudio = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Listen to the audio and select the correct answer:",
@@ -746,9 +745,9 @@ export const WithAudio: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithAudioSegment: Story = {
+export const WithAudioSegment = meta.story({
 	render: QuizQuestionComp,
 	args: {
 		question: "Listen to the audio segment and select the correct answer:",
@@ -795,6 +794,6 @@ export const WithAudioSegment: Story = {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

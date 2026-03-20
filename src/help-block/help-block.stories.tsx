@@ -1,22 +1,21 @@
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { HelpBlock } from "./help-block";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/HelpBlock",
 	component: HelpBlock,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: ["className", "children"],
 		},
 	},
-} satisfies Meta<typeof HelpBlock>;
+});
 
-type Story = StoryObj<typeof HelpBlock>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: "This is a HelpBlock",
 	},
-};
+});
 
-export default story;
+export default meta;

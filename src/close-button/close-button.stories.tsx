@@ -1,15 +1,14 @@
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { CloseButton } from "./close-button";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/CloseButton",
 	component: CloseButton,
-} satisfies Meta<typeof CloseButton>;
+	tags: ["autodocs"],
+});
 
-type Story = StoryObj<typeof CloseButton>;
+export const Basic = meta.story({
+	args: { onClick: () => {} },
+});
 
-export const Basic: Story = {
-	args: {},
-};
-
-export default story;
+export default meta;

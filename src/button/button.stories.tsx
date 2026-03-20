@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import preview from "#.storybook/preview";
 
 import { FormControl } from "../form-control";
 import { FormGroup } from "../form-group";
 import { ControlLabel } from "../control-label";
 import { Button } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Button",
 	component: Button,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: [
@@ -23,6 +25,9 @@ const story = {
 				"onClick",
 			],
 		},
+	},
+	args: {
+		onClick: fn(),
 	},
 	argTypes: {
 		variant: {
@@ -42,9 +47,6 @@ const story = {
 		target: {
 			options: ["_self", "_blank", "_parent", "_top"],
 		},
-		onClick: {
-			action: "clicked",
-		},
 		href: {
 			control: { type: "text" },
 		},
@@ -52,72 +54,70 @@ const story = {
 			control: { type: "text" },
 		},
 	},
-} satisfies Meta<typeof Button>;
+});
 
-type Story = StoryObj<typeof Button>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: "Button",
 	},
-};
+});
 
-export const Danger: Story = {
+export const Danger = meta.story({
 	args: {
 		variant: "danger",
 		children: "Button",
 	},
-};
+});
 
-export const Info: Story = {
+export const Info = meta.story({
 	args: {
 		variant: "info",
 		children: "Button",
 	},
-};
+});
 
-export const Large: Story = {
+export const Large = meta.story({
 	args: {
 		size: "large",
 		children: "Button",
 	},
-};
+});
 
-export const Small: Story = {
+export const Small = meta.story({
 	args: {
 		size: "small",
 		children: "Button",
 	},
-};
+});
 
-export const Disabled: Story = {
+export const Disabled = meta.story({
 	args: {
 		children: "Button",
 		disabled: true,
 	},
-};
+});
 
-export const FullWidth: Story = {
+export const FullWidth = meta.story({
 	args: {
 		children: "Button",
 		block: true,
 	},
-};
+});
 
-export const AsALink: Story = {
+export const AsALink = meta.story({
 	args: {
 		children: "I'm a link that looks like a button",
 		href: "https://www.freecodecamp.org",
 	},
-};
+});
 
-export const AsADownloadLink: Story = {
+export const AsADownloadLink = meta.story({
 	args: {
 		children: "I'm a download link",
 		href: "https://www.freecodecamp.org",
 		download: "my_file.txt",
 	},
-};
+});
 
 const FormWithSubmitButton = () => {
 	const [username, setUsername] = useState("");
@@ -148,8 +148,8 @@ const FormWithSubmitButton = () => {
 	);
 };
 
-export const AsASubmitButton: Story = {
+export const AsASubmitButton = meta.story({
 	render: FormWithSubmitButton,
-};
+});
 
-export default story;
+export default meta;

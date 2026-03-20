@@ -1,53 +1,52 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 
 import { Callout } from "./callout";
 import { Button } from "../button";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Callout",
 	component: Callout,
-} satisfies Meta<typeof Callout>;
+	tags: ["autodocs"],
+});
 
-type Story = StoryObj<typeof Callout>;
-
-export const Tip: Story = {
+export const Tip = meta.story({
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "tip",
 		label: "Tip",
 	},
-};
+});
 
-export const Note: Story = {
+export const Note = meta.story({
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "note",
 		label: "Note",
 	},
-};
+});
 
-export const Warning: Story = {
+export const Warning = meta.story({
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "warning",
 		label: "Warning",
 	},
-};
+});
 
-export const Caution: Story = {
+export const Caution = meta.story({
 	args: {
 		children:
 			"Eaque non tempore porro quod voluptates rerum ipsam. Consequatur ea voluptate quo tempora autem quod. Voluptatem perspiciatis non mollitia. Dicta non necessitatibus laboriosam est aut cum eos et. Animi pariatur aliquid sint ipsum nam occaecati nisi sit.",
 		variant: "caution",
 		label: "Caution",
 	},
-};
+});
 
-export const WithButtonAndLink: Story = {
+export const WithButtonAndLink = meta.story({
 	args: {
 		variant: "tip",
 		label: "Tip",
@@ -64,6 +63,6 @@ export const WithButtonAndLink: Story = {
 			</>
 		),
 	},
-};
+});
 
-export default story;
+export default meta;

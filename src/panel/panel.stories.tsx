@@ -1,10 +1,11 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Panel } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Panel",
 	component: Panel,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: ["className", "variant"],
@@ -14,7 +15,7 @@ const story = {
 		className: { control: { type: "text" } },
 		variant: { option: ["primary", "danger", "info", undefined] },
 	},
-} satisfies Meta<typeof Panel>;
+});
 
 const Child = () => {
 	return (
@@ -27,33 +28,31 @@ const Child = () => {
 	);
 };
 
-type Story = StoryObj<typeof Panel>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: <Child />,
 	},
-};
+});
 
-export const Primary: Story = {
+export const Primary = meta.story({
 	args: {
 		children: <Child />,
 		variant: "primary",
 	},
-};
+});
 
-export const Info: Story = {
+export const Info = meta.story({
 	args: {
 		children: <Child />,
 		variant: "info",
 	},
-};
+});
 
-export const Danger: Story = {
+export const Danger = meta.story({
 	args: {
 		children: <Child />,
 		variant: "danger",
 	},
-};
+});
 
-export default story;
+export default meta;

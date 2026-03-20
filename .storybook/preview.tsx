@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import type { Preview, Decorator } from "@storybook/react";
+import { definePreview, type Decorator } from "@storybook/react-vite";
+import addonDocs from "@storybook/addon-docs";
 import "../src/base.css";
 import "../src/fonts.css";
 
@@ -16,11 +17,9 @@ const THEME_OPTIONS = {
 	},
 } as const;
 
-/**
- * Theme decorator that applies theme classes to the body and story container
- */
 const WithThemeProvider: Decorator = (Story, context) => {
-	const theme = context.globals.theme || THEME_OPTIONS.light.value;
+	const theme =
+		(context.globals as { theme?: string }).theme || THEME_OPTIONS.light.value;
 	const themeConfig =
 		Object.values(THEME_OPTIONS).find((t) => t.value === theme) ||
 		THEME_OPTIONS.light;
@@ -34,10 +33,7 @@ const WithThemeProvider: Decorator = (Story, context) => {
 
 		body.classList.add(theme);
 
-		// Story page
 		const canvas = document.querySelector(".sb-show-main") as HTMLElement;
-
-		// Docs page
 		const docsStories = document.querySelectorAll(".docs-story");
 
 		if (canvas) {
@@ -60,33 +56,32 @@ const WithThemeProvider: Decorator = (Story, context) => {
 	return <Story />;
 };
 
-export const globalTypes = {
+const globalTypes = {
 	theme: {
 		name: "Theme",
 		description: "Global theme for components",
 		defaultValue: THEME_OPTIONS.light.value,
 		toolbar: {
-			icon: "paintbrush",
-			// Array of plain string values or MenuItem shape
+			icon: "paintbrush" as const,
 			items: [
 				{
 					value: THEME_OPTIONS.light.value,
 					title: THEME_OPTIONS.light.name,
-					icon: "sun",
+					icon: "sun" as const,
 				},
 				{
 					value: THEME_OPTIONS.dark.value,
 					title: THEME_OPTIONS.dark.name,
-					icon: "moon",
+					icon: "moon" as const,
 				},
 			],
-			// Change title based on selected value
 			dynamicTitle: true,
 		},
 	},
 };
 
-const preview: Preview = {
+export default definePreview({
+	addons: [addonDocs()],
 	parameters: {
 		controls: {
 			matchers: {
@@ -94,11 +89,8 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
-		// Remove backgrounds to disable the default background selector
 		backgrounds: { disable: true },
 	},
 	globalTypes,
 	decorators: [WithThemeProvider],
-};
-
-export default preview;
+});

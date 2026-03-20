@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
+import preview from "#.storybook/preview";
 import { ToggleButton } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "WIP/ToggleButton",
 	component: ToggleButton,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: [
@@ -18,6 +20,9 @@ const story = {
 				"name",
 			],
 		},
+	},
+	args: {
+		onChange: fn(),
 	},
 	argTypes: {
 		bsStyle: {
@@ -34,9 +39,6 @@ const story = {
 			options: [true, false],
 			control: { type: "radio" },
 		},
-		onChange: {
-			action: "changed",
-		},
 		value: {
 			type: { name: "string" },
 		},
@@ -44,46 +46,44 @@ const story = {
 			type: { name: "string" },
 		},
 	},
-} satisfies Meta<typeof ToggleButton>;
+});
 
-type Story = StoryObj<typeof ToggleButton>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: "Off",
 	},
-};
+});
 
-export const Checked: Story = {
+export const Checked = meta.story({
 	args: {
 		checked: true,
 		children: "On",
 		value: "Value",
 	},
-};
+});
 
-export const Large: Story = {
+export const Large = meta.story({
 	args: {
 		bsSize: "large",
 		children: "Off",
 	},
-};
+});
 
-export const Medium: Story = {
+export const Medium = meta.story({
 	args: {
 		bsSize: "medium",
 		children: "Off",
 	},
-};
+});
 
-export const Disabled: Story = {
+export const Disabled = meta.story({
 	args: {
 		children: "Off",
 		disabled: true,
 	},
-};
+});
 
-export const RadioChecked: Story = {
+export const RadioChecked = meta.story({
 	args: {
 		type: "radio",
 		children: "On",
@@ -91,18 +91,18 @@ export const RadioChecked: Story = {
 		name: "radio",
 		checked: true,
 	},
-};
+});
 
-export const RadioUnchecked: Story = {
+export const RadioUnchecked = meta.story({
 	args: {
 		type: "radio",
 		children: "Off",
 		value: "radio",
 		name: "radio",
 	},
-};
+});
 
-export const InsideToggleGroup = (): JSX.Element => {
+const InsideToggleGroupRender = () => {
 	const [checked, setChecked] = useState(true);
 
 	return (
@@ -127,4 +127,8 @@ export const InsideToggleGroup = (): JSX.Element => {
 	);
 };
 
-export default story;
+export const InsideToggleGroup = meta.story({
+	render: InsideToggleGroupRender,
+});
+
+export default meta;

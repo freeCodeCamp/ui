@@ -1,15 +1,14 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { HeadlessDisclosure } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/HeadlessDisclosure",
 	component: HeadlessDisclosure,
-} satisfies Meta<typeof HeadlessDisclosure>;
-
-type Story = StoryObj<typeof HeadlessDisclosure>;
+	tags: ["autodocs"],
+});
 
 const renderDisclosure = (args: { defaultOpen?: boolean }) => (
 	<HeadlessDisclosure {...args}>
@@ -52,7 +51,7 @@ const sourceCode = (
   )}
 </HeadlessDisclosure>`;
 
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		defaultOpen: false,
 	},
@@ -65,9 +64,9 @@ export const Default: Story = {
 			},
 		},
 	},
-};
+});
 
-export const DefaultOpen: Story = {
+export const DefaultOpen = meta.story({
 	args: {
 		defaultOpen: true,
 	},
@@ -80,6 +79,6 @@ export const DefaultOpen: Story = {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

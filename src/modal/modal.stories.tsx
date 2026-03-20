@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { StoryObj, StoryFn, Meta } from "@storybook/react";
+import preview from "#.storybook/preview";
 
 import { Button } from "../button";
 import { FormControl } from "../form-control";
@@ -12,17 +12,15 @@ import {
 	type FooterProps,
 } from "./types";
 
-type StoryProps = ModalProps &
-	HeaderProps & {
-		bodyAlignment: BodyProps["alignment"];
-		footerAlignment: FooterProps["alignment"];
+type StoryProps = Omit<ModalProps, "children" | "open" | "onClose"> &
+	Omit<HeaderProps, "children"> & {
+		bodyAlignment?: BodyProps["alignment"];
+		footerAlignment?: FooterProps["alignment"];
 	};
 
-type Story = StoryObj<StoryProps>;
-
-const story = {
+const meta = preview.type<{ args: StoryProps }>().meta({
 	title: "Components/Modal",
-	component: Modal,
+	tags: ["autodocs"],
 	args: {
 		size: "medium",
 		variant: "default",
@@ -41,9 +39,9 @@ const story = {
 			options: ["default", "danger"],
 		},
 	},
-} satisfies Meta<typeof Modal>;
+});
 
-const DefaultTemplate: StoryFn<StoryProps> = ({
+const DefaultModalRender = ({
 	showCloseButton,
 	bodyAlignment,
 	...modalProps
@@ -94,7 +92,9 @@ const DefaultTemplate: StoryFn<StoryProps> = ({
 	);
 };
 
-const DangerTemplate: StoryFn<ModalProps> = (args) => {
+const DangerModalRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = useState(false);
 
 	const handleClose = () => setOpen(false);
@@ -139,9 +139,7 @@ const DangerTemplate: StoryFn<ModalProps> = (args) => {
 	);
 };
 
-const EndAlignedFooterTemplate: StoryFn<StoryProps> = ({
-	footerAlignment,
-}: StoryProps) => {
+const EndAlignedFooterRender = ({ footerAlignment }: StoryProps) => {
 	const [open, setOpen] = useState(false);
 
 	const handleClose = () => setOpen(false);
@@ -180,7 +178,9 @@ const EndAlignedFooterTemplate: StoryFn<StoryProps> = ({
 	);
 };
 
-const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
+const InitialFocusRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -225,7 +225,9 @@ const InitialFocusTemplate: StoryFn<ModalProps> = (args) => {
 	);
 };
 
-const LongContentTemplate: StoryFn<ModalProps> = (args) => {
+const LongContentRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = React.useState(false);
 	const handleClose = () => setOpen(false);
 	return (
@@ -252,40 +254,40 @@ const LongContentTemplate: StoryFn<ModalProps> = (args) => {
 	);
 };
 
-export const Default: Story = {
-	render: DefaultTemplate,
-};
+export const Default = meta.story({
+	render: DefaultModalRender,
+});
 
-export const Large: Story = {
-	render: DefaultTemplate,
+export const Large = meta.story({
+	render: DefaultModalRender,
 	args: {
 		size: "large",
 	},
-};
+});
 
-export const ExtraLarge: Story = {
-	render: DefaultTemplate,
+export const ExtraLarge = meta.story({
+	render: DefaultModalRender,
 	args: {
 		size: "xLarge",
 	},
-};
+});
 
-export const Danger: Story = {
-	render: DangerTemplate,
+export const Danger = meta.story({
+	render: DangerModalRender,
 	args: {
 		variant: "danger",
 	},
-};
+});
 
-export const WithoutCloseButton: Story = {
-	render: DefaultTemplate,
+export const WithoutCloseButton = meta.story({
+	render: DefaultModalRender,
 	args: {
 		showCloseButton: false,
 	},
-};
+});
 
-export const WithLongContent: Story = {
-	render: LongContentTemplate,
+export const WithLongContent = meta.story({
+	render: LongContentRender,
 	args: {
 		size: "medium",
 		variant: "default",
@@ -298,31 +300,31 @@ export const WithLongContent: Story = {
 			},
 		},
 	},
-};
+});
 
-export const LeftAlignedBody: Story = {
-	render: DefaultTemplate,
+export const LeftAlignedBody = meta.story({
+	render: DefaultModalRender,
 	args: {
 		bodyAlignment: "left",
 	},
-};
+});
 
-export const StartAlignedBody: Story = {
-	render: DefaultTemplate,
+export const StartAlignedBody = meta.story({
+	render: DefaultModalRender,
 	args: {
 		bodyAlignment: "start",
 	},
-};
+});
 
-export const EndAlignedFooter: Story = {
-	render: EndAlignedFooterTemplate,
+export const EndAlignedFooter = meta.story({
+	render: EndAlignedFooterRender,
 	args: {
 		footerAlignment: "end",
 	},
-};
+});
 
-export const WithInitialFocus: Story = {
-	render: InitialFocusTemplate,
+export const WithInitialFocus = meta.story({
+	render: InitialFocusRender,
 	args: {},
 	parameters: {
 		docs: {
@@ -332,6 +334,6 @@ export const WithInitialFocus: Story = {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Table } from ".";
 
 const exampleTable = (
@@ -35,9 +35,10 @@ const exampleTable = (
 	</>
 );
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Table",
 	component: Table,
+	tags: ["autodocs"],
 	parameters: {
 		controls: {
 			include: [
@@ -62,37 +63,31 @@ const story = {
 			control: { type: "radio" },
 		},
 	},
-} satisfies Meta<typeof Table>;
+});
 
-const Template: StoryFn<typeof Table> = (args) => (
-	<Table {...args}>{exampleTable}</Table>
-);
-
-type Story = StoryObj<typeof Table>;
-
-export const Default: Story = {
-	render: Template,
+export const Default = meta.story({
+	render: (args) => <Table {...args}>{exampleTable}</Table>,
 
 	args: {
 		condensed: false,
 		striped: false,
 	},
-};
+});
 
-export const Condensed: Story = {
-	render: Template,
+export const Condensed = meta.story({
+	render: (args) => <Table {...args}>{exampleTable}</Table>,
 
 	args: {
 		condensed: true,
 	},
-};
+});
 
-export const Striped: Story = {
-	render: Template,
+export const Striped = meta.story({
+	render: (args) => <Table {...args}>{exampleTable}</Table>,
 
 	args: {
 		striped: true,
 	},
-};
+});
 
-export default story;
+export default meta;
