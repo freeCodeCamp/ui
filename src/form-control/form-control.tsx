@@ -28,15 +28,25 @@ const FormControl = forwardRef<
 	const { controlId } = useContext(FormContext);
 	const { id, className } = props;
 
-	const Component = componentClass || "input";
-	const variantClass = Component !== "textarea" ? " h-8" : "";
+	const isTextarea = componentClass === "textarea";
+	const variantClass = isTextarea ? "" : " h-8";
 
 	//row and componentClass
 	const classes = [className, defaultClasses, variantClass].join(" ");
 
-	const Comp = Component as "input";
+	if (isTextarea) {
+		return (
+			<textarea
+				id={id || controlId}
+				className={classes}
+				ref={ref as React.RefObject<HTMLTextAreaElement>}
+				{...(props as React.ComponentProps<"textarea">)}
+			/>
+		);
+	}
+
 	return (
-		<Comp
+		<input
 			id={id || controlId}
 			className={classes}
 			ref={ref as React.RefObject<HTMLInputElement>}
