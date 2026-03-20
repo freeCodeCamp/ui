@@ -1,25 +1,20 @@
-import {
-	type MouseEventHandler,
-	type ButtonHTMLAttributes,
-	type ReactNode,
-	type HTMLAttributeAnchorTarget,
-} from "react";
+import { MouseEventHandler } from "react";
 
 export type ButtonVariant = "primary" | "danger" | "info";
 
 export type ButtonSize = "small" | "medium" | "large";
 
-interface BaseButtonProps extends ButtonHTMLAttributes<
+interface BaseButtonProps extends React.ButtonHTMLAttributes<
 	HTMLButtonElement | HTMLAnchorElement
 > {
-	children: ReactNode;
+	children: React.ReactNode;
 	size?: ButtonSize;
 	onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 	type?: "submit" | "button";
 	block?: boolean;
 	href?: string;
 	download?: string;
-	target?: HTMLAttributeAnchorTarget;
+	target?: React.HTMLAttributeAnchorTarget;
 }
 
 interface PrimaryButtonProps extends BaseButtonProps {

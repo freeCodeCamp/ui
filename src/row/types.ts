@@ -1,9 +1,7 @@
-import { type HTMLAttributes, type ReactNode } from "react";
-
 type Orientation = "vertical" | "horizontal";
 
-export interface RowProps extends HTMLAttributes<HTMLDivElement> {
+export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
-	children?: ReactNode;
+	children?: React.ReactNode;
 	orientation?: Orientation;
 }

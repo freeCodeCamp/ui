@@ -1,7 +1,5 @@
-import { type ReactNode } from "react";
-
 export type ContainerProps = {
-	children?: ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 	fluid?: boolean;
 };

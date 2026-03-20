@@ -1,12 +1,6 @@
-import {
-	type AnchorHTMLAttributes,
-	type ReactNode,
-	type HTMLAttributeAnchorTarget,
-} from "react";
-
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-	children: ReactNode;
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+	children: React.ReactNode;
 	block?: boolean;
 	to?: string;
-	target?: HTMLAttributeAnchorTarget;
+	target?: React.HTMLAttributeAnchorTarget;
 }
