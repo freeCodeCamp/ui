@@ -2,7 +2,6 @@ import preview from "#.storybook/preview";
 import React from "react";
 import { Image } from "./image";
 
-// Additional type assertion necessary due to a bug of how Storybook handles the `decorators` property in meta
 const meta = preview.meta({
 	title: "Components/Image",
 	component: Image,

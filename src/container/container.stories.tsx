@@ -17,18 +17,18 @@ const meta = preview.meta({
 	},
 });
 
+const ContainerTemplate = (args: React.ComponentProps<typeof Container>) => (
+	<Container {...args}>
+		<Row>
+			<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
+				Column
+			</Col>
+		</Row>
+	</Container>
+);
+
 export const Default = meta.story({
-	render: (args) => {
-		return (
-			<Container {...args}>
-				<Row>
-					<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
-						Column
-					</Col>
-				</Row>
-			</Container>
-		);
-	},
+	render: ContainerTemplate,
 	args: {},
 	parameters: {
 		docs: {
@@ -44,17 +44,7 @@ export const Default = meta.story({
 });
 
 export const Fluid = meta.story({
-	render: (args) => {
-		return (
-			<Container {...args}>
-				<Row>
-					<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
-						Column
-					</Col>
-				</Row>
-			</Container>
-		);
-	},
+	render: ContainerTemplate,
 	args: { fluid: true },
 	parameters: {
 		docs: {
