@@ -12,15 +12,14 @@ import {
 	type FooterProps,
 } from "./types";
 
-type StoryProps = ModalProps &
-	HeaderProps & {
-		bodyAlignment: BodyProps["alignment"];
-		footerAlignment: FooterProps["alignment"];
+type StoryProps = Omit<ModalProps, "children" | "open" | "onClose"> &
+	Omit<HeaderProps, "children"> & {
+		bodyAlignment?: BodyProps["alignment"];
+		footerAlignment?: FooterProps["alignment"];
 	};
 
-const meta = preview.meta({
+const meta = preview.type<{ args: StoryProps }>().meta({
 	title: "Components/Modal",
-	component: Modal,
 	tags: ["autodocs"],
 	args: {
 		size: "medium",
@@ -93,7 +92,9 @@ const DefaultModalRender = ({
 	);
 };
 
-const DangerModalRender = (args: ModalProps) => {
+const DangerModalRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = useState(false);
 
 	const handleClose = () => setOpen(false);
@@ -177,7 +178,9 @@ const EndAlignedFooterRender = ({ footerAlignment }: StoryProps) => {
 	);
 };
 
-const InitialFocusRender = (args: ModalProps) => {
+const InitialFocusRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -222,7 +225,9 @@ const InitialFocusRender = (args: ModalProps) => {
 	);
 };
 
-const LongContentRender = (args: ModalProps) => {
+const LongContentRender = (
+	args: Omit<ModalProps, "children" | "open" | "onClose">,
+) => {
 	const [open, setOpen] = React.useState(false);
 	const handleClose = () => setOpen(false);
 	return (

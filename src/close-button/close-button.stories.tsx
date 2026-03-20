@@ -8,7 +8,7 @@ const meta = preview.meta({
 });
 
 export const Basic = meta.story({
-	args: {},
+	args: { onClick: () => {} },
 });
 
 export default meta;

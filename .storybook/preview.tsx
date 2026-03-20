@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { definePreview } from "@storybook/react-vite";
+import { definePreview, type Decorator } from "@storybook/react-vite";
 import "../src/base.css";
 import "../src/fonts.css";
 
@@ -16,11 +16,9 @@ const THEME_OPTIONS = {
 	},
 } as const;
 
-const WithThemeProvider = (
-	Story: React.ComponentType,
-	context: { globals: { theme?: string } },
-) => {
-	const theme = context.globals.theme || THEME_OPTIONS.light.value;
+const WithThemeProvider: Decorator = (Story, context) => {
+	const theme =
+		(context.globals as { theme?: string }).theme || THEME_OPTIONS.light.value;
 	const themeConfig =
 		Object.values(THEME_OPTIONS).find((t) => t.value === theme) ||
 		THEME_OPTIONS.light;
@@ -63,17 +61,17 @@ const globalTypes = {
 		description: "Global theme for components",
 		defaultValue: THEME_OPTIONS.light.value,
 		toolbar: {
-			icon: "paintbrush",
+			icon: "paintbrush" as const,
 			items: [
 				{
 					value: THEME_OPTIONS.light.value,
 					title: THEME_OPTIONS.light.name,
-					icon: "sun",
+					icon: "sun" as const,
 				},
 				{
 					value: THEME_OPTIONS.dark.value,
 					title: THEME_OPTIONS.dark.name,
-					icon: "moon",
+					icon: "moon" as const,
 				},
 			],
 			dynamicTitle: true,
@@ -82,6 +80,7 @@ const globalTypes = {
 };
 
 export default definePreview({
+	addons: [],
 	parameters: {
 		controls: {
 			matchers: {
