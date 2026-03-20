@@ -1,0 +1,6 @@
+export { Disclosure as HeadlessDisclosure } from "@headlessui/react";
+export type {
+	DisclosureProps,
+	DisclosureButtonProps,
+	DisclosurePanelProps,
+} from "@headlessui/react";
