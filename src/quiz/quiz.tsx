@@ -14,7 +14,6 @@ export const Quiz = <AnswerT extends number | string>({
 				<li key={index}>
 					<QuizQuestion
 						{...question}
-						id={`question-${index}`}
 						position={index + 1}
 						disabled={disabled}
 						required={required}

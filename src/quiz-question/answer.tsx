@@ -15,7 +15,6 @@ interface AnswerProps<
 > extends QuizQuestionAnswer<AnswerT> {
 	checked?: boolean;
 	disabled?: boolean;
-	questionId: string;
 }
 
 const radioIconDefaultClasses = [
@@ -120,9 +119,8 @@ export const Answer = <AnswerT extends number | string>({
 	validation,
 	feedback,
 	action,
-	questionId,
 }: AnswerProps<AnswerT>) => {
-	const labelId = `quiz-answer-${questionId}-${value}-label`;
+	const labelId = `quiz-answer-${value}-label`;
 
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];
