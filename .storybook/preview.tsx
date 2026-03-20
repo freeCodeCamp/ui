@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import type { Preview, Decorator } from "@storybook/react";
+import { definePreview } from "@storybook/react-vite";
 import "../src/base.css";
 import "../src/fonts.css";
 
@@ -16,10 +16,10 @@ const THEME_OPTIONS = {
 	},
 } as const;
 
-/**
- * Theme decorator that applies theme classes to the body and story container
- */
-const WithThemeProvider: Decorator = (Story, context) => {
+const WithThemeProvider = (
+	Story: React.ComponentType,
+	context: { globals: { theme?: string } },
+) => {
 	const theme = context.globals.theme || THEME_OPTIONS.light.value;
 	const themeConfig =
 		Object.values(THEME_OPTIONS).find((t) => t.value === theme) ||
@@ -34,10 +34,7 @@ const WithThemeProvider: Decorator = (Story, context) => {
 
 		body.classList.add(theme);
 
-		// Story page
 		const canvas = document.querySelector(".sb-show-main") as HTMLElement;
-
-		// Docs page
 		const docsStories = document.querySelectorAll(".docs-story");
 
 		if (canvas) {
@@ -60,14 +57,13 @@ const WithThemeProvider: Decorator = (Story, context) => {
 	return <Story />;
 };
 
-export const globalTypes = {
+const globalTypes = {
 	theme: {
 		name: "Theme",
 		description: "Global theme for components",
 		defaultValue: THEME_OPTIONS.light.value,
 		toolbar: {
 			icon: "paintbrush",
-			// Array of plain string values or MenuItem shape
 			items: [
 				{
 					value: THEME_OPTIONS.light.value,
@@ -80,13 +76,12 @@ export const globalTypes = {
 					icon: "moon",
 				},
 			],
-			// Change title based on selected value
 			dynamicTitle: true,
 		},
 	},
 };
 
-const preview: Preview = {
+export default definePreview({
 	parameters: {
 		controls: {
 			matchers: {
@@ -94,11 +89,8 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
-		// Remove backgrounds to disable the default background selector
 		backgrounds: { disable: true },
 	},
 	globalTypes,
 	decorators: [WithThemeProvider],
-};
-
-export default preview;
+});
