@@ -62,6 +62,12 @@ const computeClassNames = ({
 							"hover:border-foreground-danger",
 							"dark:hover:bg-background-danger",
 							"dark:hover:text-foreground-danger",
+							// Expanded state
+							"aria-expanded:border-foreground-danger",
+							"aria-expanded:bg-foreground-danger",
+							"aria-expanded:text-background-danger",
+							"dark:aria-expanded:bg-background-danger",
+							"dark:aria-expanded:text-foreground-danger",
 						]),
 			);
 			break;
@@ -78,6 +84,12 @@ const computeClassNames = ({
 				"hover:border-foreground-info",
 				"dark:hover:bg-background-info",
 				"dark:hover:text-foreground-info",
+				// Expanded state
+				"aria-expanded:border-foreground-info",
+				"aria-expanded:bg-foreground-info",
+				"aria-expanded:text-background-info",
+				"dark:aria-expanded:bg-background-info",
+				"dark:aria-expanded:text-foreground-info",
 			);
 			break;
 		// default variant is 'primary'
@@ -97,6 +109,12 @@ const computeClassNames = ({
 							"hover:border-foreground-secondary",
 							"dark:hover:bg-background-primary",
 							"dark:hover:text-foreground-primary",
+							// Expanded state
+							"aria-expanded:border-foreground-secondary",
+							"aria-expanded:bg-foreground-primary",
+							"aria-expanded:text-background-primary",
+							"dark:aria-expanded:bg-background-primary",
+							"dark:aria-expanded:text-foreground-primary",
 						]),
 			);
 	}

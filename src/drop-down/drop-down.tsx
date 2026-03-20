@@ -36,7 +36,7 @@ const dropDownItems =
 	"list-none bg-background-primary text-center border-1 border-solid border-foreground-primary focus:outline-transparent origin-top-right absolute min-w-max py-1 px-0 z-10";
 const dropUpItems = dropDownItems + " transform -translate-y-full top-0";
 const baseToggleClassNames =
-	"cursor-pointer border-3 border-solid flex items-center justify-center text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 mt-[0.5px] relative hover:bg-foreground-secondary hover:text-background-secondary border-foreground-secondary";
+	"cursor-pointer border-3 border-solid flex items-center justify-center text-center touch-manipulation bg-background-quaternary text-foreground-secondary px-3 py-1.5 mt-[0.5px] relative hover:bg-foreground-secondary hover:text-background-secondary border-foreground-secondary aria-expanded:bg-foreground-secondary aria-expanded:text-background-secondary";
 
 export const MenuItems = React.forwardRef<HTMLDivElement, MenuItemsProps>(
 	({ children, className }, ref): JSX.Element => {
