@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { definePreview, type Decorator } from "@storybook/react-vite";
+import addonDocs from "@storybook/addon-docs";
 import "../src/base.css";
 import "../src/fonts.css";
 
@@ -80,7 +81,7 @@ const globalTypes = {
 };
 
 export default definePreview({
-	addons: [],
+	addons: [addonDocs()],
 	parameters: {
 		controls: {
 			matchers: {
