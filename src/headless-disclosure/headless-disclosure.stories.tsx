@@ -15,15 +15,16 @@ const renderDisclosure = (args: { defaultOpen?: boolean }) => (
 	<HeadlessDisclosure {...args}>
 		{({ open }) => (
 			<>
-				<HeadlessDisclosure.Button>
+				<HeadlessDisclosure.Button className="text-foreground-primary">
 					{open ? "Collapse" : "Expand"}
+
 					<FontAwesomeIcon
 						icon={open ? faChevronUp : faChevronDown}
 						className="ml-2"
 						aria-hidden="true"
 					/>
 				</HeadlessDisclosure.Button>
-				<HeadlessDisclosure.Panel>
+				<HeadlessDisclosure.Panel className="text-foreground-primary">
 					<p>This is the disclosure panel content.</p>
 				</HeadlessDisclosure.Panel>
 			</>
