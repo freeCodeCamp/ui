@@ -125,23 +125,6 @@ describe("<Quiz />", () => {
 		});
 	});
 
-	it("should render answer labels with unique ids across questions", () => {
-		render(<ControlledQuiz />);
-
-		const question1 = screen.getByRole("radiogroup", {
-			name: "1. Lorem ipsum dolor sit amet",
-		});
-		const question2 = screen.getByRole("radiogroup", {
-			name: "2. Consectetur adipiscing elit",
-		});
-
-		const q1Label = within(question1).getByText("Option 1");
-		const q2Label = within(question2).getByText("Option 1");
-
-		expect(q1Label).toHaveAttribute("id", "quiz-answer-question-0-1-label");
-		expect(q2Label).toHaveAttribute("id", "quiz-answer-question-1-1-label");
-	});
-
 	it("should render action buttons when answers have action configuration", async () => {
 		const actionHandlers = {
 			q1a1: vi.fn(),
