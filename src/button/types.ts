@@ -15,6 +15,7 @@ interface BaseButtonProps extends React.ButtonHTMLAttributes<
 	href?: string;
 	download?: string;
 	target?: React.HTMLAttributeAnchorTarget;
+	rel?: string;
 }
 
 interface PrimaryButtonProps extends BaseButtonProps {
