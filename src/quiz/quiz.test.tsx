@@ -198,6 +198,62 @@ describe("<Quiz />", () => {
 		expect(actionHandlers.q2a1).toHaveBeenCalledTimes(1);
 	});
 
+	it("should have unique action button aria-describedby IDs across questions with the same answer values", () => {
+		const sharedAnswers = [
+			{
+				label: "Option 1",
+				value: 1,
+				action: { onClick: vi.fn(), ariaLabel: "Speak option 1" },
+			},
+			{
+				label: "Option 2",
+				value: 2,
+				action: { onClick: vi.fn(), ariaLabel: "Speak option 2" },
+			},
+		];
+
+		render(
+			<Quiz
+				questions={[
+					{ question: "Question 1", answers: sharedAnswers, correctAnswer: 1 },
+					{ question: "Question 2", answers: sharedAnswers, correctAnswer: 1 },
+				]}
+			/>,
+		);
+
+		const question1 = screen.getByRole("radiogroup", {
+			name: "1. Question 1",
+		});
+		const question2 = screen.getByRole("radiogroup", {
+			name: "2. Question 2",
+		});
+
+		const speak1A = within(question1).getByRole("button", {
+			name: "Speak option 1",
+		});
+		const speak1B = within(question1).getByRole("button", {
+			name: "Speak option 2",
+		});
+		const speak2A = within(question2).getByRole("button", {
+			name: "Speak option 1",
+		});
+		const speak2B = within(question2).getByRole("button", {
+			name: "Speak option 2",
+		});
+
+		const id1A = speak1A.getAttribute("aria-describedby")!;
+		const id1B = speak1B.getAttribute("aria-describedby")!;
+		const id2A = speak2A.getAttribute("aria-describedby")!;
+		const id2B = speak2B.getAttribute("aria-describedby")!;
+
+		expect(new Set([id1A, id1B, id2A, id2B]).size).toBe(4);
+
+		expect(within(question1).getByText("Option 1").id).toBe(id1A);
+		expect(within(question1).getByText("Option 2").id).toBe(id1B);
+		expect(within(question2).getByText("Option 1").id).toBe(id2A);
+		expect(within(question2).getByText("Option 2").id).toBe(id2B);
+	});
+
 	it("should not render action buttons when answers do not have action configuration", () => {
 		const questions = [
 			{

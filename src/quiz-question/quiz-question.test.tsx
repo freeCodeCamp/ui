@@ -345,14 +345,15 @@ describe("<QuizQuestion />", () => {
 		expect(actionButton1).toBeInTheDocument();
 		expect(actionButton2).toBeInTheDocument();
 
-		expect(actionButton1).toHaveAttribute(
-			"aria-describedby",
-			"quiz-answer-1-label",
-		);
-		expect(actionButton2).toHaveAttribute(
-			"aria-describedby",
-			"quiz-answer-2-label",
-		);
+		const label1Id = actionButton1.getAttribute("aria-describedby");
+		const label2Id = actionButton2.getAttribute("aria-describedby");
+
+		expect(label1Id).toBeTruthy();
+		expect(label2Id).toBeTruthy();
+		expect(label1Id).not.toBe(label2Id);
+
+		expect(screen.getByText("Option 1").id).toBe(label1Id);
+		expect(screen.getByText("Option 2").id).toBe(label2Id);
 
 		await userEvent.click(actionButton1);
 		expect(handleAction1).toHaveBeenCalledTimes(1);
@@ -366,6 +367,58 @@ describe("<QuizQuestion />", () => {
 				name: "Practice speaking option 3",
 			}),
 		).not.toBeInTheDocument();
+	});
+
+	it("should have unique action button aria-describedby IDs across multiple QuizQuestion instances with the same answer values", () => {
+		const answers = [
+			{
+				label: "Option 1",
+				value: 1,
+				action: { onClick: vi.fn(), ariaLabel: "Speak option 1" },
+			},
+			{
+				label: "Option 2",
+				value: 2,
+				action: { onClick: vi.fn(), ariaLabel: "Speak option 2" },
+			},
+		];
+
+		render(
+			<>
+				<QuizQuestion question="Question 1" answers={answers} />
+				<QuizQuestion question="Question 2" answers={answers} />
+			</>,
+		);
+
+		const question1 = screen.getByRole("radiogroup", { name: "Question 1" });
+		const question2 = screen.getByRole("radiogroup", { name: "Question 2" });
+
+		const speak1A = within(question1).getByRole("button", {
+			name: "Speak option 1",
+		});
+		const speak1B = within(question1).getByRole("button", {
+			name: "Speak option 2",
+		});
+		const speak2A = within(question2).getByRole("button", {
+			name: "Speak option 1",
+		});
+		const speak2B = within(question2).getByRole("button", {
+			name: "Speak option 2",
+		});
+
+		const id1A = speak1A.getAttribute("aria-describedby")!;
+		const id1B = speak1B.getAttribute("aria-describedby")!;
+		const id2A = speak2A.getAttribute("aria-describedby")!;
+		const id2B = speak2B.getAttribute("aria-describedby")!;
+
+		// All four IDs must be distinct
+		expect(new Set([id1A, id1B, id2A, id2B]).size).toBe(4);
+
+		// Each button must point to the correct label within its question
+		expect(within(question1).getByText("Option 1").id).toBe(id1A);
+		expect(within(question1).getByText("Option 2").id).toBe(id1B);
+		expect(within(question2).getByText("Option 1").id).toBe(id2A);
+		expect(within(question2).getByText("Option 2").id).toBe(id2B);
 	});
 
 	it("should not render action buttons when not provided", () => {
