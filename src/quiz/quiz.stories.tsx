@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 
 import { Quiz } from "./quiz";
 import { useQuiz } from "./use-quiz";
@@ -8,12 +8,11 @@ import { Button } from "../button";
 import { Spacer } from "../spacer";
 import { PrismFormatted } from "../prism-formatted";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Quiz",
 	component: Quiz,
-} satisfies Meta<typeof Quiz>;
-
-type Story = StoryObj<typeof Quiz>;
+	tags: ["autodocs"],
+});
 
 const QuizDefault = () => {
 	const initialQuestions: Question<number>[] = [
@@ -329,7 +328,7 @@ const QuizWithCorrectAnswersShownOnSuccess = () => {
 	);
 };
 
-export const Default: Story = {
+export const Default = meta.story({
 	render: QuizDefault,
 	args: {},
 	parameters: {
@@ -382,9 +381,9 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
 	render: QuizWithValidation,
 	args: {},
 	parameters: {
@@ -457,9 +456,9 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
-export const WithValidationAndAnswerFeedback: Story = {
+export const WithValidationAndAnswerFeedback = meta.story({
 	render: QuizWithValidationAndAnswerFeedback,
 	args: {},
 	parameters: {
@@ -574,9 +573,9 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
-export const WithCorrectAnswersShownOnSuccess: Story = {
+export const WithCorrectAnswersShownOnSuccess = meta.story({
 	render: QuizWithCorrectAnswersShownOnSuccess,
 	args: {},
 	parameters: {
@@ -693,7 +692,7 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
 const QuizWithActionButtons = () => {
 	const initialQuestions: Question<number>[] = [
@@ -796,7 +795,7 @@ const QuizWithActionButtons = () => {
 	return <Quiz questions={questions} />;
 };
 
-export const WithActionButtons: Story = {
+export const WithActionButtons = meta.story({
 	render: QuizWithActionButtons,
 	args: {},
 	parameters: {
@@ -911,7 +910,7 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
 const QuizWithAudio = () => {
 	const initialQuestions: Question<number>[] = [
@@ -952,7 +951,7 @@ const QuizWithAudio = () => {
 	return <Quiz questions={questions} />;
 };
 
-export const WithAudio: Story = {
+export const WithAudio = meta.story({
 	render: QuizWithAudio,
 	args: {},
 	parameters: {
@@ -1000,7 +999,7 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
 const QuizWithAudioSegment = () => {
 	const initialQuestions: Question<number>[] = [
@@ -1049,7 +1048,7 @@ const QuizWithAudioSegment = () => {
 	return <Quiz questions={questions} />;
 };
 
-export const WithAudioSegment: Story = {
+export const WithAudioSegment = meta.story({
 	render: QuizWithAudioSegment,
 	args: {},
 	parameters: {
@@ -1107,6 +1106,6 @@ const App = () => {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

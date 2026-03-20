@@ -1,31 +1,28 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Tabs",
 	component: Tabs,
-} satisfies Meta<typeof Tabs>;
+	tags: ["autodocs"],
+});
 
-const Template: StoryFn<typeof Tabs> = (args) => {
-	return (
-		<Tabs {...args}>
-			<TabsList>
-				<TabsTrigger value="code">Code</TabsTrigger>
-				<TabsTrigger value="tests">Tests</TabsTrigger>
-			</TabsList>
-			<TabsContent value="code">
-				<code>here is a code element.</code>
-			</TabsContent>
-			<TabsContent value="tests">Here is the test for the code.</TabsContent>
-		</Tabs>
-	);
-};
-
-type Story = StoryObj<typeof Tabs>;
-
-export const Default: Story = {
-	render: Template,
+export const Default = meta.story({
+	render: (args) => {
+		return (
+			<Tabs {...args}>
+				<TabsList>
+					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="tests">Tests</TabsTrigger>
+				</TabsList>
+				<TabsContent value="code">
+					<code>here is a code element.</code>
+				</TabsContent>
+				<TabsContent value="tests">Here is the test for the code.</TabsContent>
+			</Tabs>
+		);
+	},
 
 	args: {
 		id: "uncontrolled-tab-example",
@@ -34,6 +31,6 @@ export const Default: Story = {
 			console.log("onSelect");
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

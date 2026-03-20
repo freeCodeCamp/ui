@@ -1,13 +1,15 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { MenuItem } from "./menu-item";
 import { Dropdown } from "./drop-down";
-const story = {
+
+const meta = preview.meta({
 	title: "Components/Dropdown",
 	component: Dropdown,
-} satisfies Meta<typeof Dropdown>;
+	tags: ["autodocs"],
+});
 
-export const Menus: StoryObj<typeof Dropdown> = {
+export const Menus = meta.story({
 	render: () => (
 		<Dropdown>
 			<Dropdown.Toggle>Options</Dropdown.Toggle>
@@ -22,9 +24,9 @@ export const Menus: StoryObj<typeof Dropdown> = {
 			</Dropdown.Menu>
 		</Dropdown>
 	),
-};
+});
 
-export const DropUp: StoryObj<typeof Dropdown> = {
+export const DropUp = meta.story({
 	render: () => (
 		<div
 			style={{
@@ -49,9 +51,9 @@ export const DropUp: StoryObj<typeof Dropdown> = {
 			</Dropdown>
 		</div>
 	),
-};
+});
 
-export const FullWidth: StoryObj<typeof Dropdown> = {
+export const FullWidth = meta.story({
 	render: () => (
 		<Dropdown block>
 			<Dropdown.Toggle>Full width Dropdown</Dropdown.Toggle>
@@ -66,5 +68,6 @@ export const FullWidth: StoryObj<typeof Dropdown> = {
 			</Dropdown.Menu>
 		</Dropdown>
 	),
-};
-export default story;
+});
+
+export default meta;

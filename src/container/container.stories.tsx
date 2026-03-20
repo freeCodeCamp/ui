@@ -1,12 +1,13 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Container } from ".";
 import { Row } from "../row";
 import { Col } from "../col";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Container",
 	component: Container,
+	tags: ["autodocs"],
 	argTypes: {
 		fluid: {
 			control: {
@@ -14,22 +15,20 @@ const story = {
 			},
 		},
 	},
-} satisfies Meta<typeof Container>;
+});
 
-const Template: StoryFn<typeof Container> = (args) => {
-	return (
-		<Container {...args}>
-			<Row>
-				<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
-					Column
-				</Col>
-			</Row>
-		</Container>
-	);
-};
-
-export const Default: StoryObj<typeof Container> = {
-	render: Template,
+export const Default = meta.story({
+	render: (args) => {
+		return (
+			<Container {...args}>
+				<Row>
+					<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
+						Column
+					</Col>
+				</Row>
+			</Container>
+		);
+	},
 	args: {},
 	parameters: {
 		docs: {
@@ -42,10 +41,20 @@ export const Default: StoryObj<typeof Container> = {
 			},
 		},
 	},
-};
+});
 
-export const Fluid: StoryObj<typeof Container> = {
-	render: Template,
+export const Fluid = meta.story({
+	render: (args) => {
+		return (
+			<Container {...args}>
+				<Row>
+					<Col xs={12} className="bg-blue-700 px-3 py-2 text-white text-center">
+						Column
+					</Col>
+				</Row>
+			</Container>
+		);
+	},
 	args: { fluid: true },
 	parameters: {
 		docs: {
@@ -55,6 +64,6 @@ export const Fluid: StoryObj<typeof Container> = {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

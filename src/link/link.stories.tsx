@@ -1,26 +1,25 @@
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Link } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Link",
 	component: Link,
-} satisfies Meta<typeof Link>;
+	tags: ["autodocs"],
+});
 
-type Story = StoryObj<typeof Link>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: "Go to freeCodeCamp",
 		to: "https://www.freecodecamp.org",
 	},
-};
+});
 
-export const Block: Story = {
+export const Block = meta.story({
 	args: {
 		children: "Go to freeCodeCamp",
 		to: "https://www.freecodecamp.org",
 		block: true,
 	},
-};
+});
 
-export default story;
+export default meta;

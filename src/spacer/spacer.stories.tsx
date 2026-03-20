@@ -1,70 +1,103 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Spacer } from "./spacer";
 import { Button } from "../button";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Spacer",
 	component: Spacer,
-} satisfies Meta<typeof Spacer>;
+	tags: ["autodocs"],
+});
 
-type Story = StoryObj<typeof Spacer>;
-
-const Template: StoryFn<typeof Spacer> = (args) => (
-	<>
-		<Button>Button one</Button>
-		<Spacer {...args} />
-		<Button>Button two</Button>
-	</>
-);
-
-export const XXS: Story = {
-	render: Template,
+export const XXS = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "xxs",
 	},
-};
+});
 
-export const XS: Story = {
-	render: Template,
+export const XS = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "xs",
 	},
-};
+});
 
-export const S: Story = {
-	render: Template,
+export const S = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "s",
 	},
-};
+});
 
-export const M: Story = {
-	render: Template,
+export const M = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "m",
 	},
-};
+});
 
-export const L: Story = {
-	render: Template,
+export const L = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "l",
 	},
-};
+});
 
-export const XL: Story = {
-	render: Template,
+export const XL = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "xl",
 	},
-};
+});
 
-export const XXL: Story = {
-	render: Template,
+export const XXL = meta.story({
+	render: (args) => (
+		<>
+			<Button>Button one</Button>
+			<Spacer {...args} />
+			<Button>Button two</Button>
+		</>
+	),
 	args: {
 		size: "xxl",
 	},
-};
+});
 
-export default story;
+export default meta;

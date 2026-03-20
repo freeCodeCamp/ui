@@ -1,14 +1,13 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 
 import { PrismFormatted } from "./prism-formatted";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/PrismFormatted",
 	component: PrismFormatted,
-} satisfies Meta<typeof PrismFormatted>;
-
-type Story = StoryObj<typeof PrismFormatted>;
+	tags: ["autodocs"],
+});
 
 const text = `<p>Given the following code:</p>
 <pre><code class="language-python">temp = "5 degrees"
@@ -19,7 +18,7 @@ print(cel)
 </code></pre>
 <p>Which line/lines should be surrounded by <code>try</code> block?</p>`;
 
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		text,
 		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
@@ -41,9 +40,9 @@ export const Default: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithLineNumbers: Story = {
+export const WithLineNumbers = meta.story({
 	args: {
 		text,
 		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
@@ -67,9 +66,9 @@ export const WithLineNumbers: Story = {
 			},
 		},
 	},
-};
+});
 
-export const WithLongLineOfCode: Story = {
+export const WithLongLineOfCode = meta.story({
 	args: {
 		text: `<pre><code class="language-html"><p>This story shows how PrismFormatted displays a long line of code. This line should not wrap to a new line, but instead, the overflow content is clipped and can be scrolled into view.</p></code></pre>`,
 		getCodeBlockAriaLabel: (codeName) => `${codeName} code example`,
@@ -84,9 +83,9 @@ export const WithLongLineOfCode: Story = {
 			},
 		},
 	},
-};
+});
 
-export const InsideDisclosureElement: Story = {
+export const InsideDisclosureElement = meta.story({
 	decorators: [
 		(Story) => (
 			<details>
@@ -117,9 +116,9 @@ export const InsideDisclosureElement: Story = {
 			},
 		},
 	},
-};
+});
 
-export const Collapsible: Story = {
+export const Collapsible = meta.story({
 	args: {
 		text: `<section><p>An <code>if</code> statement allows you to run a block of code only when a condition is met. It uses the following syntax:</p><pre><code class="language-js">if (condition) {
   logic
@@ -142,6 +141,6 @@ export const Collapsible: Story = {
 			},
 		},
 	},
-};
+});
 
-export default story;
+export default meta;

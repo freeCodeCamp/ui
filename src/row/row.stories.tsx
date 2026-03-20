@@ -1,16 +1,15 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { Row } from ".";
 import { Col } from "../col";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/Row",
 	component: Row,
-} satisfies Meta<typeof Row>;
+	tags: ["autodocs"],
+});
 
-type Story = StoryObj<typeof Row>;
-
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: (
 			<>
@@ -31,9 +30,9 @@ export const Default: Story = {
 			</>
 		),
 	},
-};
+});
 
-export const Horizontal: Story = {
+export const Horizontal = meta.story({
 	args: {
 		orientation: "horizontal",
 		children: (
@@ -62,6 +61,6 @@ export const Horizontal: Story = {
 			</>
 		),
 	},
-};
+});
 
-export default story;
+export default meta;

@@ -1,13 +1,14 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import preview from "#.storybook/preview";
 import { FormControl } from "../form-control";
 
 import { ControlLabel } from "../control-label";
 import { FormGroup } from ".";
 
-const story = {
+const meta = preview.meta({
 	title: "Components/FormGroup",
 	component: FormGroup,
+	tags: ["autodocs"],
 	argTypes: {
 		children: { control: { type: "object" } },
 		className: { control: { type: "text" } },
@@ -15,9 +16,7 @@ const story = {
 		as: { control: { type: "text" } },
 		validationState: { options: ["success", "warning", "error", null] },
 	},
-} satisfies Meta<typeof FormGroup>;
-
-type Story = StoryObj<typeof FormGroup>;
+});
 
 const Child = () => {
 	return (
@@ -28,31 +27,31 @@ const Child = () => {
 	);
 };
 
-export const Default: Story = {
+export const Default = meta.story({
 	args: {
 		children: <Child />,
 	},
-};
+});
 
-export const Success: Story = {
+export const Success = meta.story({
 	args: {
 		children: <Child />,
 		validationState: "success",
 	},
-};
+});
 
-export const Error: Story = {
+export const Error = meta.story({
 	args: {
 		children: <Child />,
 		validationState: "error",
 	},
-};
+});
 
-export const Warning: Story = {
+export const Warning = meta.story({
 	args: {
 		children: <Child />,
 		validationState: "warning",
 	},
-};
+});
 
-export default story;
+export default meta;

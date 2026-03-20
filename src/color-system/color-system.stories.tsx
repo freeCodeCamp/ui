@@ -1,11 +1,15 @@
 import React from "react";
+import preview from "#.storybook/preview";
 import { AllPalettes } from "./color-system";
 
-const story = {
+const meta = preview.meta({
 	title: "Design System/Color",
 	component: AllPalettes,
-};
+	tags: ["autodocs"],
+});
 
-export const ColorSystem = (): JSX.Element => <AllPalettes />;
+export const ColorSystem = meta.story({
+	render: () => <AllPalettes />,
+});
 
-export default story;
+export default meta;
