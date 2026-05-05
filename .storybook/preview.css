@@ -1,0 +1,97 @@
+/* Storybook Docs Theme Overrides for freeCodeCamp UI */
+
+/* Global Docs Background and Text */
+body.dark-palette {
+	background-color: var(--background-primary) !important;
+	color: var(--foreground-primary) !important;
+}
+
+body.light-palette {
+	background-color: var(--background-primary) !important;
+	color: var(--foreground-primary) !important;
+}
+
+body.dark-palette .sbdocs.sbdocs-wrapper {
+	background-color: var(--background-primary) !important;
+}
+
+body.dark-palette .sbdocs.sbdocs-content {
+	color: var(--foreground-primary) !important;
+}
+
+/* Headings */
+body.dark-palette .sbdocs.sbdocs-content h1:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content h2:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content h3:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content h4:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content h5:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content h6:not(.sb-story *) {
+	color: var(--foreground-primary) !important;
+}
+
+/* Paragraphs and Lists */
+body.dark-palette .sbdocs.sbdocs-content p:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content li:not(.sb-story *),
+body.dark-palette .sbdocs.sbdocs-content div:not(.sb-story *):not(.docs-story) {
+	color: var(--foreground-secondary) !important;
+}
+
+/* Links */
+body.dark-palette .sbdocs.sbdocs-content a:not(.sb-story *) {
+	color: var(--foreground-info) !important;
+}
+
+/* Inline Code */
+body.dark-palette .sbdocs.sbdocs-content code:not(.sb-story *) {
+	background-color: var(--background-tertiary) !important;
+	color: var(--foreground-tertiary) !important;
+	border-color: var(--background-quaternary) !important;
+}
+
+/* Pre/Code blocks */
+body.dark-palette .sbdocs.sbdocs-content pre:not(.sb-story *) {
+	background-color: var(--background-tertiary) !important;
+	border-color: var(--background-quaternary) !important;
+}
+
+body.dark-palette .sbdocs.sbdocs-content pre:not(.sb-story *) code {
+	background-color: transparent !important;
+	color: var(--foreground-primary) !important;
+	border: none !important;
+}
+
+/* Arg/Props Table */
+body.dark-palette .docblock-argstable {
+	background-color: var(--background-secondary) !important;
+	border-color: var(--background-quaternary) !important;
+}
+
+body.dark-palette .docblock-argstable th,
+body.dark-palette .docblock-argstable td {
+	color: var(--foreground-primary) !important;
+	background-color: var(--background-secondary) !important;
+	border-color: var(--background-quaternary) !important;
+}
+
+/* Arg/Props Table svgs (icons) */
+body.dark-palette .docblock-argstable svg {
+	color: var(--foreground-primary) !important;
+}
+
+/* Source Code Block container */
+body.dark-palette .docblock-source {
+	background-color: var(--background-tertiary) !important;
+	border-color: var(--background-quaternary) !important;
+	box-shadow: none !important;
+}
+
+/* Storybook docs story block container borders */
+body.dark-palette .docs-story {
+	border-color: var(--background-quaternary) !important;
+}
+
+/* Storybook Component Preview Area */
+body .sb-show-main,
+body .docs-story {
+	background-color: var(--background-secondary) !important;
+}
