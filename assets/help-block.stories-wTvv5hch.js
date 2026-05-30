@@ -1,0 +1,5 @@
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-XedgCGTy.js";import{n as r,t as i}from"./iframe-DzyGt2uA.js";import{r as a,t as o}from"./form-group-C1CRMoTi.js";var s,c,l,u,d=t((()=>{s=e(n()),a(),c=`block mt-1 mb-2`,l={success:`text-background-info`,warning:`text-background-warning`,error:`text-background-danger`},u=s.forwardRef(({className:e,children:t,...n},r)=>{let{validationState:i}=(0,s.useContext)(o),a=[e,c,i?l[i]:`text-foreground-quaternary`].join(` `);return s.createElement(`span`,{ref:r,"data-testid":`help-block`,className:a,...n},t)}),u.displayName=`HelpBlock`,u.__docgenInfo={description:``,methods:[],displayName:`HelpBlock`}})),f,p,m;t((()=>{i(),d(),f=r.meta({title:`Components/HelpBlock`,component:u,tags:[`autodocs`],parameters:{controls:{include:[`className`,`children`]}}}),p=f.story({args:{children:`This is a HelpBlock`}}),p.input.parameters={...p.input.parameters,docs:{...p.input.parameters?.docs,source:{originalSource:`meta.story({
+  args: {
+    children: "This is a HelpBlock"
+  }
+})`,...p.input.parameters?.docs?.source}}},m=[`Default`]}))();export{p as Default,m as __namedExportsOrder,f as default};

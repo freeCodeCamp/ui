@@ -1,0 +1,1 @@
+import{n as e,t}from"./react-I7edUPeI.js";t();export{e as MDXProvider};
