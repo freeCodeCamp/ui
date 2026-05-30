@@ -7,7 +7,7 @@
       "./*.tsx"
     ]
   },
-  "version": "5.3.0",
+  "version": "6.1.0",
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "license": "BSD-3-Clause",
   "description": "The freeCodeCamp.org open-source UI components",
@@ -23,7 +23,7 @@
     "node": ">=24",
     "pnpm": ">=10"
   },
-  "packageManager": "pnpm@10.24.0+sha512.01ff8ae71b4419903b65c60fb2dc9d34cf8bb6e06d03bde112ef38f7a34d6904c424ba66bea5cdcf12890230bf39f9580473140ed9c946fef328b6e5238a345a",
+  "packageManager": "pnpm@10.24.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/freeCodeCamp/ui.git"
@@ -61,8 +61,8 @@
     "@headlessui/react": "1.7.19",
     "@radix-ui/react-tabs": "1.1.13",
     "babel-plugin-prismjs": "2.1.0",
-    "prismjs": "1.30.0",
-    "sanitize-html": "2.17.0"
+    "dompurify": "3.4.7",
+    "prismjs": "1.30.0"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -89,7 +89,7 @@
     "@types/prismjs": "1.26.5",
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
-    "@types/sanitize-html": "2.16.0",
+    "@vitest/eslint-plugin": "1.6.16",
     "@vitest/ui": "4.0.18",
     "autoprefixer": "10.4.22",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
@@ -99,7 +99,6 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-testing-library": "7.15.4",
-    "eslint-plugin-vitest": "0.5.4",
     "globals": "17.3.0",
     "husky": "9.1.7",
     "jsdom": "25.0.1",

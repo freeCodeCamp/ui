@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import sanitizeHtml from "sanitize-html";
+import DOMPurify from "dompurify";
 
 interface TranscriptProps {
 	/**
@@ -23,11 +23,9 @@ export const Transcript = ({ transcript }: TranscriptProps) => {
 
 	const sanitizedTranscript = useMemo(
 		() =>
-			sanitizeHtml(transcript, {
-				allowedTags: ["ruby", "rt", "rp", "b", "strong", "i", "em", "p"],
-				allowedAttributes: {
-					p: ["class"],
-				},
+			DOMPurify.sanitize(transcript, {
+				ALLOWED_TAGS: ["ruby", "rt", "rp", "b", "strong", "i", "em", "p"],
+				ALLOWED_ATTR: ["class"],
 			}),
 		[transcript],
 	);

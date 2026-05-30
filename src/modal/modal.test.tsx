@@ -206,6 +206,60 @@ describe("<Modal />", () => {
 		expect(closeButton).toHaveFocus();
 	});
 
+	it("should not apply a focus ring to the dialog container", async () => {
+		vi.useFakeTimers();
+
+		// Simulate the race where document.activeElement is the dialog root at
+		// the moment afterEnter fires (HeadlessUI's transient focus state).
+		const dialogContainer = document.createElement("div");
+		dialogContainer.setAttribute("role", "dialog");
+		const activeElementSpy = vi
+			.spyOn(document, "activeElement", "get")
+			.mockReturnValue(dialogContainer);
+
+		const { rerender } = render(
+			<Modal open={false} onClose={() => {}}>
+				<Modal.Header>Lorem ipsum</Modal.Header>
+				<Modal.Body>
+					<p>Laboriosam autem non et nisi.</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large">
+						Submit
+					</Button>
+				</Modal.Footer>
+			</Modal>,
+		);
+
+		rerender(
+			<Modal open={true} onClose={() => {}}>
+				<Modal.Header>Lorem ipsum</Modal.Header>
+				<Modal.Body>
+					<p>Laboriosam autem non et nisi.</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button block size="large">
+						Submit
+					</Button>
+				</Modal.Footer>
+			</Modal>,
+		);
+
+		act(() => {
+			vi.runAllTimers();
+		});
+		act(() => {
+			vi.runAllTimers();
+		});
+		// eslint-disable-next-line testing-library/no-unnecessary-act
+		await act(async () => {});
+
+		activeElementSpy.mockRestore();
+
+		expect(dialogContainer.style.outline).toBe("");
+		expect(dialogContainer.style.outlineOffset).toBe("");
+	});
+
 	it("should show a focus ring on the initially focused element after the modal opens", async () => {
 		// headlessui only fires afterEnter when `show` transitions false → true (not on
 		// initial mount). Use fake timers so requestAnimationFrame callbacks — which

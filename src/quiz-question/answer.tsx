@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -120,7 +120,8 @@ export const Answer = <AnswerT extends number | string>({
 	feedback,
 	action,
 }: AnswerProps<AnswerT>) => {
-	const labelId = `quiz-answer-${value}-label`;
+	const id = useId();
+	const labelId = `${id}-label`;
 
 	const getRadioWrapperCls = () => {
 		const cls = [...radioWrapperDefaultClasses];

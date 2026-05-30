@@ -118,8 +118,18 @@ const Modal = ({
 	}
 
 	const showFocusRingOnInitialFocus = () => {
+		// Guard against container elements (body, html, the dialog root) that
+		// HeadlessUI may temporarily focus during its enter transition. Those
+		// elements are fixed inset-0, so an outline on them renders as blue
+		// lines at the viewport edges.
 		const el = document.activeElement as HTMLElement | null;
-		if (!el) return;
+		if (
+			!el ||
+			el === document.body ||
+			el === document.documentElement ||
+			el.getAttribute("role") === "dialog"
+		)
+			return;
 
 		el.style.outline = "3px solid var(--focus-outline-color)";
 		el.style.outlineOffset = "0px";
