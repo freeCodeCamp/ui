@@ -89,7 +89,7 @@
     "@types/prismjs": "1.26.5",
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
-    "@vitest/eslint-plugin": "1.6.16",
+    "@vitest/eslint-plugin": "1.6.27",
     "@vitest/ui": "4.0.18",
     "autoprefixer": "10.4.22",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
