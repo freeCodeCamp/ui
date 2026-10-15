@@ -1,0 +1,1 @@
+import{_ as e,c as t}from"./theming-_dnpBrJp.js";t();export{e as color};
