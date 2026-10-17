@@ -106,8 +106,8 @@ importers:
         specifier: 4.0.18
         version: 4.0.18(vitest@4.0.18)
       autoprefixer:
-        specifier: 10.4.22
-        version: 10.4.22(postcss@8.5.29)
+        specifier: 10.6.1
+        version: 10.6.1(postcss@8.5.29)
       babel-plugin-transform-react-remove-prop-types:
         specifier: 0.4.24
         version: 0.4.24
@@ -2512,8 +2512,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  autoprefixer@10.4.22:
-    resolution: {integrity: sha512-ARe0v/t9gO28Bznv6GgqARmVqcWOV3mfgUPn9becPHMiD3o9BwlRgaeccZnwTpZ7Zwqrm+c1sUSsMxIzQzc8Xg==}
+  autoprefixer@10.6.1:
+    resolution: {integrity: sha512-cL1Qz6ADZhcEbny/8HPfe99J6HhNoYtpX2LFLIbhgGE7Q1hlQVkYFdetDN7Id3KiQxhDrHwzlHr/YQCnZ8+xSA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -2646,9 +2646,6 @@ packages:
 
   caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
-
-  caniuse-lite@1.0.30001754:
-    resolution: {integrity: sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==}
 
   caniuse-lite@1.0.30001816:
     resolution: {integrity: sha512-+8Yx7BXCoqk6IF8yTicjfUR6D/ldJzdlsodlEOiOSPmhK844WIgk67/zIQaGAOxNkZyyvBlrRFnLvqKIoqbAFw==}
@@ -4001,10 +3998,6 @@ packages:
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
-    engines: {node: '>=0.10.0'}
-
-  normalize-range@0.1.2:
-    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
 
   normalize-url@6.1.0:
@@ -7665,12 +7658,11 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.4.22(postcss@8.5.29):
+  autoprefixer@10.6.1(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
-      caniuse-lite: 1.0.30001754
+      browserslist: 4.29.3
+      caniuse-lite: 1.0.30001816
       fraction.js: 5.3.4
-      normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.29
       postcss-value-parser: 4.2.0
@@ -7745,7 +7737,7 @@ snapshots:
   browserslist@4.28.0:
     dependencies:
       baseline-browser-mapping: 2.8.25
-      caniuse-lite: 1.0.30001754
+      caniuse-lite: 1.0.30001816
       electron-to-chromium: 1.5.250
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
@@ -7807,12 +7799,10 @@ snapshots:
 
   caniuse-api@3.0.0:
     dependencies:
-      browserslist: 4.28.0
-      caniuse-lite: 1.0.30001754
+      browserslist: 4.29.3
+      caniuse-lite: 1.0.30001816
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
-
-  caniuse-lite@1.0.30001754: {}
 
   caniuse-lite@1.0.30001816: {}
 
@@ -9365,8 +9355,6 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  normalize-range@0.1.2: {}
-
   normalize-url@6.1.0: {}
 
   npm-run-all2@5.0.2:
@@ -9605,7 +9593,7 @@ snapshots:
 
   postcss-colormin@5.3.1(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.5.29
@@ -9613,7 +9601,7 @@ snapshots:
 
   postcss-convert-values@5.1.3(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       postcss: 8.5.29
       postcss-value-parser: 4.2.0
 
@@ -9676,7 +9664,7 @@ snapshots:
 
   postcss-merge-rules@5.1.4(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       caniuse-api: 3.0.0
       cssnano-utils: 3.1.0(postcss@8.5.29)
       postcss: 8.5.29
@@ -9696,7 +9684,7 @@ snapshots:
 
   postcss-minify-params@5.1.4(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       cssnano-utils: 3.1.0(postcss@8.5.29)
       postcss: 8.5.29
       postcss-value-parser: 4.2.0
@@ -9775,7 +9763,7 @@ snapshots:
 
   postcss-normalize-unicode@5.1.1(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       postcss: 8.5.29
       postcss-value-parser: 4.2.0
 
@@ -9798,7 +9786,7 @@ snapshots:
 
   postcss-reduce-initial@5.1.2(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       caniuse-api: 3.0.0
       postcss: 8.5.29
 
@@ -10415,7 +10403,7 @@ snapshots:
 
   stylehacks@5.1.1(postcss@8.5.29):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.29.3
       postcss: 8.5.29
       postcss-selector-parser: 6.1.2
 
