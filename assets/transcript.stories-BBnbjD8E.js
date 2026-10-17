@@ -1,4 +1,4 @@
-import{n as e}from"./chunk-BneVvdWh.js";import{n as t,t as n}from"./iframe-DelHXY04.js";import{n as r,t as i}from"./transcript-D093frO1.js";var a,o,s,c,l;e((()=>{n(),r(),a=t.meta({component:i,title:`Internal Components/Transcript`,tags:[`autodocs`],parameters:{controls:{expanded:!0}}}),o=a.story({args:{transcript:`<p>In this lesson, we'll explore the fundamentals of JavaScript.</p>
+import{n as e}from"./chunk-BneVvdWh.js";import{n as t,t as n}from"./iframe-COWUS_NT.js";import{n as r,t as i}from"./transcript-D093frO1.js";var a,o,s,c,l;e((()=>{n(),r(),a=t.meta({component:i,title:`Internal Components/Transcript`,tags:[`autodocs`],parameters:{controls:{expanded:!0}}}),o=a.story({args:{transcript:`<p>In this lesson, we'll explore the fundamentals of JavaScript.</p>
 <p>JavaScript is a versatile programming language used for web development.</p>
 <p>It allows you to create interactive and dynamic web pages.</p>
 <p>Let's start by understanding variables and data types.</p>`},parameters:{docs:{source:{code:`<Transcript

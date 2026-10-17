@@ -1,4 +1,4 @@
-import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-XedgCGTy.js";import{n as r,t as i}from"./iframe-DelHXY04.js";import{n as a,t as o}from"./prism-formatted-CRMnlBua.js";var s,c,l,u,d,f,p,m,h;t((()=>{s=e(n()),i(),a(),c=r.meta({title:`Components/PrismFormatted`,component:o,tags:[`autodocs`]}),l=`<p>Given the following code:</p>
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-XedgCGTy.js";import{n as r,t as i}from"./iframe-COWUS_NT.js";import{n as a,t as o}from"./prism-formatted-CRMnlBua.js";var s,c,l,u,d,f,p,m,h;t((()=>{s=e(n()),i(),a(),c=r.meta({title:`Components/PrismFormatted`,component:o,tags:[`autodocs`]}),l=`<p>Given the following code:</p>
 <pre><code class="language-python">temp = "5 degrees"
 cel = 0
 fahr = float(temp)
