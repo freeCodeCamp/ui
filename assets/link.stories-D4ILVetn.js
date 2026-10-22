@@ -1,0 +1,12 @@
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./react-pByjoP3I.js";import{n as r,r as i}from"./iframe-AlbDbHln.js";var a,o;function s(){return(s=t((()=>{a=e(n()),o=a.forwardRef(({children:e,to:t,target:n,block:r},i)=>{let o=(0,a.useMemo)(()=>{let e=[`text-foreground-primary`,`text-center`,`hover:no-underline`,`hover:bg-background-tertiary`];return r&&e.push(`block`,`w-full`),e.join(` `)},[r]);return a.createElement(`a`,{className:o,href:t,target:n,ref:i,rel:`noopener noreferrer`},e)}),o.displayName=`Link`,o.__docgenInfo={description:``,methods:[],displayName:`Link`,props:{children:{required:!0,tsType:{name:`ReactReactNode`,raw:`React.ReactNode`},description:``},block:{required:!1,tsType:{name:`boolean`},description:``},to:{required:!1,tsType:{name:`string`},description:``},target:{required:!1,tsType:{name:`ReactHTMLAttributeAnchorTarget`,raw:`React.HTMLAttributeAnchorTarget`},description:``}}}})))()}function c(){return(c=t((()=>{s()})))()}var l,u,d,f;function p(){return(p=t((()=>{r(),c(),l=i.meta({title:`Components/Link`,component:o,tags:[`autodocs`]}),u=l.story({args:{children:`Go to freeCodeCamp`,to:`https://www.freecodecamp.org`}}),d=l.story({args:{children:`Go to freeCodeCamp`,to:`https://www.freecodecamp.org`,block:!0}}),f=[`Default`,`Block`],u.input.parameters={...u.input.parameters,docs:{...u.input.parameters?.docs,source:{originalSource:`meta.story({
+  args: {
+    children: "Go to freeCodeCamp",
+    to: "https://www.freecodecamp.org"
+  }
+})`,...u.input.parameters?.docs?.source}}},d.input.parameters={...d.input.parameters,docs:{...d.input.parameters?.docs,source:{originalSource:`meta.story({
+  args: {
+    children: "Go to freeCodeCamp",
+    to: "https://www.freecodecamp.org",
+    block: true
+  }
+})`,...d.input.parameters?.docs?.source}}}})))()}p();export{d as Block,u as Default,f as __namedExportsOrder,l as default};
