@@ -61,7 +61,7 @@
     "@headlessui/react": "1.7.19",
     "@radix-ui/react-tabs": "1.2.0",
     "babel-plugin-prismjs": "2.1.0",
-    "dompurify": "3.4.16",
+    "dompurify": "3.4.17",
     "prismjs": "1.30.0"
   },
   "peerDependencies": {
