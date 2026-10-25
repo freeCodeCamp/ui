@@ -72,6 +72,7 @@ module.exports = {
 					450: "var(--yellow45)",
 					500: "var(--yellow50)",
 					700: "var(--yellow70)",
+					750: "var(--yellow75)",
 					800: "var(--yellow80)",
 					900: "var(--yellow90)",
 				},
