@@ -103,5 +103,4 @@ type QuizQuestionWithAudio<AnswerT extends number | string> =
 	};
 
 export type QuizQuestionProps<AnswerT extends number | string> =
-	| QuizQuestionWithoutAudio<AnswerT>
-	| QuizQuestionWithAudio<AnswerT>;
+	QuizQuestionWithoutAudio<AnswerT> | QuizQuestionWithAudio<AnswerT>;

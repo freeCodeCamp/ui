@@ -73,5 +73,4 @@ type QuestionWithAudio<AnswerT extends number | string> =
 	};
 
 export type Question<AnswerT extends number | string> =
-	| QuestionWithoutAudio<AnswerT>
-	| QuestionWithAudio<AnswerT>;
+	QuestionWithoutAudio<AnswerT> | QuestionWithAudio<AnswerT>;

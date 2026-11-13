@@ -34,6 +34,4 @@ interface DangerButtonProps extends BaseButtonProps {
 }
 
 export type ButtonProps =
-	| PrimaryButtonProps
-	| InfoButtonProps
-	| DangerButtonProps;
+	PrimaryButtonProps | InfoButtonProps | DangerButtonProps;
