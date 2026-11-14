@@ -1,0 +1,3 @@
+# Dependencies allowed to run their build scripts.
+allowBuilds:
+  esbuild: true
